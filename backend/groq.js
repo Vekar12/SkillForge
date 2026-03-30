@@ -1,15 +1,15 @@
 const Groq = require('groq-sdk');
-require('dotenv').config();
-
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 async function adjustTomorrowsPlan(
   openPoints,
   score,
   competencyLevel,
   tomorrowContent,
-  competenciesCovered
+  competenciesCovered,
+  apiKey
 ) {
+  const groq = new Groq({ apiKey });
+
   const tomorrowTaskTitles = (tomorrowContent?.tasks || []).map(t => t.title).join(', ');
   const tomorrowCompetencies = (competenciesCovered || []).join(', ');
 
@@ -36,8 +36,6 @@ Return ONLY valid JSON:
   });
 
   const text = response.choices[0].message.content.trim();
-
-  // Strip markdown code fences if present
   const cleaned = text.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, '');
   return JSON.parse(cleaned);
 }

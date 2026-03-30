@@ -1,28 +1,20 @@
 const { google } = require('googleapis');
-require('dotenv').config();
 
-let sheets;
-
-function getClient() {
-  if (sheets) return sheets;
-
-  const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+function getClient(creds) {
+  const credentials = JSON.parse(creds.serviceAccountJson);
   const auth = new google.auth.GoogleAuth({
     credentials,
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   });
-  sheets = google.sheets({ version: 'v4', auth });
-  return sheets;
+  return google.sheets({ version: 'v4', auth });
 }
 
-const SPREADSHEET_ID = () => process.env.SPREADSHEET_ID;
+// ─── STATE ───────────────────────────────────────────────────
 
-// ─── STATE ───────────────────────────────────────────────
-
-async function getState(key) {
-  const client = getClient();
+async function getState(key, creds) {
+  const client = getClient(creds);
   const res = await client.spreadsheets.values.get({
-    spreadsheetId: SPREADSHEET_ID(),
+    spreadsheetId: creds.sheetId,
     range: 'STATE!A:B',
   });
   const rows = res.data.values || [];
@@ -30,61 +22,51 @@ async function getState(key) {
   return row ? row[1] : null;
 }
 
-async function setState(key, value) {
-  const client = getClient();
+async function setState(key, value, creds) {
+  const client = getClient(creds);
   const res = await client.spreadsheets.values.get({
-    spreadsheetId: SPREADSHEET_ID(),
+    spreadsheetId: creds.sheetId,
     range: 'STATE!A:B',
   });
   const rows = res.data.values || [];
   const rowIndex = rows.findIndex(r => r[0] === key);
 
   if (rowIndex === -1) {
-    // Append new row
     await client.spreadsheets.values.append({
-      spreadsheetId: SPREADSHEET_ID(),
+      spreadsheetId: creds.sheetId,
       range: 'STATE!A:B',
       valueInputOption: 'RAW',
       requestBody: { values: [[key, value]] },
     });
   } else {
-    // Update existing row (1-indexed, +1 for header if any)
-    const range = `STATE!A${rowIndex + 1}:B${rowIndex + 1}`;
     await client.spreadsheets.values.update({
-      spreadsheetId: SPREADSHEET_ID(),
-      range,
+      spreadsheetId: creds.sheetId,
+      range: `STATE!A${rowIndex + 1}:B${rowIndex + 1}`,
       valueInputOption: 'RAW',
       requestBody: { values: [[key, value]] },
     });
   }
 }
 
-// ─── TASKS ───────────────────────────────────────────────
+// ─── TASKS ───────────────────────────────────────────────────
 
-async function getTasksForDay(day) {
-  const client = getClient();
+async function getTasksForDay(day, creds) {
+  const client = getClient(creds);
   const res = await client.spreadsheets.values.get({
-    spreadsheetId: SPREADSHEET_ID(),
+    spreadsheetId: creds.sheetId,
     range: 'TASKS!A:E',
   });
   const rows = res.data.values || [];
-  // Skip header row, filter by day
   return rows
     .slice(1)
     .filter(r => String(r[0]) === String(day))
-    .map(r => ({
-      day: r[0],
-      taskId: r[1],
-      type: r[2],
-      status: r[3],
-      completedAt: r[4],
-    }));
+    .map(r => ({ day: r[0], taskId: r[1], type: r[2], status: r[3], completedAt: r[4] }));
 }
 
-async function appendTaskCompletion(day, taskId, type) {
-  const client = getClient();
+async function appendTaskCompletion(day, taskId, type, creds) {
+  const client = getClient(creds);
   await client.spreadsheets.values.append({
-    spreadsheetId: SPREADSHEET_ID(),
+    spreadsheetId: creds.sheetId,
     range: 'TASKS!A:E',
     valueInputOption: 'RAW',
     requestBody: {
@@ -93,13 +75,13 @@ async function appendTaskCompletion(day, taskId, type) {
   });
 }
 
-// ─── ASSESSMENTS ─────────────────────────────────────────
+// ─── ASSESSMENTS ─────────────────────────────────────────────
 
-async function appendAssessment(day, parsed) {
-  const client = getClient();
+async function appendAssessment(day, parsed, creds) {
+  const client = getClient(creds);
   await client.spreadsheets.values.append({
-    spreadsheetId: SPREADSHEET_ID(),
-    range: 'ASSESSMENTS!A:J',
+    spreadsheetId: creds.sheetId,
+    range: 'ASSESSMENTS!A:K',
     valueInputOption: 'RAW',
     requestBody: {
       values: [[
@@ -119,11 +101,11 @@ async function appendAssessment(day, parsed) {
   });
 }
 
-// ─── OPEN POINTS ─────────────────────────────────────────
+// ─── OPEN POINTS ─────────────────────────────────────────────
 
-async function appendOpenPoints(openPointsArray, sourceDay) {
+async function appendOpenPoints(openPointsArray, sourceDay, creds) {
   if (!openPointsArray.length) return;
-  const client = getClient();
+  const client = getClient(creds);
   const rows = openPointsArray.map((point, i) => [
     `D${sourceDay}_P${i + 1}`,
     point,
@@ -131,19 +113,19 @@ async function appendOpenPoints(openPointsArray, sourceDay) {
     'open',
   ]);
   await client.spreadsheets.values.append({
-    spreadsheetId: SPREADSHEET_ID(),
+    spreadsheetId: creds.sheetId,
     range: 'OPEN_POINTS!A:D',
     valueInputOption: 'RAW',
     requestBody: { values: rows },
   });
 }
 
-// ─── ROADMAP SCORES ──────────────────────────────────────
+// ─── ROADMAP SCORES ──────────────────────────────────────────
 
-async function getAllAssessmentScores() {
-  const client = getClient();
+async function getAllAssessmentScores(creds) {
+  const client = getClient(creds);
   const res = await client.spreadsheets.values.get({
-    spreadsheetId: SPREADSHEET_ID(),
+    spreadsheetId: creds.sheetId,
     range: 'ASSESSMENTS!A:I',
   });
   const rows = res.data.values || [];
@@ -155,16 +137,6 @@ async function getAllAssessmentScores() {
   }));
 }
 
-// ─── CONNECTION TEST ─────────────────────────────────────
-
-async function testConnection() {
-  const client = getClient();
-  const res = await client.spreadsheets.get({
-    spreadsheetId: SPREADSHEET_ID(),
-  });
-  return res.data.title;
-}
-
 module.exports = {
   getState,
   setState,
@@ -173,5 +145,4 @@ module.exports = {
   appendAssessment,
   appendOpenPoints,
   getAllAssessmentScores,
-  testConnection,
 };

@@ -11,6 +11,15 @@ const app = express();
 app.use(cors({ origin: 'http://localhost:5173' }));
 app.use(express.json());
 
+// Credentials come from frontend localStorage via request headers
+function getCreds(req) {
+  return {
+    groqKey: req.headers['x-groq-key'] || '',
+    sheetId: req.headers['x-sheet-id'] || '',
+    serviceAccountJson: req.headers['x-service-account'] || '',
+  };
+}
+
 const ROADMAP_PATH = path.join(__dirname, 'data/roadmaps/apm-foundations.json');
 
 function loadRoadmap() {
@@ -22,7 +31,8 @@ function loadRoadmap() {
 // ─────────────────────────────────────────────────────────────
 app.get('/api/today', async (req, res) => {
   try {
-    const currentDay = Number(await sheets.getState('current_day'));
+    const creds = getCreds(req);
+    const currentDay = Number(await sheets.getState('current_day', creds));
     const roadmap = loadRoadmap();
     const dayData = roadmap.days.find(d => d.day === currentDay);
 
@@ -30,8 +40,7 @@ app.get('/api/today', async (req, res) => {
       return res.status(404).json({ error: `Day ${currentDay} not found in roadmap` });
     }
 
-    // Merge task completion from Sheets
-    const completedTasks = await sheets.getTasksForDay(currentDay);
+    const completedTasks = await sheets.getTasksForDay(currentDay, creds);
     const completedIds = new Set(completedTasks.map(t => t.taskId));
 
     const tasks = (dayData.tasks || []).map(t => ({
@@ -39,23 +48,16 @@ app.get('/api/today', async (req, res) => {
       completed: completedIds.has(t.id),
     }));
 
-    // Apply next_day_adjustments if present
     let adjustments = null;
-    const rawAdj = await sheets.getState('next_day_adjustments');
+    const rawAdj = await sheets.getState('next_day_adjustments', creds);
     if (rawAdj) {
       try { adjustments = JSON.parse(rawAdj); } catch (_) {}
     }
 
-    // assessmentUnlocked only if all core (non-bonus) tasks are done
     const coreTasks = tasks.filter(t => !t.isBonus);
     const assessmentUnlocked = coreTasks.length > 0 && coreTasks.every(t => t.completed);
 
-    res.json({
-      ...dayData,
-      tasks,
-      assessmentUnlocked,
-      adjustments,
-    });
+    res.json({ ...dayData, tasks, assessmentUnlocked, adjustments });
   } catch (err) {
     console.error('/api/today error:', err.message);
     res.status(500).json({ error: err.message });
@@ -72,12 +74,12 @@ app.post('/api/task/complete', async (req, res) => {
       return res.status(400).json({ error: 'taskId, day, and type are required' });
     }
 
-    await sheets.appendTaskCompletion(day, taskId, type);
+    const creds = getCreds(req);
+    await sheets.appendTaskCompletion(day, taskId, type, creds);
 
-    // Determine what unlocks next
     const roadmap = loadRoadmap();
     const dayData = roadmap.days.find(d => d.day === Number(day));
-    const completedTasks = await sheets.getTasksForDay(day);
+    const completedTasks = await sheets.getTasksForDay(day, creds);
     const completedIds = new Set(completedTasks.map(t => t.taskId));
 
     let nextUnlocked = null;
@@ -85,7 +87,6 @@ app.post('/api/task/complete', async (req, res) => {
 
     if (dayData) {
       const tasks = dayData.tasks || [];
-
       const readTasks = tasks.filter(t => t.type === 'READ');
       const searchTasks = tasks.filter(t => t.type === 'SEARCH');
       const activityTask = tasks.find(t => t.type === 'ACTIVITY');
@@ -94,7 +95,6 @@ app.post('/api/task/complete', async (req, res) => {
       const allSearchDone = searchTasks.every(t => completedIds.has(t.id));
 
       if (type === 'READ' && allReadDone && searchTasks.length > 0) {
-        // Unlock first incomplete SEARCH task
         const nextSearch = searchTasks.find(t => !completedIds.has(t.id));
         nextUnlocked = nextSearch ? nextSearch.id : null;
       } else if (allReadDone && allSearchDone && activityTask && !completedIds.has(activityTask.id)) {
@@ -143,20 +143,17 @@ app.post('/api/assessment', async (req, res) => {
       return res.status(400).json({ error: 'day and rawFeedback are required' });
     }
 
-    // ── Parse rawFeedback ──
+    const creds = getCreds(req);
     const parsed = parseAssessment(rawFeedback);
     parsed.rawFeedback = rawFeedback;
 
-    // ── Save to Sheets ──
-    await sheets.appendAssessment(day, parsed);
-    await sheets.appendOpenPoints(parsed.openPoints, day);
+    await sheets.appendAssessment(day, parsed, creds);
+    await sheets.appendOpenPoints(parsed.openPoints, day, creds);
 
-    // ── Load tomorrow's content ──
     const roadmap = loadRoadmap();
     const tomorrowDay = Number(day) + 1;
     const tomorrowContent = roadmap.days.find(d => d.day === tomorrowDay) || null;
 
-    // ── Call Groq ──
     let groqResult = null;
     if (tomorrowContent) {
       groqResult = await adjustTomorrowsPlan(
@@ -164,16 +161,15 @@ app.post('/api/assessment', async (req, res) => {
         parsed.score,
         parsed.competencyLevel,
         tomorrowContent,
-        tomorrowContent.competenciesCovered || []
+        tomorrowContent.competenciesCovered || [],
+        creds.groqKey
       );
-      await sheets.setState('next_day_adjustments', JSON.stringify(groqResult));
+      await sheets.setState('next_day_adjustments', JSON.stringify(groqResult), creds);
     }
 
-    // ── Advance day + update streak ──
-    await sheets.setState('current_day', tomorrowDay);
-
-    const streak = Number(await sheets.getState('streak') || 0);
-    await sheets.setState('streak', streak + 1);
+    await sheets.setState('current_day', tomorrowDay, creds);
+    const streak = Number(await sheets.getState('streak', creds) || 0);
+    await sheets.setState('streak', streak + 1, creds);
 
     res.json({
       success: true,
@@ -200,14 +196,15 @@ app.post('/api/assessment', async (req, res) => {
 // ─────────────────────────────────────────────────────────────
 app.get('/api/roadmap', async (req, res) => {
   try {
+    const creds = getCreds(req);
     const roadmap = loadRoadmap();
-    const currentDay = Number(await sheets.getState('current_day'));
-    const scores = await sheets.getAllAssessmentScores();
+    const currentDay = Number(await sheets.getState('current_day', creds));
+    const scores = await sheets.getAllAssessmentScores(creds);
     const scoreMap = Object.fromEntries(scores.map(s => [s.day, s]));
 
     const days = await Promise.all(
       roadmap.days.map(async (d) => {
-        const completedTasks = await sheets.getTasksForDay(d.day);
+        const completedTasks = await sheets.getTasksForDay(d.day, creds);
         const completedIds = new Set(completedTasks.map(t => t.taskId));
         const coreTasks = (d.tasks || []).filter(t => !t.isBonus);
         const allCoreDone = coreTasks.length > 0 && coreTasks.every(t => completedIds.has(t.id));
@@ -246,9 +243,7 @@ function parseAssessment(raw) {
   };
 
   const toLines = (text) =>
-    text.split('\n')
-      .map(l => l.replace(/^[-•*]\s*/, '').trim())
-      .filter(Boolean);
+    text.split('\n').map(l => l.replace(/^[-•*]\s*/, '').trim()).filter(Boolean);
 
   const gotRight = toLines(section('WHAT I GOT RIGHT'));
   const needsCorrection = toLines(section('WHAT NEEDS CORRECTION'));
@@ -256,11 +251,9 @@ function parseAssessment(raw) {
   const indiaNote = section('INDIA-SPECIFIC NOTE');
   const openPoints = toLines(section('OPEN POINTS FOR TOMORROW'));
 
-  // SCORE: 8/10
   const scoreMatch = raw.match(/SCORE:\s*(\d+)\s*\/\s*10/i);
   const score = scoreMatch ? parseInt(scoreMatch[1], 10) : 0;
 
-  // REFORGE COMPETENCY: Fluency with Data — On Track
   const compMatch = raw.match(/REFORGE COMPETENCY:\s*(.+?)\s*[—–-]\s*(.+)/i);
   const competencyName = compMatch ? compMatch[1].trim() : '';
   const competencyLevel = compMatch ? compMatch[2].trim() : '';
@@ -273,19 +266,7 @@ function parseAssessment(raw) {
 // ─────────────────────────────────────────────────────────────
 const PORT = process.env.PORT || 3000;
 
-async function start() {
-  try {
-    const title = await sheets.testConnection();
-    console.log(`✓ Sheets connected: "${title}"`);
-  } catch (err) {
-    console.error('✗ Sheets connection failed:', err.message);
-    console.error('  Check SPREADSHEET_ID and GOOGLE_SERVICE_ACCOUNT_JSON in .env');
-    process.exit(1);
-  }
-
-  app.listen(PORT, () => {
-    console.log(`✓ SkillForge backend running on http://localhost:${PORT}`);
-  });
-}
-
-start();
+app.listen(PORT, () => {
+  console.log(`✓ SkillForge backend running on http://localhost:${PORT}`);
+  console.log('  Credentials are read per-request from frontend headers.');
+});
