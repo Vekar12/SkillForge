@@ -11,12 +11,13 @@ const app = express();
 app.use(cors({ origin: 'http://localhost:5173' }));
 app.use(express.json());
 
-// Credentials come from frontend localStorage via request headers
+// Groq key comes from frontend (localStorage → header)
+// Sheet credentials stay in .env — they never change
 function getCreds(req) {
   return {
     groqKey: req.headers['x-groq-key'] || '',
-    sheetId: req.headers['x-sheet-id'] || '',
-    serviceAccountJson: req.headers['x-service-account'] || '',
+    sheetId: process.env.SPREADSHEET_ID,
+    serviceAccountJson: process.env.GOOGLE_SERVICE_ACCOUNT_JSON,
   };
 }
 
