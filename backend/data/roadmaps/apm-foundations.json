@@ -1,0 +1,76 @@
+{
+  "skill": "APM Foundations",
+  "totalDays": 21,
+  "days": [
+    {
+      "day": 1,
+      "title": "What is a Product Manager?",
+      "teamContext": "You're shadowing a PM on their first sprint planning session.",
+      "competenciesCovered": ["Product Thinking", "Stakeholder Alignment"],
+      "tasks": [
+        {
+          "id": "d1_read_1",
+          "type": "READ",
+          "title": "Read: Reforge PM fundamentals article",
+          "isBonus": false
+        },
+        {
+          "id": "d1_search_1",
+          "type": "SEARCH",
+          "title": "Search: Find 2 PM job descriptions and note recurring keywords",
+          "isBonus": false
+        },
+        {
+          "id": "d1_activity_1",
+          "type": "ACTIVITY",
+          "title": "Activity: Write a 3-sentence answer to 'What does a PM do?'",
+          "isBonus": false
+        },
+        {
+          "id": "d1_bonus_1",
+          "type": "READ",
+          "title": "Bonus: Watch Shreyas Doshi's PM archetypes thread",
+          "isBonus": true
+        }
+      ],
+      "assessmentTask": {
+        "rawMaterial": "Use your 3-sentence answer from the activity.",
+        "outputFormat": "Structured self-assessment paragraph",
+        "claudePrompt": "Evaluate this APM's understanding of the PM role. Be specific about gaps."
+      },
+      "bonusTasks": []
+    },
+    {
+      "day": 2,
+      "title": "Discovery & Problem Framing",
+      "teamContext": "Your PM asks you to help frame a discovery brief for a new feature.",
+      "competenciesCovered": ["Customer Empathy", "Fluency with Data"],
+      "tasks": [
+        {
+          "id": "d2_read_1",
+          "type": "READ",
+          "title": "Read: JTBD framework overview",
+          "isBonus": false
+        },
+        {
+          "id": "d2_search_1",
+          "type": "SEARCH",
+          "title": "Search: Find a real product that uses JTBD framing in their messaging",
+          "isBonus": false
+        },
+        {
+          "id": "d2_activity_1",
+          "type": "ACTIVITY",
+          "title": "Activity: Write a JTBD statement for a product you use daily",
+          "isBonus": false
+        }
+      ],
+      "assessmentTask": {
+        "rawMaterial": "Your JTBD statement from the activity.",
+        "outputFormat": "Critical review of your JTBD statement",
+        "claudePrompt": "Critique this JTBD statement. Is the job specific enough? Is the outcome measurable?"
+      },
+      "bonusTasks": []
+    }
+  ]
+}
