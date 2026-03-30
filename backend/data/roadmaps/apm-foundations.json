@@ -1,76 +1,590 @@
 {
-  "skill": "APM Foundations",
-  "totalDays": 21,
+  "meta": {
+    "roadmapId": "apm-foundations",
+    "title": "APM Foundations: 21-Day PM Competency Roadmap",
+    "learner": "Pranav",
+    "framework": "Reforge 12 PM Competency Model by Ravi Mehta",
+    "frameworkSource": "https://www.reforge.com/blog/product-manager-skills",
+    "totalDays": 21,
+    "minutesPerDay": 120,
+    "createdDate": "2026-03-30",
+    "status": "week1-complete",
+    "weekThemes": {
+      "week1": "Role Understanding + Customer Insight (Days 1-7)",
+      "week2": "Data, Metrics, Real Execution Work (Days 8-14)",
+      "week3": "Strategy, India Context, Cases, Integration (Days 15-21)"
+    },
+    "reforgeCompetencies": {
+      "productExecution": ["Feature Specification", "Product Delivery", "Product Quality"],
+      "customerInsight": ["Fluency with Data", "Voice of Customer", "UX Design Sense"],
+      "productStrategy": ["Business Outcome Ownership", "Product Vision + Roadmapping", "Strategic Impact"],
+      "influencingPeople": ["Stakeholder Management", "Team Leadership", "Managing Up"]
+    },
+    "preReadingBeforeDay1": {
+      "title": "Behind Every Great Product — Marty Cagan, SVPG",
+      "url": "https://svpg.com/behind-every-great-product/",
+      "why": "10-minute read that answers 'why does the PM role exist at all?' — having this context makes Day 1 framework reading land much harder."
+    }
+  },
   "days": [
     {
       "day": 1,
-      "title": "What is a Product Manager?",
-      "teamContext": "You're shadowing a PM on their first sprint planning session.",
-      "competenciesCovered": ["Product Thinking", "Stakeholder Alignment"],
+      "week": 1,
+      "theme": "What the PM role actually is",
+      "competenciesCovered": [
+        "Feature Specification",
+        "Product Delivery",
+        "Product Quality",
+        "Fluency with Data",
+        "Voice of Customer",
+        "UX Design Sense",
+        "Business Outcome Ownership",
+        "Product Vision + Roadmapping",
+        "Strategic Impact",
+        "Stakeholder Management",
+        "Team Leadership",
+        "Managing Up"
+      ],
+      "objective": "Map all 12 Reforge PM competencies to real PM responsibilities and explain — in writing — what an APM at Swiggy does differently from the engineering lead, the designer, and the data analyst on the same squad.",
+      "estimatedMinutes": 120,
+      "realWorldAnchor": {
+        "company": "Swiggy",
+        "example": "Swiggy operates with dedicated product squads — one each for the consumer app, restaurant partner tools, logistics, and growth — where APMs are embedded in a single squad and own specific feature areas end-to-end alongside engineers, designers, and analysts."
+      },
+      "teamContext": "Today's topic touches all four cross-functional partners — Engineering (who builds), Design (who shapes UX), Data/Analytics (who measures), and Marketing/Growth (who acquires users) — because understanding the PM role requires seeing clearly how it differs from each of these functions.",
       "tasks": [
         {
-          "id": "d1_read_1",
-          "type": "READ",
-          "title": "Read: Reforge PM fundamentals article",
-          "isBonus": false
+          "id": "d1t1",
+          "type": "read",
+          "title": "Product Manager Skills by Seniority Level — Ravi Mehta, Reforge",
+          "url": "https://www.reforge.com/blog/product-manager-skills",
+          "summary": "Ravi Mehta, former VP of Product at Tinder and author of the Reforge PM competency model, maps the 12 core PM competencies across three seniority levels — APM, PM, and Senior PM. This is the foundational framework for the entire 21-day roadmap; reading it on Day 1 gives Pranav a mental map of every skill he will build over the next three weeks.",
+          "keyTakeaways": [
+            "The 12 competencies are organised into four pillars — Product Execution, Customer Insight, Product Strategy, and Influencing People — and each pillar matters at the APM level, though execution and customer insight are weighted more heavily than strategy and influence early in a PM career",
+            "APMs who outperform in Product Execution and Customer Insight get promoted; those who lead with strategy before building execution credibility often lose team trust first",
+            "Being 'product-minded' means every feature decision is connected to a user outcome AND a business metric — this is what separates a PM from a project manager or a business analyst"
+          ],
+          "minutes": 30
         },
         {
-          "id": "d1_search_1",
-          "type": "SEARCH",
-          "title": "Search: Find 2 PM job descriptions and note recurring keywords",
-          "isBonus": false
+          "id": "d1t2",
+          "type": "read",
+          "title": "The Product Manager — Marty Cagan, SVPG",
+          "url": "https://svpg.com/the-product-manager/",
+          "summary": "Marty Cagan, founder of SVPG and author of Inspired, defines what a product manager is responsible for — and critically, what they are NOT responsible for — in a product-led company. This gives Pranav a second lens alongside Reforge: where Reforge is a skills and seniority map, SVPG is a responsibilities and accountability map.",
+          "keyTakeaways": [
+            "The PM's core job is to discover a product that is simultaneously valuable (users want it), usable (users can use it), feasible (engineering can build it), and viable (the business should build it) — all four tests apply to every feature, not just new products",
+            "A PM does not own design, engineering, or data — but they are fully accountable for the outcome those teams produce together, which is a fundamentally different relationship than a manager or a consultant",
+            "The biggest failure mode for APMs is becoming a feature factory — executing a list of requests from stakeholders rather than discovering the right problem to solve first"
+          ],
+          "minutes": 25
         },
         {
-          "id": "d1_activity_1",
-          "type": "ACTIVITY",
-          "title": "Activity: Write a 3-sentence answer to 'What does a PM do?'",
-          "isBonus": false
+          "id": "d1t3",
+          "type": "search",
+          "keyword": "Swiggy APM associate product manager day in life squad structure India 2024",
+          "whyItMatters": "Reading frameworks gives you vocabulary; seeing how a real Indian APM spends their actual day gives you context for applying that vocabulary in practice. Look for blog posts, LinkedIn articles, or YouTube videos by Swiggy, Zomato, or Zepto PMs describing their daily workflow — focus on squad structure, weekly rituals (standups, design reviews, data reviews, stakeholder syncs), and how they handle competing priorities.",
+          "whatToLearn": [
+            "What percentage of a PM's week is in meetings versus solo work — and what kinds of meetings they run (sprint planning, design review, data review, escalation calls, roadmap presentations)",
+            "How an Indian product team at a consumer internet company divides ownership between APM and PM — what the APM owns independently and what requires PM or leadership sign-off"
+          ],
+          "minutes": 20
         },
         {
-          "id": "d1_bonus_1",
-          "type": "READ",
-          "title": "Bonus: Watch Shreyas Doshi's PM archetypes thread",
-          "isBonus": true
+          "id": "d1t4",
+          "type": "activity",
+          "promptTitle": "Map 15 Swiggy PM tasks to the 4 Reforge pillars",
+          "claudePrompt": "You are a senior PM coach helping me build a foundational understanding of the PM role using the Reforge 12-competency model.\n\nToday I studied:\n- Ravi Mehta's 12 PM competencies across 4 pillars: Product Execution, Customer Insight, Product Strategy, Influencing People\n- Marty Cagan's definition of the PM's core job: discover a product that is valuable, usable, feasible, and viable\n- How Swiggy organises its product team into squads with APMs embedded in specific feature areas\n\nReal world context: Imagine I am an APM at Swiggy's consumer app squad. My squad owns the homepage feed, cart, and checkout experience.\n\nYour role today: Test whether I understand what a PM actually does by having me categorise real PM tasks. Push back if I put something in the wrong pillar. Ask me WHY for every answer. Do not move on until I have justified my choice.\n\nActivity — 15 PM tasks to categorise:\nBelow are 15 tasks from a typical Swiggy APM's week. I will tell you which of the 4 Reforge pillars each task belongs to. For each one, ask me to justify my answer before confirming. After all 15, give me a score and tell me where I was confused.\n\n1. Write acceptance criteria for a new restaurant sorting algorithm\n2. Review a Mixpanel funnel showing drop-off at the payment step\n3. Interview 5 Swiggy users about why they abandon their cart\n4. Write a product requirements document for a 'reorder last meal' button\n5. Align with the engineering lead on sprint scope for next week\n6. Present the Q3 product roadmap to the VP of Product\n7. Define the North Star metric for the checkout squad\n8. Review a designer's wireframe for the new address confirmation screen\n9. Identify that app ratings dropped 0.3 stars after the last release\n10. Make the case to leadership for prioritising checkout speed over new features\n11. Run a team retrospective with engineering and design\n12. Analyse a competitor app (Zomato) for differences in the checkout flow\n13. Write a 1-pager on why Swiggy should build offline ordering for low-connectivity areas\n14. Tell the data analyst exactly what query to run and why\n15. Negotiate scope trade-offs with the engineering lead when the sprint is overloaded\n\nAfter I respond to all 15, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight about how Indian PM roles at consumer internet companies differ from US/global norms — especially the cross-functional dynamics at Swiggy, Zepto, or Razorpay]\nCOACHING NOTE: [one specific improvement tip for Pranav]\n\nBegin with: 'Let's go task by task. Start with Task 1: Write acceptance criteria for a new restaurant sorting algorithm. Which of the 4 Reforge pillars does this belong to — and why?'",
+          "minutes": 25
+        }
+      ],
+      "bonusTasks": [
+        {
+          "id": "d1b1",
+          "type": "read",
+          "title": "Good Product Team / Failed Product Team — Marty Cagan, SVPG",
+          "url": "https://svpg.com/good-product-team-failed-product-team/",
+          "summary": "Cagan's most-shared article draws a sharp contrast between empowered product teams (who own outcomes) and feature factories (who execute requests). Reading this after Day 1's core tasks reframes the PM role as a cultural and organisational choice — critical context for APMs joining large companies like Swiggy or Razorpay where both team types can exist in the same building.",
+          "minutes": 20
+        },
+        {
+          "id": "d1b2",
+          "type": "search",
+          "title": "First-person APM experience at top Indian startups",
+          "keyword": "APM associate product manager first year experience Flipkart Razorpay Meesho blog 2023 2024",
+          "summary": "Search for first-person accounts of the APM role at top Indian companies. Look specifically for posts that describe the onboarding experience, what surprised them most, and what skills they wished they had built before joining. These personal stories add colour that no framework article can provide — and they often reveal informal skills (writing, meeting facilitation, data intuition) that matter as much as formal frameworks.",
+          "minutes": 25
         }
       ],
       "assessmentTask": {
-        "rawMaterial": "Use your 3-sentence answer from the activity.",
-        "outputFormat": "Structured self-assessment paragraph",
-        "claudePrompt": "Evaluate this APM's understanding of the PM role. Be specific about gaps."
-      },
-      "bonusTasks": []
+        "type": "do",
+        "taskDescription": "Sort 20 PM tasks into the 4 Reforge pillars in a table with justifications, then write 3 sentences distinguishing what an APM at Swiggy does versus the engineering lead, the designer, and the data analyst on the same squad.",
+        "rawMaterial": "Here are 20 tasks from a real Swiggy product team's sprint board and meeting calendar. Sort each into one of the 4 Reforge pillars (Product Execution / Customer Insight / Product Strategy / Influencing People):\n\n1. Write user stories for a 'Schedule Order' feature\n2. Analyse why Monday order volume is 18% below forecast\n3. Run a 30-minute user interview with a Swiggy power user\n4. Present product strategy for Q4 to the CPO\n5. Create a wireframe feedback document for the design team\n6. Prioritise 10 backlog features for the next sprint using RICE\n7. Write the product brief for a new loyalty programme\n8. Review NPS scores and cluster the most common complaints by theme\n9. Write the launch checklist for a new payment method\n10. Set success metrics for the new restaurant discovery feed\n11. Negotiate scope trade-offs with the engineering lead\n12. Analyse cohort retention data for users who used the new feed vs those who did not\n13. Conduct a competitive audit of Zomato's restaurant page UX\n14. Write a quarterly business review slide deck for the VP\n15. Define edge cases for the address autocomplete feature\n16. Facilitate a cross-team alignment meeting on API dependencies\n17. Flag a quality regression in the checkout flow to the engineering team\n18. Build the 6-month product roadmap for the consumer app\n19. Write a 1-pager making the case for an offline ordering mode\n20. Review and sign off on the sprint demo before the release goes live",
+        "outputFormat": "Part 1: A table with 4 columns — Task Number | Task Description | Reforge Pillar | Justification (1 sentence). Part 2: Three separate sentences, each starting with 'Unlike the [role], the APM...' — one sentence each for engineering lead, designer, and data analyst.",
+        "claudePrompt": "You are a senior PM reviewing my work on Day 1: What the PM role actually is.\n\nI studied today:\n- Ravi Mehta's Reforge 12 PM Competency Model — 4 pillars, 12 competencies, 3 seniority levels\n- Marty Cagan's SVPG definition of the PM's core job: valuable, usable, feasible, viable\n- How Swiggy's product team is structured into squads with APMs embedded in specific feature areas\n\nReal world context I should apply:\nSwiggy APMs are embedded in squads (consumer app, logistics, restaurant-partner tools, growth) and own specific feature areas. They work daily with one engineering lead, one designer, and one analyst.\n\nMY TASK TODAY WAS: Sort 20 Swiggy PM tasks into the 4 Reforge pillars and write 3 sentences distinguishing the APM role from engineering lead, designer, and data analyst.\n\nHere is my work:\n[Pranav pastes his table and 3-sentence role distinction here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation of why]\n\nBLIND SPOTS:\n- [things I did not consider at all]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about Indian product team structures at consumer internet companies like Swiggy — e.g., how the PM-engineering relationship differs from Silicon Valley norms, or the role of ops and growth teams that are unusually influential in Indian companies]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Feature Specification — [Needs Focus / On Track / Outperform]",
+        "minutes": 20
+      }
     },
     {
       "day": 2,
-      "title": "Discovery & Problem Framing",
-      "teamContext": "Your PM asks you to help frame a discovery brief for a new feature.",
-      "competenciesCovered": ["Customer Empathy", "Fluency with Data"],
+      "week": 1,
+      "theme": "Structured thinking — MECE and first principles",
+      "competenciesCovered": [
+        "Feature Specification",
+        "Strategic Impact"
+      ],
+      "objective": "Build a correctly structured MECE tree for a real product problem, place 6 provided causes into the correct branches without overlap, identify the first branch to investigate with justification, and challenge one provided assumption using first-principles reasoning.",
+      "estimatedMinutes": 120,
+      "realWorldAnchor": {
+        "company": "Zepto",
+        "example": "When Zepto evaluated expanding from metro dark stores into Tier 2 cities, the decision required first-principles reasoning — not 'Blinkit is doing it so we should too' but a ground-up decomposition of whether unit economics, demand density, and supply chain assumptions that held in Mumbai would hold in Nagpur."
+      },
+      "teamContext": "Structured thinking is most visible in the PM's interactions with Engineering leads during problem scoping — when a PM can decompose a problem into mutually exclusive branches, engineering scope becomes cleaner, trade-offs become explicit, and design priorities become obvious to the whole team.",
       "tasks": [
         {
-          "id": "d2_read_1",
-          "type": "READ",
-          "title": "Read: JTBD framework overview",
-          "isBonus": false
+          "id": "d2t1",
+          "type": "read",
+          "title": "MECE: The Framework That Makes You Think Like a Consultant — Product School",
+          "url": "https://productschool.com/blog/product-management/mece/",
+          "summary": "This article explains the MECE principle (Mutually Exclusive, Collectively Exhaustive) as a thinking tool specifically for product managers — how to decompose problems into branches that have no overlap and no gaps. For Pranav, who has consulting exposure, MECE will feel structurally familiar, but this article adds the product-specific application: breaking down a metric drop, a user complaint spike, or a prioritisation trade-off.",
+          "keyTakeaways": [
+            "MECE means every branch of your breakdown is non-overlapping (mutually exclusive) AND together the branches cover every possibility without exception (collectively exhaustive) — violating either rule produces a flawed analysis that will mislead the team",
+            "In PM work, MECE trees are most useful in three situations: diagnosing a metric drop (what could have caused this?), segmenting a user base for feature prioritisation, and structuring a product strategy recommendation to leadership",
+            "The hardest discipline in MECE is avoiding the intuitive jump to solutions — your tree branches must describe the problem space completely before you touch solutions, otherwise you will solve the wrong branch"
+          ],
+          "minutes": 25
         },
         {
-          "id": "d2_search_1",
-          "type": "SEARCH",
-          "title": "Search: Find a real product that uses JTBD framing in their messaging",
-          "isBonus": false
+          "id": "d2t2",
+          "type": "read",
+          "title": "First Principles Thinking — Farnam Street",
+          "url": "https://fs.blog/first-principles/",
+          "summary": "Farnam Street's definitive explainer on first principles reasoning — the method of breaking a problem down to its most fundamental truths and building back up from there, rather than reasoning by analogy from what others have done. This is the thinking method behind Jio's free data launch, Zepto's 10-minute delivery model, and CRED's credit-score-only user filter — each was a first-principles bet made by questioning an assumption everyone else accepted.",
+          "keyTakeaways": [
+            "Reasoning by analogy ('Swiggy did X so we should do X') is fast but caps innovation — first principles forces the question: is this assumption actually true, or have we inherited it from someone who inherited it from someone else?",
+            "A practical first-principles test for PMs has three questions: (1) Is this actually true? (2) Is it always true regardless of context? (3) Does it have to be true, or is it only true given current constraints that might change?",
+            "Jio's 2016 decision to give away free data at scale is the most cited Indian business example of first principles — Mukesh Ambani questioned the assumption that data must be priced as a premium good, concluded it was false given Jio's cost structure, and restructured Indian telecom permanently"
+          ],
+          "minutes": 25
         },
         {
-          "id": "d2_activity_1",
-          "type": "ACTIVITY",
-          "title": "Activity: Write a JTBD statement for a product you use daily",
-          "isBonus": false
+          "id": "d2t3",
+          "type": "search",
+          "keyword": "MECE tree metric drop product manager worked example diagnosis walkthrough PM interview",
+          "whyItMatters": "Reading about MECE is the first step; seeing a PM use MECE to walk through a specific metric drop — with the full tree drawn out, branches named, and a hypothesis selected — is where the concept becomes usable. Look for blog walkthroughs or YouTube videos that show the tree visually, not just explain it abstractly.",
+          "whatToLearn": [
+            "What the top-level branches of a metric drop MECE tree typically look like — the most common structures are: internal vs external causes; supply-side vs demand-side; technical vs behavioural; or a funnel-stage breakdown (acquisition / activation / retention / revenue)",
+            "How a PM selects which branch to investigate first — the answer combines three factors: which is most likely given available context, which is fastest to verify with existing data, and which has the biggest business impact if the hypothesis is confirmed"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d2t4",
+          "type": "activity",
+          "promptTitle": "Build a MECE tree for Zomato's Monday order drop",
+          "claudePrompt": "You are a PM coach helping me practice MECE structured thinking for product problem diagnosis.\n\nToday I studied:\n- The MECE principle: Mutually Exclusive, Collectively Exhaustive — used to decompose problems without gaps or overlaps\n- First principles reasoning: breaking assumptions down to fundamental truths rather than reasoning by analogy\n- How Zepto used first principles to evaluate Tier 2 expansion, and how Jio used it to restructure Indian telecom pricing assumptions\n\nReal world context: Zomato's Monday morning order volume dropped 22% compared to last Monday. The CEO wants an explanation by end of day. No additional data has been provided yet.\n\nYour role today: Act as my skeptical PM mentor. When I build my MECE tree, challenge me on every branch — is this truly mutually exclusive from the other branches? Does the tree cover everything plausible? Have I missed an entire category? Push me to think one level deeper, not just validate my first answer.\n\nActivity — 3 rounds:\nRound 1: I state my top-level branches (2-4 categories) and explain why they are MECE.\nRound 2: For the branch I identify as most likely, I expand it into sub-branches.\nRound 3: I pick the most investigable sub-branch and name 3 specific data checks I would run.\n\nAfter all 3 rounds, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight — Monday order patterns in India are shaped by specific local factors: weekly prepaid recharge cycles, salary credit dates, weather patterns affecting delivery areas, and Monday-after-a-holiday effects — a non-India PM might not know to ask about these]\nCOACHING NOTE: [one specific improvement tip for Pranav]\n\nBegin with: 'Before you build the tree — tell me in one sentence: what question is your MECE tree trying to answer? Then give me your top-level branches.'",
+          "minutes": 30
+        }
+      ],
+      "bonusTasks": [
+        {
+          "id": "d2b1",
+          "type": "search",
+          "title": "Jio first-principles deep dive",
+          "keyword": "Jio 2016 free data launch Mukesh Ambani first principles reasoning telecom disruption India product strategy",
+          "summary": "Jio's entry into Indian telecom is one of the most documented first-principles product decisions in Indian business history — a company that questioned the fundamental pricing assumption of an entire industry and was proven right at a scale that reshaped half a billion people's internet access. This search gives Pranav a deeply documented real example of what first principles looks like when applied at the highest level. Look for analysis on inc42.com, YourStory, The Ken, or long-form economic newspaper pieces.",
+          "minutes": 20
         }
       ],
       "assessmentTask": {
-        "rawMaterial": "Your JTBD statement from the activity.",
-        "outputFormat": "Critical review of your JTBD statement",
-        "claudePrompt": "Critique this JTBD statement. Is the job specific enough? Is the outcome measurable?"
+        "type": "do",
+        "taskDescription": "Build a complete 2-level MECE tree for Zomato's 22% Monday order drop, place all 6 provided causes into the correct branches, identify the first branch to investigate with justification, and use first-principles reasoning to challenge one of the 6 provided assumptions.",
+        "rawMaterial": "Zomato's Monday order volume dropped 22% compared to last Monday. Here are 6 possible causes flagged by different team members:\n\n1. The payment gateway had 400ms higher latency on Monday morning (flagged by engineering)\n2. It rained heavily in Delhi and Mumbai on Sunday night (flagged by operations)\n3. Zomato ran a 40% discount campaign last Monday but not this Monday (flagged by marketing)\n4. Three popular restaurant chains in Mumbai went offline simultaneously (flagged by restaurant partnerships)\n5. A competitor (Swiggy) launched a 'Free Delivery Monday' promo this week (flagged by growth team)\n6. The iOS app had a crash on the restaurant search screen affecting users on app version 14.2 (flagged by engineering)\n\nYour deliverables:\nA. Build a MECE tree with at least 2 levels. Top-level branches must cover all 6 causes above without any overlap. Place each of the 6 causes under the correct branch — no cause should appear in two branches.\nB. Identify which top-level branch you would investigate first. Justify in 3 sentences using: likelihood given available context, speed of verification, and business impact if true.\nC. Using first-principles reasoning, identify ONE assumption in the list above that you would question before accepting as fact. State what you would verify and why the assumption might be wrong.",
+        "outputFormat": "Part A: A visual tree using indentation or dashes — top-level branches clearly labelled, sub-branches indented, each of the 6 causes placed at the leaf level with its number. Part B: Three sentences of justification (one each for: likelihood, verification speed, business impact). Part C: One assumption named + a 2-sentence explanation of why you would verify it before accepting it.",
+        "claudePrompt": "You are a senior PM reviewing my work on Day 2: Structured Thinking — MECE and First Principles.\n\nI studied today:\n- MECE principle: Mutually Exclusive, Collectively Exhaustive — used to decompose product problems without gaps or overlaps\n- First principles reasoning: questioning assumptions rather than accepting them — the Jio and Zepto examples\n- How to select which MECE branch to investigate first: likelihood, verification speed, business impact\n\nReal world context I should apply:\nZomato's 22% Monday order drop — a realistic PM diagnosis scenario with 6 flagged causes from different teams.\n\nMY TASK TODAY WAS: Build a 2-level MECE tree, place 6 causes correctly, justify which branch to investigate first, and challenge one assumption using first principles.\n\nHere is my work:\n[Pranav pastes his MECE tree, branch justification, and first-principles challenge here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation of why — especially check for MECE violations: any cause appearing in two branches, or any top-level category that is missing]\n\nBLIND SPOTS:\n- [things I did not consider at all]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about how Monday order patterns in India are shaped by specific local factors — weekly prepaid recharge cycles, salary credit dates, post-Sunday weather, regional holidays — that a non-India PM would miss]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Feature Specification — [Needs Focus / On Track / Outperform]",
+        "minutes": 20
+      }
+    },
+    {
+      "day": 3,
+      "week": 1,
+      "theme": "User thinking — Personas and Jobs-To-Be-Done",
+      "competenciesCovered": [
+        "Voice of Customer",
+        "UX Design Sense"
+      ],
+      "objective": "Write a specific product persona from a real app store complaint, identify the underlying Job To Be Done using the correct JTBD format, and propose one feature with a measurable success metric.",
+      "estimatedMinutes": 120,
+      "realWorldAnchor": {
+        "company": "CRED",
+        "example": "CRED's decision to restrict membership exclusively to users with credit scores above 750 was not a technical constraint — it was a deliberate user segmentation choice based on a specific JTBD: 'help me feel recognised and rewarded for the financial discipline I already practise,' which Kunal Shah believed only high-credit-score users would authentically experience."
       },
-      "bonusTasks": []
+      "teamContext": "Personas and JTBD are most directly used in the PM's collaboration with the Design team — PMs use these frameworks to align designers on exactly who they are building for, preventing the most common design failure: building for an abstract average user rather than a specific person in a specific situation.",
+      "tasks": [
+        {
+          "id": "d3t1",
+          "type": "read",
+          "title": "Jobs-to-be-Done: A Framework for Customer Needs — Product School",
+          "url": "https://productschool.com/blog/product-management/jobs-to-be-done/",
+          "summary": "This article explains Clayton Christensen's Jobs-To-Be-Done framework for product managers — the idea that users do not buy products or use features; they hire them to accomplish a specific job in their life. For Pranav, JTBD reframes the question from 'what features should we build?' to 'what job is the user trying to get done, and are we the best tool for that job?' — a shift that changes every prioritisation and design decision downstream.",
+          "keyTakeaways": [
+            "The classic JTBD example: people do not buy a drill — they hire it to make a hole, because they need a shelf mounted before guests arrive. The real job is the shelf, not the hole. A PM who understands the real job might build a modular shelf system instead of a better drill",
+            "JTBD replaces demographic personas with situational ones: not 'a 28-year-old urban professional' but 'someone who just moved into a new flat and needs it to feel like home before the weekend' — the situation, not the age bracket, drives the job",
+            "For Indian fintech (CRED, PhonePe, Razorpay), JTBD forces the question: are users hiring the payment app to transact efficiently, to feel in control of their money, or to be rewarded for behaviour they already practise? Each is a different job and leads to a completely different product"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d3t2",
+          "type": "read",
+          "title": "How to Create User Personas That Drive Real Product Decisions — Product School",
+          "url": "https://productschool.com/blog/product-management/user-persona/",
+          "summary": "This article explains how to build a useful product persona — not a marketing persona full of demographics, but a product persona focused on the user's goals, pain points, mental models, and behaviours relevant to the product. The article distinguishes between proto-personas (hypothesis-based) and research-backed personas, and explains when each is appropriate for different stages of product development.",
+          "keyTakeaways": [
+            "A useful product persona has four non-negotiable components: who they are in context (not demographics), what they want to accomplish (goal), what blocks them (pain), and how they currently cope (existing workaround) — missing any one makes the persona useless for design decisions",
+            "Demographic personas ('Priya, 27, Mumbai, IT sector') are nearly useless for product decisions; situational personas ('Priya is trying to split a dinner bill quickly without awkwardness while standing at the restaurant counter') drive real design choices because they specify the exact moment of friction",
+            "At companies like Zepto or CRED, a PM typically maintains 2-3 primary personas — more than three and the team loses focus; fewer than two and you miss critical use case differences that will cause one segment to churn"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d3t3",
+          "type": "search",
+          "keyword": "CRED Kunal Shah user segmentation 750 credit score product strategy reasoning interview 2022 2023",
+          "whyItMatters": "CRED's decision to restrict membership to users with 750+ credit scores is a real, publicly debated product and strategy call that Kunal Shah has explained in interviews and talks — searching for his reasoning gives Pranav a master class in deliberate user segmentation, the antithesis of 'build for everyone.' Look for podcast interviews, LinkedIn posts, or long-form articles where Kunal Shah explains the CRED user thesis in his own words.",
+          "whatToLearn": [
+            "Why restricting your user base can be a strategic product advantage rather than a growth ceiling — and the specific conditions under which this logic holds versus when it becomes a self-imposed constraint that limits scale",
+            "How Kunal Shah used JTBD-style thinking ('what job does a financially disciplined user want done that no product is currently serving well?') to define CRED's initial product direction and resist pressure to expand to lower credit score users"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d3t4",
+          "type": "activity",
+          "promptTitle": "Build persona, JTBD, and feature proposal from a Zepto complaint",
+          "claudePrompt": "You are a senior PM helping me practice translating real user complaints into actionable product personas and Jobs-To-Be-Done statements.\n\nToday I studied:\n- JTBD framework: users hire products to accomplish a situational job — the job is defined by the situation, not the demographic\n- Product persona structure: context (who they are in situation), goal (what they want), pain (what blocks them), existing workaround (how they cope today)\n- CRED's deliberate user segmentation: only users with 750+ credit scores, because the JTBD was 'feel recognised for financial discipline already practised'\n\nReal world context: I am a PM on Zepto's consumer app squad. I have just received a batch of App Store reviews. My job is to extract a persona, a JTBD, and a feature proposal from a specific review.\n\nYour role today: Act as a PM mentor who pushes me to go deeper. When I write a persona, ask: 'What would you actually build for this person — and what would you NOT build?' When I write a JTBD, ask: 'Is that the real job, or is it a symptom of a deeper job?' Do not accept surface-level answers.\n\nActivity:\n\nHere are 5 Zepto App Store reviews:\n\nReview 1 (1 star): 'Charged me twice for one order. Customer care took 3 days to refund. Never using again.'\nReview 2 (2 stars): 'Good app but delivery is often late. 10 minutes means 25 minutes in my area.'\nReview 3 (3 stars): 'I use Zepto every day for my morning groceries but I have to retype the same items every single time. There is no saved list or easy reorder. So annoying for someone who buys the same things.'\nReview 4 (4 stars): 'Fast delivery, great selection. Wish there were more organic options.'\nReview 5 (2 stars): 'The app keeps crashing on my phone (Redmi Note 11). Very frustrating.'\n\nWe will work on Review 3 only.\n\nStep 1: I write a persona for the user behind Review 3. You push back if I use demographics without situational context, or if any of the four components is missing or vague.\nStep 2: I write a JTBD statement in this exact format: 'When [situation], I want to [motivation/goal], so I can [expected outcome].' You push back if the job is surface-level.\nStep 3: I propose one specific Zepto feature that directly addresses the JTBD. I include a success metric in the format: 'We will know this worked if [measurable outcome] within [time period].'\n\nAfter all 3 steps, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight — daily grocery buying in Indian households follows a very different pattern than Western weekly grocery shopping: the ration list, the kirana store mental model, the household structure where the same 15-20 staples are bought on a near-daily basis — Zepto's repeat-purchase problem has specific Indian household context]\nCOACHING NOTE: [one specific improvement tip for Pranav]\n\nBegin with: 'Good. Start with Step 1. Write me a persona for the user behind Review 3. Remember: context in their situation, goal, pain, existing workaround. No demographics unless they are directly relevant to the product decision. Go.'",
+          "minutes": 30
+        }
+      ],
+      "bonusTasks": [
+        {
+          "id": "d3b1",
+          "type": "search",
+          "title": "Why Dunzo failed — JTBD analysis",
+          "keyword": "Dunzo failure reasons product strategy user value proposition India 2023 2024 post-mortem on-demand delivery",
+          "summary": "Dunzo was once considered a pioneer of on-demand delivery in India but failed to achieve the scale of Swiggy, Zepto, or Blinkit despite an early head start. Analysing its failure through the JTBD lens — did users have a clearly defined job they were hiring Dunzo for? Was that job valuable enough to pay for without subsidies? — gives Pranav a real counter-example to CRED's sharp user segmentation. Look for post-mortems on inc42.com, Mint, The Ken, or Finshots.",
+          "minutes": 25
+        }
+      ],
+      "assessmentTask": {
+        "type": "do",
+        "taskDescription": "Write a complete product persona from Zepto Review 3, write a JTBD statement in the specified format, and propose one feature with a name, 2-sentence description, and a measurable success metric.",
+        "rawMaterial": "Here are 5 Zepto App Store reviews. Work with Review 3 only:\n\nReview 1 (1 star): 'Charged me twice for one order. Customer care took 3 days to refund. Never using again.'\nReview 2 (2 stars): 'Good app but delivery is often late. 10 minutes means 25 minutes in my area.'\nReview 3 (3 stars): 'I use Zepto every day for my morning groceries but I have to retype the same items every single time. There is no saved list or easy reorder. So annoying for someone who buys the same things.'\nReview 4 (4 stars): 'Fast delivery, great selection. Wish there were more organic options.'\nReview 5 (2 stars): 'The app keeps crashing on my phone (Redmi Note 11). Very frustrating.'\n\nFor Review 3 only, produce:\n1. PERSONA — Include all four components: Context (who is this person and what is their daily pattern?), Goal (what are they trying to accomplish in the moment?), Pain (what specific friction do they experience?), Existing Workaround (how do they cope with this friction today before a fix exists?).\n2. JTBD STATEMENT — Use exactly this format: 'When [situation], I want to [motivation/goal], so I can [expected outcome].'\n3. FEATURE PROPOSAL — Name it. Describe it in 2 sentences. Write a success metric in this format: 'We will know this worked if [measurable outcome] within [time period].'",
+        "outputFormat": "Three clearly labelled sections: PERSONA (4 bullet points: Context / Goal / Pain / Existing Workaround) | JTBD (one formatted statement) | FEATURE PROPOSAL (name + 2-sentence description + success metric).",
+        "claudePrompt": "You are a senior PM reviewing my work on Day 3: User Thinking — Personas and Jobs-To-Be-Done.\n\nI studied today:\n- Jobs-To-Be-Done framework: users hire products for situational jobs — the format is: 'When [situation], I want to [goal], so I can [outcome]'\n- Product persona structure: context, goal, pain, existing workaround — all four required\n- CRED's user segmentation strategy: deliberately targeting users with 750+ credit scores because of a specific JTBD only they would experience authentically\n\nReal world context I should apply:\nZepto's repeat-purchase problem — a daily user frustrated by retyping the same grocery list every single day, reflecting a common Indian household pattern where the same 15-20 staples are bought nearly every day rather than in a weekly shop.\n\nMY TASK TODAY WAS: Write a product persona from Zepto Review 3, write a JTBD statement, and propose one feature with a success metric.\n\nHere is my work:\n[Pranav pastes his Persona, JTBD statement, and Feature Proposal here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation of why]\n\nBLIND SPOTS:\n- [things I did not consider at all — e.g., the difference between a 'saved list' and a 'smart reorder' feature; whether the job is about speed or cognitive load; what the existing workaround actually is for most Indian daily grocery buyers]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about daily grocery buying patterns in Indian households — the ration list, the kirana store mental model, and how Zepto's repeat-purchase friction is specifically an Indian household problem that would not appear in Western weekly grocery shopping contexts]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Voice of Customer — [Needs Focus / On Track / Outperform]",
+        "minutes": 20
+      }
+    },
+    {
+      "day": 4,
+      "week": 1,
+      "theme": "Problem framing and user research",
+      "competenciesCovered": [
+        "Voice of Customer",
+        "Feature Specification"
+      ],
+      "objective": "Reframe three vague problem statements into properly scoped statements using all four required components, and write a 5-question user interview script for one of them using only open-ended, behaviour-based questions.",
+      "estimatedMinutes": 120,
+      "realWorldAnchor": {
+        "company": "Razorpay",
+        "example": "Razorpay's product team reportedly reframed payment failures from 'a technical reliability problem' to 'a trust breakdown at the exact moment a user most needs the product to work' — this reframe shifted the solution space from purely infrastructure fixes to UX interventions: real-time failure explanations, instant retry flows, and visible settlement timelines that rebuilt user confidence."
+      },
+      "teamContext": "Problem framing is where the PM's relationship with the Data team becomes most critical — a well-scoped problem statement tells the analyst exactly what data to pull and what anomaly to look for, while a vague problem statement results in weeks of back-and-forth pulling the wrong metrics.",
+      "tasks": [
+        {
+          "id": "d4t1",
+          "type": "read",
+          "title": "How to Write a Product Problem Statement — Product School",
+          "url": "https://productschool.com/blog/product-management/problem-statement/",
+          "summary": "This article walks through how to write a product problem statement that is specific enough to be actionable — covering the four required components (user in situation, goal, pain, business impact) and showing examples of vague versus well-scoped statements side by side. For Pranav, this directly bridges yesterday's JTBD work with today's skill: a JTBD describes the job the user wants done; a problem statement describes the gap between the current product and that job being done well.",
+          "keyTakeaways": [
+            "A problem statement requires four components: who the user is in a specific situation (not a demographic), what they are trying to accomplish (specific goal), what is blocking them (specific friction or pain), and why it matters to the business (a metric or outcome that is affected) — missing any one makes it unactionable for engineering and design",
+            "Vague problem statements generate vague solutions: 'users are not engaging' has infinite possible solutions; 'first-time UPI users in Tier 2 cities abandon at the payment confirmation screen because they distrust whether the payment went through' generates a specific, testable intervention",
+            "The business impact component is the most commonly skipped — but without it, the PM cannot prioritise this problem against competing problems, and engineers and designers have no sense of urgency or strategic relevance"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d4t2",
+          "type": "read",
+          "title": "How to Run Effective User Interviews — Lenny's Newsletter",
+          "url": "https://www.lennysnewsletter.com/p/how-to-run-a-user-interview",
+          "summary": "Lenny Rachitsky covers how to design and run user interviews that produce genuine behavioural insight rather than confirmation of existing hypotheses. The article covers question design, interview structure, and how to synthesize findings into actionable product insights — a practitioner-level guide that APMs can apply to user calls starting this week.",
+          "keyTakeaways": [
+            "The most common interview mistake is asking 'would you use this feature?' — users almost always say yes to hypotheticals because they want to be helpful. Instead ask: 'Tell me about the last time you tried to do X. What actually happened?' — behaviour-based questions reveal real patterns, not ideals",
+            "Five well-run user interviews produce more actionable insight than 50 survey responses — qualitative interviews reveal the 'why' behind the 'what' that surveys can only count",
+            "In Indian markets, user interview design requires two additional decisions: language choice (English vs vernacular) and setting (in-person vs phone), because self-reported behaviour in formal English interviews often differs substantially from actual usage behaviour in the product's natural context"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d4t3",
+          "type": "search",
+          "keyword": "Razorpay payment failure trust UX product decisions India fintech blog 2021 2022",
+          "whyItMatters": "Razorpay's reframe of payment failure as a trust problem — not just a technical reliability problem — is a documented product philosophy shift that influenced their UX, content design, and communication decisions. Searching for articles or talks by their product team shows what problem reframing looks like in practice at a real Indian fintech.",
+          "whatToLearn": [
+            "What specific UX interventions Razorpay introduced because of the trust-reframe — real-time status indicators, settlement visibility timelines, failure explanation messages — and how each maps back to the reframed problem statement rather than the original technical framing",
+            "How the trust-reframe changed which teams owned the solution: it moved responsibility from purely Engineering to a cross-functional problem requiring PM, Design, and Content Design — which is itself a lesson in how problem framing determines team structure"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d4t4",
+          "type": "activity",
+          "promptTitle": "Reframe 3 vague problem statements + write a user interview script",
+          "claudePrompt": "You are a senior PM helping me practice problem framing — the skill of turning vague observations into specific, actionable product problem statements.\n\nToday I studied:\n- The 4-component problem statement: user in specific situation / specific goal / specific pain / measurable business impact\n- How to design user interviews that reveal behaviour rather than confirm hypotheses — open-ended, behaviour-based questions, not hypotheticals\n- How Razorpay reframed payment failures as a trust problem, not a technical problem — and what that reframe unlocked in terms of solution space\n\nReal world context: I am an APM at a fintech company similar to Razorpay. Three problem statements have been written by different team members in a planning meeting. All three are vague and need reframing.\n\nYour role today: Review my reframed problem statements as a strict senior PM. For each one, if I miss a component (user in situation / goal / pain / business impact), tell me exactly which one is missing and why it matters. After problem reframing, help me write a 5-question interview script for Problem 2.\n\nThe three vague problem statements:\n\nPROBLEM 1: 'Users are not completing transactions on our app.'\nPROBLEM 2: 'We need to improve our onboarding.'\nPROBLEM 3: 'The product has too many steps and users get confused.'\n\nFor each problem statement:\nStep A: I reframe it with all 4 components using this format: 'When [user in specific situation] tries to [specific goal], they experience [specific pain], which results in [measurable business impact].'\nStep B: You review and push back on anything missing, vague, or imprecise.\n\nAfter all 3 reframes are approved, I write a 5-question user interview script specifically for Problem 2 (the onboarding problem). You review the script and flag any questions that are: leading, closed (yes/no only), or hypothetical rather than behavioural.\n\nAfter all work is reviewed, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight — onboarding problems in Indian fintech often have a specific extra layer that Western problem statements would miss: KYC friction, Aadhaar OTP failure rates, first-time digital user anxiety, or the difference between English and vernacular instruction comprehension]\nCOACHING NOTE: [one specific improvement tip for Pranav]\n\nBegin with: 'Let's start with Problem 1. Read it carefully: \"Users are not completing transactions on our app.\" Now reframe it with all 4 components. Write it as a single structured sentence using the format I gave you. Go.'",
+          "minutes": 30
+        }
+      ],
+      "bonusTasks": [
+        {
+          "id": "d4b1",
+          "type": "search",
+          "title": "PhonePe Tier 2 user research methods",
+          "keyword": "PhonePe Tier 2 Tier 3 user research Hindi UPI adoption first time digital user product insights India",
+          "summary": "PhonePe's expansion into Tier 2 and Tier 3 cities required a fundamentally different approach to user research — factory workers, small traders, and first-time digital users who communicated differently and whose actual usage patterns contradicted what they said in formal sessions. This search directly extends today's user interview reading into Indian market-specific research practice. Look for PhonePe blog posts, PM talks, or inc42/YourStory coverage of their regional expansion product strategy.",
+          "minutes": 20
+        }
+      ],
+      "assessmentTask": {
+        "type": "do",
+        "taskDescription": "Reframe all 3 vague problem statements into properly scoped statements with all 4 components, then write a 5-question user interview script for Problem 2 — every question must be open-ended and behaviour-based.",
+        "rawMaterial": "You are an APM at a company similar to Razorpay. These 3 problem statements were written by different team members in a product planning meeting:\n\nPROBLEM 1: 'Users are not completing transactions on our app.'\nPROBLEM 2: 'We need to improve our onboarding.'\nPROBLEM 3: 'The product has too many steps and users get confused.'\n\nFor each problem statement, reframe it using this exact structure:\n'When [user in specific situation] tries to [specific goal], they experience [specific pain], which results in [measurable business impact].'\n\nFor Problem 2 only:\nAlso write a 5-question user interview script. Rules for every question: open-ended (cannot be answered with yes/no), behaviour-based (asks about what the user actually did, not what they would do), not leading (does not suggest the answer). Include a 1-sentence note after each question: 'What this reveals: [the specific insight this question is designed to surface].'",
+        "outputFormat": "Part 1: Three labelled problem statements, each in the specified 4-component format. Part 2: A numbered list of 5 interview questions, each followed by a 1-sentence 'What this reveals:' note.",
+        "claudePrompt": "You are a senior PM reviewing my work on Day 4: Problem Framing and User Research.\n\nI studied today:\n- The 4-component problem statement structure: user in specific situation / specific goal / specific pain / measurable business impact\n- User interview design: open-ended, behaviour-based questions — never hypothetical or leading\n- Razorpay's trust reframe: how reframing a payment failure as a trust problem (not an infrastructure problem) unlocked UX and content design solutions that pure engineering fixes could not provide\n\nReal world context I should apply:\nI am an APM at a fintech similar to Razorpay. Three vague problem statements need reframing. For Problem 2 (onboarding), I also wrote a 5-question user interview script.\n\nMY TASK TODAY WAS: Reframe 3 problem statements with all 4 components and write a 5-question behaviour-based interview script for Problem 2.\n\nHere is my work:\n[Pranav pastes his 3 reframed problem statements and interview script here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation of why]\n\nBLIND SPOTS:\n- [things I did not consider at all]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about how KYC friction, Aadhaar OTP failure rates, or first-time digital user anxiety creates specific onboarding problems in Indian fintech that would not appear in a US-market problem reframe — and how the interview script would need to change to surface these]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Voice of Customer — [Needs Focus / On Track / Outperform]",
+        "minutes": 20
+      }
+    },
+    {
+      "day": 5,
+      "week": 1,
+      "theme": "Prioritisation frameworks — RICE, ICE, and MoSCoW",
+      "competenciesCovered": [
+        "Feature Specification",
+        "Business Outcome Ownership"
+      ],
+      "objective": "Score 8 PhonePe features using the RICE formula with full arithmetic working shown for each, rank all 8, select the top 3 for a pre-Diwali launch with justification, and give one-sentence business reasoning for dropping each of the remaining 5.",
+      "estimatedMinutes": 120,
+      "realWorldAnchor": {
+        "company": "Swiggy",
+        "example": "Before a Diwali or IPL season launch, a Swiggy PM runs through the backlog using a prioritisation framework to decide which features get engineering time — festive seasons represent disproportionate revenue and user acquisition in India, meaning the Reach and Confidence inputs in RICE shift significantly for features that serve high-volume moments."
+      },
+      "teamContext": "Prioritisation decisions directly involve Engineering (who estimates Effort in person-months) and Marketing/Growth (who provides Reach estimates and impact context for campaign-linked features) — the PM's job is to synthesize inputs from both teams into a scored framework, not to decide unilaterally.",
+      "tasks": [
+        {
+          "id": "d5t1",
+          "type": "read",
+          "title": "RICE: Simple Prioritization for Product Managers — Intercom",
+          "url": "https://www.intercom.com/blog/rice-simple-prioritization-for-product-managers/",
+          "summary": "This is the original blog post from Intercom that introduced and defined the RICE scoring model — Reach, Impact, Confidence, and Effort. Intercom's PM team created RICE to solve a specific internal problem: too many competing priorities and no shared scoring language across teams. The article explains the formula precisely, defines each variable with examples, and shows worked calculations. This is the definitive primary source for the framework.",
+          "keyTakeaways": [
+            "RICE Score = (Reach × Impact × Confidence%) divided by Effort in person-months — the formula must be applied consistently across all features being compared, otherwise the resulting scores cannot be ranked against each other",
+            "Confidence is the most underused and most important variable: it forces honesty about how well the team actually knows the Reach and Impact estimates, preventing overconfident bets on features that are exciting but untested",
+            "RICE works best for comparing features within the same product area and timeframe — it breaks down when comparing a speculative 0-to-1 feature (low confidence, high potential) against an incremental improvement (high confidence, modest impact), because those are fundamentally different types of bets"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d5t2",
+          "type": "read",
+          "title": "How to Prioritize Product Features — Lenny's Newsletter",
+          "url": "https://www.lennysnewsletter.com/p/how-to-prioritize-features",
+          "summary": "Lenny Rachitsky surveys how top product teams at companies like Airbnb, Figma, and Duolingo actually prioritise features — not just what framework they use, but how they balance quantitative scoring with strategic judgment and when they override the numbers. The article is especially useful for understanding the limits of RICE and the most common prioritisation mistakes.",
+          "keyTakeaways": [
+            "No framework replaces strategic judgment: a feature with a high RICE score that contradicts the company's current strategic focus should still be deprioritised — frameworks inform decisions, they do not make them",
+            "The three most common RICE mistakes: treating effort estimates from engineers as precise (they are wide estimates), forgetting that Reach estimates decay as the product matures, and conflating impact on users with impact on the specific business metric you are trying to move this quarter",
+            "MoSCoW (Must Have / Should Have / Could Have / Won't Have) is most useful for scoping a specific release, not for cross-feature portfolio prioritisation — use RICE to decide what to build across the quarter, use MoSCoW to decide what ships in the next sprint"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d5t3",
+          "type": "search",
+          "keyword": "RICE prioritization worked example product manager feature scoring table India startup walkthrough",
+          "whyItMatters": "Seeing a PM walk through RICE on a realistic feature list — with actual numbers in a table, arithmetic shown, and final rankings justified — is where the framework becomes something Pranav can use rather than just describe. Look for blog posts or PM prep resources that show a full scoring table with working, not just the formula definition.",
+          "whatToLearn": [
+            "How experienced PMs estimate Reach when exact data is not available — the acceptable approximation methods (monthly active users × estimated feature touch rate), and how to be explicit about assumptions so they can be challenged",
+            "What a final RICE output looks like structurally: a table with all features ranked by score, followed by a short narrative justifying the top choices and explaining why high-scoring features were still dropped for strategic reasons"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d5t4",
+          "type": "activity",
+          "promptTitle": "RICE score 8 PhonePe features — live coaching with a skeptical PM lead",
+          "claudePrompt": "You are a senior PM lead coaching me through a RICE scoring exercise for 8 PhonePe features.\n\nToday I studied:\n- RICE framework: Reach × Impact × Confidence% divided by Effort in person-months\n- When to override RICE with strategic judgment and why\n- MoSCoW as a release scoping tool (distinct from RICE as a portfolio prioritisation tool)\n\nReal world context: I am an APM at PhonePe. It is September, eight weeks before Diwali. Engineering has capacity for approximately 3 features before the festive season. I need to present a prioritised shortlist to the PM lead today.\n\nYour role today: Play the skeptical PM lead. When I score each feature, question my Reach estimate ('where did that number come from?'), my Confidence ('are you really 80% confident — what evidence do you have?'), and my Effort estimate ('have you actually talked to engineering, or is this your guess?'). Do not let me get away with undefended numbers.\n\nThe 8 features with input data:\n\nFeature 1: UPI payment via WhatsApp integration\nReach: 5,000,000 users/month | Impact: 3 (high) | Confidence: 70% | Effort: 8 person-months\n\nFeature 2: Credit score display on home dashboard\nReach: 8,000,000 users/month | Impact: 2 (medium) | Confidence: 90% | Effort: 2 person-months\n\nFeature 3: Split bill feature for friend groups\nReach: 2,000,000 users/month | Impact: 2 (medium) | Confidence: 60% | Effort: 6 person-months\n\nFeature 4: Voice commands in Hindi for payments\nReach: 12,000,000 users/month | Impact: 3 (high) | Confidence: 50% | Effort: 12 person-months\n\nFeature 5: Auto-pay setup wizard for utility bills\nReach: 6,000,000 users/month | Impact: 3 (high) | Confidence: 80% | Effort: 4 person-months\n\nFeature 6: Cashback gamification for regular users\nReach: 10,000,000 users/month | Impact: 2 (medium) | Confidence: 75% | Effort: 5 person-months\n\nFeature 7: Offline NFC tap-to-pay\nReach: 3,000,000 users/month | Impact: 3 (high) | Confidence: 40% | Effort: 14 person-months\n\nFeature 8: Cross-border remittance to Nepal and Bangladesh\nReach: 1,000,000 users/month | Impact: 3 (high) | Confidence: 55% | Effort: 10 person-months\n\nActivity:\nStep 1: I calculate the RICE score for each feature and show my working (full formula with numbers).\nStep 2: I rank all 8 by RICE score.\nStep 3: I pick the top 3 for pre-Diwali launch and justify, then explain why I am dropping the others.\nYou challenge my numbers at each step before I move on.\n\nAfter all steps, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight — Hindi voice commands and offline NFC have very different strategic value in India's festive season context and in Tier 2/3 market expansion than their RICE scores alone suggest — the strategic context changes the real priority even if the numbers do not]\nCOACHING NOTE: [one specific improvement tip for Pranav]\n\nBegin with: 'Start with Feature 1: UPI via WhatsApp. Show me the formula and the number. Then tell me — where exactly did the Reach estimate of 5 million come from?'",
+          "minutes": 30
+        }
+      ],
+      "bonusTasks": [
+        {
+          "id": "d5b1",
+          "type": "read",
+          "title": "MoSCoW prioritisation framework explained — Product School",
+          "url": "https://productschool.com/blog/product-management/moscow-prioritization/",
+          "summary": "This Product School article explains MoSCoW (Must Have, Should Have, Could Have, Won't Have) using a realistic launch scenario. Reading this after RICE sharpens the mental model of which framework to use when: RICE for cross-feature portfolio decisions across a quarter, MoSCoW for scoping what ships in a specific release. Choosing the right framework for the right context is itself a signal of PM maturity in interviews.",
+          "minutes": 20
+        }
+      ],
+      "assessmentTask": {
+        "type": "do",
+        "taskDescription": "Score all 8 PhonePe features using the RICE formula with full arithmetic working shown for each, rank them 1-8, select the top 3 for pre-Diwali launch with 2-sentence justification each, and drop the bottom 5 with 1-sentence business reasoning each.",
+        "rawMaterial": "You are an APM at PhonePe. It is September — 8 weeks before Diwali. Engineering has capacity for approximately 3 features. Score these 8 features using RICE (formula: Reach × Impact × Confidence% divided by Effort in person-months):\n\nFeature 1: UPI via WhatsApp integration — Reach: 5,000,000 | Impact: 3 | Confidence: 70% | Effort: 8 person-months\nFeature 2: Credit score on home dashboard — Reach: 8,000,000 | Impact: 2 | Confidence: 90% | Effort: 2 person-months\nFeature 3: Split bill for friend groups — Reach: 2,000,000 | Impact: 2 | Confidence: 60% | Effort: 6 person-months\nFeature 4: Hindi voice commands for payments — Reach: 12,000,000 | Impact: 3 | Confidence: 50% | Effort: 12 person-months\nFeature 5: Auto-pay utility bills wizard — Reach: 6,000,000 | Impact: 3 | Confidence: 80% | Effort: 4 person-months\nFeature 6: Cashback gamification for regulars — Reach: 10,000,000 | Impact: 2 | Confidence: 75% | Effort: 5 person-months\nFeature 7: Offline NFC tap-to-pay — Reach: 3,000,000 | Impact: 3 | Confidence: 40% | Effort: 14 person-months\nFeature 8: Cross-border remittance Nepal/Bangladesh — Reach: 1,000,000 | Impact: 3 | Confidence: 55% | Effort: 10 person-months",
+        "outputFormat": "Part 1: A table with columns: Feature | Reach | Impact | Confidence | Effort | RICE Score | Working (show the arithmetic). Part 2: All 8 features ranked highest to lowest RICE score. Part 3: Top 3 selected with a 2-sentence justification each (why this feature earns its spot in the pre-Diwali launch). Part 4: Bottom 5 dropped with a 1-sentence business reasoning for each drop — not just 'low RICE score' but a strategic reason.",
+        "claudePrompt": "You are a senior PM reviewing my work on Day 5: Prioritisation Frameworks — RICE, ICE, and MoSCoW.\n\nI studied today:\n- RICE framework: Reach × Impact × Confidence% divided by Effort — each variable defined precisely with the Intercom source\n- When to override RICE with strategic judgment, and the three most common RICE scoring mistakes\n- MoSCoW as a release scoping tool, distinct from RICE as a portfolio prioritisation tool\n\nReal world context I should apply:\nPhonePe APM, September, 8 weeks before Diwali. Engineering capacity for 3 features. Festive season context changes the value of certain features — reach estimates spike, confidence in engagement metrics is higher during festive windows, and time-pressure makes effort estimates critical.\n\nMY TASK TODAY WAS: RICE score 8 PhonePe features, rank them, select top 3 with justification, drop bottom 5 with business reasoning.\n\nHere is my work:\n[Pranav pastes his RICE table, ranking, top 3 justification, and drop reasons here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation of why — check arithmetic for each feature's score, and whether the top 3 make strategic sense given the Diwali context]\n\nBLIND SPOTS:\n- [things I did not consider at all — e.g., strategic fit with Diwali gifting and payments behaviour, the fact that UPI volume spikes 3-4x during festive season, or competitor moves that change the value of specific features]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about how festive season context in India — Diwali, IPL, Big Billion Day — creates a product prioritisation dynamic unique to Indian consumer internet: Reach estimates change, confidence from past festive data is more reliable, and features that look marginal in a normal month can become critical during a festive window]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Feature Specification — [Needs Focus / On Track / Outperform]",
+        "minutes": 20
+      }
+    },
+    {
+      "day": 6,
+      "week": 1,
+      "theme": "Product design frameworks — CIRCLES and BUS",
+      "competenciesCovered": [
+        "UX Design Sense",
+        "Feature Specification"
+      ],
+      "objective": "Produce a complete written CIRCLES answer for a CRED product design case covering all 7 steps, with a specific user definition, India-specific reasoning at each stage, and a clear recommendation in the final summary step.",
+      "estimatedMinutes": 120,
+      "realWorldAnchor": {
+        "company": "CRED",
+        "example": "CRED's product design philosophy prioritises aesthetics and reward-loop psychology over feature richness — any design answer for CRED must begin by defining who the user is (the financially responsible, aesthetically oriented, 750+ credit score user) because CRED's design choices are a direct expression of that specific user's mental model and aspirations."
+      },
+      "teamContext": "CIRCLES is most directly relevant to the PM's collaboration with the Design team — it provides a shared language for working through a design decision end-to-end, and prevents the most common failure mode in design reviews: jumping to features without first aligning on users, goals, and success criteria.",
+      "tasks": [
+        {
+          "id": "d6t1",
+          "type": "read",
+          "title": "The CIRCLES Method: A Product Design Framework — Product School",
+          "url": "https://productschool.com/blog/product-management/circles-method/",
+          "summary": "This article explains the CIRCLES method — Comprehend the situation, Identify the customer, Report the customer's needs, Cut through prioritisation, List solutions, Evaluate trade-offs, Summarise your recommendation — as the primary framework for answering product design questions in PM interviews and running internal design discussions. This is the core framework for Day 6 and will be used directly in the assessment.",
+          "keyTakeaways": [
+            "CIRCLES is not a rigid checklist — it is a thinking sequence that prevents the two most common PM design failures: jumping to features without defining the user (skipping I and R), and proposing solutions without stating trade-offs (skipping E)",
+            "The most important and most skipped step is C — Comprehend the situation: always begin by asking clarifying questions about the goal, constraints, and context before touching users or features; PM interviewers consistently report this as the single biggest differentiator between strong and weak candidates",
+            "In Indian PM interviews, CIRCLES requires an additional dimension: at step I (Identify the customer), always check whether your user definition covers both urban English-first users and Tier 2 vernacular users — failure to segment often means your solution works for only the easier half of the Indian market"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d6t2",
+          "type": "read",
+          "title": "How to Answer Product Design Questions in PM Interviews — Lenny's Newsletter",
+          "url": "https://www.lennysnewsletter.com/p/how-to-answer-product-design-questions",
+          "summary": "Lenny Rachitsky compiles advice from PM interviewers and hiring managers on what separates strong from weak product design answers — covering not just what to say but how to say it: thinking out loud, handling clarifying questions under pressure, demonstrating user empathy through specificity, and managing time across the 7 CIRCLES steps.",
+          "keyTakeaways": [
+            "The biggest differentiator in design answers is demonstrating user empathy through specificity — 'a 34-year-old CRED user who wants to understand what is pulling her credit score down after adding a new credit card' is more impressive than 'urban working professionals,' because it shows real user thinking",
+            "Interviewers consistently score reasoning process higher than the final answer — a wrong recommendation with clear, stepwise logical reasoning scores higher than a correct answer with fuzzy or missing reasoning",
+            "Time management guidance for CIRCLES: spend roughly 25% of your time on C/I/R, 20% on Cut, 35% on List and Evaluate, and 20% on Summarise — most candidates rush the user definition and spend too long listing features"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d6t3",
+          "type": "search",
+          "keyword": "CIRCLES method CRED credit score feature product design answer PM interview walkthrough India fintech",
+          "whyItMatters": "Seeing the CIRCLES framework applied to a product with a niche, well-defined user segment — specifically an Indian fintech with premium positioning and a specific credit score user — prepares Pranav to apply it to the exact CRED case in his assessment. Look for PM interview prep videos or written walkthroughs where a candidate works through CIRCLES on a credit or financial product design question.",
+          "whatToLearn": [
+            "How candidates handle the 'Identify the customer' step when the product has a deliberately narrow user segment — for CRED, the 750+ credit score user is not just a demographic filter but a proxy for specific values (financial discipline, status consciousness, aesthetic sensitivity) that should directly inform every feature suggestion",
+            "What a strong CIRCLES summary step sounds like — one paragraph that connects the recommended solution back to the user's primary need, the company's strategic positioning, and 2 key trade-offs that were evaluated and rejected"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d6t4",
+          "type": "activity",
+          "promptTitle": "Live CIRCLES walkthrough — PM interview simulation for CRED credit score feature",
+          "claudePrompt": "You are a PM interviewer running a live product design interview with me as a candidate for an APM role at CRED.\n\nToday I studied:\n- CIRCLES method: 7 steps — Comprehend, Identify, Report, Cut, List, Evaluate, Summarise\n- How to answer product design questions: user empathy through specificity, thinking out loud, time management\n- CRED's design philosophy: premium aesthetics, reward-loop psychology, exclusively for users with 750+ credit scores\n\nReal world context: This is a live PM interview simulation. I am interviewing for an APM role at CRED in 2024.\n\nYour role today: Play the PM interviewer. When I answer each CIRCLES step, ask the follow-up questions a real interviewer would ask. Push back on vague user definitions. Ask what success looks like before I jump to listing features. If I skip a step, call it out. If my features do not match the user I defined, point out the contradiction.\n\nCase question:\n'You are a PM at CRED. Design a feature that helps CRED users understand and improve their credit score. Walk me through your answer.'\n\nWe will go step by step through CIRCLES. For each step:\n1. I state my answer for that step.\n2. You react as the interviewer: ask a follow-up, push back on vague answers, or confirm and invite me to move on.\n3. We advance only when each step is sufficiently complete.\n\nAfter all 7 steps, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight — credit score literacy in India is fundamentally different from the US: CIBIL, Experian, and CRIF operate differently, many high-score users do not know which factors drive their score, and 'improving your credit score' requires financial education that users might find patronising or reassuring depending on how it is framed]\nCOACHING NOTE: [one specific improvement tip for performing under interview pressure]\n\nBegin with: 'Good. Let's start. Here is your case: You are a PM at CRED. Design a feature that helps CRED users understand and improve their credit score. Take a moment if you need. When you are ready, start with C — Comprehend the situation. What clarifying questions would you ask before diving in?'",
+          "minutes": 30
+        }
+      ],
+      "bonusTasks": [
+        {
+          "id": "d6b1",
+          "type": "activity",
+          "promptTitle": "Apply BUS framework to the same CRED case — compare with CIRCLES",
+          "claudePrompt": "You are a senior PM helping me compare two product design frameworks: CIRCLES and BUS (Business goal, User goal, Success metrics) using the same CRED case.\n\nI have already completed a full CIRCLES answer for this case: 'Design a feature that helps CRED users understand and improve their credit score.'\n\nYour role today: Guide me through the same case using BUS. BUS is simpler and faster than CIRCLES — it is the framework used in internal design reviews to align a team quickly on what is being built and why, before going into full feature design.\n\nBUS structure:\nB — Business goal: What does CRED want to achieve with this feature? Pick the most important one and justify it.\nU — User goal: What specific job does the CRED user want done? Write it in JTBD format: 'When [situation], I want to [goal], so I can [outcome].'\nS — Success metrics: Name 2-3 metrics that would tell you this feature is working, and 1 guardrail metric that would tell you it is not.\n\nActivity: I answer B, then U, then S. After each answer, you push back or confirm as a senior PM would in a design review.\n\nAfter both frameworks are complete, ask me: 'What did CIRCLES give you that BUS did not? What did BUS give you that CIRCLES did not? When would you use each in a real product team context?'\n\nBegin with: 'Let's run BUS on the CRED credit score feature. Start with B — Business goal. What is CRED trying to achieve with a credit score education feature? Think about their retention challenges, their monetisation model, and their competitive positioning before you answer.'",
+          "minutes": 25
+        }
+      ],
+      "assessmentTask": {
+        "type": "do",
+        "taskDescription": "Write a complete, structured CIRCLES answer for the CRED credit score feature design case — all 7 steps written out in full, with a specific user definition, at least 3 feature options evaluated with trade-offs stated, and a clear recommendation in the Summarise step.",
+        "rawMaterial": "Case question (treat this as a written response to a PM interview question):\n'You are a PM at CRED. Design a feature that helps CRED users understand and improve their credit score. Walk through your complete answer.'\n\nContext available to you:\n- CRED has approximately 12 million members (publicly reported), all with credit scores above 750\n- CRED's core product loop: pay credit card bills → earn CRED coins → redeem coins for rewards\n- CRED's design philosophy: premium, clean, reward-driven — no clutter, no generic financial advice\n- The credit score space in India: CRIF, TransUnion CIBIL, and Experian all operate here — CRED already pulls and shows users their score\n- User insight (from CRED's public product communications): many CRED users want to understand WHAT is affecting their score, not just see the number\n- Regulatory context: RBI guidelines allow credit bureaus to provide free credit score access — CRED already leverages this, so the score display itself is solved\n- One constraint: any feature must fit CRED's premium aesthetic — it cannot look like a generic bank app",
+        "outputFormat": "Seven clearly labelled sections, one per CIRCLES step (C / I / R / C / L / E / S). Each section: 3-6 sentences minimum. The Summarise section (S) must be a paragraph of at least 5 sentences that a PM could read aloud as their final recommendation. No bullet-only sections — every section needs at least one sentence of reasoning.",
+        "claudePrompt": "You are a senior PM reviewing my written CIRCLES answer for a PM interview design case.\n\nI studied today:\n- CIRCLES method: Comprehend, Identify, Report, Cut, List, Evaluate, Summarise — all 7 steps\n- How to demonstrate user empathy through specificity rather than category descriptions\n- CRED's design philosophy: premium aesthetics, reward-loop psychology, exclusively for 750+ credit score users\n\nReal world context I should apply:\nCRED's 12 million members (public figure) all have credit scores above 750. They already see their score in the app. The opportunity is helping them understand and improve it — which requires credit literacy features designed specifically for a financially disciplined, aesthetically conscious, high-engagement user segment.\n\nMY TASK TODAY WAS: Write a complete 7-section CIRCLES answer for 'Design a feature that helps CRED users understand and improve their credit score.'\n\nHere is my work:\n[Pranav pastes his full 7-section CIRCLES answer here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation of why]\n\nBLIND SPOTS:\n- [things I did not consider at all — e.g., gamification of credit improvement milestones fitting CRED's reward loop; regulatory constraints on how credit data can be displayed; the difference between a user who just wants to see their score vs one who wants an action plan; the risk that financial advice features feel patronising to a high-credit-score user who already considers themselves financially disciplined]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about credit score literacy in India — how CIBIL score awareness differs from the US FICO context, what 'improving your credit score' means differently in India where credit history is shorter for most users, and why many CRED users don't know which specific actions are driving or dragging their score]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: UX Design Sense — [Needs Focus / On Track / Outperform]",
+        "minutes": 20
+      }
+    },
+    {
+      "day": 7,
+      "week": 1,
+      "theme": "Week 1 integration — end-to-end case using all Week 1 tools",
+      "competenciesCovered": [
+        "Feature Specification",
+        "Product Delivery",
+        "Product Quality",
+        "Fluency with Data",
+        "Voice of Customer",
+        "UX Design Sense",
+        "Business Outcome Ownership",
+        "Strategic Impact"
+      ],
+      "objective": "Apply MECE decomposition, problem framing, RICE prioritisation, and CIRCLES design — in sequence, without prompting — to one end-to-end product case, producing five distinct deliverables that demonstrate Week 1 tools working together.",
+      "estimatedMinutes": 120,
+      "realWorldAnchor": {
+        "company": "Swiggy",
+        "example": "Swiggy Genie — the instant pick-up-and-deliver service for anything, not just food — is believed to have originated from observing that users were already attempting to use Swiggy's food delivery infrastructure for non-food items, prompting a problem reframe from 'more food categories' to 'general urban logistics on demand,' followed by an MVP before scaling."
+      },
+      "teamContext": "Day 7 is a full integration day — all four cross-functional teams are relevant because the end-to-end case requires scoping features (Engineering), designing the solution (Design), defining success metrics (Data), and considering the rollout context (Marketing/Growth).",
+      "tasks": [
+        {
+          "id": "d7t1",
+          "type": "read",
+          "title": "The Four Big Risks — Marty Cagan, SVPG",
+          "url": "https://svpg.com/the-four-big-risks/",
+          "summary": "Marty Cagan's framework for product risk — value risk (will users want it?), usability risk (can users use it?), feasibility risk (can engineering build it?), and viability risk (should the business build it?) — provides the integration lens for Day 7. Every tool from Week 1 maps onto one or more of these risks: JTBD and personas address value risk, CIRCLES addresses usability risk, RICE addresses viability risk, and PM-engineering collaboration addresses feasibility. This reading shows how Week 1's toolkit is a coherent risk management system, not a collection of unrelated frameworks.",
+          "keyTakeaways": [
+            "Most product failures happen because one of these four risks was discovered too late — after significant engineering investment, not before it. The PM's job is to reduce all four risks before committing resources, which is why discovery work matters more than execution speed",
+            "Value risk and usability risk are addressed through user research and design thinking (JTBD, personas, CIRCLES). Feasibility risk requires close PM-engineering collaboration. Viability risk requires the PM to understand the business model well enough to say no to things that don't move the right metrics",
+            "For APMs at Indian consumer internet companies, viability risk is the most commonly underweighted — APMs with strong user empathy sometimes over-index on value and usability while underestimating unit economics constraints specific to Indian markets (logistics costs, payment infrastructure costs, data costs for Tier 2 users)"
+          ],
+          "minutes": 30
+        },
+        {
+          "id": "d7t2",
+          "type": "activity",
+          "promptTitle": "Guided warm-up — apply all 5 Week 1 tools to the PayEase KYC case before the full assessment",
+          "claudePrompt": "You are a senior PM helping me practice applying all of Week 1's tools in sequence to a single product case, as a warm-up before I do it alone in my assessment.\n\nThis week I learned:\n- Day 1: The Reforge 12 PM competencies and the PM's core job (valuable, usable, feasible, viable)\n- Day 2: MECE structured thinking and first principles reasoning\n- Day 3: User personas and Jobs-To-Be-Done\n- Day 4: Problem framing (4-component statement) and user interview design\n- Day 5: RICE prioritisation framework\n- Day 6: CIRCLES product design method\n- Day 7 reading: The Four Big Risks as the integration lens\n\nReal world context: I am an APM at PayEase, a fictional Indian fintech offering UPI payments, bill payments, and BNPL. KYC completion rate is 38% against an industry average of 61%. Drop-off is concentrated at the Aadhaar OTP verification step.\n\nYour role today: Guide me through applying each tool in sequence — problem framing first, then MECE, then Cagan risk mapping, then CIRCLES framing. At each step, give me one nudge if I am stuck, but let me do the thinking. The goal is for me to discover the connections between the tools myself, not have them explained to me.\n\nActivity — 4 warm-up steps:\nStep 1: I frame the KYC drop-off as a proper 4-component problem statement. You check whether all 4 components are present and precise.\nStep 2: I sketch the top-level branches of a MECE tree for the causes of KYC drop-off. You check for MECE validity.\nStep 3: I identify which of the 4 Cagan risk categories (value / usability / feasibility / viability) the KYC problem primarily lives in — and which one the solution needs to address most. You push back if I oversimplify.\nStep 4: I state which CIRCLES step would be most important to get right for this specific case — and why. You challenge my reasoning.\n\nAfter all 4 steps, tell me:\n- Which tool I am applying most confidently\n- Which tool I should slow down on in the full assessment\n- One thing to check before I submit my full assessment answer\n\nBegin with: 'Good. Let's start with the foundation. Problem framing first. Using the 4-component structure (user in situation / goal / pain / business impact), frame the KYC drop-off problem at PayEase in one sentence. Go.'",
+          "minutes": 30
+        }
+      ],
+      "bonusTasks": [
+        {
+          "id": "d7b1",
+          "type": "search",
+          "title": "Swiggy Genie product discovery and launch story",
+          "keyword": "Swiggy Genie instant delivery launch origin story product discovery non-food India 2020 2021",
+          "summary": "Searching for the origin story of Swiggy Genie — the product that extended Swiggy's delivery infrastructure beyond food into general urban pick-up-and-drop — gives Pranav a real end-to-end product discovery story told by an Indian team. Look for product blog posts, PM talks at Indian tech conferences, or inc42/YourStory coverage of the Genie launch that describes the user insight behind the product and how the team decided to scope and build the MVP.",
+          "minutes": 25
+        }
+      ],
+      "assessmentTask": {
+        "type": "do",
+        "taskDescription": "Given a user research summary, a set of 6 proposed solutions, and a team capacity constraint, produce 5 deliverables in sequence: a scoped problem statement, a 2-level MECE tree with all 6 solutions placed, a RICE-scored prioritisation table with full working, a full CIRCLES answer for the top-ranked solution, and 3 measurable success metrics.",
+        "rawMaterial": "You are an APM at PayEase — a fictional Indian fintech offering UPI payments, bill payments, and a buy-now-pay-later product for online shopping.\n\nSituation:\n- 2.4 million users started the KYC verification process in the last 90 days\n- Only 38% completed KYC (industry average for similar apps: 61%)\n- Drop-off analysis: 54% of incomplete KYC users abandon at Step 3 — Aadhaar OTP verification\n- User research (15 user interviews, 200 support tickets): users either do not receive the OTP, receive it late, or do not understand that they have only 3 minutes to enter it before it expires\n- Engineering team: 3 engineers, capacity for 4 weeks of work before the quarter ends\n\nSix proposed solutions:\n\nSolution A: Extend OTP expiry from 3 minutes to 10 minutes\nReach: 1,500,000 users | Impact: 2 | Confidence: 85% | Effort: 1 week (1 engineer-week)\n\nSolution B: Add real-time OTP status indicator on screen ('OTP sent — check your SMS inbox')\nReach: 1,500,000 users | Impact: 2 | Confidence: 80% | Effort: 1 week (1 engineer-week)\n\nSolution C: Add DigiLocker as alternative verification path for users with Aadhaar linked\nReach: 600,000 users | Impact: 3 | Confidence: 65% | Effort: 3 weeks (3 engineer-weeks)\n\nSolution D: Send automated WhatsApp recovery message to users who abandon the OTP step\nReach: 900,000 users | Impact: 2 | Confidence: 70% | Effort: 1.5 weeks (1.5 engineer-weeks)\n\nSolution E: Redesign the full KYC flow with a progress bar and plain-language step-by-step instructions\nReach: 2,400,000 users | Impact: 3 | Confidence: 60% | Effort: 4 weeks (4 engineer-weeks)\n\nSolution F: Add live chat support during KYC for users who get stuck\nReach: 300,000 users | Impact: 3 | Confidence: 75% | Effort: 2 weeks (2 engineer-weeks)\n\nNote: For RICE, use Effort in engineer-weeks (as listed above for each solution).",
+        "outputFormat": "Five clearly labelled sections:\n\nSECTION 1 — PROBLEM STATEMENT: One sentence using the format 'When [user in specific situation] tries to [specific goal], they experience [specific pain], which results in [measurable business impact].'\n\nSECTION 2 — MECE TREE: A 2-level indented tree. Top-level branches must be MECE. Each of the 6 solutions (labelled A-F) must appear under exactly one sub-branch — no solution in two branches.\n\nSECTION 3 — RICE TABLE: Full table with columns: Solution | Reach | Impact | Confidence | Effort (eng-weeks) | RICE Score | Working (arithmetic). Followed by a ranking from highest to lowest RICE score.\n\nSECTION 4 — CIRCLES ANSWER: All 7 steps written out for the top-ranked solution from Section 3. The Summarise step must be a full paragraph.\n\nSECTION 5 — SUCCESS METRICS: Three metrics in the format: 'We will know this worked if [measurable outcome] within [time period].' One per bullet.",
+        "claudePrompt": "You are a senior PM reviewing my Week 1 integration assessment — a 5-deliverable case on the PayEase KYC drop-off problem.\n\nI studied this week:\n- Day 1: Reforge 12 PM competency model — 4 pillars, 12 competencies\n- Day 2: MECE structured thinking and first-principles reasoning\n- Day 3: User personas and Jobs-To-Be-Done\n- Day 4: Problem framing (4-component structure) and user interview design\n- Day 5: RICE prioritisation framework with full arithmetic\n- Day 6: CIRCLES product design method — all 7 steps\n- Day 7 reading: The Four Big Risks as the integration lens\n\nReal world context I should apply:\nPayEase KYC drop-off — 62% of users starting KYC abandon at the Aadhaar OTP step. 3 engineers, 4-week capacity, 6 proposed solutions. The core tension: some solutions fix the symptom (OTP timing), others fix the deeper cause (UX clarity), and one attempts an alternative path (DigiLocker).\n\nMY TASK TODAY WAS: Produce 5 deliverables — problem statement, MECE tree with all 6 solutions placed, RICE table with full working, CIRCLES answer for the top-ranked solution, and 3 success metrics.\n\nHere is my work:\n[Pranav pastes his full 5-section answer here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation of why — check: MECE validity of the tree (no solution in two branches, no branch missing), RICE arithmetic for all 6 solutions, CIRCLES completeness especially steps C and E, and whether success metrics are actually measurable]\n\nBLIND SPOTS:\n- [things I did not consider at all — e.g., Aadhaar OTP failure rates vary significantly by telecom operator in India; DigiLocker penetration is real but unevenly distributed by age and geography; RBI has communication guidelines about fintech outreach during KYC that affect Solution D; the 3-minute OTP window is a UIDAI constraint, not a PayEase decision, which affects how Solution A is actually scoped]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about the Aadhaar-OTP KYC dependency that is specific to India — why this friction point exists, who it hurts most (Tier 2 users, older users, users on slower networks), and how the same drop-off pattern would look completely different in a Western market where phone number verification is the standard]\n\nOPEN POINTS FOR NEXT WEEK:\n- [3 specific items from Week 1 that Pranav should revisit in Week 2 — identify his weakest area clearly by name and tool]\n\nWEEK 1 SCORE: [X/10]\nREFORGE COMPETENCIES ASSESSED THIS WEEK:\n- Feature Specification: [Needs Focus / On Track / Outperform]\n- Voice of Customer: [Needs Focus / On Track / Outperform]\n- UX Design Sense: [Needs Focus / On Track / Outperform]\n- Business Outcome Ownership: [Needs Focus / On Track / Outperform]",
+        "minutes": 60
+      }
     }
   ]
 }
