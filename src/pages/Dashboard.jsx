@@ -67,7 +67,8 @@ function BonusCard({ task }) {
 }
 
 export default function Dashboard() {
-  const { dayData, dayLoading, toggleTask, isTaskDone, activeDay, progress } = useApp()
+  const { dayData, dayLoading, toggleTask, isTaskDone, activeDay, progress, roadmap } = useApp()
+  const navigate = useNavigate()
   const [bonusExpanded, setBonusExpanded] = useState(false)
   const today = new Date().toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' })
 
@@ -103,7 +104,9 @@ export default function Dashboard() {
   const allReadAndSearchDone = tasks.filter(t => (t.type === 'read' || t.type === 'search') && !isTaskDone(t.id)).length === 0
   const allDone = tasks.every(t => isTaskDone(t.id))
   const doneCount = tasks.filter(t => isTaskDone(t.id)).length
-  const progress_pct = Math.round(((activeDay - 1) / 21) * 100)
+  const remainingCount = tasks.filter(t => !isTaskDone(t.id)).length
+  const totalDays = roadmap?.totalDays || 21
+  const progress_pct = Math.round(((activeDay - 1) / totalDays) * 100)
 
   const isLocked = (task) => {
     if (task.type === 'read') return false
@@ -188,7 +191,7 @@ export default function Dashboard() {
               <span style={{ fontSize: '20px' }}>🔒</span>
               <div>
                 <p className="text-sm font-semibold" style={{ color: 'rgba(255,255,255,0.6)' }}>Complete all tasks to unlock</p>
-                <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.25)' }}>{tasks.filter(t => !isTaskDone(t.id)).length} task{tasks.filter(t => !isTaskDone(t.id)).length !== 1 ? 's' : ''} remaining</p>
+                <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.25)' }}>{remainingCount} task{remainingCount !== 1 ? 's' : ''} remaining</p>
               </div>
             </div>
           </div>

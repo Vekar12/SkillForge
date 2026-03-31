@@ -23,7 +23,7 @@ export function AppProvider({ children }) {
   const [dayData, setDayData]             = useState(null)
   const [dayLoading, setDayLoading]       = useState(false)
   const [progress, setProgress]           = useState(null)
-  const [groqKeySet, setGroqKeySet]       = useState(false)
+  const [groqKeySet, setGroqKeySet]       = useState(() => !!localStorage.getItem('sf_groq_key'))
   const [activeDay, setActiveDay]         = useState(1)
 
   // ── Auth ──────────────────────────────────────────────────────────────────
@@ -205,10 +205,13 @@ export function AppProvider({ children }) {
   }, [user, dayData, activeSkillId, progress, loadDay])
 
   // ── Groq key ──────────────────────────────────────────────────────────────
-  const saveGroqKey = useCallback(async (key) => {
-    // Save to backend (encrypted in CSV)
-    await api.post('/api/settings/groq-key', { groqKey: key })
-    setGroqKeySet(true)
+  const saveGroqKey = useCallback((key) => {
+    try {
+      localStorage.setItem('sf_groq_key', key)
+      setGroqKeySet(true)
+    } catch (err) {
+      console.error('Failed to save Groq key:', err)
+    }
   }, [])
 
   // ── Sidebar helpers ───────────────────────────────────────────────────────
