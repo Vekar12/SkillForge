@@ -26,7 +26,7 @@ export default function Login() {
           {hasClientId ? (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <GoogleLogin
-                onSuccess={cr => loginWithGoogle(cr.credential)}
+                onSuccess={cr => cr.credential && loginWithGoogle(cr.credential)}
                 onError={() => console.error('Google Sign-In failed')}
                 theme="filled_black" shape="rectangular" size="large" text="continue_with" width="296"
               />

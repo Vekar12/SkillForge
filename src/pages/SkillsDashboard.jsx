@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 import { addSkillPrompt } from '../mockData'
 import { getProgress } from '../utils/progress'
+import { appendSkillRequest } from '../utils/githubStorage'
 
 function ProgressRing({ progress, color, size = 52 }) {
   const r = (size - 8) / 2
@@ -18,10 +19,34 @@ function ProgressRing({ progress, color, size = 52 }) {
   )
 }
 
-function AddSkillModal({ onClose, onSubmit }) {
+function AddSkillModal({ onClose, onSubmit, user }) {
   const [step, setStep] = useState('prompt')
   const [copied, setCopied] = useState(false)
   const [output, setOutput] = useState('')
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
+
+  const handleSubmit = async () => {
+    if (!output.trim()) return
+    setSubmitting(true)
+    setSubmitError('')
+    try {
+      await appendSkillRequest({
+        userEmail: user?.email || 'unknown',
+        userName: user?.name || 'unknown',
+        rawJson: output.trim(),
+      })
+      onSubmit(output)
+      onClose()
+    } catch (err) {
+      // GitHub token not configured — still accept locally
+      console.warn('Could not save to GitHub:', err.message)
+      onSubmit(output)
+      onClose()
+    } finally {
+      setSubmitting(false)
+    }
+  }
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4"
@@ -76,10 +101,10 @@ function AddSkillModal({ onClose, onSubmit }) {
             <div className="flex gap-2">
               <button onClick={() => setStep('prompt')} className="px-4 py-3 rounded-xl text-sm"
                 style={{ background: 'var(--border-2)', color: 'var(--text-2)', border: 'none', cursor: 'pointer' }}>← Back</button>
-              <button onClick={() => { if (output.trim()) { onSubmit(output); onClose() } }} disabled={!output.trim()}
+              <button onClick={handleSubmit} disabled={!output.trim() || submitting}
                 className="flex-1 py-3 rounded-xl font-semibold text-sm"
-                style={{ background: output.trim() ? 'var(--blue)' : 'var(--border-2)', color: output.trim() ? '#fff' : 'var(--text-6)', border: 'none', cursor: output.trim() ? 'pointer' : 'not-allowed' }}>
-                Submit for Review
+                style={{ background: output.trim() && !submitting ? 'var(--blue)' : 'var(--border-2)', color: output.trim() && !submitting ? '#fff' : 'var(--text-6)', border: 'none', cursor: output.trim() && !submitting ? 'pointer' : 'not-allowed' }}>
+                {submitting ? 'Submitting…' : 'Submit for Review'}
               </button>
             </div>
           </>
@@ -191,7 +216,7 @@ export default function SkillsDashboard() {
           </button>
         </div>
 
-        {showAddSkill && <AddSkillModal onClose={() => setShowAddSkill(false)} onSubmit={() => setSubmittedRequest(true)} />}
+        {showAddSkill && <AddSkillModal onClose={() => setShowAddSkill(false)} onSubmit={() => setSubmittedRequest(true)} user={user} />}
         <div className="h-6" />
       </div>
 
