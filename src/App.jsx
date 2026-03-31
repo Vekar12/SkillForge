@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 import { AppProvider, useApp } from './context/AppContext'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -14,14 +15,14 @@ function BottomTabBar() {
   const location = useLocation()
   const navigate = useNavigate()
   const isDetail = location.pathname.startsWith('/task/') || location.pathname === '/assessment' || location.pathname === '/login'
-  const { user } = useApp()
+  const { user, resetToActiveDay } = useApp()
 
   if (!user || isDetail) return null
 
   const tabs = [
-    { path: '/skills', icon: '⊞', label: 'Skills' },
-    { path: '/', icon: '☀', label: 'Today' },
-    { path: '/roadmap', icon: '◎', label: 'Roadmap' },
+    { path: '/skills', icon: '⊞', label: 'Skills', onTap: null },
+    { path: '/', icon: '☀', label: 'Today', onTap: resetToActiveDay },
+    { path: '/roadmap', icon: '◎', label: 'Roadmap', onTap: null },
   ]
 
   return (
@@ -41,7 +42,7 @@ function BottomTabBar() {
           return (
             <button
               key={tab.path}
-              onClick={() => navigate(tab.path)}
+              onClick={() => { if (tab.onTap) tab.onTap(); navigate(tab.path) }}
               className="flex-1 flex flex-col items-center py-3 gap-0.5 transition-all"
               style={{ opacity: active ? 1 : 0.4, border: 'none', background: 'transparent', cursor: 'pointer' }}
             >
@@ -108,10 +109,12 @@ function AppLayout() {
 
 export default function App() {
   return (
-    <AppProvider>
-      <BrowserRouter>
-        <AppLayout />
-      </BrowserRouter>
-    </AppProvider>
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID || ''}>
+      <AppProvider>
+        <BrowserRouter>
+          <AppLayout />
+        </BrowserRouter>
+      </AppProvider>
+    </GoogleOAuthProvider>
   )
 }
