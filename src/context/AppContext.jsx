@@ -78,6 +78,11 @@ export function AppProvider({ children }) {
     const p = initProgress(user.uid, activeSkillId)
     setProgress(p)
     setGroqKeySet(!!localStorage.getItem('sf_groq_key'))
+    // Eagerly set activeDay here so the day-loader effect always runs with the
+    // correct day for this skill immediately. Without this the day-loader fires
+    // once with the previous skill's stale activeDay before the separate
+    // progress→activeDay effect can update it, wasting a fetch on the wrong day.
+    setActiveDay(Math.min(p.currentDay || 1, 21))
     loadRoadmap(activeSkillId).then(setRoadmap).catch(() => setRoadmap([]))
   }, [user, activeSkillId])
 
@@ -157,8 +162,13 @@ export function AppProvider({ children }) {
   // ── Sidebar helpers ───────────────────────────────────────────────────────
   const getPendingTasksForSidebar = useCallback(() => {
     if (!dayData || !progress) return []
-    return (dayData.tasks || []).filter(t => !isTaskComplete(progress, dayData.day, t.id))
-  }, [dayData, progress])
+    // Guard: loadDay() can set dayData to a past/future day for review without
+    // changing activeDay. When the two diverge, don't show the reviewed day's
+    // tasks as "pending today" — return empty until the user is back on their
+    // real current day.
+    if (dayData.day !== activeDay) return []
+    return (dayData.tasks || []).filter(t => !isTaskComplete(progress, activeDay, t.id))
+  }, [dayData, progress, activeDay])
 
   return (
     <AppContext.Provider value={{
