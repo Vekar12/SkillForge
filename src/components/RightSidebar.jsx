@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
+import { getProgress } from '../utils/progress'
 
 export default function RightSidebar() {
   const navigate = useNavigate()
-  const { getPendingTasksForSidebar, skills, activeDay, groqKeySet, activeSkillId, setActiveSkillId } = useApp()
+  const { getPendingTasksForSidebar, skills, groqKeySet, activeSkillId, setActiveSkillId, user } = useApp()
 
   const pendingTasks = getPendingTasksForSidebar()
   const TYPE_ICONS = { read: '📖', search: '🔍', activity: '⚡' }
@@ -52,7 +53,9 @@ export default function RightSidebar() {
           </p>
           <div className="space-y-2">
             {skills.filter(s => s.enrolled).map(skill => {
-              const skillProgress = Math.round(((activeDay - 1) / skill.totalDays) * 100)
+              const skillProgressData = getProgress(user?.uid, skill.id)
+              const skillCurrentDay = skillProgressData?.currentDay || 1
+              const skillPct = Math.round(((skillCurrentDay - 1) / skill.totalDays) * 100)
               return (
                 <button
                   key={skill.id}
@@ -65,10 +68,10 @@ export default function RightSidebar() {
                     <span className="text-xs font-semibold truncate">{skill.title}</span>
                   </div>
                   <div className="rounded-full h-1 overflow-hidden" style={{ background: 'rgba(255,255,255,0.06)' }}>
-                    <div className="h-full rounded-full" style={{ width: `${skillProgress}%`, background: skill.color }} />
+                    <div className="h-full rounded-full" style={{ width: `${skillPct}%`, background: skill.color }} />
                   </div>
                   <p className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.25)' }}>
-                    Day {activeDay} of {skill.totalDays}
+                    Day {skillCurrentDay} of {skill.totalDays}
                   </p>
                 </button>
               )

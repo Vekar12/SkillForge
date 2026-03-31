@@ -5,7 +5,7 @@
   "objective": "Content for this day is being prepared.",
   "realWorldAnchor": { "company": "TBD", "example": "Content coming soon" },
   "tasks": [
-    { "id": "d17t1", "type": "read", "title": "Content Coming Soon", "url": "#", "summary": "This day's content is being prepared. Check back soon.", "keyTakeaways": ["Content in progress"], "minutes": 20 }
+    { "id": "d17t1", "type": "read", "title": "Content Coming Soon", "url": null, "comingSoon": true, "summary": "This day's content is being prepared. Check back soon.", "keyTakeaways": ["Content in progress"], "minutes": 20 }
   ],
   "bonusTasks": [],
   "assessmentTask": {
