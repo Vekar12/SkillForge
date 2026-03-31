@@ -27,7 +27,15 @@ Return ONLY valid JSON:
   });
 
   const text = response.choices[0].message.content.trim();
-  return JSON.parse(text.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, ''));
+  const result = JSON.parse(text.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, ''));
+
+  // Validate required fields so callers don't silently store incomplete data.
+  // If the LLM omits a field the downstream code would write undefined to Sheets.
+  const required = ['priorityNote', 'emphasizeKeywords', 'suggestReviewDay'];
+  for (const field of required) {
+    if (!(field in result)) throw new Error(`adjustTomorrowsPlan: LLM response missing field '${field}'`);
+  }
+  return result;
 }
 
 // Generate a skill roadmap spec for admin review
@@ -65,7 +73,15 @@ Return ONLY valid JSON matching this structure:
   });
 
   const text = response.choices[0].message.content.trim();
-  return JSON.parse(text.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, ''));
+  const spec = JSON.parse(text.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, ''));
+
+  // Validate required fields before returning to the caller. Storing a spec
+  // with missing fields would silently corrupt the roadmap for that skill.
+  const required = ['skill', 'totalDays', 'summary', 'competencies', 'sampleDay'];
+  for (const field of required) {
+    if (!(field in spec)) throw new Error(`generateSkillSpec: LLM response missing field '${field}'`);
+  }
+  return spec;
 }
 
 module.exports = { adjustTomorrowsPlan, generateSkillSpec };

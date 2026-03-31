@@ -32,8 +32,17 @@ router.post('/skill-requests/:id/approve', requireAdmin, async (req, res) => {
       reviewNote: note || '',
     });
 
-    // Enroll the requesting user in the skill (set current_day = 1 in STATE)
-    const skillId = request.skillTitle.toLowerCase().replace(/\s+/g, '-');
+    // Enroll the requesting user in the skill (set current_day = 1 in STATE).
+    // Replace(/\s+/g,'-') alone still allows '/', '+', '.' etc. which break URL
+    // params and roadmap filenames; strip everything non-alphanumeric instead.
+    const skillId = request.skillTitle
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, '-')  // collapse any non-safe chars to a dash
+      .replace(/^-+|-+$/g, '');     // strip leading/trailing dashes
+    if (!skillId) {
+      return res.status(400).json({ error: 'Invalid skill title: could not generate a safe skillId' });
+    }
     await sheets.setStateForUser(request.userId, skillId, 'current_day', 1);
 
     res.json({ data: { success: true, skillId, enrolledUser: request.userId } });

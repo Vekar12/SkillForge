@@ -13,7 +13,10 @@ const adminRoutes = require('./routes/admin');
 
 const app = express();
 
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+// Centralise the frontend origin so CORS and the auth redirect stay in sync.
+// Set FRONTEND_ORIGIN in .env for staging/production deployments.
+const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'http://localhost:5173';
+app.use(cors({ origin: FRONTEND_ORIGIN, credentials: true }));
 app.use(express.json());
 
 // express-session is only used for the OAuth handshake (passport needs it briefly)

@@ -8,7 +8,12 @@ const { adjustTomorrowsPlan } = require('../groq');
 const router = express.Router();
 
 function loadRoadmap(skillId) {
-  const p = path.join(__dirname, '../data/roadmaps', `${skillId}.json`);
+  // Same path-traversal guard as skills.js — skillId originates from req.body
+  // and could contain encoded '..' or '/' variants without this check.
+  if (!/^[a-z0-9-]+$/.test(skillId)) throw new Error('Invalid skillId');
+  const baseDir = path.resolve(__dirname, '../data/roadmaps');
+  const p = path.resolve(baseDir, `${skillId}.json`);
+  if (!p.startsWith(baseDir + path.sep)) throw new Error('Invalid skillId');
   if (!fs.existsSync(p)) throw new Error(`Roadmap not found: ${skillId}`);
   return JSON.parse(fs.readFileSync(p, 'utf8'));
 }
@@ -40,12 +45,38 @@ function parseAssessment(raw) {
 // POST /api/assessment
 router.post('/', requireAuth, async (req, res) => {
   try {
-    const { skillId, day, rawFeedback } = req.body;
-    if (!skillId || !day || !rawFeedback) {
-      return res.status(400).json({ error: 'skillId, day, and rawFeedback are required' });
+    const { skillId, rawFeedback } = req.body;
+    // Parse day as a strict positive integer — reject strings, floats, or missing values.
+    const day = parseInt(req.body.day, 10);
+    if (!skillId || !day || day < 1 || !rawFeedback) {
+      return res.status(400).json({ error: 'skillId, day (positive integer), and rawFeedback are required' });
     }
 
-    const existing = await sheets.getAssessmentForUser(req.user.sub, skillId, Number(day));
+    // ── Server-side eligibility gate ──────────────────────────────────────────
+    // The frontend already blocks submission, but a crafted request could bypass
+    // that check, skip tasks, and advance current_day / streak arbitrarily.
+
+    // 1. Verify the submitted day matches this user's actual current day.
+    const currentDayStr = await sheets.getStateForUser(req.user.sub, skillId, 'current_day');
+    if (Number(currentDayStr) !== day) {
+      return res.status(400).json({ error: 'Assessment day does not match your current day' });
+    }
+
+    // 2. Verify all core tasks for this day are completed.
+    const roadmapForCheck = loadRoadmap(skillId);
+    const dayDataForCheck = roadmapForCheck.days.find(d => d.day === day);
+    if (dayDataForCheck) {
+      const completedTasks = await sheets.getTasksForUser(req.user.sub, skillId, day);
+      const completedIds = new Set(completedTasks.map(t => t.taskId));
+      const coreTasks = (dayDataForCheck.tasks || []).filter(t => !t.isBonus);
+      const allCoreDone = coreTasks.length > 0 && coreTasks.every(t => completedIds.has(t.id));
+      if (!allCoreDone) {
+        return res.status(400).json({ error: 'Complete all core tasks before submitting the assessment' });
+      }
+    }
+    // ─────────────────────────────────────────────────────────────────────────
+
+    const existing = await sheets.getAssessmentForUser(req.user.sub, skillId, day);
     if (existing) {
       return res.status(409).json({ error: 'Assessment already submitted for this day' });
     }
@@ -60,18 +91,26 @@ router.post('/', requireAuth, async (req, res) => {
 
     let groqResult = null;
     if (tomorrowContent) {
+      // Only use the encrypted key stored via settings — never fall back to a
+      // raw x-groq-key header, which would bypass the encryption layer entirely.
       const groqKey = await sheets.getDecryptedGroqKey(req.user.sub);
-      const keyToUse = groqKey || req.headers['x-groq-key'] || '';
-      if (keyToUse) {
-        groqResult = await adjustTomorrowsPlan(
-          parsed.openPoints,
-          parsed.score,
-          parsed.competencyLevel,
-          tomorrowContent,
-          tomorrowContent.competenciesCovered || [],
-          keyToUse
-        );
-        await sheets.setStateForUser(req.user.sub, skillId, 'next_day_adjustments', JSON.stringify(groqResult));
+      if (groqKey) {
+        try {
+          // Keep tomorrow adjustment best-effort: the assessment is already
+          // persisted at this point, so a Groq failure must not return 500 and
+          // cause the client to retry (which would hit the duplicate guard).
+          groqResult = await adjustTomorrowsPlan(
+            parsed.openPoints,
+            parsed.score,
+            parsed.competencyLevel,
+            tomorrowContent,
+            tomorrowContent.competenciesCovered || [],
+            groqKey
+          );
+          await sheets.setStateForUser(req.user.sub, skillId, 'next_day_adjustments', JSON.stringify(groqResult));
+        } catch (err) {
+          console.warn('[assessment] adjustTomorrowsPlan failed (non-fatal):', err.message);
+        }
       }
     }
 

@@ -46,6 +46,23 @@ async function updateRow(tab, rowIndex, row) {
 
 // ── STATE: userId | skillId | key | value ─────────────────────
 
+// In-memory lock map used by setStateForUser to serialise concurrent writes for
+// the same userId+skillId+key tuple. Google Sheets has no transactions, so
+// without this two simultaneous requests could both read idx === -1 and append
+// duplicate rows (classic TOCTOU / read-then-write race condition).
+const stateLocks = new Map();
+
+async function withStateLock(lockKey, fn) {
+  // Queue behind any in-flight operation for the same key by chaining onto its
+  // promise. The finally block removes the entry so the Map doesn't grow forever.
+  while (stateLocks.has(lockKey)) {
+    await stateLocks.get(lockKey);
+  }
+  const promise = fn().finally(() => stateLocks.delete(lockKey));
+  stateLocks.set(lockKey, promise);
+  return promise;
+}
+
 async function getStateForUser(userId, skillId, key) {
   const rows = await getRows('STATE');
   const row = rows.find(r => r[0] === userId && r[1] === skillId && r[2] === key);
@@ -53,13 +70,16 @@ async function getStateForUser(userId, skillId, key) {
 }
 
 async function setStateForUser(userId, skillId, key, value) {
-  const rows = await getRows('STATE');
-  const idx = rows.findIndex(r => r[0] === userId && r[1] === skillId && r[2] === key);
-  if (idx === -1) {
-    await appendRow('STATE', [userId, skillId, key, String(value)]);
-  } else {
-    await updateRow('STATE', idx + 1, [userId, skillId, key, String(value)]);
-  }
+  const lockKey = `state:${userId}:${skillId}:${key}`;
+  return withStateLock(lockKey, async () => {
+    const rows = await getRows('STATE');
+    const idx = rows.findIndex(r => r[0] === userId && r[1] === skillId && r[2] === key);
+    if (idx === -1) {
+      await appendRow('STATE', [userId, skillId, key, String(value)]);
+    } else {
+      await updateRow('STATE', idx + 1, [userId, skillId, key, String(value)]);
+    }
+  });
 }
 
 async function getUserSkills(userId) {

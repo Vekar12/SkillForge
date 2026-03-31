@@ -8,7 +8,13 @@ const { generateSkillSpec } = require('../groq');
 const router = express.Router();
 
 function loadRoadmap(skillId) {
-  const p = path.join(__dirname, '../data/roadmaps', `${skillId}.json`);
+  // Guard against path traversal: skillId comes straight from the URL so an
+  // encoded '../' or absolute path could escape data/roadmaps without this check.
+  if (!/^[a-z0-9-]+$/.test(skillId)) throw new Error('Invalid skillId');
+  const baseDir = path.resolve(__dirname, '../data/roadmaps');
+  const p = path.resolve(baseDir, `${skillId}.json`);
+  // Second safeguard: ensure the resolved path is still inside baseDir.
+  if (!p.startsWith(baseDir + path.sep)) throw new Error('Invalid skillId');
   if (!fs.existsSync(p)) throw new Error(`Roadmap not found for skill: ${skillId}`);
   return JSON.parse(fs.readFileSync(p, 'utf8'));
 }

@@ -12,6 +12,10 @@ passport.use(new GoogleStrategy(
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: process.env.GOOGLE_CALLBACK_URL,
+    // state: true enables automatic CSRF nonce generation + verification via
+    // express-session. Without it, a forged callback request could authenticate
+    // an attacker into a victim's session (login CSRF).
+    state: true,
   },
   (accessToken, refreshToken, profile, done) => done(null, profile)
 ));
@@ -41,8 +45,10 @@ router.get(
       process.env.JWT_SECRET,
       { expiresIn: '7d' }
     );
-    // Use fragment (#) — not sent to servers in referrer headers, not stored in server logs
-    res.redirect(`http://localhost:5173/auth/callback#token=${token}`);
+    // Use the configured frontend origin so this works in staging/production too.
+    // Fragment (#) avoids the token appearing in server logs or referrer headers.
+    const origin = process.env.FRONTEND_ORIGIN || 'http://localhost:5173';
+    res.redirect(`${origin}/auth/callback#token=${token}`);
   }
 );
 
