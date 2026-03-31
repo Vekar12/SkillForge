@@ -106,7 +106,7 @@ function ReadView({ task, onDone }) {
     <>
       <SectionCard>
         <Label>SUMMARY</Label>
-        <p className="text-base leading-relaxed" style={{ color: 'rgba(255,255,255,0.8)', lineHeight: '1.65' }}>{task.summary}</p>
+        <p className="text-base leading-relaxed" style={{ color: 'var(--text-primary)', lineHeight: '1.65' }}>{task.summary}</p>
       </SectionCard>
       <SectionCard>
         <Label>WHAT TO TAKE AWAY</Label>
@@ -145,7 +145,7 @@ function SearchView({ task, onDone }) {
       </SectionCard>
       <SectionCard>
         <Label>WHY THIS MATTERS</Label>
-        <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.8)', lineHeight: '1.65' }}>{task.whyItMatters}</p>
+        <p className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)', lineHeight: '1.65' }}>{task.whyItMatters}</p>
       </SectionCard>
       <SectionCard>
         <Label>LOOK FOR THESE SPECIFICALLY</Label>
@@ -193,7 +193,7 @@ function ActivityView({ task, onDone }) {
               >
                 {i + 1}
               </span>
-              <span className="text-sm leading-relaxed pt-0.5" style={{ color: 'rgba(255,255,255,0.8)' }}>{step}</span>
+              <span className="text-sm leading-relaxed pt-0.5" style={{ color: 'var(--text-2)' }}>{step}</span>
             </li>
           ))}
         </ol>
@@ -228,7 +228,7 @@ function ActivityView({ task, onDone }) {
             style={{
               background: 'var(--surface-1)',
               border: `1px solid ${feedback.trim() ? 'rgba(10,132,255,0.4)' : 'var(--border-2)'}`,
-              color: '#fff',
+              color: 'var(--text-1)',
               lineHeight: '1.6',
             }}
           />

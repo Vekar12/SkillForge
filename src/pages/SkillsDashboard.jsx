@@ -43,7 +43,7 @@ function AddSkillModal({ onClose, onSubmit }) {
               <p className="text-xs font-bold mb-2" style={{ color: '#0A84FF', letterSpacing: '0.08em' }}>HOW IT WORKS</p>
               <ol className="space-y-1.5">
                 {['Copy the prompt below','Open Claude.ai and paste it','Answer Claude\'s questions','Copy Claude\'s JSON output','Come back and paste it here'].map((s,i) => (
-                  <li key={i} className="flex gap-2 text-xs" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                  <li key={i} className="flex gap-2 text-xs" style={{ color: 'var(--text-2)' }}>
                     <span className="w-4 h-4 rounded-full flex items-center justify-center font-bold flex-shrink-0" style={{ background: 'rgba(10,132,255,0.2)', color: '#0A84FF', fontSize: '10px' }}>{i+1}</span>{s}
                   </li>
                 ))}
@@ -72,7 +72,7 @@ function AddSkillModal({ onClose, onSubmit }) {
             <textarea value={output} onChange={e => setOutput(e.target.value)}
               placeholder={'{\n  "skillId": "...",\n  "title": "...",\n  ...\n}'}
               rows={8} className="w-full rounded-xl p-4 text-sm mb-4 resize-none focus:outline-none"
-              style={{ background: 'var(--bg)', border: `1px solid ${output.trim() ? 'rgba(10,132,255,0.4)' : 'var(--border-2)'}`, color: '#fff', fontFamily: 'ui-monospace, monospace', lineHeight: '1.6' }} />
+              style={{ background: 'var(--bg)', border: `1px solid ${output.trim() ? 'rgba(10,132,255,0.4)' : 'var(--border-2)'}`, color: 'var(--text-1)', fontFamily: 'ui-monospace, monospace', lineHeight: '1.6' }} />
             <div className="flex gap-2">
               <button onClick={() => setStep('prompt')} className="px-4 py-3 rounded-xl text-sm"
                 style={{ background: 'var(--border-2)', color: 'var(--text-2)', border: 'none', cursor: 'pointer' }}>← Back</button>
@@ -115,7 +115,7 @@ export default function SkillsDashboard() {
         {submittedRequest && (
           <div className="rounded-2xl p-4 mb-6" style={{ background: 'rgba(255,159,10,0.08)', border: '1px solid rgba(255,159,10,0.15)' }}>
             <p className="text-xs font-bold mb-1" style={{ color: '#FF9F0A', letterSpacing: '0.08em' }}>SKILL REQUEST SUBMITTED</p>
-            <p className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>Your new skill request is under review. We'll notify you once it's ready.</p>
+            <p className="text-sm" style={{ color: 'var(--text-2)' }}>Your new skill request is under review. We'll notify you once it's ready.</p>
           </div>
         )}
 
@@ -166,7 +166,7 @@ export default function SkillsDashboard() {
                     </button>
                     <button onClick={() => { setActiveSkillId(skill.id); navigate('/roadmap') }}
                       className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-sm font-semibold transition-all active:scale-[0.97]"
-                      style={{ background: 'var(--border-2)', color: 'rgba(255,255,255,0.7)', border: '1px solid var(--border-3)', cursor: 'pointer' }}>
+                      style={{ background: 'var(--border-2)', color: 'var(--text-2)', border: '1px solid var(--border-3)', cursor: 'pointer' }}>
                       Roadmap
                     </button>
                   </div>

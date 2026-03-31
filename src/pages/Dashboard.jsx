@@ -17,7 +17,7 @@ function TaskRow({ task, isDone, isLocked, onToggle }) {
       style={{
         display: 'flex', alignItems: 'center', gap: 14,
         padding: '14px 16px', borderRadius: 14, marginBottom: 8,
-        background: isDone ? 'var(--border-1)' : '#161616',
+        background: isDone ? 'var(--border-1)' : 'var(--surface-2)',
         border: `1px solid ${isDone ? 'var(--border-1)' : 'var(--border-3)'}`,
         opacity: isLocked ? 0.38 : 1,
         transition: 'opacity 0.15s',

@@ -14,18 +14,18 @@
   --surface-3: #111111;
   --surface-4: #2C2C2E;
   --header-bg: rgba(0,0,0,0.85);
-  --border-1: var(--border-1);
-  --border-2: var(--border-2);
-  --border-3: var(--border-3);
-  --border-4: var(--border-4);
-  --text-1: #FFFFFF;
-  --text-primary: var(--text-primary);
-  --text-2: var(--text-2);
-  --text-3: var(--text-3);
-  --text-4: var(--text-4);
-  --text-5: var(--text-5);
-  --text-6: var(--text-6);
-  --separator: var(--border-3);
+  --border-1:  rgba(255,255,255,0.04);
+  --border-2:  rgba(255,255,255,0.07);
+  --border-3:  rgba(255,255,255,0.10);
+  --border-4:  rgba(255,255,255,0.15);
+  --text-1:       #FFFFFF;
+  --text-primary: rgba(255,255,255,0.88);
+  --text-2:       rgba(255,255,255,0.60);
+  --text-3:       rgba(255,255,255,0.45);
+  --text-4:       rgba(255,255,255,0.35);
+  --text-5:       rgba(255,255,255,0.25);
+  --text-6:       rgba(255,255,255,0.18);
+  --separator: rgba(255,255,255,0.10);
   --blue:   #0A84FF;
   --green:  #30D158;
   --orange: #FF9F0A;
@@ -34,26 +34,32 @@
   --teal:   #5AC8FA;
 }
 
-/* ── Light mode overrides ───────────────────────────────────────────────── */
+/* ── Light mode overrides (Apple HIG system colors) ─────────────────────── */
 :root[data-theme="light"] {
   --bg:        #F2F2F7;
   --surface-1: #FFFFFF;
-  --surface-2: #FFFFFF;
+  --surface-2: #F8F8FA;
   --surface-3: #F0F0F5;
   --surface-4: #E5E5EA;
-  --header-bg: rgba(242,242,247,0.85);
-  --border-1: rgba(0,0,0,0.04);
-  --border-2: rgba(0,0,0,0.06);
-  --border-3: rgba(0,0,0,0.08);
-  --border-4: rgba(0,0,0,0.12);
-  --text-1: #000000;
-  --text-primary: rgba(0,0,0,0.88);
-  --text-2: rgba(0,0,0,0.55);
-  --text-3: rgba(0,0,0,0.4);
-  --text-4: rgba(0,0,0,0.3);
-  --text-5: rgba(0,0,0,0.25);
-  --text-6: rgba(0,0,0,0.2);
-  --separator: rgba(0,0,0,0.08);
+  --header-bg: rgba(242,242,247,0.92);
+  --border-1:  rgba(0,0,0,0.04);
+  --border-2:  rgba(0,0,0,0.07);
+  --border-3:  rgba(0,0,0,0.10);
+  --border-4:  rgba(0,0,0,0.15);
+  --text-1:       #000000;
+  --text-primary: #1A1A1A;
+  --text-2:       #3C3C43;
+  --text-3:       #636366;
+  --text-4:       #8E8E93;
+  --text-5:       #AEAEB2;
+  --text-6:       #C7C7CC;
+  --separator: rgba(0,0,0,0.10);
+  --blue:   #007AFF;
+  --green:  #34C759;
+  --orange: #FF9500;
+  --red:    #FF3B30;
+  --purple: #AF52DE;
+  --teal:   #32ADE6;
 }
 
 body {

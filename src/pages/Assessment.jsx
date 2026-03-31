@@ -233,7 +233,7 @@ export default function Assessment() {
           className="rounded-xl p-4 mb-4"
           style={{ background: 'var(--bg)', border: '1px solid var(--border-2)' }}
         >
-          <pre className="text-sm whitespace-pre-wrap leading-relaxed" style={{ color: 'rgba(255,255,255,0.75)', fontFamily: 'inherit', lineHeight: '1.7', margin: 0 }}>
+          <pre className="text-sm whitespace-pre-wrap leading-relaxed" style={{ color: 'var(--text-primary)', fontFamily: 'inherit', lineHeight: '1.7', margin: 0 }}>
             {assessmentTask?.rawMaterial}
           </pre>
         </div>
@@ -242,7 +242,7 @@ export default function Assessment() {
           style={{ background: 'rgba(10,132,255,0.08)', border: '1px solid rgba(10,132,255,0.15)' }}
         >
           <p className="text-xs font-bold mb-1" style={{ color: '#0A84FF' }}>YOUR ANSWER SHOULD LOOK LIKE:</p>
-          <p className="text-sm" style={{ color: 'rgba(255,255,255,0.8)' }}>{assessmentTask?.outputFormat}</p>
+          <p className="text-sm" style={{ color: 'var(--text-primary)' }}>{assessmentTask?.outputFormat}</p>
         </div>
       </SectionCard>
 
@@ -258,7 +258,7 @@ export default function Assessment() {
               >
                 {i + 1}
               </span>
-              <span className="text-sm leading-relaxed pt-0.5" style={{ color: 'rgba(255,255,255,0.8)' }}>{step}</span>
+              <span className="text-sm leading-relaxed pt-0.5" style={{ color: 'var(--text-2)' }}>{step}</span>
             </li>
           ))}
         </ol>
@@ -298,7 +298,7 @@ export default function Assessment() {
           style={{
             background: 'var(--surface-1)',
             border: `1px solid ${feedback.trim() ? 'rgba(10,132,255,0.4)' : 'var(--border-2)'}`,
-            color: '#fff',
+            color: 'var(--text-1)',
             lineHeight: '1.6',
           }}
         />
