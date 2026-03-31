@@ -259,7 +259,6 @@ export default function SkillsDashboard() {
             onConfirm={() => {
               resetSkill(resetTarget.id)
               setResetTarget(null)
-              navigate('/')
             }}
           />
         )}
