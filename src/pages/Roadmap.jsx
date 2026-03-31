@@ -164,7 +164,7 @@ export default function Roadmap() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-6 lg:px-8 lg:py-10">
       <div className="mb-8">
-        <p className="text-xs font-bold tracking-widest mb-1" style={{ color: 'var(--text-4)', letterSpacing: '0.1em' }}>APM FOUNDATIONS</p>
+        <p className="text-xs font-bold tracking-widest mb-1" style={{ color: 'var(--text-3)', letterSpacing: '0.1em' }}>APM FOUNDATIONS</p>
         <h1 className="text-2xl font-bold" style={{ letterSpacing: '-0.4px' }}>21-Day Roadmap</h1>
         <p className="text-sm mt-2" style={{ color: 'var(--text-3)' }}>
           {doneCount} of 21 days completed · Day {activeDay} in progress
@@ -191,11 +191,11 @@ export default function Roadmap() {
         return (
           <div key={week} className="mb-6">
             <div className="flex items-center gap-3 mb-3">
-              <h2 className="text-xs font-bold tracking-widest" style={{ color: 'var(--text-4)', letterSpacing: '0.1em' }}>
+              <h2 className="text-xs font-bold tracking-widest" style={{ color: 'var(--text-3)', letterSpacing: '0.1em' }}>
                 WEEK {week}
               </h2>
               <div className="flex-1 h-px" style={{ background: 'var(--border-2)' }} />
-              <span className="text-xs font-medium" style={{ color: 'var(--text-5)' }}>
+              <span className="text-xs font-medium" style={{ color: 'var(--text-4)' }}>
                 {weekDone}/{days.length}
               </span>
             </div>

@@ -192,7 +192,7 @@ export default function SkillsDashboard() {
                       )}
                     </div>
                     <h3 className="text-base font-bold leading-tight" style={{ letterSpacing: '-0.2px' }}>{skill.title}</h3>
-                    <p className="text-xs mt-0.5" style={{ color: 'var(--text-4)' }}>{skill.subtitle}</p>
+                    <p className="text-xs mt-0.5" style={{ color: 'var(--text-3)' }}>{skill.subtitle}</p>
                   </div>
                   <div className="relative flex-shrink-0">
                     <ProgressRing progress={skillProgress} color={skill.color} size={52} />
@@ -246,7 +246,7 @@ export default function SkillsDashboard() {
             <div className="w-12 h-12 rounded-full flex items-center justify-center text-2xl" style={{ background: 'var(--border-2)' }}>+</div>
             <div className="text-center">
               <p className="text-sm font-semibold" style={{ color: 'var(--text-2)' }}>Add New Skill</p>
-              <p className="text-xs mt-1" style={{ color: 'var(--text-5)' }}>Build a custom 14–21 day track</p>
+              <p className="text-xs mt-1" style={{ color: 'var(--text-4)' }}>Build a custom 14–21 day track</p>
             </div>
           </button>
         </div>
@@ -268,11 +268,11 @@ export default function SkillsDashboard() {
       {/* Right pane — cumulative pending tasks */}
       <aside className="hidden xl:flex flex-col w-72 flex-shrink-0 py-8 pr-6 gap-5">
         <div>
-          <p className="text-xs font-bold tracking-widest mb-3" style={{ color: 'var(--text-4)', letterSpacing: '0.1em' }}>PENDING TODAY</p>
+          <p className="text-xs font-bold tracking-widest mb-3" style={{ color: 'var(--text-3)', letterSpacing: '0.1em' }}>PENDING TODAY</p>
           {pendingTasks.length === 0 ? (
             <div className="rounded-2xl p-4" style={{ background: 'var(--surface-1)', border: '1px solid rgba(48,209,88,0.15)' }}>
               <p className="text-sm font-semibold" style={{ color: 'var(--green)' }}>✓ All caught up!</p>
-              <p className="text-xs mt-1" style={{ color: 'var(--text-4)' }}>No pending tasks</p>
+              <p className="text-xs mt-1" style={{ color: 'var(--text-3)' }}>No pending tasks</p>
             </div>
           ) : (
             <div className="rounded-2xl p-4 space-y-3" style={{ background: 'var(--surface-1)', border: '1px solid var(--border-2)' }}>
@@ -289,7 +289,7 @@ export default function SkillsDashboard() {
         </div>
 
         <div>
-          <p className="text-xs font-bold tracking-widest mb-3" style={{ color: 'var(--text-4)', letterSpacing: '0.1em' }}>YOUR SKILLS</p>
+          <p className="text-xs font-bold tracking-widest mb-3" style={{ color: 'var(--text-3)', letterSpacing: '0.1em' }}>YOUR SKILLS</p>
           <div className="space-y-2">
             {skills.filter(s => s.enrolled).map(skill => {
               const sp = user ? getProgress(user.uid, skill.id) : null
@@ -305,7 +305,7 @@ export default function SkillsDashboard() {
                   <div className="rounded-full h-1 overflow-hidden" style={{ background: 'var(--border-2)' }}>
                     <div className="h-full rounded-full" style={{ width: `${Math.round((spDay - 1) / skill.totalDays * 100)}%`, background: skill.color }} />
                   </div>
-                  <p className="text-xs mt-1" style={{ color: 'var(--text-5)' }}>Day {spDay} of {skill.totalDays}</p>
+                  <p className="text-xs mt-1" style={{ color: 'var(--text-4)' }}>Day {spDay} of {skill.totalDays}</p>
                 </button>
               )
             })}
