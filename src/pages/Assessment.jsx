@@ -175,7 +175,7 @@ export default function Assessment() {
           <p className="text-xs font-bold tracking-widest mb-3" style={{ color: 'var(--text-3)', letterSpacing: '0.1em' }}>
             DAY {dayData?.day} RESULT
           </p>
-          <p className="font-bold mb-1" style={{ fontSize: '60px', lineHeight: 1, color: '#fff', letterSpacing: '-2px' }}>
+          <p className="font-bold mb-1" style={{ fontSize: '60px', lineHeight: 1, color: 'var(--text-1)', letterSpacing: '-2px' }}>
             {result.score}
             <span style={{ fontSize: '28px', color: 'var(--text-4)' }}>/10</span>
           </p>

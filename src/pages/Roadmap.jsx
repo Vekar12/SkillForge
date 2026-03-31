@@ -62,7 +62,7 @@ function DayCard({ day, activeDay, progress, onLoadDay }) {
                     <span className="text-xs" style={{ color: 'var(--text-6)' }}>🔒</span>
                   )}
                 </div>
-                <p className="text-sm font-medium leading-snug" style={{ color: isFuture ? 'var(--text-4)' : '#fff' }}>
+                <p className="text-sm font-medium leading-snug" style={{ color: isFuture ? 'var(--text-4)' : 'var(--text-1)' }}>
                   {day.theme}
                 </p>
               </div>
