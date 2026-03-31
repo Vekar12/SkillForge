@@ -1,7 +1,7 @@
 const express = require('express');
 const { encrypt } = require('../crypto');
 const { requireAuth } = require('../middleware/auth');
-const sheets = require('../sheets');
+const sheets = require('../github');
 
 const router = express.Router();
 
