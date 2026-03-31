@@ -6,21 +6,60 @@
   box-sizing: border-box;
 }
 
+/* ── Design tokens (dark, default) ─────────────────────────────────────── */
 :root {
-  --bg: #000000;
+  /* backgrounds */
+  --bg:        #000000;
   --surface-1: #1C1C1E;
-  --surface-2: #2C2C2E;
-  --surface-3: #3A3A3C;
-  --separator: rgba(255,255,255,0.08);
-  --blue: #0A84FF;
-  --green: #30D158;
-  --orange: #FF9F0A;
-  --red: #FF453A;
-  --purple: #BF5AF2;
-  --teal: #5AC8FA;
+  --surface-2: #161616;
+  --surface-3: #111111;
+  --surface-4: #2C2C2E;
+  /* header */
+  --header-bg: rgba(0,0,0,0.85);
+  /* borders */
+  --border-1: rgba(255,255,255,0.04);
+  --border-2: rgba(255,255,255,0.06);
+  --border-3: rgba(255,255,255,0.08);
+  --border-4: rgba(255,255,255,0.12);
+  /* text */
   --text-1: #FFFFFF;
+  --text-primary: rgba(255,255,255,0.88);
   --text-2: rgba(255,255,255,0.55);
-  --text-3: rgba(255,255,255,0.25);
+  --text-3: rgba(255,255,255,0.4);
+  --text-4: rgba(255,255,255,0.3);
+  --text-5: rgba(255,255,255,0.25);
+  --text-6: rgba(255,255,255,0.2);
+  /* separator */
+  --separator: rgba(255,255,255,0.08);
+  /* accents — same in both themes */
+  --blue:   #0A84FF;
+  --green:  #30D158;
+  --orange: #FF9F0A;
+  --red:    #FF453A;
+  --purple: #BF5AF2;
+  --teal:   #5AC8FA;
+}
+
+/* ── Light mode overrides ───────────────────────────────────────────────── */
+:root[data-theme="light"] {
+  --bg:        #F2F2F7;
+  --surface-1: #FFFFFF;
+  --surface-2: #FFFFFF;
+  --surface-3: #F0F0F5;
+  --surface-4: #E5E5EA;
+  --header-bg: rgba(242,242,247,0.85);
+  --border-1: rgba(0,0,0,0.04);
+  --border-2: rgba(0,0,0,0.06);
+  --border-3: rgba(0,0,0,0.08);
+  --border-4: rgba(0,0,0,0.12);
+  --text-1: #000000;
+  --text-primary: rgba(0,0,0,0.88);
+  --text-2: rgba(0,0,0,0.55);
+  --text-3: rgba(0,0,0,0.4);
+  --text-4: rgba(0,0,0,0.3);
+  --text-5: rgba(0,0,0,0.25);
+  --text-6: rgba(0,0,0,0.2);
+  --separator: rgba(0,0,0,0.08);
 }
 
 body {
@@ -28,6 +67,7 @@ body {
   color: var(--text-1);
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
   margin: 0;
+  transition: background 0.25s ease, color 0.25s ease;
 }
 
 /* Custom scrollbar */
@@ -47,4 +87,9 @@ textarea {
   .has-tab-bar {
     padding-bottom: 0;
   }
+}
+
+/* Spin animation */
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }

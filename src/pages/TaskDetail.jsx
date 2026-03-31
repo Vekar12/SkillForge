@@ -10,7 +10,7 @@ const TYPE_CONFIG = {
 
 function SectionCard({ children }) {
   return (
-    <div className="rounded-2xl p-5 mb-3" style={{ background: '#1C1C1E', border: '1px solid rgba(255,255,255,0.06)' }}>
+    <div className="rounded-2xl p-5 mb-3" style={{ background: 'var(--surface-1)', border: '1px solid var(--border-2)' }}>
       {children}
     </div>
   )
@@ -18,7 +18,7 @@ function SectionCard({ children }) {
 
 function Label({ children }) {
   return (
-    <p className="text-xs font-bold tracking-widest mb-3" style={{ color: 'rgba(255,255,255,0.3)', letterSpacing: '0.1em' }}>
+    <p className="text-xs font-bold tracking-widest mb-3" style={{ color: 'var(--text-4)', letterSpacing: '0.1em' }}>
       {children}
     </p>
   )
@@ -49,8 +49,8 @@ function CopyButton({ text, label = 'Copy' }) {
 
 function PrimaryButton({ onClick, children, disabled, href, target }) {
   const style = {
-    background: disabled ? 'rgba(255,255,255,0.08)' : '#0A84FF',
-    color: disabled ? 'rgba(255,255,255,0.25)' : '#fff',
+    background: disabled ? 'var(--border-3)' : '#0A84FF',
+    color: disabled ? 'var(--text-5)' : '#fff',
     height: '52px',
     borderRadius: '14px',
     fontWeight: 600,
@@ -82,7 +82,7 @@ function PrimaryButton({ onClick, children, disabled, href, target }) {
 
 function SecondaryButton({ onClick, children, href, target }) {
   const style = {
-    background: 'rgba(255,255,255,0.06)',
+    background: 'var(--border-2)',
     color: '#0A84FF',
     height: '52px',
     borderRadius: '14px',
@@ -123,7 +123,7 @@ function ReadView({ task, onDone }) {
         </ul>
       </SectionCard>
       <div className="flex items-center gap-2 mb-5 px-1">
-        <span className="text-sm" style={{ color: 'rgba(255,255,255,0.3)' }}>⏱ {task.minutes} min estimated read</span>
+        <span className="text-sm" style={{ color: 'var(--text-4)' }}>⏱ {task.minutes} min estimated read</span>
       </div>
       <div className="flex flex-col gap-3">
         <SecondaryButton href={task.url} target="_blank">Open Article ↗</SecondaryButton>
@@ -159,7 +159,7 @@ function SearchView({ task, onDone }) {
         </ul>
       </SectionCard>
       <div className="flex items-center gap-2 mb-5 px-1">
-        <span className="text-sm" style={{ color: 'rgba(255,255,255,0.3)' }}>⏱ {task.minutes} min</span>
+        <span className="text-sm" style={{ color: 'var(--text-4)' }}>⏱ {task.minutes} min</span>
       </div>
       <PrimaryButton onClick={onDone}>Mark as Done</PrimaryButton>
     </>
@@ -204,7 +204,7 @@ function ActivityView({ task, onDone }) {
           <Label>CLAUDE PROMPT</Label>
           <CopyButton text={task.claudePrompt} label="Copy Prompt" />
         </div>
-        <div className="rounded-xl p-4 overflow-auto" style={{ background: '#000', border: '1px solid rgba(255,255,255,0.06)' }}>
+        <div className="rounded-xl p-4 overflow-auto" style={{ background: 'var(--bg)', border: '1px solid var(--border-2)' }}>
           <pre className="text-xs leading-relaxed whitespace-pre-wrap" style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'ui-monospace, SFMono-Regular, monospace', margin: 0 }}>
             {task.claudePrompt}
           </pre>
@@ -216,7 +216,7 @@ function ActivityView({ task, onDone }) {
 
       {!submitted ? (
         <div>
-          <p className="text-xs font-bold tracking-widest mb-3 px-1" style={{ color: 'rgba(255,255,255,0.3)', letterSpacing: '0.1em' }}>
+          <p className="text-xs font-bold tracking-widest mb-3 px-1" style={{ color: 'var(--text-4)', letterSpacing: '0.1em' }}>
             PASTE CLAUDE'S FEEDBACK
           </p>
           <textarea
@@ -226,8 +226,8 @@ function ActivityView({ task, onDone }) {
             rows={7}
             className="w-full rounded-2xl p-4 text-sm mb-3 resize-none focus:outline-none transition-all"
             style={{
-              background: '#1C1C1E',
-              border: `1px solid ${feedback.trim() ? 'rgba(10,132,255,0.4)' : 'rgba(255,255,255,0.06)'}`,
+              background: 'var(--surface-1)',
+              border: `1px solid ${feedback.trim() ? 'rgba(10,132,255,0.4)' : 'var(--border-2)'}`,
               color: '#fff',
               lineHeight: '1.6',
             }}
@@ -256,7 +256,7 @@ export default function TaskDetail() {
   if (dayLoading) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-6 text-center">
-        <p style={{ color: 'rgba(255,255,255,0.4)' }}>Loading task…</p>
+        <p style={{ color: 'var(--text-3)' }}>Loading task…</p>
       </div>
     )
   }
@@ -267,7 +267,7 @@ export default function TaskDetail() {
   if (!task) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-6 text-center">
-        <p style={{ color: 'rgba(255,255,255,0.4)' }}>Task not found.</p>
+        <p style={{ color: 'var(--text-3)' }}>Task not found.</p>
         <button onClick={() => navigate('/')} style={{ color: '#0A84FF', background: 'none', border: 'none', cursor: 'pointer' }} className="mt-4 text-sm">
           ← Back to Dashboard
         </button>

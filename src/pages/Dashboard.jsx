@@ -18,7 +18,7 @@ function TaskRow({ task, isDone, isLocked, onToggle }) {
         display: 'flex', alignItems: 'center', gap: 14,
         padding: '14px 16px', borderRadius: 14, marginBottom: 8,
         background: isDone ? 'rgba(255,255,255,0.02)' : '#161616',
-        border: `1px solid ${isDone ? 'rgba(255,255,255,0.04)' : 'rgba(255,255,255,0.08)'}`,
+        border: `1px solid ${isDone ? 'var(--border-1)' : 'var(--border-3)'}`,
         opacity: isLocked ? 0.38 : 1,
         transition: 'opacity 0.15s',
       }}
@@ -30,7 +30,7 @@ function TaskRow({ task, isDone, isLocked, onToggle }) {
         aria-label={`Toggle completion for ${title}`}
         style={{
           flexShrink: 0, width: 22, height: 22, borderRadius: '50%',
-          border: `2px solid ${isDone ? cfg.color : 'rgba(255,255,255,0.2)'}`,
+          border: `2px solid ${isDone ? cfg.color : 'var(--text-6)'}`,
           background: isDone ? cfg.color : 'transparent',
           cursor: isLocked ? 'default' : 'pointer',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -45,14 +45,14 @@ function TaskRow({ task, isDone, isLocked, onToggle }) {
         style={{ flex: 1, minWidth: 0, background: 'none', border: 'none', padding: 0, cursor: isLocked ? 'default' : 'pointer', textAlign: 'left' }}
       >
         <div style={{ display: 'flex', gap: 8, marginBottom: 2 }}>
-          <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', color: isDone ? 'rgba(255,255,255,0.2)' : cfg.color, textTransform: 'uppercase' }}>{cfg.label}</span>
-          {isLocked && <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.2)' }}>locked</span>}
+          <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', color: isDone ? 'var(--text-6)' : cfg.color, textTransform: 'uppercase' }}>{cfg.label}</span>
+          {isLocked && <span style={{ fontSize: 10, color: 'var(--text-6)' }}>locked</span>}
         </div>
-        <p style={{ fontSize: 14, fontWeight: 500, lineHeight: 1.4, color: isDone ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.88)', textDecoration: isDone ? 'line-through' : 'none', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', margin: 0 }}>
+        <p style={{ fontSize: 14, fontWeight: 500, lineHeight: 1.4, color: isDone ? 'var(--text-5)' : 'var(--text-primary)', textDecoration: isDone ? 'line-through' : 'none', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', margin: 0 }}>
           {title}
         </p>
       </button>
-      <span style={{ flexShrink: 0, fontSize: 12, color: 'rgba(255,255,255,0.25)' }}>{task.minutes}m</span>
+      <span style={{ flexShrink: 0, fontSize: 12, color: 'var(--text-5)' }}>{task.minutes}m</span>
     </div>
   )
 }
@@ -82,7 +82,7 @@ export default function Dashboard() {
   if (!dayData) return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh', textAlign: 'center' }}>
       <div>
-        <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.4)', marginBottom: 16 }}>Could not load content.</p>
+        <p style={{ fontSize: 14, color: 'var(--text-3)', marginBottom: 16 }}>Could not load content.</p>
         <button onClick={() => window.location.reload()} style={{ padding: '10px 20px', borderRadius: 10, background: '#3B82F6', color: '#fff', border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: 600 }}>Retry</button>
       </div>
     </div>
@@ -108,7 +108,7 @@ export default function Dashboard() {
   const overallPct   = Math.round(((activeDay - 1) / totalDays) * 100)
 
   const s = {
-    label: { fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 10, display: 'block' },
+    label: { fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-4)', marginBottom: 10, display: 'block' },
   }
 
   return (
@@ -116,18 +116,18 @@ export default function Dashboard() {
 
       {/* Header */}
       <div style={{ marginBottom: 28 }}>
-        <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)', marginBottom: 6 }}>{today}</p>
+        <p style={{ fontSize: 12, color: 'var(--text-4)', marginBottom: 6 }}>{today}</p>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
           <div>
             <h1 style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-0.5px', lineHeight: 1.2, margin: 0 }}>Day {dayData.day}</h1>
-            <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.5)', marginTop: 4 }}>{dayData.theme || dayData.title}</p>
+            <p style={{ fontSize: 15, color: 'var(--text-2)', marginTop: 4 }}>{dayData.theme || dayData.title}</p>
           </div>
           <Link to="/roadmap" style={{ fontSize: 13, color: '#3B82F6', textDecoration: 'none', fontWeight: 500 }}>Roadmap →</Link>
         </div>
         <div style={{ marginTop: 18 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-            <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.25)' }}>{skillTitle}</span>
-            <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.25)' }}>Day {activeDay} of {totalDays}</span>
+            <span style={{ fontSize: 11, color: 'var(--text-5)' }}>{skillTitle}</span>
+            <span style={{ fontSize: 11, color: 'var(--text-5)' }}>Day {activeDay} of {totalDays}</span>
           </div>
           <div style={{ height: 3, borderRadius: 2, background: 'rgba(255,255,255,0.07)', overflow: 'hidden' }}>
             <div style={{ height: '100%', width: `${overallPct}%`, background: '#3B82F6', borderRadius: 2, transition: 'width 0.5s ease' }} />
@@ -150,7 +150,7 @@ export default function Dashboard() {
       <div style={{ marginBottom: 24 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
           <span style={s.label}>Tasks</span>
-          <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)', marginBottom: 10 }}>{doneCount} / {tasks.length}</span>
+          <span style={{ fontSize: 12, color: 'var(--text-4)', marginBottom: 10 }}>{doneCount} / {tasks.length}</span>
         </div>
         {tasks.map(task => <TaskRow key={task.id} task={task} isDone={isTaskDone(task.id)} isLocked={isLocked(task)} onToggle={toggleTask} />)}
       </div>
@@ -167,11 +167,11 @@ export default function Dashboard() {
             </button>
           </div>
         ) : (
-          <div style={{ padding: '14px 16px', borderRadius: 12, background: '#111', border: '1px solid rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', gap: 12, opacity: 0.45 }}>
+          <div style={{ padding: '14px 16px', borderRadius: 12, background: 'var(--surface-3)', border: '1px solid var(--border-2)', display: 'flex', alignItems: 'center', gap: 12, opacity: 0.45 }}>
             <span style={{ fontSize: 16 }}>🔒</span>
             <div>
-              <p style={{ fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.5)', margin: 0 }}>Complete all tasks to unlock</p>
-              <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.25)', margin: '2px 0 0' }}>{tasks.filter(t => !isTaskDone(t.id)).length} remaining</p>
+              <p style={{ fontSize: 13, fontWeight: 500, color: 'var(--text-2)', margin: 0 }}>Complete all tasks to unlock</p>
+              <p style={{ fontSize: 12, color: 'var(--text-5)', margin: '2px 0 0' }}>{tasks.filter(t => !isTaskDone(t.id)).length} remaining</p>
             </div>
           </div>
         )}
@@ -183,7 +183,7 @@ export default function Dashboard() {
           {!showBonus ? (
             <button
               onClick={() => setShowBonus(true)}
-              style={{ width: '100%', padding: '13px 16px', borderRadius: 12, background: 'transparent', border: '1px dashed rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.4)', fontSize: 13, fontWeight: 500, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}
+              style={{ width: '100%', padding: '13px 16px', borderRadius: 12, background: 'transparent', border: '1px dashed var(--border-4)', color: 'var(--text-3)', fontSize: 13, fontWeight: 500, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}
             >
               <span style={{ fontSize: 18, lineHeight: 1 }}>+</span> Load more tasks for today
             </button>
@@ -197,7 +197,7 @@ export default function Dashboard() {
               {allBonusDone && dayData.day < 21 && (
                 <div style={{ marginTop: 12, padding: '14px 16px', borderRadius: 12, background: 'rgba(16,185,129,0.05)', border: '1px solid rgba(16,185,129,0.12)' }}>
                   <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#10B981', marginBottom: 6 }}>Amazing work</p>
-                  <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', lineHeight: 1.5 }}>You finished everything early. Submit the assessment to officially advance to Day {dayData.day + 1}.</p>
+                  <p style={{ fontSize: 13, color: 'var(--text-2)', lineHeight: 1.5 }}>You finished everything early. Submit the assessment to officially advance to Day {dayData.day + 1}.</p>
                 </div>
               )}
             </>

@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 
 export default function Header() {
-  const { user, logout, groqKeySet, saveGroqKey } = useApp()
+  const { user, logout, groqKeySet, saveGroqKey, theme, toggleTheme } = useApp()
   const groqKey = groqKeySet
   const navigate = useNavigate()
   const location = useLocation()
@@ -33,10 +33,10 @@ export default function Header() {
         className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 lg:px-8"
         style={{
           height: '56px',
-          background: 'rgba(0,0,0,0.85)',
+          background: 'var(--header-bg)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
-          borderBottom: '1px solid rgba(255,255,255,0.06)',
+          borderBottom: '1px solid var(--border-2)',
         }}
       >
         {/* Logo */}
@@ -69,6 +69,15 @@ export default function Header() {
             </button>
           )}
 
+          {/* Theme toggle */}
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 18, lineHeight: 1, color: 'var(--text-4)', padding: '4px' }}
+          >
+            {theme === 'dark' ? '☀️' : '🌙'}
+          </button>
+
           {/* Avatar */}
           {user && (
             <button
@@ -85,11 +94,11 @@ export default function Header() {
         {showUserMenu && (
           <div
             className="absolute top-14 right-4 rounded-2xl p-1 min-w-48 z-50"
-            style={{ background: '#1C1C1E', border: '1px solid rgba(255,255,255,0.08)' }}
+            style={{ background: 'var(--surface-1)', border: '1px solid var(--border-3)' }}
           >
-            <div className="px-3 py-2 border-b" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
+            <div className="px-3 py-2 border-b" style={{ borderColor: 'var(--border-2)' }}>
               <p className="text-sm font-semibold">{user.name}</p>
-              <p className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>{user.email}</p>
+              <p className="text-xs" style={{ color: 'var(--text-3)' }}>{user.email}</p>
             </div>
             <button
               onClick={() => { setShowGroqInput(true); setShowUserMenu(false) }}
@@ -113,10 +122,10 @@ export default function Header() {
       {(showGroqInput || showKeyEdit) && (
         <div
           className="fixed top-14 left-0 right-0 z-40 px-4 py-3"
-          style={{ background: '#1C1C1E', borderBottom: '1px solid rgba(255,255,255,0.06)' }}
+          style={{ background: '#1C1C1E', borderBottom: '1px solid var(--border-2)' }}
         >
           <div className="max-w-2xl mx-auto">
-            <p className="text-xs font-bold mb-2" style={{ color: 'rgba(255,255,255,0.4)', letterSpacing: '0.08em' }}>
+            <p className="text-xs font-bold mb-2" style={{ color: 'var(--text-3)', letterSpacing: '0.08em' }}>
               {showKeyEdit ? 'CHANGE GROQ API KEY' : 'ADD GROQ API KEY'}
             </p>
             <div className="flex gap-2">
@@ -127,26 +136,26 @@ export default function Header() {
                 onKeyDown={(e) => e.key === 'Enter' && handleSaveKey()}
                 placeholder="gsk_••••••••••••••••••••••••••••••••"
                 className="flex-1 rounded-xl px-3 py-2 text-sm focus:outline-none"
-                style={{ background: '#2C2C2E', border: '1px solid rgba(255,255,255,0.08)', color: '#fff' }}
+                style={{ background: 'var(--surface-4)', border: '1px solid var(--border-3)', color: 'var(--text-1)' }}
                 autoFocus
               />
               <button
                 onClick={handleSaveKey}
                 disabled={!keyInput.trim()}
                 className="px-4 py-2 rounded-xl text-sm font-semibold transition-all"
-                style={{ background: keyInput.trim() ? '#0A84FF' : 'rgba(255,255,255,0.06)', color: keyInput.trim() ? '#fff' : 'rgba(255,255,255,0.25)', border: 'none', cursor: keyInput.trim() ? 'pointer' : 'not-allowed' }}
+                style={{ background: keyInput.trim() ? 'var(--blue)' : 'var(--border-2)', color: keyInput.trim() ? '#fff' : 'var(--text-5)', border: 'none', cursor: keyInput.trim() ? 'pointer' : 'not-allowed' }}
               >
                 Save
               </button>
               <button
                 onClick={() => { setShowGroqInput(false); setShowKeyEdit(false); setKeyInput('') }}
                 className="px-3 py-2 rounded-xl text-sm transition-all"
-                style={{ background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.5)', border: 'none', cursor: 'pointer' }}
+                style={{ background: 'var(--border-2)', color: 'var(--text-2)', border: 'none', cursor: 'pointer' }}
               >
                 ✕
               </button>
             </div>
-            <p className="text-xs mt-2" style={{ color: 'rgba(255,255,255,0.3)' }}>
+            <p className="text-xs mt-2" style={{ color: 'var(--text-4)' }}>
               Get your free key at console.groq.com · Saved locally, never sent to any server
             </p>
           </div>

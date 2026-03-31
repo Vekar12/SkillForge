@@ -13,7 +13,7 @@ export default function RightSidebar() {
       className="hidden xl:flex flex-col w-72 flex-shrink-0"
       style={{
         borderLeft: '1px solid rgba(255,255,255,0.05)',
-        background: '#000',
+        background: 'var(--bg)',
         overflowY: 'auto',
       }}
     >
@@ -21,10 +21,10 @@ export default function RightSidebar() {
 
         {/* Today's progress */}
         <div>
-          <p className="text-xs font-bold tracking-widest mb-3" style={{ color: 'rgba(255,255,255,0.3)', letterSpacing: '0.1em' }}>
+          <p className="text-xs font-bold tracking-widest mb-3" style={{ color: 'var(--text-4)', letterSpacing: '0.1em' }}>
             TODAY'S TASKS
           </p>
-          <div className="rounded-2xl p-4" style={{ background: '#1C1C1E', border: '1px solid rgba(255,255,255,0.06)' }}>
+          <div className="rounded-2xl p-4" style={{ background: 'var(--surface-1)', border: '1px solid var(--border-2)' }}>
             {pendingTasks.length > 0 ? (
               <div className="space-y-2">
                 {pendingTasks.map(t => (
@@ -35,7 +35,7 @@ export default function RightSidebar() {
                     style={{ background: 'none', border: 'none', cursor: 'pointer' }}
                   >
                     <span className="text-xs">{TYPE_ICONS[t.type]}</span>
-                    <span className="text-xs truncate" style={{ color: 'rgba(255,255,255,0.55)' }}>{t.title || t.keyword}</span>
+                    <span className="text-xs truncate" style={{ color: 'var(--text-2)' }}>{t.title || t.keyword}</span>
                   </button>
                 ))}
               </div>
@@ -47,7 +47,7 @@ export default function RightSidebar() {
 
         {/* Enrolled Skills */}
         <div>
-          <p className="text-xs font-bold tracking-widest mb-3" style={{ color: 'rgba(255,255,255,0.3)', letterSpacing: '0.1em' }}>
+          <p className="text-xs font-bold tracking-widest mb-3" style={{ color: 'var(--text-4)', letterSpacing: '0.1em' }}>
             YOUR SKILLS
           </p>
           <div className="space-y-2">
@@ -58,16 +58,16 @@ export default function RightSidebar() {
                   key={skill.id}
                   onClick={() => { setActiveSkillId(skill.id); navigate('/') }}
                   className="w-full rounded-xl p-3 text-left transition-all hover:opacity-80"
-                  style={{ background: '#1C1C1E', border: `1px solid ${activeSkillId === skill.id ? skill.color + '40' : 'rgba(255,255,255,0.06)'}`, cursor: 'pointer' }}
+                  style={{ background: 'var(--surface-1)', border: `1px solid ${activeSkillId === skill.id ? skill.color + '40' : 'var(--border-2)'}`, cursor: 'pointer' }}
                 >
                   <div className="flex items-center gap-2 mb-1.5">
                     <span>{skill.icon}</span>
                     <span className="text-xs font-semibold truncate">{skill.title}</span>
                   </div>
-                  <div className="rounded-full h-1 overflow-hidden" style={{ background: 'rgba(255,255,255,0.06)' }}>
+                  <div className="rounded-full h-1 overflow-hidden" style={{ background: 'var(--border-2)' }}>
                     <div className="h-full rounded-full" style={{ width: `${skillProgress}%`, background: skill.color }} />
                   </div>
-                  <p className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.25)' }}>
+                  <p className="text-xs mt-1" style={{ color: 'var(--text-5)' }}>
                     Day {activeDay} of {skill.totalDays}
                   </p>
                 </button>
@@ -80,7 +80,7 @@ export default function RightSidebar() {
         {!groqKeySet && (
           <div className="rounded-xl p-3" style={{ background: 'rgba(255,159,10,0.08)', border: '1px solid rgba(255,159,10,0.15)' }}>
             <p className="text-xs font-semibold mb-1" style={{ color: '#FF9F0A' }}>⚠ No Groq Key</p>
-            <p className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>
+            <p className="text-xs" style={{ color: 'var(--text-3)' }}>
               Assessment scoring requires a Groq API key. Add it via the header.
             </p>
           </div>

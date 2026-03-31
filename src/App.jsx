@@ -31,7 +31,7 @@ function BottomTabBar() {
         background: 'rgba(0,0,0,0.9)',
         backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
-        borderTop: '1px solid rgba(255,255,255,0.06)',
+        borderTop: '1px solid var(--border-2)',
         paddingBottom: 'env(safe-area-inset-bottom)',
       }}
     >
@@ -46,7 +46,7 @@ function BottomTabBar() {
               style={{ opacity: active ? 1 : 0.4, border: 'none', background: 'transparent', cursor: 'pointer' }}
             >
               <span className="text-lg leading-none">{tab.icon}</span>
-              <span style={{ fontSize: '10px', fontWeight: 600, color: active ? '#0A84FF' : 'rgba(255,255,255,0.55)' }}>
+              <span style={{ fontSize: '10px', fontWeight: 600, color: active ? '#0A84FF' : 'var(--text-2)' }}>
                 {tab.label}
               </span>
             </button>
@@ -80,7 +80,7 @@ function AppLayout() {
   const showRightSidebar = location.pathname === '/' || location.pathname === '/roadmap'
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: '#000' }}>
+    <div className="min-h-screen flex flex-col" style={{ background: 'var(--bg)' }}>
       <Header />
       <div className="flex flex-1 pt-14">
         {/* Main content */}
