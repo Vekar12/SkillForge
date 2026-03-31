@@ -274,11 +274,11 @@ export const mockApi = {
   submitAssessment: (_day, _rawFeedback) => Promise.resolve({
     success: true,
     parsed: {
-      gotRight: "You correctly identified that the core user frustration is around reliability, not speed.",
+      gotRight: "You correctly identified the core user frustration.",
       needsCorrection: "Your JTBD statement confused the situation with the motivation.",
       blindSpots: "You missed the emotional job entirely.",
-      indiaNote: "Your feature recommendation (silent delivery mode) is strong for metro users.",
-      openPoints: "Tomorrow when you look at metrics — ask yourself: what would Zepto track?",
+      indiaNote: "Your feature recommendation is strong for metro users.",
+      openPoints: "Ask yourself: what would Zepto track to know if they're solving the right job?",
       score: 7,
       competencyLevel: "On Track",
     },
@@ -290,6 +290,7 @@ export const mockApi = {
   // POST /api/settings/groq-key
   saveGroqKey: (_key) => Promise.resolve({ success: true }),
 }
+
 
 // ─── ADD NEW SKILL PROMPT ─────────────────────────────────────────────────────
 export const addSkillPrompt = `You are a curriculum designer for SkillForge, a platform that helps ambitious professionals build specific skills through structured 21-day programs.

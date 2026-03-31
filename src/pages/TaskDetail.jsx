@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { dayData } from '../mockData'
+import { useApp } from '../context/AppContext'
 
 const TYPE_CONFIG = {
   read: { icon: '📖', label: 'READ', color: '#0A84FF', bg: 'rgba(10,132,255,0.12)' },
@@ -39,6 +40,7 @@ function CopyButton({ text, label = 'Copy' }) {
         background: copied ? 'rgba(48,209,88,0.15)' : 'rgba(10,132,255,0.15)',
         color: copied ? '#30D158' : '#0A84FF',
         border: `1px solid ${copied ? 'rgba(48,209,88,0.25)' : 'rgba(10,132,255,0.25)'}`,
+        cursor: 'pointer',
       }}
     >
       {copied ? '✓ Copied' : label}
@@ -250,6 +252,7 @@ function ActivityView({ task, onDone }) {
 export default function TaskDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
+  const { toggleTask } = useApp()
 
   const allTasks = [...dayData.tasks, ...dayData.bonusTasks]
   const task = allTasks.find(t => t.id === id)
@@ -258,7 +261,7 @@ export default function TaskDetail() {
     return (
       <div className="max-w-2xl mx-auto px-4 py-6 text-center">
         <p style={{ color: 'rgba(255,255,255,0.4)' }}>Task not found.</p>
-        <button onClick={() => navigate('/')} style={{ color: '#0A84FF' }} className="mt-4 text-sm">
+        <button onClick={() => navigate('/')} style={{ color: '#0A84FF', background: 'none', border: 'none', cursor: 'pointer' }} className="mt-4 text-sm">
           ← Back to Dashboard
         </button>
       </div>
@@ -267,13 +270,18 @@ export default function TaskDetail() {
 
   const cfg = TYPE_CONFIG[task.type]
 
+  const handleDone = () => {
+    toggleTask(task.id)
+    setTimeout(() => navigate('/'), 400)
+  }
+
   return (
     <div className="max-w-2xl mx-auto px-4 py-6 lg:px-8 lg:py-10">
       {/* Back */}
       <button
         onClick={() => navigate('/')}
         className="flex items-center gap-1.5 text-sm font-medium mb-6 transition-opacity hover:opacity-70"
-        style={{ color: '#0A84FF' }}
+        style={{ color: '#0A84FF', background: 'none', border: 'none', cursor: 'pointer' }}
       >
         ‹ Back
       </button>
@@ -290,9 +298,9 @@ export default function TaskDetail() {
         {task.title || task.keyword || task.promptTitle}
       </h1>
 
-      {task.type === 'read' && <ReadView task={task} onDone={() => { setTimeout(() => navigate('/'), 400) }} />}
-      {task.type === 'search' && <SearchView task={task} onDone={() => { setTimeout(() => navigate('/'), 400) }} />}
-      {task.type === 'activity' && <ActivityView task={task} onDone={() => { setTimeout(() => navigate('/'), 600) }} />}
+      {task.type === 'read' && <ReadView task={task} onDone={handleDone} />}
+      {task.type === 'search' && <SearchView task={task} onDone={handleDone} />}
+      {task.type === 'activity' && <ActivityView task={task} onDone={handleDone} />}
 
       <div className="h-6" />
     </div>
