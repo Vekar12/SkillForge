@@ -1,13 +1,6 @@
-const admin = require('firebase-admin');
+const { OAuth2Client } = require('google-auth-library');
 
-// Initialise Firebase Admin once — idempotent if called multiple times
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.cert(
-      JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON)
-    ),
-  });
-}
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 async function requireAuth(req, res, next) {
   const header = req.headers.authorization;
@@ -15,12 +8,16 @@ async function requireAuth(req, res, next) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
   try {
-    const decoded = await admin.auth().verifyIdToken(header.slice(7));
+    const ticket = await client.verifyIdToken({
+      idToken: header.slice(7),
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+    const p = ticket.getPayload();
     req.user = {
-      sub: decoded.uid,
-      email: decoded.email || '',
-      name: decoded.name || '',
-      picture: decoded.picture || '',
+      sub: p.sub,
+      email: p.email || '',
+      name: p.name || '',
+      picture: p.picture || '',
     };
     next();
   } catch {
