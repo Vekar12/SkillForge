@@ -2,7 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const { requireAuth } = require('../middleware/auth');
-const sheets = require('../github');
+const sheets = require('../storage');
 const { adjustTomorrowsPlan } = require('../groq');
 
 const router = express.Router();

@@ -1,6 +1,6 @@
 const express = require('express');
 const { requireAuth } = require('../middleware/auth');
-const sheets = require('../github');
+const sheets = require('../storage');
 
 const router = express.Router();
 
