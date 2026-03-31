@@ -194,7 +194,7 @@ export default function Dashboard() {
                 {allBonusDone && <span style={{ fontSize: 11, color: 'var(--green)', fontWeight: 600, marginBottom: 10 }}>All done!</span>}
               </div>
               {bonusTasks.map(task => <TaskRow key={task.id} task={task} isDone={isTaskDone(task.id)} isLocked={false} onToggle={toggleTask} />)}
-              {allBonusDone && dayData.day < 21 && (
+              {allBonusDone && dayData.day < totalDays && (
                 <div style={{ marginTop: 12, padding: '14px 16px', borderRadius: 12, background: 'rgba(16,185,129,0.05)', border: '1px solid rgba(16,185,129,0.12)' }}>
                   <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: 6 }}>Amazing work</p>
                   <p style={{ fontSize: 13, color: 'var(--text-2)', lineHeight: 1.5 }}>You finished everything early. Submit the assessment to officially advance to Day {dayData.day + 1}.</p>

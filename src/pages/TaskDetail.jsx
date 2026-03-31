@@ -278,7 +278,7 @@ export default function TaskDetail() {
   const cfg = TYPE_CONFIG[task.type]
 
   const handleDone = () => {
-    toggleTask(task.id)
+    if (!isTaskDone(task.id)) toggleTask(task.id)
     setTimeout(() => navigate('/'), 400)
   }
 

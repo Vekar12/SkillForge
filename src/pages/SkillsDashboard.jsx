@@ -230,9 +230,9 @@ export default function SkillsDashboard() {
                   <span className="text-xs font-semibold truncate">{skill.title}</span>
                 </div>
                 <div className="rounded-full h-1 overflow-hidden" style={{ background: 'var(--border-2)' }}>
-                  <div className="h-full rounded-full" style={{ width: `${Math.round(((activeDay - 1) / skill.totalDays) * 100)}%`, background: skill.color }} />
+                  <div className="h-full rounded-full" style={{ width: `${Math.round(((skillProg?.currentDay || 1) - 1) / skill.totalDays * 100)}%`, background: skill.color }} />
                 </div>
-                <p className="text-xs mt-1" style={{ color: 'var(--text-5)' }}>Day {activeDay} of {skill.totalDays}</p>
+                <p className="text-xs mt-1" style={{ color: 'var(--text-5)' }}>Day {skillProg?.currentDay || 1} of {skill.totalDays}</p>
               </button>
             ))}
           </div>

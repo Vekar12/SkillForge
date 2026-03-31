@@ -117,6 +117,8 @@ export function AppProvider({ children }) {
     try {
       const d = await loadDayData(activeSkillId, day)
       setDayData(d)
+    } catch {
+      setDayData(null)
     } finally {
       setDayLoading(false)
     }
@@ -144,14 +146,18 @@ export function AppProvider({ children }) {
   }, [progress, dayData])
 
   const isDayComplete = useCallback((day) => {
-    if (!progress || !dayData) return false
-    const tasks = dayData.day === day ? (dayData.tasks || []) : []
-    return tasks.length > 0 && areDayTasksDone(progress, day, tasks)
-  }, [progress, dayData])
+    if (!progress) return false
+    // Assessment submission is the authoritative day-completion signal;
+    // works for any day without needing its task list loaded.
+    return !!progress.assessments?.[day]
+  }, [progress])
 
   // ── Assessment ────────────────────────────────────────────────────────────
   const submitAssessment = useCallback((result) => {
-    if (!user || !dayData) return
+    if (!user || !dayData) {
+      console.error('submitAssessment: user or dayData not ready')
+      return
+    }
     const newProgress = saveAssessment(user.uid, activeSkillId, dayData.day, result)
     setProgress({ ...newProgress })
   }, [user, dayData, activeSkillId])

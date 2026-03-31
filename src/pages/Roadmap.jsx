@@ -148,7 +148,7 @@ function DayCard({ day, activeDay, progress, onLoadDay }) {
 export default function Roadmap() {
   const { roadmap, activeDay, progress, loadDay } = useApp()
   const weeks = [1, 2, 3]
-  const doneCount = roadmap.filter(d => (progress?.taskCompletions?.[d.day]?.length || 0) > 0).length
+  const doneCount = roadmap.filter(d => !!progress?.assessments?.[d.day]).length
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-6 lg:px-8 lg:py-10">
@@ -176,7 +176,7 @@ export default function Roadmap() {
 
       {weeks.map(week => {
         const days = roadmap.filter(d => d.week === week)
-        const weekDone = days.filter(d => (progress?.taskCompletions?.[d.day]?.length || 0) > 0).length
+        const weekDone = days.filter(d => !!progress?.assessments?.[d.day]).length
         return (
           <div key={week} className="mb-6">
             <div className="flex items-center gap-3 mb-3">
