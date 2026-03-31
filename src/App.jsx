@@ -1,51 +1,52 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { AppProvider, useApp } from './context/AppContext'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import RightSidebar from './components/RightSidebar'
+import Login from './pages/Login'
+import SkillsDashboard from './pages/SkillsDashboard'
 import Dashboard from './pages/Dashboard'
 import TaskDetail from './pages/TaskDetail'
 import Assessment from './pages/Assessment'
 import Roadmap from './pages/Roadmap'
-import Settings from './pages/Settings'
-import { keysConfigured } from './lib/api'
-
-function RequireKeys({ children }) {
-  if (!keysConfigured()) return <Navigate to="/settings" replace />
-  return children
-}
 
 function BottomTabBar() {
   const location = useLocation()
   const navigate = useNavigate()
-  const isDetail = location.pathname.startsWith('/task/') || location.pathname === '/assessment' || location.pathname === '/settings'
+  const isDetail = location.pathname.startsWith('/task/') || location.pathname === '/assessment' || location.pathname === '/login'
+  const { user } = useApp()
+
+  if (!user || isDetail) return null
 
   const tabs = [
-    { path: '/', icon: '⊞', label: 'Today' },
+    { path: '/skills', icon: '⊞', label: 'Skills' },
+    { path: '/', icon: '☀', label: 'Today' },
     { path: '/roadmap', icon: '◎', label: 'Roadmap' },
   ]
 
-  if (isDetail) return null
-
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 lg:hidden z-50"
+      className="fixed bottom-0 left-0 right-0 xl:hidden z-50"
       style={{
-        background: 'rgba(28,28,30,0.85)',
+        background: 'rgba(0,0,0,0.9)',
         backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
-        borderTop: '1px solid rgba(255,255,255,0.08)',
+        borderTop: '1px solid rgba(255,255,255,0.06)',
         paddingBottom: 'env(safe-area-inset-bottom)',
       }}
     >
-      <div className="flex">
+      <div className="flex max-w-sm mx-auto">
         {tabs.map(tab => {
           const active = location.pathname === tab.path
           return (
             <button
               key={tab.path}
               onClick={() => navigate(tab.path)}
-              className="flex-1 flex flex-col items-center py-3 gap-1 transition-opacity"
-              style={{ opacity: active ? 1 : 0.4 }}
+              className="flex-1 flex flex-col items-center py-3 gap-0.5 transition-all"
+              style={{ opacity: active ? 1 : 0.4, border: 'none', background: 'transparent', cursor: 'pointer' }}
             >
-              <span className="text-xl leading-none">{tab.icon}</span>
-              <span style={{ color: active ? '#0A84FF' : 'rgba(255,255,255,0.55)', fontSize: '10px', fontWeight: 500 }}>
+              <span className="text-lg leading-none">{tab.icon}</span>
+              <span style={{ fontSize: '10px', fontWeight: 600, color: active ? '#0A84FF' : 'rgba(255,255,255,0.55)' }}>
                 {tab.label}
               </span>
             </button>
@@ -56,69 +57,50 @@ function BottomTabBar() {
   )
 }
 
-function DesktopSidebar() {
-  const location = useLocation()
-  const navigate = useNavigate()
-
-  const tabs = [
-    { path: '/', icon: '⊞', label: 'Today' },
-    { path: '/roadmap', icon: '◎', label: 'Roadmap' },
-  ]
-
-  return (
-    <aside
-      className="hidden lg:flex flex-col fixed left-0 top-0 bottom-0 w-60 z-40"
-      style={{
-        background: 'rgba(28,28,30,0.9)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        borderRight: '1px solid rgba(255,255,255,0.06)',
-      }}
-    >
-      <div className="px-6 pt-8 pb-4">
-        <h1 className="text-xl font-bold tracking-tight" style={{ color: '#0A84FF', letterSpacing: '-0.3px' }}>
-          SkillForge
-        </h1>
-        <p className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.3)' }}>APM Foundations</p>
-      </div>
-      <nav className="flex-1 px-3 mt-2">
-        {tabs.map(tab => {
-          const active = location.pathname === tab.path
-          return (
-            <button
-              key={tab.path}
-              onClick={() => navigate(tab.path)}
-              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl mb-1 transition-all text-left"
-              style={{
-                background: active ? 'rgba(10,132,255,0.15)' : 'transparent',
-                color: active ? '#0A84FF' : 'rgba(255,255,255,0.55)',
-              }}
-            >
-              <span className="text-base w-5 text-center">{tab.icon}</span>
-              <span className="text-sm font-medium">{tab.label}</span>
-            </button>
-          )
-        })}
-      </nav>
-      <div className="px-6 pb-8">
-        <div className="rounded-xl p-3" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' }}>
-          <p className="text-xs font-semibold" style={{ color: 'rgba(255,255,255,0.3)' }}>STREAK</p>
-          <p className="text-lg font-bold mt-1">🔥 Day 3 of 21</p>
-        </div>
-      </div>
-    </aside>
-  )
+function ProtectedRoute({ children }) {
+  const { user } = useApp()
+  if (!user) return <Navigate to="/login" replace />
+  return children
 }
 
-function Layout({ children }) {
+function AppLayout() {
+  const { user } = useApp()
+  const location = useLocation()
+  const isLogin = location.pathname === '/login'
+
+  if (isLogin) {
+    return (
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
+      </Routes>
+    )
+  }
+
+  const showRightSidebar = location.pathname === '/' || location.pathname === '/roadmap'
+
   return (
-    <div className="min-h-screen" style={{ background: '#000' }}>
-      <DesktopSidebar />
-      <div className="lg:pl-60">
-        <main className="has-tab-bar">
-          {children}
-        </main>
+    <div className="min-h-screen flex flex-col" style={{ background: '#000' }}>
+      <Header />
+      <div className="flex flex-1 pt-14">
+        {/* Main content */}
+        <div className="flex-1 flex min-w-0">
+          <div className="flex-1 min-w-0 overflow-y-auto pb-20 xl:pb-0">
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/skills" element={<ProtectedRoute><SkillsDashboard /></ProtectedRoute>} />
+              <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+              <Route path="/task/:id" element={<ProtectedRoute><TaskDetail /></ProtectedRoute>} />
+              <Route path="/assessment" element={<ProtectedRoute><Assessment /></ProtectedRoute>} />
+              <Route path="/roadmap" element={<ProtectedRoute><Roadmap /></ProtectedRoute>} />
+              <Route path="*" element={<Navigate to={user ? '/skills' : '/login'} replace />} />
+            </Routes>
+          </div>
+          {/* Right sidebar — only on today/roadmap */}
+          {showRightSidebar && <RightSidebar />}
+        </div>
       </div>
+      <Footer />
       <BottomTabBar />
     </div>
   )
@@ -126,16 +108,10 @@ function Layout({ children }) {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/" element={<RequireKeys><Dashboard /></RequireKeys>} />
-          <Route path="/task/:id" element={<RequireKeys><TaskDetail /></RequireKeys>} />
-          <Route path="/assessment" element={<RequireKeys><Assessment /></RequireKeys>} />
-          <Route path="/roadmap" element={<RequireKeys><Roadmap /></RequireKeys>} />
-        </Routes>
-      </Layout>
-    </BrowserRouter>
+    <AppProvider>
+      <BrowserRouter>
+        <AppLayout />
+      </BrowserRouter>
+    </AppProvider>
   )
 }
