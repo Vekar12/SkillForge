@@ -14,14 +14,14 @@ function BottomTabBar() {
   const location = useLocation()
   const navigate = useNavigate()
   const isDetail = location.pathname.startsWith('/task/') || location.pathname === '/assessment' || location.pathname === '/login'
-  const { user } = useApp()
+  const { user, resetToActiveDay } = useApp()
 
   if (!user || isDetail) return null
 
   const tabs = [
-    { path: '/skills', icon: '⊞', label: 'Skills' },
-    { path: '/', icon: '☀', label: 'Today' },
-    { path: '/roadmap', icon: '◎', label: 'Roadmap' },
+    { path: '/skills', icon: '⊞', label: 'Skills', onTap: null },
+    { path: '/', icon: '☀', label: 'Today', onTap: resetToActiveDay },
+    { path: '/roadmap', icon: '◎', label: 'Roadmap', onTap: null },
   ]
 
   return (
@@ -41,7 +41,7 @@ function BottomTabBar() {
           return (
             <button
               key={tab.path}
-              onClick={() => navigate(tab.path)}
+              onClick={() => { if (tab.onTap) tab.onTap(); navigate(tab.path) }}
               className="flex-1 flex flex-col items-center py-3 gap-0.5 transition-all"
               style={{ opacity: active ? 1 : 0.4, border: 'none', background: 'transparent', cursor: 'pointer' }}
             >

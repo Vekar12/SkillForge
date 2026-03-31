@@ -71,37 +71,71 @@ const LEVEL_STYLES = {
   'Outperform': { color: '#30D158', bg: 'rgba(48,209,88,0.12)', border: 'rgba(48,209,88,0.3)' },
 }
 
+async function parseWithGroq(rawFeedback, groqKey) {
+  const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${groqKey}` },
+    body: JSON.stringify({
+      model: 'llama3-8b-8192',
+      messages: [{ role: 'user', content: `Parse this PM assessment feedback. Return ONLY a JSON object — no markdown, no explanation:
+{"score":<1-10>,"competencyLevel":"Needs Focus|On Track|Outperform","gotRight":"...","needsCorrection":"...","blindSpots":"...","indiaNote":"...","openPoints":"..."}
+
+Feedback:
+${rawFeedback}` }],
+      temperature: 0.1,
+    }),
+  })
+  if (!res.ok) throw new Error(`Groq ${res.status}`)
+  const data = await res.json()
+  const text = data.choices[0].message.content.trim().replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, '')
+  return JSON.parse(text)
+}
+
 export default function Assessment() {
   const navigate = useNavigate()
-  const { groqKeySet, submitAssessment, dayData } = useApp()
-  const groqKey = groqKeySet
+  const { groqKeySet, getGroqKey, submitAssessment, dayData } = useApp()
   const assessmentTask = dayData?.assessmentTask
   const [feedback, setFeedback] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const handleSubmit = async () => {
     if (!feedback.trim()) return
     setLoading(true)
-    // Parse feedback text into structured result
-    const parsedFeedback = {
-      score: 7,
-      competencyLevel: 'On Track',
-      gotRight: feedback.slice(0, 200),
-      needsCorrection: 'Review your submission with the Claude assessment prompt for detailed feedback.',
-      blindSpots: 'Use the assessment prompt in Claude.ai for a full evaluation.',
-      indiaNote: 'Consider the Indian market context in your analysis.',
-      openPoints: 'Carry these learnings into the next day.',
+    setError('')
+    try {
+      const groqKey = getGroqKey()
+      let parsed
+      if (groqKey) {
+        parsed = await parseWithGroq(feedback.trim(), groqKey)
+      } else {
+        const scoreMatch = feedback.match(/\b([1-9]|10)\s*\/\s*10\b/)
+        const levelMatch = feedback.match(/\b(Needs Focus|On Track|Outperform)\b/i)
+        parsed = {
+          score: scoreMatch ? parseInt(scoreMatch[1], 10) : 6,
+          competencyLevel: levelMatch ? levelMatch[1] : 'On Track',
+          gotRight: feedback.slice(0, 300).trim(),
+          needsCorrection: 'Review full feedback in Claude.ai for correction details.',
+          blindSpots: 'Review full feedback in Claude.ai for blind spot analysis.',
+          indiaNote: '',
+          openPoints: 'Carry your learnings from today into tomorrow.',
+        }
+      }
+      submitAssessment(parsed)
+      setResult(parsed)
+      setSubmitted(true)
+    } catch (err) {
+      setError('Could not parse feedback. Check your Groq key or try again.')
+      console.error('Assessment submit error:', err)
+    } finally {
+      setLoading(false)
     }
-    setResult(parsedFeedback)
-    submitAssessment(parsedFeedback)
-    setSubmitted(true)
-    setLoading(false)
   }
 
   // Groq key gate
-  if (!groqKey && !submitted) {
+  if (!groqKeySet && !submitted) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-6 lg:px-8 lg:py-10">
         <button onClick={() => navigate('/')} className="flex items-center gap-1.5 text-sm font-medium mb-6 hover:opacity-70" style={{ color: '#0A84FF', background: 'none', border: 'none', cursor: 'pointer' }}>‹ Back</button>
@@ -269,6 +303,7 @@ export default function Assessment() {
             lineHeight: '1.6',
           }}
         />
+        {error && <p className="text-sm mb-3" style={{ color: '#FF453A' }}>{error}</p>}
         <button
           onClick={handleSubmit}
           disabled={!feedback.trim() || loading}
