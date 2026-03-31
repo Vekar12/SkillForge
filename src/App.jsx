@@ -1,9 +1,11 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { AppProvider, useApp } from './context/AppContext'
 import Dashboard from './pages/Dashboard'
 import TaskDetail from './pages/TaskDetail'
 import Assessment from './pages/Assessment'
 import Roadmap from './pages/Roadmap'
 import Settings from './pages/Settings'
+import AuthCallback from './pages/AuthCallback'
 import { keysConfigured } from './lib/api'
 
 function RequireKeys({ children }) {
@@ -14,7 +16,7 @@ function RequireKeys({ children }) {
 function BottomTabBar() {
   const location = useLocation()
   const navigate = useNavigate()
-  const isDetail = location.pathname.startsWith('/task/') || location.pathname === '/assessment' || location.pathname === '/settings'
+  const isDetail = location.pathname.startsWith('/task/') || location.pathname === '/assessment' || location.pathname === '/settings' || location.pathname === '/auth/callback'
 
   const tabs = [
     { path: '/', icon: '⊞', label: 'Today' },
@@ -126,16 +128,19 @@ function Layout({ children }) {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/" element={<RequireKeys><Dashboard /></RequireKeys>} />
-          <Route path="/task/:id" element={<RequireKeys><TaskDetail /></RequireKeys>} />
-          <Route path="/assessment" element={<RequireKeys><Assessment /></RequireKeys>} />
-          <Route path="/roadmap" element={<RequireKeys><Roadmap /></RequireKeys>} />
-        </Routes>
-      </Layout>
-    </BrowserRouter>
+    <AppProvider>
+      <BrowserRouter>
+        <Layout>
+          <Routes>
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
+            <Route path="/" element={<RequireKeys><Dashboard /></RequireKeys>} />
+            <Route path="/task/:id" element={<RequireKeys><TaskDetail /></RequireKeys>} />
+            <Route path="/assessment" element={<RequireKeys><Assessment /></RequireKeys>} />
+            <Route path="/roadmap" element={<RequireKeys><Roadmap /></RequireKeys>} />
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+    </AppProvider>
   )
 }

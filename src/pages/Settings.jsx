@@ -1,22 +1,30 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useApp } from '../context/AppContext'
 
 export default function Settings() {
   const navigate = useNavigate()
+  const { groqKeySet, saveGroqKey } = useApp()
   const [groqKey, setGroqKey] = useState('')
   const [error, setError] = useState('')
   const [saved, setSaved] = useState(false)
 
   useEffect(() => {
-    setGroqKey(localStorage.getItem('sf_groq_key') || '')
-  }, [])
+    if (groqKeySet) setSaved(true)
+  }, [groqKeySet])
 
-  function handleSave() {
+  async function handleSave() {
     setError('')
     if (!groqKey.trim()) return setError('Groq API key is required')
-    localStorage.setItem('sf_groq_key', groqKey.trim())
-    setSaved(true)
-    setTimeout(() => navigate('/'), 1000)
+    try {
+      await saveGroqKey(groqKey.trim())
+      // Also keep local key for the existing lib/api.js keysConfigured() check
+      localStorage.setItem('sf_groq_key', groqKey.trim())
+      setSaved(true)
+      setTimeout(() => navigate('/'), 1000)
+    } catch {
+      setError('Failed to save Groq key. Please try again.')
+    }
   }
 
   return (
@@ -32,7 +40,7 @@ export default function Settings() {
           type="password"
           value={groqKey}
           onChange={e => setGroqKey(e.target.value)}
-          placeholder="gsk_..."
+          placeholder={groqKeySet ? 'Key already set — enter new key to change' : 'gsk_...'}
           style={{
             background: '#1A1A1A',
             border: '1px solid #2D2D2D',

@@ -388,3 +388,62 @@ export const mockApiResponse = {
       },
     }),
 };
+
+// ─── MOCK API (mirrors real API shapes exactly) ───────────────────────────────
+// Used during development. Swap these calls to src/api/* for production.
+
+export const mockApi = {
+  // auth
+  getMe: () => Promise.resolve({
+    name: 'Pranav Vekar',
+    email: 'divmaharshi@gmail.com',
+    avatar: 'PV',
+    uid: 'mock-uid-001',
+    isAdmin: false,
+  }),
+
+  // GET /api/skills
+  listSkills: () => Promise.resolve(skillsCatalog),
+
+  // GET /api/skills/:skillId/roadmap
+  getRoadmap: (_skillId) => Promise.resolve(roadmapDays),
+
+  // GET /api/skills/:skillId/day/:day
+  getDayData: (_skillId, _day) => Promise.resolve(dayData),
+
+  // POST /api/task/complete
+  completeTask: (taskId, skillId, day, type) =>
+    Promise.resolve({ success: true, taskId, skillId, day, type }),
+
+  // GET /api/tasks/pending
+  getPendingTasks: () => Promise.resolve(
+    dayData.tasks.filter(t => !t.completed)
+  ),
+
+  // POST /api/tasks/carryover
+  carryOver: (skillId, day) =>
+    Promise.resolve({ success: true, skillId, day, carriedCount: 2 }),
+
+  // GET /api/assessment/:skillId/:day
+  getAssessment: (_skillId, _day) => Promise.resolve(null),
+
+  // POST /api/assessment
+  submitAssessment: (_skillId, _day, _feedback) => Promise.resolve({
+    success: true,
+    parsedFeedback: {
+      gotRight: "You correctly identified that the core user frustration is around reliability, not speed. The persona name and age felt grounded.",
+      needsCorrection: "Your JTBD statement confused the situation with the motivation. 'When I need groceries' is too broad — it doesn't capture the trigger moment.",
+      blindSpots: "You missed the emotional job entirely. The user isn't just trying to get groceries — they're trying to avoid the anxiety of running out of something mid-cooking.",
+      indiaNote: "Your feature recommendation (silent delivery mode) is strong for metro users, but tier-2 cities may have very different delivery infrastructure constraints.",
+      openPoints: "Tomorrow when you look at metrics — ask yourself: what would Zepto track to know if they're solving the right job?",
+      score: 7,
+      competencyLevel: "On Track",
+    },
+  }),
+
+  // GET /api/settings
+  getSettings: () => Promise.resolve({ groqKeySet: false }),
+
+  // POST /api/settings/groq-key
+  saveGroqKey: (_key) => Promise.resolve({ success: true }),
+}
