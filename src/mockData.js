@@ -94,7 +94,7 @@ export const dayData = {
       minutes: 25,
       completed: false,
       locked: false,
-      carriedOver: false,
+      carriedOver: true,
     },
     {
       id: "d3t2",

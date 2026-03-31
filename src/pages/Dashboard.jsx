@@ -27,23 +27,34 @@ function TaskCard({ task, onToggle, isLocked }) {
         background: '#1C1C1E',
         border: `1px solid ${task.carriedOver ? 'rgba(255,159,10,0.2)' : 'rgba(255,255,255,0.06)'}`,
         opacity: isLocked ? 0.35 : 1,
-        cursor: isLocked ? 'not-allowed' : 'pointer',
       }}
-      onClick={() => !isLocked && navigate(`/task/${task.id}`)}
     >
       <div className="flex items-center gap-4">
-        <div
+        <button
+          aria-label={task.completed ? 'Mark as not done' : 'Mark as done'}
+          disabled={isLocked}
           className="flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all"
-          style={{ borderColor: task.completed ? cfg.color : 'rgba(255,255,255,0.2)', background: task.completed ? cfg.color : 'transparent', cursor: isLocked ? 'not-allowed' : 'pointer' }}
-          onClick={(e) => { e.stopPropagation(); if (!isLocked) onToggle(task.id) }}
+          style={{
+            borderColor: task.completed ? cfg.color : 'rgba(255,255,255,0.2)',
+            background: task.completed ? cfg.color : 'transparent',
+            cursor: isLocked ? 'not-allowed' : 'pointer',
+            padding: 0,
+          }}
+          onClick={(e) => { e.stopPropagation(); onToggle(task.id) }}
         >
           {task.completed && (
             <svg width="12" height="9" viewBox="0 0 12 9" fill="none">
               <path d="M1 4L4.5 7.5L11 1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           )}
-        </div>
-        <div className="flex-1 min-w-0">
+        </button>
+        <button
+          className="flex-1 min-w-0 text-left"
+          disabled={isLocked}
+          aria-label={`Open task: ${task.title || task.keyword || task.promptTitle}`}
+          style={{ background: 'none', border: 'none', cursor: isLocked ? 'not-allowed' : 'pointer', padding: 0 }}
+          onClick={() => navigate(`/task/${task.id}`)}
+        >
           <div className="flex items-center gap-2 mb-0.5">
             <span style={{ fontSize: '13px' }}>{cfg.icon}</span>
             <span className="text-xs font-bold tracking-wider" style={{ color: cfg.color, letterSpacing: '0.08em' }}>{cfg.label}</span>
@@ -53,7 +64,7 @@ function TaskCard({ task, onToggle, isLocked }) {
           <p className="text-sm font-medium leading-snug" style={{ color: task.completed ? 'rgba(255,255,255,0.3)' : '#fff', textDecoration: task.completed ? 'line-through' : 'none' }}>
             {task.title || task.keyword || task.promptTitle}
           </p>
-        </div>
+        </button>
         <div className="flex-shrink-0 text-right">
           <span className="text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>{task.minutes}m</span>
           {!isLocked && !task.completed && <div className="mt-1"><span style={{ color: 'rgba(255,255,255,0.2)', fontSize: '14px' }}>›</span></div>}
@@ -64,10 +75,14 @@ function TaskCard({ task, onToggle, isLocked }) {
 }
 
 function BonusCard({ task }) {
-  const navigate = useNavigate()
   const cfg = TYPE_CONFIG[task.type]
   return (
-    <div className="rounded-2xl p-4 cursor-pointer transition-all" style={{ background: '#1C1C1E', border: '1px solid rgba(255,159,10,0.1)' }} onClick={() => navigate(`/task/${task.id}`)}>
+    <Link
+      to={`/task/${task.id}`}
+      className="rounded-2xl p-4 block transition-all hover:opacity-80"
+      style={{ background: '#1C1C1E', border: '1px solid rgba(255,159,10,0.1)', textDecoration: 'none' }}
+      aria-label={`Open bonus task: ${task.title}`}
+    >
       <div className="flex items-center gap-4">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
@@ -80,7 +95,7 @@ function BonusCard({ task }) {
         </div>
         <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: '14px' }}>›</span>
       </div>
-    </div>
+    </Link>
   )
 }
 

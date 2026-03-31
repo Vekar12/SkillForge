@@ -152,7 +152,7 @@ export default function Header() {
       {(showUserMenu || showGroqInput || showKeyEdit) && (
         <div
           className="fixed inset-0 z-30"
-          onClick={() => { setShowUserMenu(false) }}
+          onClick={() => { setShowUserMenu(false); setShowGroqInput(false); setShowKeyEdit(false); setKeyInput('') }}
         />
       )}
     </>

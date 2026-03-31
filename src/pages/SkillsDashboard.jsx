@@ -24,12 +24,19 @@ function ProgressRing({ progress, color, size = 56 }) {
 function AddSkillModal({ onClose, onSubmit }) {
   const [step, setStep] = useState('prompt') // 'prompt' | 'paste'
   const [copied, setCopied] = useState(false)
+  const [copyFailed, setCopyFailed] = useState(false)
   const [output, setOutput] = useState('')
 
-  const copyPrompt = () => {
-    navigator.clipboard.writeText(addSkillPrompt)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+  const copyPrompt = async () => {
+    try {
+      await navigator.clipboard.writeText(addSkillPrompt)
+      setCopied(true)
+      setCopyFailed(false)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      // Clipboard unavailable — surface the full prompt so the user can copy manually
+      setCopyFailed(true)
+    }
   }
 
   return (
@@ -59,11 +66,25 @@ function AddSkillModal({ onClose, onSubmit }) {
               </ol>
             </div>
 
-            <div className="rounded-xl p-4 mb-4 overflow-auto" style={{ background: '#000', border: '1px solid rgba(255,255,255,0.06)', maxHeight: '160px' }}>
-              <pre className="text-xs whitespace-pre-wrap" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'ui-monospace, monospace', lineHeight: '1.6', margin: 0 }}>
-                {addSkillPrompt.slice(0, 300)}...
-              </pre>
-            </div>
+            {copyFailed ? (
+              <div className="mb-4">
+                <p className="text-xs mb-2" style={{ color: '#FF9F0A' }}>⚠ Clipboard unavailable — select all and copy manually:</p>
+                <textarea
+                  readOnly
+                  value={addSkillPrompt}
+                  rows={6}
+                  className="w-full rounded-xl p-3 text-xs resize-none focus:outline-none"
+                  style={{ background: '#000', border: '1px solid rgba(255,159,10,0.3)', color: 'rgba(255,255,255,0.7)', fontFamily: 'ui-monospace, monospace', lineHeight: '1.6' }}
+                  onFocus={(e) => e.target.select()}
+                />
+              </div>
+            ) : (
+              <div className="rounded-xl p-4 mb-4 overflow-auto" style={{ background: '#000', border: '1px solid rgba(255,255,255,0.06)', maxHeight: '160px' }}>
+                <pre className="text-xs whitespace-pre-wrap" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'ui-monospace, monospace', lineHeight: '1.6', margin: 0 }}>
+                  {addSkillPrompt.slice(0, 300)}...
+                </pre>
+              </div>
+            )}
 
             <div className="flex gap-2">
               <button
@@ -122,9 +143,8 @@ function AddSkillModal({ onClose, onSubmit }) {
 
 export default function SkillsDashboard() {
   const navigate = useNavigate()
-  const { user, isTracking, startTracking } = useApp()
+  const { user, isTracking, startTracking, pendingSkill, setPendingSkill } = useApp()
   const [showAddSkill, setShowAddSkill] = useState(false)
-  const [submittedRequest, setSubmittedRequest] = useState(false)
 
   const handleStartTracking = (skillId) => {
     startTracking()
@@ -132,7 +152,7 @@ export default function SkillsDashboard() {
   }
 
   const handleSubmitSkill = (output) => {
-    setSubmittedRequest(true)
+    setPendingSkill({ output, submittedAt: new Date().toISOString() })
   }
 
   return (
@@ -151,11 +171,11 @@ export default function SkillsDashboard() {
       </div>
 
       {/* Pending request banner */}
-      {(pendingSkillRequests.length > 0 || submittedRequest) && (
+      {(pendingSkillRequests.length > 0 || pendingSkill) && (
         <div className="rounded-2xl p-4 mb-6" style={{ background: 'rgba(255,159,10,0.08)', border: '1px solid rgba(255,159,10,0.15)' }}>
           <p className="text-xs font-bold mb-1" style={{ color: '#FF9F0A', letterSpacing: '0.08em' }}>SKILL REQUEST PENDING</p>
           <p className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
-            {submittedRequest ? 'Your new skill request was submitted!' : `"${pendingSkillRequests[0].title}"`} is under review. We'll notify you once it's ready.
+            {pendingSkill ? 'Your new skill request was submitted!' : `"${pendingSkillRequests[0].title}"`} is under review. We'll notify you once it's ready.
           </p>
         </div>
       )}

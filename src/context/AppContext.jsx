@@ -9,6 +9,7 @@ const STORAGE_KEYS = {
   GROQ_KEY: 'sf_groq_key',
   TRACKING: 'sf_tracking',
   ONBOARDED: 'sf_onboarded',
+  PENDING_SKILL: 'sf_pending_skill',
 }
 
 function loadTasks() {
@@ -26,7 +27,9 @@ export function AppProvider({ children }) {
   const [tasks, setTasks] = useState(loadTasks)
   const [groqKey, setGroqKeyState] = useState(() => localStorage.getItem(STORAGE_KEYS.GROQ_KEY) || '')
   const [isTracking, setIsTracking] = useState(() => localStorage.getItem(STORAGE_KEYS.TRACKING) === 'true')
-  const [pendingSkill, setPendingSkill] = useState(null)
+  const [pendingSkill, setPendingSkillState] = useState(() => {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEYS.PENDING_SKILL)) } catch { return null }
+  })
 
   // Persist tasks
   useEffect(() => {
@@ -37,6 +40,16 @@ export function AppProvider({ children }) {
   const setGroqKey = (key) => {
     setGroqKeyState(key)
     localStorage.setItem(STORAGE_KEYS.GROQ_KEY, key)
+  }
+
+  // Persist pending skill request
+  const setPendingSkill = (skill) => {
+    setPendingSkillState(skill)
+    if (skill) {
+      localStorage.setItem(STORAGE_KEYS.PENDING_SKILL, JSON.stringify(skill))
+    } else {
+      localStorage.removeItem(STORAGE_KEYS.PENDING_SKILL)
+    }
   }
 
   // Mock Google login
@@ -53,7 +66,15 @@ export function AppProvider({ children }) {
 
   const logout = () => {
     setUser(null)
+    setTasks(initialDayData.tasks)
+    setGroqKeyState('')
+    setIsTracking(false)
+    setPendingSkillState(null)
     localStorage.removeItem(STORAGE_KEYS.USER)
+    localStorage.removeItem(STORAGE_KEYS.TASKS)
+    localStorage.removeItem(STORAGE_KEYS.GROQ_KEY)
+    localStorage.removeItem(STORAGE_KEYS.TRACKING)
+    localStorage.removeItem(STORAGE_KEYS.PENDING_SKILL)
   }
 
   const toggleTask = (id) => {

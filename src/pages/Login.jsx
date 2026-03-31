@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 
 export default function Login() {
-  const { user, loginWithGoogle } = useApp()
+  const { user, userLoading, loginWithGoogle } = useApp()
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (user) navigate('/skills')
-  }, [user])
+    if (!userLoading && user) navigate('/', { replace: true })
+  }, [user, userLoading, navigate])
 
   return (
     <div
