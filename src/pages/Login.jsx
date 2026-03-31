@@ -13,14 +13,14 @@ export default function Login() {
   }, [user, navigate])
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0 24px', background: 'var(--bg)' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0 16px', background: 'var(--bg)' }}>
       <div style={{ position: 'absolute', top: '33%', left: '50%', transform: 'translate(-50%, -50%)', width: 384, height: 384, borderRadius: '50%', background: 'radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
-      <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 360 }}>
+      <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 400 }}>
         <div style={{ textAlign: 'center', marginBottom: 40 }}>
           <h1 style={{ fontSize: 36, fontWeight: 700, letterSpacing: '-1px', color: '#3B82F6', margin: '0 0 8px' }}>SkillForge</h1>
           <p style={{ fontSize: 14, color: 'var(--text-3)', margin: 0 }}>Build real skills. One day at a time.</p>
         </div>
-        <div style={{ borderRadius: 24, padding: 32, background: 'var(--surface-2)', border: '1px solid rgba(255,255,255,0.07)' }}>
+        <div style={{ borderRadius: 24, padding: 32, background: 'var(--surface-2)', border: '1px solid var(--border-3)' }}>
           <h2 style={{ fontSize: 20, fontWeight: 700, margin: '0 0 6px', letterSpacing: '-0.3px' }}>Welcome back</h2>
           <p style={{ fontSize: 14, color: 'var(--text-3)', margin: '0 0 32px' }}>Sign in to continue your learning</p>
           {hasClientId ? (

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "apm-foundations",
+    "title": "APM Foundations",
+    "subtitle": "Product Management Basics",
+    "icon": "📦",
+    "color": "#0A84FF",
+    "totalDays": 21,
+    "description": "Master the fundamentals of product management through real Indian startup case studies.",
+    "competencies": ["Strategic Thinking", "Voice of Customer", "Fluency with Data", "UX Design Sense"],
+    "enrolled": true,
+    "dataPath": "/data/skills/apm-foundations"
+  }
+]

@@ -17,7 +17,7 @@ function TaskRow({ task, isDone, isLocked, onToggle }) {
       style={{
         display: 'flex', alignItems: 'center', gap: 14,
         padding: '14px 16px', borderRadius: 14, marginBottom: 8,
-        background: isDone ? 'rgba(255,255,255,0.02)' : '#161616',
+        background: isDone ? 'var(--border-1)' : '#161616',
         border: `1px solid ${isDone ? 'var(--border-1)' : 'var(--border-3)'}`,
         opacity: isLocked ? 0.38 : 1,
         transition: 'opacity 0.15s',
@@ -129,7 +129,7 @@ export default function Dashboard() {
             <span style={{ fontSize: 11, color: 'var(--text-5)' }}>{skillTitle}</span>
             <span style={{ fontSize: 11, color: 'var(--text-5)' }}>Day {activeDay} of {totalDays}</span>
           </div>
-          <div style={{ height: 3, borderRadius: 2, background: 'rgba(255,255,255,0.07)', overflow: 'hidden' }}>
+          <div style={{ height: 3, borderRadius: 2, background: 'var(--border-3)', overflow: 'hidden' }}>
             <div style={{ height: '100%', width: `${overallPct}%`, background: '#3B82F6', borderRadius: 2, transition: 'width 0.5s ease' }} />
           </div>
         </div>
@@ -139,8 +139,8 @@ export default function Dashboard() {
       {dayData.realWorldAnchor && (
         <div style={{ padding: '16px', borderRadius: 14, marginBottom: 24, background: 'rgba(59,130,246,0.06)', border: '1px solid rgba(59,130,246,0.12)' }}>
           <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#3B82F6' }}>Today's context</span>
-          <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.55, marginTop: 6 }}>
-            <strong style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600 }}>{dayData.realWorldAnchor.company}</strong>
+          <p style={{ fontSize: 13, color: 'var(--text-2)', lineHeight: 1.55, marginTop: 6 }}>
+            <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{dayData.realWorldAnchor.company}</strong>
             {' — '}{dayData.realWorldAnchor.example}
           </p>
         </div>
@@ -160,8 +160,8 @@ export default function Dashboard() {
         <span style={s.label}>Assessment</span>
         {allCoreDone ? (
           <div style={{ padding: '18px 20px', borderRadius: 14, background: 'rgba(59,130,246,0.07)', border: '1px solid rgba(59,130,246,0.18)' }}>
-            <p style={{ fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.9)', margin: '0 0 4px' }}>{dayData.assessmentTask?.taskDescription || 'Submit your assessment'}</p>
-            <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.35)', margin: '0 0 16px' }}>{dayData.assessmentTask?.minutes || 20} min · with Groq AI</p>
+            <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-primary)', margin: '0 0 4px' }}>{dayData.assessmentTask?.taskDescription || 'Submit your assessment'}</p>
+            <p style={{ fontSize: 12, color: 'var(--text-4)', margin: '0 0 16px' }}>{dayData.assessmentTask?.minutes || 20} min · with Groq AI</p>
             <button onClick={() => navigate('/assessment')} style={{ width: '100%', padding: '12px 0', borderRadius: 10, background: '#3B82F6', color: '#fff', border: 'none', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>
               Start Assessment
             </button>

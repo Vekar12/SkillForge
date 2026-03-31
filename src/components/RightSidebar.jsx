@@ -12,7 +12,7 @@ export default function RightSidebar() {
     <aside
       className="hidden xl:flex flex-col w-72 flex-shrink-0"
       style={{
-        borderLeft: '1px solid rgba(255,255,255,0.05)',
+        borderLeft: '1px solid var(--border-2)',
         background: 'var(--bg)',
         overflowY: 'auto',
       }}

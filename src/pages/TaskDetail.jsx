@@ -117,7 +117,7 @@ function ReadView({ task, onDone }) {
                 style={{ background: 'rgba(10,132,255,0.15)', color: '#0A84FF', fontSize: '11px' }}>
                 {i + 1}
               </span>
-              <span className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.85)', lineHeight: '1.55' }}>{t}</span>
+              <span className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)', lineHeight: '1.55' }}>{t}</span>
             </li>
           ))}
         </ul>
@@ -153,7 +153,7 @@ function SearchView({ task, onDone }) {
           {task.whatToLearn.map((item, i) => (
             <li key={i} className="flex gap-3">
               <span style={{ color: '#30D158', flexShrink: 0, marginTop: '2px' }}>→</span>
-              <span className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.85)' }}>{item}</span>
+              <span className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)' }}>{item}</span>
             </li>
           ))}
         </ul>
@@ -205,7 +205,7 @@ function ActivityView({ task, onDone }) {
           <CopyButton text={task.claudePrompt} label="Copy Prompt" />
         </div>
         <div className="rounded-xl p-4 overflow-auto" style={{ background: 'var(--bg)', border: '1px solid var(--border-2)' }}>
-          <pre className="text-xs leading-relaxed whitespace-pre-wrap" style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'ui-monospace, SFMono-Regular, monospace', margin: 0 }}>
+          <pre className="text-xs leading-relaxed whitespace-pre-wrap" style={{ color: 'var(--text-2)', fontFamily: 'ui-monospace, SFMono-Regular, monospace', margin: 0 }}>
             {task.claudePrompt}
           </pre>
         </div>

@@ -585,6 +585,916 @@
         "claudePrompt": "You are a senior PM reviewing my Week 1 integration assessment — a 5-deliverable case on the PayEase KYC drop-off problem.\n\nI studied this week:\n- Day 1: Reforge 12 PM competency model — 4 pillars, 12 competencies\n- Day 2: MECE structured thinking and first-principles reasoning\n- Day 3: User personas and Jobs-To-Be-Done\n- Day 4: Problem framing (4-component structure) and user interview design\n- Day 5: RICE prioritisation framework with full arithmetic\n- Day 6: CIRCLES product design method — all 7 steps\n- Day 7 reading: The Four Big Risks as the integration lens\n\nReal world context I should apply:\nPayEase KYC drop-off — 62% of users starting KYC abandon at the Aadhaar OTP step. 3 engineers, 4-week capacity, 6 proposed solutions. The core tension: some solutions fix the symptom (OTP timing), others fix the deeper cause (UX clarity), and one attempts an alternative path (DigiLocker).\n\nMY TASK TODAY WAS: Produce 5 deliverables — problem statement, MECE tree with all 6 solutions placed, RICE table with full working, CIRCLES answer for the top-ranked solution, and 3 success metrics.\n\nHere is my work:\n[Pranav pastes his full 5-section answer here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation of why — check: MECE validity of the tree (no solution in two branches, no branch missing), RICE arithmetic for all 6 solutions, CIRCLES completeness especially steps C and E, and whether success metrics are actually measurable]\n\nBLIND SPOTS:\n- [things I did not consider at all — e.g., Aadhaar OTP failure rates vary significantly by telecom operator in India; DigiLocker penetration is real but unevenly distributed by age and geography; RBI has communication guidelines about fintech outreach during KYC that affect Solution D; the 3-minute OTP window is a UIDAI constraint, not a PayEase decision, which affects how Solution A is actually scoped]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about the Aadhaar-OTP KYC dependency that is specific to India — why this friction point exists, who it hurts most (Tier 2 users, older users, users on slower networks), and how the same drop-off pattern would look completely different in a Western market where phone number verification is the standard]\n\nOPEN POINTS FOR NEXT WEEK:\n- [3 specific items from Week 1 that Pranav should revisit in Week 2 — identify his weakest area clearly by name and tool]\n\nWEEK 1 SCORE: [X/10]\nREFORGE COMPETENCIES ASSESSED THIS WEEK:\n- Feature Specification: [Needs Focus / On Track / Outperform]\n- Voice of Customer: [Needs Focus / On Track / Outperform]\n- UX Design Sense: [Needs Focus / On Track / Outperform]\n- Business Outcome Ownership: [Needs Focus / On Track / Outperform]",
         "minutes": 60
       }
+    },
+    {
+      "day": 8,
+      "week": 2,
+      "theme": "North Star metric + AARRR funnel + SQL intro",
+      "competenciesCovered": [
+        "Fluency with Data",
+        "Business Outcome Ownership"
+      ],
+      "objective": "Define a justified North Star metric for Zepto, list one supporting metric per AARRR stage with healthy vs unhealthy benchmarks, and read a real SQL query to explain what it returns and how you would extend it.",
+      "estimatedMinutes": 120,
+      "realWorldAnchor": {
+        "company": "Zepto vs CRED",
+        "example": "Zepto's North Star is likely something like 'monthly transacting households' — a measure of recurring purchase behaviour — while CRED's North Star is closer to 'monthly bill payments via CRED' — these are completely different because Zepto is a frequency-of-purchase business and CRED is a monthly-cycle bill payment business, and the North Star metric you pick shapes every downstream feature and team decision."
+      },
+      "teamContext": "North Star and AARRR metrics are most directly relevant to the PM's relationship with the Data/Analytics team — the North Star is the shared language that tells analysts what to instrument, what to report weekly, and what anomalies to flag to the PM without being asked.",
+      "tasks": [
+        {
+          "id": "d8t1",
+          "type": "read",
+          "title": "North Star Metric: What It Is and How to Find Yours — Lenny's Newsletter",
+          "url": "https://www.lennysnewsletter.com/p/north-star-metric",
+          "summary": "Lenny Rachitsky surveys how top product teams at companies like Duolingo, Figma, Notion, and Spotify define and use their North Star metric. The article explains what makes a good North Star (captures value delivered to users AND predicts long-term business health), shows examples of bad North Stars (revenue, DAU without context), and explains why two companies in the same space can have completely different North Stars depending on their business model.",
+          "keyTakeaways": [
+            "A good North Star metric has three properties: it measures the value your product delivers to users (not just internal business health), it is leading (it predicts future revenue rather than trailing it), and the whole team can influence it — a metric only the CEO can move is a vanity metric, not a North Star",
+            "The most common North Star mistake is choosing a metric that is easy to measure rather than one that is meaningful — DAU (daily active users) without a quality filter is often gamed; a better North Star specifies what 'active' means in the context of the product's core value (e.g., 'users who complete at least one grocery order per week')",
+            "Zepto and CRED have fundamentally different North Stars because their businesses are different: Zepto wins by increasing purchase frequency per household; CRED wins by increasing the value of bills paid per member — mixing these up leads to building the wrong features"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d8t2",
+          "type": "read",
+          "title": "AARRR Pirate Metrics: The PM's Guide to Funnel Thinking — Product School",
+          "url": "https://productschool.com/blog/product-management/aarrr-pirate-metrics/",
+          "summary": "This article explains the AARRR framework (Acquisition, Activation, Retention, Referral, Revenue) as a structured way for PMs to map all product metrics to funnel stages, identify where users drop off, and prioritise which stage to fix first. For Pranav, AARRR is the bridge between a single North Star metric and the full set of 5-7 supporting metrics a PM monitors weekly.",
+          "keyTakeaways": [
+            "AARRR gives every metric a home: acquisition metrics (how did users find us?), activation metrics (did they experience the core value?), retention metrics (do they come back?), referral metrics (do they tell others?), revenue metrics (do we make money?) — if a metric does not fit one of these five buckets, it is probably not worth tracking weekly",
+            "The most important and most neglected stage is Activation — it is the bridge between getting a user and keeping them, and most teams under-invest in it because it does not show up in acquisition dashboards or revenue dashboards; it lives in the middle and is invisible unless you specifically measure it",
+            "For Indian consumer apps, Retention and Referral look different than Western markets: retention is shaped by cash-back and offers cycles, and referral is heavily driven by WhatsApp sharing rather than in-app invite flows — a PM who copies US-market AARRR benchmarks without adjusting for India will misread their own funnel"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d8t3",
+          "type": "search",
+          "keyword": "Zepto North Star metric quick commerce India CRED North Star difference business model 2023 2024",
+          "whyItMatters": "Searching for how Indian PMs and analysts describe Zepto's and CRED's core metrics gives Pranav real context for today's assessment — where the spec asks him to define Zepto's North Star, seeing how practitioners in the Indian market think about it is better preparation than reading a generic framework article. Look for product teardowns, PM blog posts, or investor analysis that specifically discusses what Zepto optimises for.",
+          "whatToLearn": [
+            "What metric Zepto's product team is most likely to use as their North Star given their business model — frequency of household grocery orders, not just app opens or GMV, because the business wins when households replace their kirana store habit with Zepto",
+            "Why two companies in adjacent spaces (Zepto quick commerce vs CRED fintech) would have North Stars that are structurally different — and why copying a competitor's metric can destroy your own product focus"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d8t4",
+          "type": "activity",
+          "promptTitle": "SQL intro — read a real query, explain what it returns, extend it",
+          "claudePrompt": "You are a senior PM helping me build SQL reading fluency — the ability to look at a real query and understand what it returns, without needing to write SQL myself.\n\nToday I studied:\n- North Star metric: a single metric that captures the value the product delivers to users and predicts long-term business health\n- AARRR funnel: Acquisition, Activation, Retention, Referral, Revenue — every product metric belongs to one of these five stages\n- Why Zepto and CRED have completely different North Stars because their business models are different\n\nReal world context: I am an APM at Zepto. My data analyst just shared this SQL query that runs every Monday morning to check the previous week's order performance:\n\n```sql\nSELECT\n  DATE(created_at)        AS order_date,\n  delivery_city           AS city,\n  COUNT(order_id)         AS total_orders,\n  SUM(order_value_inr)    AS total_revenue_inr,\n  ROUND(AVG(order_value_inr), 2) AS avg_order_value_inr\nFROM orders\nWHERE order_status = 'completed'\n  AND created_at >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)\nGROUP BY DATE(created_at), delivery_city\nORDER BY order_date DESC, total_orders DESC;\n```\n\nYour role today: Act as the analyst who wrote this query. Answer my questions directly and honestly. If I misread the query, correct me. If I ask something the query cannot tell me, explain why.\n\nActivity — 3 questions:\nQuestion 1: I will describe in plain English what this query returns — what rows it produces, what each column contains, and what time period it covers. You confirm or correct.\nQuestion 2: I will identify one thing this query CANNOT tell me that I would want to know as a Zepto APM. You confirm or correct.\nQuestion 3: I will write the plain-English instruction I would give to the analyst to ALSO show orders broken down by hour of day (not just by date). You then show me what the SQL change would look like.\n\nAfter all 3 questions, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight — e.g., why a Zepto analyst running this query every Monday morning is specifically watching for city-level anomalies, and what a city-level drop typically signals in Indian quick commerce vs a national drop]\nCOACHING NOTE: [one specific tip for Pranav on reading SQL as a PM — what to look at first, what to ignore]\n\nBegin with: 'Good. Look at the query carefully. Start with Question 1: in plain English, tell me what this query returns — what does each row represent, what does each column contain, and what time period does it cover?'",
+          "minutes": 30
+        }
+      ],
+      "bonusTasks": [
+        {
+          "id": "d8b1",
+          "type": "read",
+          "title": "How to Define Your North Star Metric — Reforge",
+          "url": "https://www.reforge.com/blog/north-star-metric",
+          "summary": "Reforge's longer treatment of the North Star framework goes deeper than Lenny's survey — it explains how the North Star connects to company strategy, how to avoid the common trap of choosing a metric that optimises one part of the funnel at the expense of others, and how to socialise the North Star across engineering, design, and marketing so it actually changes behaviour. Read this after the core task if you want the strategic depth behind metric selection.",
+          "minutes": 25
+        },
+        {
+          "id": "d8b2",
+          "type": "search",
+          "title": "AARRR metrics real examples Indian consumer apps",
+          "keyword": "AARRR funnel metrics examples Indian startup Swiggy Zepto PhonePe activation retention product analytics",
+          "summary": "Searching for how practitioners at Indian consumer internet companies describe their AARRR metrics gives Pranav real benchmarks to anchor his assessment answers — what a healthy activation rate looks like for a quick commerce app, what retention looks like for a UPI payments app, and what referral looks like in a market dominated by WhatsApp sharing rather than in-app invite flows.",
+          "minutes": 20
+        }
+      ],
+      "assessmentTask": {
+        "type": "do",
+        "taskDescription": "Define Zepto's North Star metric with a 3-sentence justification, then list one supporting metric per AARRR stage — for each metric, state what a healthy number looks like and what an unhealthy number looks like.",
+        "rawMaterial": "You are an APM at Zepto. Zepto's business model: 10-minute grocery and household essentials delivery from dark stores in metro and Tier 2 Indian cities. Revenue comes from delivery fees, platform commissions from FMCG brands, and private-label product margins. The business wins when urban households replace their kirana store or weekly supermarket run with Zepto — meaning frequency of purchase per household is the core behaviour the business depends on.\n\nPart 1: Define Zepto's North Star metric.\nWrite the metric name, how it is calculated (one sentence), and a 3-sentence justification covering: why it captures the value Zepto delivers to users, why it predicts long-term business health, and why it is better than an obvious alternative you considered and rejected.\n\nPart 2: List 5 supporting metrics — one per AARRR stage.\nFor each metric: name it, state which AARRR stage it belongs to, define it in one sentence, then complete this table row:\n\nMetric | AARRR Stage | Definition | Healthy Number | Unhealthy Number\n\nHealthy and unhealthy numbers should be specific (e.g., 'above 40% week-1 retention' not 'retention is good') — you can use reasonable estimates based on Indian consumer app benchmarks.",
+        "outputFormat": "Part 1: Three clearly labelled sentences (metric name + calculation / why it captures user value / why it beats the alternative). Part 2: A table with 5 rows — one per AARRR stage — with all 5 columns filled.",
+        "claudePrompt": "You are a senior PM reviewing my work on Day 8: North Star Metric + AARRR Funnel + SQL Intro.\n\nI studied today:\n- North Star metric: captures value delivered to users, is leading (predicts future revenue), and can be influenced by the whole team\n- AARRR funnel: Acquisition, Activation, Retention, Referral, Revenue — every product metric belongs to one of these five stages\n- Why Zepto and CRED have structurally different North Stars because their business models are different\n- SQL reading: SELECT, WHERE, GROUP BY, ORDER BY — what each clause does and what the output looks like\n\nReal world context I should apply:\nZepto's business model — 10-minute grocery delivery from dark stores. The business wins when urban households make Zepto their default for daily and weekly household essentials, meaning frequency of purchase per household is the core behaviour.\n\nMY TASK TODAY WAS: Define Zepto's North Star metric with justification, and list 5 AARRR supporting metrics with healthy vs unhealthy benchmarks.\n\nHere is my work:\n[Pranav pastes his North Star definition and AARRR table here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation of why — especially check whether the North Star is truly leading (predictive) vs lagging (descriptive), and whether the AARRR metrics are truly one per stage without overlap]\n\nBLIND SPOTS:\n- [things I did not consider at all — e.g., whether the North Star accounts for household-level vs user-level behaviour, whether the Activation metric correctly captures the moment of 'first core value experienced' for a grocery delivery app, or whether the Referral metric reflects India's WhatsApp-driven sharing behaviour]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about how AARRR benchmarks for Indian quick commerce differ from US e-commerce benchmarks — e.g., Day-30 retention for Zepto should be measured differently given monthly salary cycles, kirana store habits, and festive season spikes that distort weekly retention curves]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Fluency with Data — [Needs Focus / On Track / Outperform]",
+        "minutes": 20
+      }
+    },
+    {
+      "day": 9,
+      "week": 2,
+      "theme": "Diagnosing metric drops and root cause analysis",
+      "competenciesCovered": [
+        "Fluency with Data",
+        "Feature Specification"
+      ],
+      "objective": "Build a full RCA tree for a specific dashboard anomaly, identify the most likely root cause from a set of data signals, and list 3 prioritised next data checks with the reasoning behind each.",
+      "estimatedMinutes": 120,
+      "realWorldAnchor": {
+        "company": "Swiggy",
+        "example": "A Monday morning order volume drop at Swiggy is one of the most commonly cited PM interview scenarios in India — it became a reference case because Swiggy PMs reportedly use this exact type of dashboard anomaly during on-call rotations, and the structured diagnosis approach (funnel stage isolation, platform split, geography split, time-of-day split) is a repeatable playbook across Indian consumer internet companies."
+      },
+      "teamContext": "Metric drop diagnosis is the PM's primary interface with the Data team during an incident — the PM's job is to generate and prioritise hypotheses, while the analyst runs the queries. A PM who can specify exactly what data check to run next (rather than asking 'can you check the data?') compresses the diagnosis loop from days to hours.",
+      "tasks": [
+        {
+          "id": "d9t1",
+          "type": "read",
+          "title": "A Framework for Diagnosing Metric Drops — Lenny's Newsletter",
+          "url": "https://www.lennysnewsletter.com/p/a-framework-for-diagnosing-metric-drops",
+          "summary": "This article lays out a structured step-by-step playbook for diagnosing a product metric drop — covering how to isolate the affected funnel stage, how to split by platform and geography, and how to differentiate between internal (product/engineering) and external (market/competitive) causes. For Pranav, this is the operational version of Week 1's MECE tree: a specific diagnosis playbook rather than a general thinking method.",
+          "keyTakeaways": [
+            "The first question in any metric drop is: which part of the funnel is affected? A drop in orders with flat sessions means the problem is in the conversion funnel (activation or checkout); a drop in both orders and sessions means the problem is upstream (acquisition or a major bug causing users to not even open the app)",
+            "The second split is always platform: iOS vs Android vs web. A drop isolated to one platform almost always points to a recent code release, an OS-level change, or a platform-specific infrastructure issue — if both platforms drop together, the cause is product-level or external",
+            "Time-of-day and geography splits are the two most underused diagnostic moves in India specifically: Indian metro vs Tier 2 data often moves differently during regional holidays, cricket match evenings, and salary-day cycles — a PM who only looks at national numbers will miss a city-level or time-specific anomaly"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d9t2",
+          "type": "read",
+          "title": "Root Cause Analysis for Product Managers — Product School",
+          "url": "https://productschool.com/blog/product-management/root-cause-analysis/",
+          "summary": "This article explains how to apply the root cause analysis (RCA) method specifically in a product context — using the 5 Whys technique and fishbone diagrams alongside funnel data to move from a symptom ('orders dropped 18%') to a root cause ('Android app version 3.2.1 introduced a payment step regression that broke checkout for 31% of Android users'). The article bridges Day 2's MECE tree thinking with Day 8's metric framework.",
+          "keyTakeaways": [
+            "RCA in product management has a specific structure: start with the symptom (the metric that moved), isolate the affected segment (funnel stage, platform, geography, cohort), form a specific hypothesis, verify it with one targeted data check, then iterate — this is faster than building an exhaustive tree before running any data",
+            "The 5 Whys technique is most useful once you have identified the affected segment: 'Orders dropped' → 'Android orders dropped' → 'Android checkout completion dropped' → 'Android payment step has a new error state' → 'The v3.2.1 release changed the payment SDK timeout parameter' — each 'why' narrows the scope and points to a specific fix",
+            "The most common RCA mistake in PM interviews is confusing correlation with causation: a Swiggy PM who sees that order drop correlates with rain might conclude rain caused the drop, when actually a delivery partner availability drop (caused by rain) caused the drop — the mechanism matters for the fix"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d9t3",
+          "type": "search",
+          "keyword": "Swiggy order drop root cause analysis Monday product analytics diagnosis India PM interview case",
+          "whyItMatters": "The Swiggy Monday order drop is the most referenced PM interview case in the Indian tech hiring circuit — searching for written walkthroughs of this specific case gives Pranav exposure to how experienced PMs structure the same problem he will solve in today's assessment. Look for PM prep blogs, YouTube walkthroughs, or LinkedIn posts that walk through this exact scenario step by step.",
+          "whatToLearn": [
+            "What the standard diagnosis sequence looks like for this case: funnel isolation first (sessions vs conversion vs checkout), then platform split, then geography split, then time-of-day, then external factors — and why this sequence is not arbitrary but follows the logic of what each split can rule out",
+            "What the top hypothesis typically turns out to be in worked examples of this case, and what data check would confirm or reject it within 30 minutes of starting the investigation"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d9t4",
+          "type": "activity",
+          "promptTitle": "SQL parallel — read query output table, identify the anomaly",
+          "claudePrompt": "You are a senior PM helping me practice reading SQL query output to identify data anomalies — a core PM skill when working with analysts during a metric drop investigation.\n\nToday I studied:\n- How to diagnose a metric drop: funnel stage isolation, platform split, geography split, time-of-day split\n- Root cause analysis: 5 Whys technique, moving from symptom to root cause through targeted data checks\n- Why India-specific patterns (city-level drops, day-of-week cycles, platform splits) require specific diagnostic moves\n\nReal world context: I am an APM at Swiggy. My analyst ran the following query and shared the output with me. I need to find the anomaly before the Monday morning leadership standup.\n\nThe query:\n```sql\nSELECT\n  DATE(created_at)    AS order_date,\n  delivery_city       AS city,\n  COUNT(order_id)     AS total_orders\nFROM orders\nWHERE order_status IN ('completed', 'cancelled')\n  AND created_at BETWEEN '2024-01-01' AND '2024-01-14'\nGROUP BY DATE(created_at), delivery_city\nORDER BY order_date, city;\n```\n\nThe output table:\n\n| order_date | city | total_orders |\n|---|---|---|\n| 2024-01-01 (Mon) | Bangalore | 9,210 |\n| 2024-01-01 (Mon) | Delhi | 7,840 |\n| 2024-01-01 (Mon) | Mumbai | 14,320 |\n| 2024-01-02 (Tue) | Bangalore | 9,450 |\n| 2024-01-02 (Tue) | Delhi | 7,910 |\n| 2024-01-02 (Tue) | Mumbai | 14,580 |\n| 2024-01-03 (Wed) | Bangalore | 9,380 |\n| 2024-01-03 (Wed) | Delhi | 7,870 |\n| 2024-01-03 (Wed) | Mumbai | 14,430 |\n| 2024-01-07 (Sun) | Bangalore | 11,020 |\n| 2024-01-07 (Sun) | Delhi | 9,330 |\n| 2024-01-07 (Sun) | Mumbai | 17,210 |\n| 2024-01-08 (Mon) | Bangalore | 9,190 |\n| 2024-01-08 (Mon) | Delhi | 2,140 |\n| 2024-01-08 (Mon) | Mumbai | 14,350 |\n| 2024-01-09 (Tue) | Bangalore | 9,430 |\n| 2024-01-09 (Tue) | Delhi | 7,890 |\n| 2024-01-09 (Tue) | Mumbai | 14,490 |\n| 2024-01-14 (Sun) | Bangalore | 10,980 |\n| 2024-01-14 (Sun) | Delhi | 9,290 |\n| 2024-01-14 (Sun) | Mumbai | 17,180 |\n\nYour role today: Act as my analyst. Answer my questions directly. If I identify the wrong anomaly, correct me. If I jump to a hypothesis before isolating the anomaly precisely, stop me and ask me to describe the data pattern first.\n\nActivity — 3 steps:\nStep 1: I identify the anomaly in the data — which row(s), what the number is, what it should be, and how I calculated the expected value.\nStep 2: I state my top hypothesis for what caused it — with one sentence of reasoning.\nStep 3: I name the single most important data check I would run next to confirm or reject the hypothesis, and explain why this check (not another) comes first.\n\nAfter all 3 steps, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight — January 8, 2024 was a Monday in the week after Makar Sankranti / Lohri, which is a regional holiday celebrated heavily in Delhi and North India — this is a real India-specific diagnostic clue that a non-India PM would miss entirely]\nCOACHING NOTE: [one specific improvement tip for Pranav on reading data tables quickly]\n\nBegin with: 'Good. Look at the output table carefully. Step 1: identify the anomaly. Tell me which specific city, which specific date, what the actual number is, what you would expect it to be based on the surrounding data, and how large the deviation is in percentage terms.'",
+          "minutes": 30
+        }
+      ],
+      "bonusTasks": [
+        {
+          "id": "d9b1",
+          "type": "search",
+          "title": "PM incident diagnosis playbook — Indian consumer internet",
+          "keyword": "product manager metric drop investigation playbook on-call incident India analytics Swiggy Zepto Razorpay 2023",
+          "summary": "Searching for how Indian PMs describe their incident diagnosis process — the actual steps they follow when a metric drops on a Monday morning — gives Pranav a practitioner-level view of what 'good' looks like in the role he is preparing for. Look for LinkedIn posts, PM blogs, or podcast clips where Indian PMs describe their weekly data review ritual and what happens when numbers go wrong.",
+          "minutes": 20
+        },
+        {
+          "id": "d9b2",
+          "type": "activity",
+          "promptTitle": "Extend the RCA — what if the hypothesis is wrong?",
+          "claudePrompt": "You are a senior PM running a post-incident debrief with me after I completed a metric drop RCA.\n\nContext: I identified that Delhi orders dropped 73% on January 8, 2024 (Monday after Makar Sankranti / Lohri) and hypothesised that this was caused by a regional holiday reducing demand.\n\nYour role today: Play devil's advocate. My hypothesis might be right — but it might be wrong or incomplete. Push me to consider alternative explanations and ask me: if the 'regional holiday' hypothesis turns out to be false (for example, if the other Delhi-heavy holidays in our data do NOT show similar drops), what would my backup hypothesis be? What would that tell me about the root cause?\n\nActivity:\nStep 1: I state my backup hypothesis (if holiday demand reduction is ruled out).\nStep 2: I describe the data check that would distinguish between the holiday hypothesis and the backup hypothesis.\nStep 3: I draft a 3-line Slack message to the engineering team asking them to check a specific thing — specific, not vague.\n\nAfter all 3 steps, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight about how India's regional holiday calendar creates diagnostic complexity that national-level dashboards hide — and why a Swiggy PM benefits from knowing the North Indian festival calendar]\nCOACHING NOTE: [one specific improvement tip]\n\nBegin with: 'Good. Your primary hypothesis is regional holiday demand reduction for Delhi on January 8. Tell me: if you pull the data for January 15 (Pongal / Makar Sankranti day itself) and Delhi orders are completely normal — what does that tell you about your hypothesis? And what is your backup hypothesis?'",
+          "minutes": 25
+        }
+      ],
+      "assessmentTask": {
+        "type": "do",
+        "taskDescription": "Build a full 2-level RCA tree for a Swiggy dashboard anomaly using 7 data signals, identify the most likely root cause, and list 3 prioritised data checks with the reasoning behind each.",
+        "rawMaterial": "You are an APM at Swiggy. It is Monday 9am. The weekly dashboard shows the following vs the same Monday last week:\n\nSignal 1: Total orders — down 18% week-on-week\nSignal 2: App sessions (opens) — flat (0% change)\nSignal 3: Overall conversion rate (sessions to completed orders) — down 14%\nSignal 4: Cart abandonment rate — no change (flat)\nSignal 5: Drop-off at the payment step — up 22%\nSignal 6: Android order volume — down 31%\nSignal 7: iOS order volume — flat (0% change)\n\nAdditional context:\n- Engineering shipped a new version of the Android app (v8.4.1) last Thursday\n- No new marketing campaigns are running this week\n- No known competitor promotions this week\n- Weather is normal in all top cities\n\nYour deliverables:\n\nA. RCA TREE: Build a 2-level MECE tree. Top-level branches must cover all possible causes for the order drop given the 7 signals above. At the second level, expand at least 2 branches into sub-causes. Label where each of the 7 signals provides evidence (i.e., which branch does each signal help rule in or rule out?).\n\nB. ROOT CAUSE HYPOTHESIS: State your single most likely root cause in one specific sentence. Include: what broke, on which platform, caused by what event, affecting which funnel step.\n\nC. THREE NEXT DATA CHECKS: List 3 specific data checks you would run in order of priority. For each: state exactly what you would ask the analyst to query, what result would confirm your hypothesis, and what result would reject it.",
+        "outputFormat": "Section A: An indented MECE tree with top-level branches, sub-branches, and signal labels at the leaf level (e.g., 'Signal 6 rules this branch in'). Section B: One specific hypothesis sentence. Section C: A numbered list of 3 data checks, each with — Query description (plain English) / Confirms hypothesis if: [result] / Rejects hypothesis if: [result].",
+        "claudePrompt": "You are a senior PM reviewing my work on Day 9: Diagnosing Metric Drops and Root Cause Analysis.\n\nI studied today:\n- Metric drop diagnosis playbook: funnel isolation, platform split, geography split, time-of-day split — in that sequence\n- Root cause analysis: 5 Whys technique, moving from symptom to root cause through targeted data checks\n- How platform-specific drops almost always point to a code release or infrastructure issue on that platform\n\nReal world context I should apply:\nSwiggy Monday morning dashboard: total orders down 18%, sessions flat, conversion down 14%, cart abandonment flat, payment step drop-off up 22%, Android down 31%, iOS flat. Android app v8.4.1 shipped last Thursday.\n\nMY TASK TODAY WAS: Build a 2-level RCA tree with all 7 signals placed, state the most likely root cause hypothesis, and list 3 prioritised data checks.\n\nHere is my work:\n[Pranav pastes his RCA tree, hypothesis, and 3 data checks here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation of why — especially check whether the RCA tree is truly MECE, whether the hypothesis is specific enough to be testable, and whether the data checks would actually confirm or reject the hypothesis rather than just 'look at more data']\n\nBLIND SPOTS:\n- [things I did not consider at all — e.g., whether 'sessions flat' with 'conversion down' tells us something specific about where in the funnel the regression sits; whether the Android v8.4.1 release note would be the first thing to check before running any query; or whether 31% Android drop with flat iOS is already sufficient to form a strong hypothesis without additional data]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about Android dominance in India's app ecosystem — India has an 85%+ Android market share among consumer internet users, which means an Android-specific regression has a disproportionately large impact on Indian product metrics compared to markets with more even iOS/Android splits — a 31% Android drop in India is not a minor platform issue]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Fluency with Data — [Needs Focus / On Track / Outperform]",
+        "minutes": 20
+      }
+    },
+    {
+      "day": 10,
+      "week": 2,
+      "theme": "A/B testing and experimentation",
+      "competenciesCovered": [
+        "Fluency with Data",
+        "Product Quality"
+      ],
+      "objective": "Write a complete, specific A/B test plan for a Zomato checkout change — covering hypothesis, variants, primary metric, guardrail metrics, minimum detectable effect, and estimated duration with reasoning.",
+      "estimatedMinutes": 120,
+      "realWorldAnchor": {
+        "company": "Swiggy",
+        "example": "Swiggy reportedly runs hundreds of concurrent A/B experiments at any given time across checkout, restaurant ranking, and delivery ETA display — before any checkout flow change ships to all users, it runs as a controlled experiment on a percentage of traffic, with guardrail metrics monitoring for unintended side effects like increased order cancellations or payment failures."
+      },
+      "teamContext": "A/B testing is the PM's primary tool for working with the Data team to validate a decision before committing to it — the PM writes the hypothesis and specifies the metrics, the analyst sets up the instrumentation and calculates sample size, and both review the results together. A PM who cannot specify guardrail metrics forces the analyst to guess what 'winning' means.",
+      "tasks": [
+        {
+          "id": "d10t1",
+          "type": "read",
+          "title": "A/B Testing: A Complete Guide for Product Managers — Product School",
+          "url": "https://productschool.com/blog/product-management/ab-testing/",
+          "summary": "This article covers A/B testing from a PM's perspective — how to design a valid experiment, what makes a hypothesis testable, how to choose a primary metric vs guardrail metrics, and why statistical significance alone is not enough to declare a winner. For Pranav, this is the practical reference for writing the A/B test plan in today's assessment.",
+          "keyTakeaways": [
+            "A valid A/B test hypothesis has three parts: the change you are making (the treatment), the metric you expect to move (the primary metric), and the direction and magnitude of the expected change — 'removing the tip prompt will increase checkout completion rate by at least 5%' is a hypothesis; 'removing the tip prompt will improve UX' is not",
+            "Guardrail metrics are the metrics you are NOT trying to move but must monitor to ensure the experiment does not cause harm — for a checkout test, guardrail metrics typically include average order value, payment failure rate, and order cancellation rate — if any guardrail moves negatively, the experiment fails even if the primary metric improves",
+            "Sample size and duration are calculated before the experiment starts, not after — the minimum detectable effect (the smallest change you would consider business-significant) drives the sample size calculation, and underpowered experiments produce results you cannot trust either way"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d10t2",
+          "type": "read",
+          "title": "Experimentation at Scale: How to Build a Culture of Testing — First Round Review",
+          "url": "https://review.firstround.com/the-power-of-the-why-behind-your-product-hypothesis",
+          "summary": "This First Round Review article covers how product teams build an experimentation culture — not just how to run individual A/B tests, but how to decide which experiments are worth running, how to handle inconclusive results without reverting to opinions, and how to communicate experiment results to stakeholders who want a cleaner answer than 'it depends.' For Pranav, this adds the organisational dimension to the technical framework from the first reading.",
+          "keyTakeaways": [
+            "The biggest waste in A/B testing is running experiments without a clear hypothesis — teams that test everything without prioritising end up with a backlog of inconclusive results and no learning, because they tested features rather than specific mechanisms",
+            "Inconclusive results are not failures — they are information: if a well-powered experiment shows no difference, you now know the change does not move the needle, which is itself valuable for deprioritising that direction and focusing elsewhere",
+            "Communicating experiment results to non-data stakeholders (design leads, engineering managers, business heads) requires translating statistical significance into business terms: 'at 95% confidence, the new checkout reduces friction for 1.2 million users per month, generating an estimated 40,000 additional completed orders per month' is what a PM should bring to a decision meeting, not a p-value"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d10t3",
+          "type": "search",
+          "keyword": "A/B testing product manager checkout flow India Swiggy Zomato experiment design case study 2022 2023",
+          "whyItMatters": "Seeing how Indian consumer internet companies design and communicate A/B experiments — specifically for checkout flows where conversion rate improvements translate directly to revenue — gives Pranav real anchoring for writing his own test plan in the assessment. Look for PM blog posts, conference talks, or product teardowns that describe a specific experiment, its hypothesis, and what the team learned.",
+          "whatToLearn": [
+            "What primary metrics Indian e-commerce and food delivery PMs use for checkout experiments — checkout completion rate, time-to-complete, or order value are common choices, each with different implications for sample size and duration",
+            "How Indian product teams handle A/B test duration given India's day-of-week and festive season traffic patterns — running an experiment that includes a Sunday (high traffic) and misses a Monday (lower traffic) produces a biased result, so test duration decisions in India require knowledge of the product's weekly traffic curve"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d10t4",
+          "type": "activity",
+          "promptTitle": "Design and stress-test an A/B test plan — Zomato tip prompt removal",
+          "claudePrompt": "You are a senior PM helping me practice designing a rigorous A/B test plan for a real product change.\n\nToday I studied:\n- A/B test hypothesis structure: change + primary metric + expected direction and magnitude\n- Guardrail metrics: metrics you must monitor to ensure the experiment does not cause unintended harm\n- Minimum detectable effect and sample size: calculated before the experiment starts, not after\n- How to communicate experiment results to non-data stakeholders in business terms\n\nReal world context: I am an APM at Zomato. The current checkout flow has 5 steps: (1) Review cart, (2) Select delivery address, (3) Tip prompt screen (users can add a tip for the delivery partner — default is 0), (4) Select payment method, (5) Confirm and pay. The hypothesis is that the tip prompt screen adds unnecessary friction and removing it will increase checkout completion.\n\nYour role today: Act as a skeptical data scientist reviewing my test plan before I submit it to the engineering team for implementation. Push back on any hypothesis that is not testable, any primary metric that is too broad, any missing guardrail, and any duration estimate that is not justified.\n\nActivity:\nStep 1: I write the hypothesis in the required format: 'By [change], we expect [primary metric] to [direction] by [minimum magnitude] because [mechanism].' You critique the hypothesis.\nStep 2: I name the primary metric and 3 guardrail metrics. You push back on any that are missing or poorly chosen.\nStep 3: I estimate the minimum detectable effect (MDE) and explain why I chose that magnitude. You challenge whether it is realistic and business-significant.\nStep 4: I estimate the test duration and explain how I got there. You check whether it accounts for India-specific traffic patterns.\n\nAfter all 4 steps, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight — the tip prompt for delivery partners has a specific emotional and ethical dimension in India that affects how users respond to removing it: delivery partner welfare is a visible public concern in Indian consumer discourse, and a change that removes the tipping option may create negative PR even if it improves conversion — this is a risk factor that a US-market PM might not weight]\nCOACHING NOTE: [one specific improvement tip for Pranav on A/B test design]\n\nBegin with: 'Let's start with the hypothesis. The change you are testing is: removing the tip prompt screen from Zomato checkout. Write the hypothesis in the exact format I specified. Go.'",
+          "minutes": 30
+        }
+      ],
+      "bonusTasks": [
+        {
+          "id": "d10b1",
+          "type": "search",
+          "title": "Statistical significance vs practical significance — PM perspective",
+          "keyword": "statistical significance practical significance A/B test product manager explained simply examples 2022 2023",
+          "summary": "One of the most common A/B testing mistakes is declaring a winner based on statistical significance alone without asking whether the change is practically significant — i.e., large enough to justify the engineering cost and maintenance overhead. Searching for PM-specific explanations of this distinction builds the intuition Pranav needs to pressure-test experiment results rather than accept them at face value.",
+          "minutes": 20
+        }
+      ],
+      "assessmentTask": {
+        "type": "do",
+        "taskDescription": "Write a complete A/B test plan for removing the tip prompt step from Zomato's checkout flow — covering hypothesis, control variant, treatment variant, primary metric, 3 guardrail metrics, minimum detectable effect with justification, and estimated test duration with reasoning.",
+        "rawMaterial": "You are an APM at Zomato. Current checkout flow: (1) Review cart → (2) Select delivery address → (3) Tip prompt — users see a screen asking if they want to add a tip for the delivery partner; the default is 0, options are ₹10, ₹20, ₹30, or custom → (4) Select payment method → (5) Confirm and pay.\n\nData you have:\n- Overall checkout completion rate (users who reach Step 1 and complete Step 5): 58%\n- Drop-off specifically at the tip prompt screen (Step 3): 12% of users who reach Step 3 do not continue\n- Average orders per day on the platform: 1.8 million\n- 40% of users choose 'tip ₹0' (i.e., they go through the screen and add nothing)\n- Average delivery partner tip per completed order: ₹4.20\n- No legal or contractual requirement to show the tip prompt\n\nWrite a complete A/B test plan with these sections:\n1. HYPOTHESIS — in the format: 'By [change], we expect [primary metric] to [direction] by at least [minimum magnitude] because [mechanism].'\n2. CONTROL VARIANT — describe the experience\n3. TREATMENT VARIANT — describe the experience\n4. PRIMARY METRIC — name it, define it, explain why it is the right primary metric\n5. GUARDRAIL METRICS — list 3, each with a 1-sentence explanation of what it is watching for\n6. MINIMUM DETECTABLE EFFECT (MDE) — state the smallest improvement you would consider business-significant, and justify why you chose that number\n7. ESTIMATED DURATION — how many days will you run the test? Show your reasoning (consider traffic volume, weekly patterns, and minimum sample size).",
+        "outputFormat": "Seven clearly labelled sections (Hypothesis / Control / Treatment / Primary Metric / Guardrail Metrics / MDE / Duration). Each section: 2-5 sentences or a short structured list. The Hypothesis and Duration sections must include explicit reasoning, not just a number.",
+        "claudePrompt": "You are a senior PM reviewing my work on Day 10: A/B Testing and Experimentation.\n\nI studied today:\n- A/B test hypothesis structure: change + primary metric + expected direction and magnitude + mechanism\n- Guardrail metrics: metrics monitored to detect unintended harm from the experiment\n- Minimum detectable effect: the smallest change that would be business-significant, calculated before the experiment starts\n- How to communicate experiment results to stakeholders in business terms, not statistical terms\n\nReal world context I should apply:\nZomato checkout — removing the tip prompt screen. Current checkout completion: 58%. Drop-off at tip prompt: 12% of users who reach it. 1.8 million daily orders. Average delivery partner tip: ₹4.20 per completed order.\n\nMY TASK TODAY WAS: Write a complete 7-section A/B test plan for this experiment.\n\nHere is my work:\n[Pranav pastes his full A/B test plan here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation of why — especially check: is the hypothesis testable and specific? Are the guardrail metrics genuinely measuring harm or just replicating the primary metric? Is the MDE justified or arbitrary? Does the duration account for Zomato's weekly traffic pattern?]\n\nBLIND SPOTS:\n- [things I did not consider at all — e.g., the ethical and PR dimension of removing a delivery partner tip option; the impact on average order value if users who currently tip ₹10-30 stop tipping entirely; whether the experiment should segment by user type (first-time vs repeat) since tip prompt friction affects these groups differently]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about the delivery partner tipping context in India — unlike the US where tipping is expected and the amount is large, Indian food delivery tipping is voluntary and small, but delivery partner welfare is a visible and emotionally charged topic in Indian consumer discourse — removing the tip option entirely vs keeping it opt-in has a different public perception risk than in other markets]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Fluency with Data — [Needs Focus / On Track / Outperform]",
+        "minutes": 20
+      }
+    },
+    {
+      "day": 11,
+      "week": 2,
+      "theme": "Analytics tools, SQL verification, and cohort retention",
+      "competenciesCovered": [
+        "Fluency with Data"
+      ],
+      "objective": "Verify that a plain-English data request and a SQL query match, identify the discrepancy between them, extract 3 specific insights from a cohort retention table, and produce a Mixpanel funnel analysis with 2 experiment recommendations.",
+      "estimatedMinutes": 120,
+      "realWorldAnchor": {
+        "company": "Razorpay",
+        "example": "Razorpay's product team reportedly uses funnel analytics to identify exactly where merchants drop off during API integration — a PM reading the Mixpanel or Amplitude funnel can see whether the friction is in documentation, in the first API call, or in the test-to-live transition, and each diagnosis points to a completely different fix."
+      },
+      "teamContext": "Analytics tool fluency is the PM's interface with the Data team on a daily basis — a PM who can read a Mixpanel funnel, identify a cohort retention anomaly, and verify that a SQL query matches their data request compresses the time from 'I have a question' to 'I have an answer' from days to minutes.",
+      "tasks": [
+        {
+          "id": "d11t1",
+          "type": "read",
+          "title": "Product Analytics Tools: What PMs Need to Know — Product School",
+          "url": "https://productschool.com/blog/product-management/product-analytics-tools/",
+          "summary": "This article surveys the analytics tools a PM encounters in a modern product team — Mixpanel, Amplitude, Google Analytics, Looker, and custom dashboards — and explains what each is used for, what its strengths and limitations are, and what questions it can and cannot answer. For Pranav, this is the orientation layer before reading actual tool outputs in today's other tasks.",
+          "keyTakeaways": [
+            "Mixpanel and Amplitude are event-based analytics tools — they track specific user actions (taps, clicks, form submissions) rather than page views, making them better for product funnels than Google Analytics, which is optimised for content and marketing attribution",
+            "A PM's primary use of these tools is funnel analysis (where do users drop off?), retention analysis (do users come back after their first session?), and cohort comparison (do users acquired in January behave differently from users acquired in March?) — these three question types account for most of the analytical questions a PM asks weekly",
+            "The biggest PM mistake with analytics tools is over-relying on the tool's default dashboard — default dashboards show vanity metrics (total users, total sessions) not product health metrics (activation rate, week-1 retention, funnel completion rate). A PM who has not configured custom dashboards is flying blind"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d11t2",
+          "type": "read",
+          "title": "Cohort Analysis: The Most Useful Framework You're Probably Ignoring — Lenny's Newsletter",
+          "url": "https://www.lennysnewsletter.com/p/cohort-analysis",
+          "summary": "Lenny Rachitsky explains cohort analysis — grouping users by when they joined and tracking how each group behaves over time — as the single most underused PM analytical framework. The article shows how cohort retention tables reveal whether product changes improved retention for new users, whether certain acquisition channels produce better-retaining users, and where in the retention curve the biggest drop-off occurs.",
+          "keyTakeaways": [
+            "A retention curve has three characteristic regions: a sharp drop in the first week (activation friction), a gradual decline through weeks 2-8 (habituation), and a flat tail (the retained core). Improvements in each region require completely different interventions — onboarding changes improve the early drop, engagement features improve the middle, and core value delivery improvements flatten the tail",
+            "Comparing cohorts over time is how a PM measures whether product changes are working: if the March cohort shows better week-4 retention than the January cohort, and a significant product change shipped in February, that is evidence (not proof) that the change helped",
+            "For Indian consumer apps, cohort retention is heavily affected by India-specific cycles: monthly salary credit dates, festive season spikes, and cricket match schedules all create periodic peaks that can make a cohort look artificially strong or weak if you do not account for the calendar"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d11t3",
+          "type": "search",
+          "keyword": "Razorpay merchant analytics product insights funnel drop-off India PM analytics tools 2022 2023",
+          "whyItMatters": "Razorpay's product team works with a user base of merchants (businesses integrating payment APIs) rather than end consumers — their analytics questions are about merchant activation, integration completion, and recurring payment volume, not about individual purchase funnels. Searching for how Razorpay's PMs think about analytics gives Pranav exposure to B2B product analytics, which is structurally different from B2C and important to understand as a contrast.",
+          "whatToLearn": [
+            "How B2B product analytics (Razorpay's merchant funnel) differs from B2C consumer analytics (Zepto's grocery funnel) — the key difference is that B2B users are slower to activate, have longer retention tails, and lose much higher value per churned user",
+            "What the key funnel metrics look like for a payments API product — API key generation, first test transaction, first live transaction, and recurring monthly volume — and how a PM diagnoses a drop at each stage"
+          ],
+          "minutes": 15
+        },
+        {
+          "id": "d11t4",
+          "type": "activity",
+          "promptTitle": "SQL parallel — verify whether a plain-English request and a SQL query match",
+          "claudePrompt": "You are a senior data analyst helping me practice the PM skill of verifying whether a plain-English data request and a SQL query actually match — a daily task when working with analysts.\n\nToday I studied:\n- Analytics tools: Mixpanel, Amplitude, custom SQL dashboards — what each is used for\n- Cohort analysis: grouping users by join date and tracking behaviour over time\n- How to read a retention curve and identify where the biggest intervention opportunity is\n\nReal world context: I am an APM at Zepto. I asked my analyst for a specific data pull. She sent back a SQL query. My job is to verify it matches what I asked for before she runs it on production data — because running the wrong query wastes her time and delays my analysis.\n\nMY PLAIN-ENGLISH REQUEST:\n'Give me the number of new users who placed their first order in each of the last 6 months, broken down by the city they ordered from. Only include users who placed the order on Android. Sort by month, then by city alphabetically.'\n\nTHE SQL QUERY THE ANALYST SENT:\n```sql\nSELECT\n  DATE_FORMAT(first_order_date, '%Y-%m')  AS cohort_month,\n  delivery_city                           AS city,\n  COUNT(DISTINCT user_id)                 AS new_buyers\nFROM orders\nWHERE platform = 'android'\n  AND first_order_date >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)\nGROUP BY DATE_FORMAT(first_order_date, '%Y-%m'), delivery_city\nORDER BY cohort_month ASC, city ASC;\n```\n\nYour role today: Act as the analyst. Answer my verification questions honestly. If I say the query matches when it does not, correct me. If I identify a discrepancy that does not exist, clarify.\n\nActivity — 3 steps:\nStep 1: I compare the plain-English request to the SQL line by line and state whether they match. I specifically identify any part of the SQL that does NOT match what I asked for, or any part of my request that is NOT reflected in the SQL.\nStep 2: I write the corrected SQL line (just the one line that needs to change) to fix the discrepancy.\nStep 3: I identify one thing the SQL assumes that I did not specify in my plain-English request — something the analyst had to decide herself when writing the query.\n\nAfter all 3 steps, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight about why city-level new buyer cohorts matter specifically for Zepto's expansion strategy — a national cohort table hides whether Mumbai retention is strong and Nagpur retention is weak, which is exactly the signal a PM needs when deciding whether to expand dark stores to a new city]\nCOACHING NOTE: [one specific tip for Pranav on verifying SQL queries as a PM — what to check first, what to trust the analyst on]\n\nBegin with: 'Good. Go through the SQL line by line. Start with the SELECT clause — does it return exactly the columns I asked for? Then move to the WHERE clause. Tell me if everything matches, and call out any discrepancy you find.'",
+          "minutes": 20
+        },
+        {
+          "id": "d11t5",
+          "type": "activity",
+          "promptTitle": "Excel/Sheets parallel — read a cohort retention table and extract insights",
+          "claudePrompt": "You are a senior PM helping me practice reading a cohort retention table — a core PM skill for understanding whether product changes are improving user retention over time.\n\nToday I also studied:\n- Cohort retention curves: early drop (activation), gradual decline (habituation), flat tail (retained core)\n- How cohort comparisons reveal the impact of product changes over time\n- India-specific retention patterns: salary cycles, festive seasons, cricket match schedules distort weekly retention\n\nReal world context: I am an APM at CRED. My analyst shared this 6-month cohort retention table showing the percentage of each monthly cohort that is still active (made at least one bill payment) in each subsequent month.\n\nTHE COHORT TABLE:\n\n| Cohort | M0 | M1 | M2 | M3 | M4 | M5 |\n|---|---|---|---|---|---|---|\n| Jan 2024 | 100% | 61% | 44% | 38% | 35% | 33% |\n| Feb 2024 | 100% | 58% | 40% | 34% | 31% | — |\n| Mar 2024 | 100% | 63% | 47% | 41% | — | — |\n| Apr 2024 | 100% | 57% | 39% | — | — | — |\n| May 2024 | 100% | 52% | — | — | — | — |\n| Jun 2024 | 100% | — | — | — | — | — |\n\nNote: M0 = month of acquisition. M1 = one month later. '—' = data not yet available.\n\nYour role today: Act as the analyst presenting this table. When I extract an insight, ask me: 'So what?' — push me to connect every data observation to a product action, not just a data description. Do not let me say 'March cohort has good retention' without asking 'compared to what, and what product decision does that support?'\n\nActivity — 3 steps:\nStep 1: I identify which cohort has the best retention and explain why I chose that cohort as 'best' (what metric or comparison did I use?).\nStep 2: I identify where the biggest retention drop happens across all cohorts and state what product intervention this points to.\nStep 3: I identify one cohort that looks weaker than the others and form a hypothesis for why — naming one specific product or external cause.\n\nAfter all 3 steps, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight — May 2024 cohort's notably lower M1 retention (52% vs 57-63% for other cohorts) may be partially explained by summer seasonality in India: May is exam season and early summer, a period of reduced discretionary spending when users acquired via promotion-heavy campaigns may be lower-intent than usual]\nCOACHING NOTE: [one specific tip for reading cohort tables quickly — what the eye should go to first]\n\nBegin with: 'Good. You have the table in front of you. Step 1: which cohort has the best retention? Before you answer, tell me: best on which dimension? M1 retention? Long-term M4-M5 retention? Or overall curve shape? Define your criterion first, then pick the cohort.'",
+          "minutes": 20
+        }
+      ],
+      "bonusTasks": [
+        {
+          "id": "d11b1",
+          "type": "search",
+          "title": "Amplitude vs Mixpanel — PM perspective on Indian startups",
+          "keyword": "Mixpanel vs Amplitude product analytics comparison Indian startup PM team 2023 2024 which tool",
+          "summary": "Most Indian product teams use either Mixpanel or Amplitude as their primary event analytics tool — searching for how PMs at Indian startups compare and choose between them gives Pranav practical context for the tools he will encounter when he joins a product team. Look for engineering or PM blog posts from Indian companies, not generic tool comparison listicles.",
+          "minutes": 20
+        }
+      ],
+      "assessmentTask": {
+        "type": "do",
+        "taskDescription": "Read a Mixpanel-style funnel for a CRED user journey, extract 3 specific insights (each tied to a data observation), and recommend 2 experiments — each with a hypothesis, the funnel data that motivates it, and a success metric.",
+        "rawMaterial": "You are an APM at CRED. Your analyst shares the following Mixpanel funnel for the CRED bill payment user journey. This funnel tracks users from app open to completed bill payment over a 30-day window.\n\nFUNNEL DATA (% of users who reach each step, out of all users who opened the app this month):\n\nStep 1 — App Open → Bill Payment screen: 72% reach this step\nStep 2 — Bill Payment screen → Credit card selected: 61% reach this step\nStep 3 — Credit card selected → Amount entered: 54% reach this step\nStep 4 — Amount entered → Payment confirmation screen: 41% reach this step\nStep 5 — Payment confirmation screen → Payment completed: 38% reach this step\n\nAdditional context:\n- Total users who opened the app this month: 1.2 million\n- This funnel is for the primary bill payment flow (not CRED Pay, not CRED Store)\n- The drop from Step 3 to Step 4 (amount entered to payment confirmation) increased from 10% last month to 13% this month\n- Engineering did not ship any changes to the payment flow last month\n\nYour deliverables:\n\nINSIGHTS: Extract exactly 3 specific insights from this funnel. Each insight must: (a) reference specific numbers from the data, (b) say what the number means in plain English, and (c) state what product question it raises.\n\nEXPERIMENTS: Recommend exactly 2 experiments. For each experiment: state the hypothesis (in the format: 'By [change] we expect [metric] to [direction] by at least [magnitude] because [mechanism]'), state which funnel drop motivated this experiment, and state the primary success metric.",
+        "outputFormat": "INSIGHTS: A numbered list of 3 items, each with (a) data observation, (b) plain-English meaning, (c) product question it raises. EXPERIMENTS: A numbered list of 2 items, each with hypothesis / funnel motivation / success metric.",
+        "claudePrompt": "You are a senior PM reviewing my work on Day 11: Analytics Tools, SQL Verification, and Cohort Retention.\n\nI studied today:\n- Product analytics tools: Mixpanel, Amplitude — event-based, used for funnel and retention analysis\n- Cohort analysis: comparing user groups by acquisition date to measure retention curve shape\n- SQL verification: checking that a plain-English data request and a SQL query match before the query runs\n- India-specific cohort patterns: salary cycles, seasonality, and festive seasons distort retention curves\n\nReal world context I should apply:\nCRED bill payment funnel — 1.2 million monthly active users. Drop from Step 3 to Step 4 increased from 10% to 13% last month with no engineering changes. CRED's core product loop depends on completing this funnel.\n\nMY TASK TODAY WAS: Extract 3 specific funnel insights and recommend 2 experiments with hypotheses and success metrics.\n\nHere is my work:\n[Pranav pastes his 3 insights and 2 experiment recommendations here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation of why — especially check: are the insights data-specific or generic? Do the experiment hypotheses name a specific mechanism? Are the success metrics measurable or vague?]\n\nBLIND SPOTS:\n- [things I did not consider at all — e.g., the Step 3 to Step 4 drop increase (10% to 13%) with no engineering changes is the most interesting signal in the data and often goes unaddressed; the absolute number of users lost at each step matters as much as the percentage; or the possibility that the Step 2 drop (credit card selection) reflects users who have no credit card linked, which is a very different problem from friction]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about CRED's specific funnel context — CRED users pay their credit card bills once a month on or before the due date, which means the entire funnel compresses into a 3-5 day window around each user's bill due date. A funnel measured over a full 30-day window will look worse than a funnel measured in the 5-day window before due dates — this is a measurement design issue specific to bill payment products]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Fluency with Data — [Needs Focus / On Track / Outperform]",
+        "minutes": 20
+      }
+    },
+    {
+      "day": 12,
+      "week": 2,
+      "theme": "PRDs, user stories, and Figma feedback",
+      "competenciesCovered": [
+        "Feature Specification",
+        "Product Delivery"
+      ],
+      "objective": "Write a mini PRD for a specific Zepto cart feature — including a scoped problem statement, 3 user stories with acceptance criteria, success metrics, out-of-scope items, and one engineering edge case — and write 3 structured Figma-format PM comments on a described checkout screen.",
+      "estimatedMinutes": 120,
+      "realWorldAnchor": {
+        "company": "Zomato",
+        "example": "Zomato's group ordering feature — where multiple people can add items to a shared cart before checkout — required a PRD that carefully specified the exact user stories for each participant type (the initiator vs the guest), the edge cases (what happens if a guest adds an out-of-stock item?), and the acceptance criteria that engineering used to confirm the feature was production-ready."
+      },
+      "teamContext": "PRDs and user stories are the PM's primary output for the Engineering team — a well-written PRD with clear acceptance criteria is what allows engineers to build autonomously without needing to interrupt the PM with questions. A Figma comment is the PM's primary output for the Design team — structured, actionable, and tied to a specific screen location.",
+      "tasks": [
+        {
+          "id": "d12t1",
+          "type": "read",
+          "title": "How to Write a Product Requirements Document (PRD) — Product School",
+          "url": "https://productschool.com/blog/product-management/product-requirements-document-prd/",
+          "summary": "This article walks through the structure and purpose of a PRD — the document that communicates what to build, for whom, and why, in enough detail that an engineer can scope and build it without constant PM involvement. For Pranav, who has consulting exposure to documentation, a PRD is a familiar structured document but with a different audience and purpose — it is optimised for engineering clarity, not stakeholder persuasion.",
+          "keyTakeaways": [
+            "A PRD is not a functional specification — it describes the user's goal and the business requirement, not the technical implementation. Engineers own the technical design; the PM owns the 'what' and 'why', and the engineer owns the 'how'",
+            "The most important section of a PRD is 'out of scope' — explicitly listing what will NOT be built in this version prevents scope creep during development and gives engineers permission to say no to late additions without escalating to the PM",
+            "Acceptance criteria are the PM's quality gate: they are testable conditions that, when all met, mean the feature is working as intended. Bad acceptance criteria ('the feature should work well') are untestable; good acceptance criteria ('when a user taps Save for Later, the item moves from the active cart to a Saved section within 500ms and a confirmation toast appears') are specific and verifiable"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d12t2",
+          "type": "read",
+          "title": "User Stories: The Complete Guide for Product Managers — Product School",
+          "url": "https://productschool.com/blog/product-management/user-stories/",
+          "summary": "This article explains how to write user stories — the 'As a [user], I want [goal], so that [benefit]' format — and how to attach acceptance criteria to each story so that engineering can verify completion without ambiguity. The article also covers story splitting (breaking large stories into testable increments) and the difference between user stories (what the user does) and technical tasks (how engineering implements it).",
+          "keyTakeaways": [
+            "A user story is not a feature description — it is a statement of user intent. 'As a daily Zepto user, I want to save items to a list so that I can reorder them quickly tomorrow' is a user story; 'Build a save-for-later button' is a feature request. The format forces the PM to specify who benefits and why, not just what to build",
+            "Acceptance criteria complete the user story by defining the boundary conditions: what must be true when the story is done? They should cover the happy path, at least one edge case, and one error state — a story with acceptance criteria only for the happy path will always have unresolved questions during engineering",
+            "In Indian product teams, user stories often need an additional dimension for vernacular and low-connectivity edge cases: 'As a user on a 2G connection in a Tier 2 city, I want the cart to load within 3 seconds even without images' is a valid user story that an Indian PM must write explicitly, because it will never appear in a generic user story template"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d12t3",
+          "type": "search",
+          "keyword": "product manager PRD template user stories acceptance criteria Indian startup Zepto Swiggy example 2023 2024",
+          "whyItMatters": "Searching for real PRD templates and user story examples used by Indian product teams gives Pranav a concrete reference point for what 'good' looks like at the companies he is preparing to join. Look for PM blogs, LinkedIn posts, or product teardowns that share actual PRD sections or user story formats — even partial examples are useful anchors.",
+          "whatToLearn": [
+            "What a typical PRD looks like at a fast-moving Indian consumer internet company — the format is usually leaner than a corporate spec document, favouring a 1-2 page structure with problem statement, user stories, metrics, and out-of-scope items over a 10-page technical specification",
+            "What acceptance criteria actually look like when written by experienced PMs at Indian product companies — specifically, how they handle edge cases for low-connectivity users, vernacular content, and payment-related states (pending, failed, refunded) which are more complex in Indian payment infrastructure than in Western markets"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d12t4",
+          "type": "activity",
+          "promptTitle": "Figma parallel — write 3 structured PM feedback comments on a Zepto cart screen",
+          "claudePrompt": "You are a senior PM helping me practice writing structured Figma feedback comments — the format a PM uses to give actionable design feedback that an engineer can implement without further clarification.\n\nToday I studied:\n- PRD structure: problem statement, user stories with acceptance criteria, out-of-scope items, edge cases\n- User story format: 'As a [user], I want [goal], so that [benefit]' — with acceptance criteria for happy path, edge case, and error state\n- How acceptance criteria must be testable, not aspirational\n\nReal world context: I am an APM at Zepto reviewing the cart screen design before it goes to engineering. The designer has shared a wireframe in Figma and asked for my feedback before the handoff.\n\nTHE WIREFRAME DESCRIPTION (treat this as if you are looking at the screen):\nZepto Android cart screen. Top of screen: delivery address showing '14, Koramangala 5th Block, Bangalore' with a small pencil icon next to it but no label saying what the icon does. Below the address: a list of 4 items, each showing the item name, quantity (with + and - tappable buttons), and item price. Below the item list: a horizontally scrolling row of 3 'You might also like' product suggestions with an Add button on each. Below that: a grey text field labelled 'Have a promo code?' with a 'Apply' button. At the bottom: a fixed footer bar showing 'Total: ₹487' on the left and a large green 'Place Order' button on the right. There is no delivery fee line item shown anywhere on the screen.\n\nFigma comment format — use EXACTLY this structure for each comment:\n[COMMENT N]\nLocation: [specific screen element or area]\nIssue: [what the problem is — describe it as a user would experience it]\nSuggestion: [specific, implementable change — one sentence]\nPriority: [P1 = blocks launch / P2 = should fix before launch / P3 = nice to have]\n\nYour role today: Act as the designer receiving my feedback. For each comment I write:\n- If the location is vague (e.g., 'the bottom area'), ask me to be more specific\n- If the issue is an opinion rather than a user problem (e.g., 'this looks cluttered'), ask me to reframe it as a user experience problem\n- If the suggestion is not implementable in one sentence, ask me to simplify it\n\nActivity:\nI write 3 Figma comments on this cart screen. You review each one before I write the next.\n\nAfter all 3 comments are reviewed, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight — the missing delivery fee line item on the Zepto cart screen is a significant trust issue in the Indian e-commerce context: Indian users, especially in Tier 2 cities, are highly sensitive to hidden charges appearing at checkout — 'surprise' delivery fees at the final payment step are a documented cause of cart abandonment in Indian consumer research]\nCOACHING NOTE: [one specific tip for writing PM Figma comments that engineers love vs comments that frustrate them]\n\nBegin with: 'Good. You have the wireframe in front of you. Write your first Figma comment. Use the exact format: [COMMENT 1] / Location / Issue / Suggestion / Priority. Pick the most important problem you see on this screen first.'",
+          "minutes": 35
+        }
+      ],
+      "bonusTasks": [
+        {
+          "id": "d12b1",
+          "type": "search",
+          "title": "PRD formats at top Indian product companies",
+          "keyword": "PRD product requirements document format Flipkart Meesho Razorpay product manager template India lean",
+          "summary": "Different Indian product companies use different PRD formats — some use Notion templates, some use Confluence, some use Google Docs with a standard section structure. Searching for how fast-moving Indian startups structure their PRDs gives Pranav real reference points before he writes his own in the assessment. Look for PM blog posts that share actual PRD templates or sections, not just articles about PRDs in the abstract.",
+          "minutes": 20
+        },
+        {
+          "id": "d12b2",
+          "type": "activity",
+          "promptTitle": "Redesign the Zepto cart screen for a Tier 2 non-English user",
+          "claudePrompt": "You are a senior PM helping me practice inclusive product design — specifically, thinking about how a screen designed for urban English-first users needs to change to work for a Tier 2 Hindi-speaking user.\n\nContext: I completed the core Figma feedback activity on the Zepto Android cart screen (described above). Now I want to think about how the same screen would need to change for a user who: uses Hindi as their primary language, has a 3G connection (average page load 2-4 seconds), uses a mid-range Redmi device, and is purchasing on Zepto for the first time.\n\nYour role today: Help me think through the changes systematically. When I describe a change, ask: 'Is this a language change, a UX change, a performance change, or a trust change?' — because each type of change requires a different kind of engineering work.\n\nActivity — I will describe the changes needed for each section of the screen:\n1. The delivery address section\n2. The item list with quantity selectors\n3. The promo code field\n4. The footer with price and Place Order button\n\nFor each section, I describe what I would change and why. You push back on any change that is not justified by the Tier 2 user's specific constraints, and add any change I missed.\n\nAfter all 4 sections, tell me: which single change would have the highest impact on conversion for this user, and why?\n\nBegin with: 'Let's start with the delivery address section at the top of the screen. What would you change about it for a first-time Tier 2 Hindi-speaking user — and what specific constraint drives that change?'",
+          "minutes": 25
+        }
+      ],
+      "assessmentTask": {
+        "type": "do",
+        "taskDescription": "Write a mini PRD for the Zepto 'Save for Later' feature — including a scoped problem statement, 3 user stories with acceptance criteria, 2 success metrics, a numbered out-of-scope list, and one edge case flagged to engineering.",
+        "rawMaterial": "You are an APM at Zepto. The feature: a 'Save for Later' option in the cart that lets users move items out of the active cart without deleting them, storing them in a separate 'Saved Items' section they can add back to the cart on a future visit.\n\nBackground you have:\n- From Day 3's user research: users who buy the same groceries daily find the cart frustrating because they have to re-add items every time. A Save for Later feature would let them maintain a persistent list of staples.\n- Cart abandonment rate: 34% of users who add items to cart do not complete the order\n- Users who abandon their cart: 41% return within 24 hours and place an order (with or without the same items)\n- The feature should work on Android first (iOS to follow in the next sprint)\n\nWrite the following sections:\n\n1. PROBLEM STATEMENT — one sentence in the format: 'When [user in specific situation] tries to [goal], they experience [pain], which results in [business impact].'\n\n2. USER STORIES — write exactly 3, each in the format: 'As a [specific user type], I want to [specific action], so that [specific benefit].' Each user story must have acceptance criteria covering: (a) the happy path, (b) one edge case, (c) one error state.\n\n3. SUCCESS METRICS — exactly 2 metrics in the format: 'We will know this worked if [measurable outcome] within [time period].'\n\n4. OUT OF SCOPE — a numbered list of at least 4 items that explicitly will NOT be built in this version.\n\n5. EDGE CASE FOR ENGINEERING — describe one specific edge case this feature creates that engineering needs to handle, in 2-3 sentences. Be specific: what is the scenario, what could go wrong, and what should the product do?",
+        "outputFormat": "Five clearly labelled sections. User stories section must show each story's format line followed by an indented list of acceptance criteria labelled (a), (b), (c). Out of scope must be a numbered list. Edge case must be a paragraph of 2-3 sentences.",
+        "claudePrompt": "You are a senior PM reviewing my work on Day 12: PRDs, User Stories, and Figma Feedback.\n\nI studied today:\n- PRD structure: problem statement, user stories, success metrics, out-of-scope, edge cases — each section serves a different audience and purpose\n- User story format: 'As a [user], I want [goal], so that [benefit]' — with acceptance criteria for happy path, edge case, and error state\n- Figma comment format: structured feedback that an engineer can implement without further clarification\n\nReal world context I should apply:\nZepto 'Save for Later' feature — addressing the daily grocery buyer who re-adds the same items every day. Cart abandonment: 34%. 41% of abandoners return within 24 hours.\n\nMY TASK TODAY WAS: Write a mini PRD with problem statement, 3 user stories with acceptance criteria, 2 success metrics, 4+ out-of-scope items, and 1 engineering edge case.\n\nHere is my work:\n[Pranav pastes his mini PRD here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation of why — especially check: are acceptance criteria actually testable? Is the problem statement using all 4 components? Are the out-of-scope items genuinely boundary-setting or just things that don't exist yet? Is the edge case specific enough for an engineer to act on?]\n\nBLIND SPOTS:\n- [things I did not consider at all — e.g., what happens to saved items when they go out of stock or are removed from the Zepto catalogue; whether saved items should sync across devices for the same user account; the interaction between saved items and the 'You might also like' recommendation row; or the data storage and query cost of maintaining a persistent saved-items list per user at Zepto's scale]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about the Indian grocery buying context that should inform the acceptance criteria — e.g., many Zepto users share a family account on one device, which means 'saved items' may be added by one family member and ordered by another — this multi-user household account pattern is common in India and often overlooked in user story writing]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Feature Specification — [Needs Focus / On Track / Outperform]",
+        "minutes": 20
+      }
+    },
+    {
+      "day": 13,
+      "week": 2,
+      "theme": "Roadmapping and stakeholder communication",
+      "competenciesCovered": [
+        "Product Vision + Roadmapping",
+        "Stakeholder Management",
+        "Managing Up"
+      ],
+      "objective": "Sort 10 features into a Now/Next/Later roadmap with written justification for each placement, and write a 1-page leadership update that communicates what shipped, what the data shows, and what is next — with a different emphasis for engineering vs leadership audiences.",
+      "estimatedMinutes": 120,
+      "realWorldAnchor": {
+        "company": "Razorpay",
+        "example": "Razorpay's product team reportedly communicates roadmap differently to three audiences: to sales they emphasise features that close deals; to engineering they emphasise technical dependencies and sequencing; to leadership they emphasise business outcomes and competitive positioning — the same roadmap, told three different ways, because each audience's question is different."
+      },
+      "teamContext": "Roadmapping and stakeholder communication span all four cross-functional relationships — Engineering needs sequencing and dependency clarity, Design needs feature intent and user context, Data needs success metrics upfront, and Leadership needs business outcome framing. A PM who communicates the same roadmap the same way to all four audiences loses each of them.",
+      "tasks": [
+        {
+          "id": "d13t1",
+          "type": "read",
+          "title": "How to Build a Product Roadmap — Product School",
+          "url": "https://productschool.com/blog/product-management/product-roadmap/",
+          "summary": "This article explains the purpose and structure of a product roadmap — what it is (a communication tool expressing product direction), what it is not (a project plan with fixed dates), and how to choose between roadmap formats (Now/Next/Later vs quarterly themes vs feature-based). For Pranav, understanding roadmap formats matters because the format chosen signals the company's product maturity — a date-based roadmap in a fast-moving startup is a commitment nobody can keep.",
+          "keyTakeaways": [
+            "A product roadmap is a communication tool, not a commitment document — its job is to align stakeholders on direction and priorities, not to promise delivery dates. PMs who treat their roadmap as a contract end up managing stakeholder expectations instead of building product",
+            "Now/Next/Later is the most honest roadmap format for fast-moving teams: 'Now' means actively being built this sprint, 'Next' means the next priority once Now is done, and 'Later' means acknowledged but not scheduled — it is deliberately timeline-free, which prevents the trap of over-committing to future work",
+            "The biggest roadmap anti-pattern is feature-stuffing: adding everything to the roadmap to satisfy stakeholders, which signals that nothing is truly prioritised. A roadmap with 4 items in Now, 6 in Next, and 3 in Later is credible; a roadmap with 20 items in Now is not a roadmap, it is a wish list"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d13t2",
+          "type": "read",
+          "title": "The Art of the Leadership Update: How PMs Communicate Up — First Round Review",
+          "url": "https://review.firstround.com/the-art-of-the-awkward-1-1",
+          "summary": "This First Round Review piece covers how strong PMs communicate with leadership — what information to lead with, how to frame uncertainty without losing credibility, and how to distinguish between a status update (what happened) and a leadership update (what it means and what we are doing about it). For Pranav, this is the writing skill that separates an APM who gets promoted from one who stays invisible.",
+          "keyTakeaways": [
+            "A leadership update has three parts: what happened (specific data, not impressions), what it means (the business implication of that data), and what we are doing next (a clear decision or recommendation, not a list of options). Leaders who receive 'here is what we are exploring' instead of 'here is what we are doing and why' lose confidence in the PM",
+            "Leading with data before context is the most common APM communication mistake — starting with 'KYC completion rate improved 12%' without first saying 'the KYC project we launched 2 weeks ago is now showing results' forces the reader to remember context they may not have",
+            "Managing up does not mean reporting up — it means giving your manager or leadership team the information they need to make a decision or unblock you, proactively, before they have to ask. A PM who waits to be asked is always one step behind"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d13t3",
+          "type": "search",
+          "keyword": "Razorpay product roadmap communication stakeholder engineering sales leadership India PM 2022 2023",
+          "whyItMatters": "Searching for how Razorpay's product team describes their roadmap communication internally — or how former Razorpay PMs describe it in interviews and blogs — gives Pranav a real reference point for a B2B product company where stakeholder alignment is structurally harder than at a B2C consumer app (because sales, engineering, and leadership all have different urgencies and different definitions of 'done').",
+          "whatToLearn": [
+            "How a B2B product company like Razorpay handles the tension between sales-driven roadmap requests ('the enterprise client needs this feature to sign the contract') and product-led priorities ('this feature serves 200 merchants vs the infrastructure work that serves 200,000') — this tension is more acute in Indian B2B companies where enterprise sales often drives disproportionate revenue",
+            "How PMs at Indian payment companies communicate regulatory roadmap items — features mandated by RBI, NPCI, or banking partners — to leadership alongside discretionary product improvements, and how they frame urgency differently for compliance vs growth work"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d13t4",
+          "type": "activity",
+          "promptTitle": "Excel/Sheets parallel — sort 10 Razorpay features into a Now/Next/Later roadmap",
+          "claudePrompt": "You are a senior PM helping me practice building a Now/Next/Later roadmap and justifying each placement — a core PM skill for communicating priorities to engineering, design, and leadership.\n\nToday I studied:\n- Product roadmap formats: Now/Next/Later is timeline-free and honest; date-based roadmaps in fast-moving teams create commitment traps\n- Roadmap as a communication tool: its job is to align stakeholders on direction, not to promise delivery\n- Leadership communication: what happened / what it means / what we are doing next\n\nReal world context: I am an APM at Razorpay. It is the start of Q3. Engineering capacity for the next 3 months: 8 engineers, 2 sprints per month. I need to build the Now/Next/Later roadmap for the merchant dashboard squad and present it to engineering and leadership this week.\n\nYour role today: Act as my PM lead reviewing my roadmap. Push back on any 'Now' placement that seems too ambitious given the team size. Challenge any 'Later' placement that looks like it is avoiding a difficult but important piece of work. Ask me for dependency reasoning — what must ship before something else can start?\n\nHere are the 10 features in the backlog:\n\n1. Auto-reconciliation dashboard — merchants can see all transactions matched against bank statements automatically (effort: high — 6 weeks)\n2. Smart retry for failed recurring payments — system automatically retries failed subscription charges at optimal times (effort: medium — 3 weeks)\n3. GST-compliant invoice auto-generation — Razorpay generates a GST invoice after every transaction automatically (effort: medium — 3 weeks)\n4. Multi-currency support — merchants can accept USD, EUR, GBP (effort: very high — 10 weeks)\n5. Payment link expiry notification — sender gets an SMS/email when a payment link they sent is about to expire (effort: low — 1 week)\n6. Dark mode for merchant dashboard (effort: low — 1.5 weeks)\n7. QR code offline payments — generate a QR code from the dashboard for in-person collection (effort: medium — 4 weeks)\n8. Bulk payout scheduling — schedule payouts to multiple vendors in a single batch (effort: high — 5 weeks)\n9. WhatsApp payment confirmation to customers — customer gets a WhatsApp message after paying (effort: low — 1 week, pending WhatsApp Business API approval)\n10. Analytics API for enterprise merchants — programmatic access to transaction and settlement data (effort: very high — 8 weeks)\n\nActivity:\nStep 1: I place all 10 features into Now / Next / Later with a 1-sentence justification for each placement.\nStep 2: You push back on at least 2 placements and ask me to defend them.\nStep 3: I revise any placements I agree need to change, and hold firm on any I disagree with — explaining why.\n\nAfter all 3 steps, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight — GST-compliant invoice generation and RBI-mandated features occupy a special position in Indian product roadmaps: they are not optional, not prioritised by user value, and not deprioritisable the way product features are — a PM who puts a regulatory compliance feature in 'Later' without checking if there is a compliance deadline will create a serious problem]\nCOACHING NOTE: [one specific improvement tip for Pranav on roadmap justification — what makes a 'Later' justification credible vs evasive]\n\nBegin with: 'Good. You have 8 engineers for 3 months — roughly 24 engineer-weeks of capacity. Now/Next/Later is your format. Place all 10 features and give me one sentence of justification for each. Start.'",
+          "minutes": 35
+        }
+      ],
+      "bonusTasks": [
+        {
+          "id": "d13b1",
+          "type": "search",
+          "title": "OKR vs roadmap — how they work together at Indian startups",
+          "keyword": "OKRs product roadmap alignment Indian startup PM quarterly planning Swiggy Razorpay how they connect 2023",
+          "summary": "OKRs (which appear in detail on Day 15) and roadmaps are often treated as separate documents — but in well-run product teams they are linked: each roadmap item should map to at least one OKR's key result. Searching for how Indian product teams connect these two planning tools gives Pranav context before he writes his first set of OKRs in two days.",
+          "minutes": 20
+        }
+      ],
+      "assessmentTask": {
+        "type": "do",
+        "taskDescription": "Write a 1-page leadership update for a PhonePe KYC project — covering what shipped, what the data shows, and what is next — and then rewrite the same update as a 5-bullet engineering team summary with different emphasis.",
+        "rawMaterial": "You are an APM at PhonePe. Two weeks ago your team shipped a new KYC flow redesign. Here is everything you know:\n\nWHAT SHIPPED:\n- New KYC flow with a 4-step progress bar (previously no progress indicator)\n- Plain-language instructions at each step in both English and Hindi\n- OTP expiry timer now visible on screen (previously hidden)\n- Bug fix: address input field was not saving correctly on Android 12 (fixed in this release)\n\nDATA (2 weeks post-launch, compared to 2 weeks pre-launch):\n- Overall KYC completion rate: 51% (was 39%) — improvement of 12 percentage points\n- Step 1 → Step 2 completion: 89% (was 81%)\n- Step 2 → Step 3 completion: 76% (was 71%)\n- Step 3 → Step 4 (Aadhaar OTP) completion: 61% (was 58%)\n- Step 4 → KYC complete: 94% (was 95%) — slight regression\n- Drop-off at Step 3 is still disproportionately high vs the industry benchmark of ~78% for this step\n- Support tickets related to KYC: down 34%\n\nWHAT IS NEXT:\n- Q3 plan: full rebuild of Step 3 (Aadhaar OTP) — adding an OTP not received flow, alternative verification via DigiLocker, and a retry with different number option\n- Estimated impact: if Step 3 completion reaches 78% (industry benchmark), overall KYC completion rate would reach ~62%\n- Engineering capacity needed: 4 engineers for 6 weeks\n\nWrite two documents:\n\nDOCUMENT 1 — LEADERSHIP UPDATE (1 page, ~300 words):\nAudience: CPO and Head of Growth. They care about business impact and what is coming next. They do not need technical detail. Structure: what shipped and what changed / what the data shows and what it means / what we are doing next and why.\n\nDOCUMENT 2 — ENGINEERING TEAM SUMMARY (5 bullets, ~100 words total):\nAudience: Engineering lead and 4 engineers on the squad. They care about what worked technically, what the data revealed about the product, and what the next build scope is. Different emphasis from Document 1 — highlight the Step 3 regression, the Step 4 slight regression, and the Q3 rebuild scope.",
+        "outputFormat": "Two clearly labelled sections: DOCUMENT 1 — LEADERSHIP UPDATE (prose, ~300 words, three labelled paragraphs: What Shipped / What the Data Shows / What Is Next). DOCUMENT 2 — ENGINEERING SUMMARY (5 bullet points, each 1-2 sentences, focused on technical and product detail).",
+        "claudePrompt": "You are a senior PM reviewing my work on Day 13: Roadmapping and Stakeholder Communication.\n\nI studied today:\n- Product roadmap formats: Now/Next/Later as a communication tool, not a commitment document\n- Leadership communication: what happened / what it means / what we are doing next — leading with data before context is a common mistake\n- Managing up: giving leadership the information they need to make a decision, proactively, before they ask\n\nReal world context I should apply:\nPhonePe KYC redesign — 2 weeks post-launch. Completion rate improved from 39% to 51%. Step 3 still the biggest drop-off. Step 4 showing a slight regression. Q3 plan is to rebuild Step 3.\n\nMY TASK TODAY WAS: Write a 1-page leadership update AND a 5-bullet engineering summary — same project, different audiences, different emphasis.\n\nHere is my work:\n[Pranav pastes his leadership update and engineering summary here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation — especially check: does the leadership update lead with context before data? Does it have a clear recommendation for what to approve or unblock? Does the engineering summary emphasise the Step 4 regression and the Q3 rebuild scope, which are the two things engineers care most about?]\n\nBLIND SPOTS:\n- [things I did not consider at all — e.g., explaining WHY Step 3 completion is still low despite the new progress bar; quantifying the business value of reaching the 62% completion target (how many more activated users per month?); or flagging the engineering capacity request (4 engineers for 6 weeks) with a business case rather than just a number]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about KYC communication in Indian fintech — KYC completion rate is a regulated metric that RBI monitors, which means 'KYC completion improved 12 points' is not just a product win but potentially a compliance improvement as well — a PM communicating to leadership should know whether to frame this as a product achievement or a regulatory risk reduction]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Managing Up — [Needs Focus / On Track / Outperform]",
+        "minutes": 20
+      }
+    },
+    {
+      "day": 14,
+      "week": 2,
+      "theme": "Week 2 integration — full execution simulation",
+      "competenciesCovered": [
+        "Fluency with Data",
+        "Feature Specification",
+        "Product Delivery",
+        "Business Outcome Ownership",
+        "Product Vision + Roadmapping",
+        "Stakeholder Management",
+        "Managing Up"
+      ],
+      "objective": "Produce five deliverables from a single dataset — RCA tree, root cause hypothesis, mini PRD, 3 OKRs, and a 5-line leadership update — demonstrating that all Week 2 analytical and communication tools work as a connected system.",
+      "estimatedMinutes": 120,
+      "realWorldAnchor": {
+        "company": "PhonePe",
+        "example": "PhonePe's international expansion ambitions (documented in public filings and press coverage) required the same connected workflow: diagnose the problem (why are Indian diaspora users not using existing UPI rails for cross-border payments?), scope the solution (what specifically needs to be built?), define success (what metrics indicate the product is working?), and communicate the plan (how does leadership approve the investment?)."
+      },
+      "teamContext": "Day 14 is a full integration day — all cross-functional relationships are live simultaneously. The data analyst provides the complaint logs and funnel data, the engineering team scopes the PRD, the design team needs the user story context, and leadership needs the OKRs and update. A PM who cannot hold all five deliverables together in one coherent narrative has not yet integrated Week 2's tools.",
+      "tasks": [
+        {
+          "id": "d14t1",
+          "type": "read",
+          "title": "The PM as the Connected Tissue of the Product Team — Reforge Blog",
+          "url": "https://www.reforge.com/blog/product-manager-skills",
+          "summary": "Re-read Ravi Mehta's Reforge competency post — but this time through the lens of Week 2. On Day 1 you read it to understand what PMs do. Today you read it to evaluate yourself: which of the six Week 2 competencies (Fluency with Data, Feature Specification, Product Delivery, Business Outcome Ownership, Product Vision + Roadmapping, Stakeholder Management) are you currently strongest in? Which are you most uncertain about? Use this re-read as a self-diagnostic before the integration case.",
+          "keyTakeaways": [
+            "The four Reforge pillars are not independent — a PM who is strong in Customer Insight but weak in Influencing People cannot ship the products they discover; a PM who is strong in Product Execution but weak in Product Strategy builds the right features for the wrong goals",
+            "Week 2's six competencies span three pillars: Fluency with Data and Feature Specification are Product Execution; Business Outcome Ownership is Product Strategy; Stakeholder Management and Managing Up are Influencing People — a balanced Week 2 APM is developing across all three pillars simultaneously",
+            "The most common Week 2 gap for APMs is Business Outcome Ownership — APMs who are strong at data analysis and writing specs often struggle to connect their work to the company's financial or strategic outcomes. The OKR framework (used in today's case) is the bridge between feature-level work and business-level outcomes"
+          ],
+          "minutes": 30
+        },
+        {
+          "id": "d14t2",
+          "type": "activity",
+          "promptTitle": "Guided warm-up — connect all 5 Week 2 tools to the LoanPe complaint spike before the full case",
+          "claudePrompt": "You are a senior PM helping me warm up before my Week 2 integration case, by quickly connecting each of Week 2's tools to the same problem scenario.\n\nThis week I learned:\n- Day 8: North Star metric + AARRR funnel\n- Day 9: Metric drop diagnosis + RCA\n- Day 10: A/B testing and experimentation\n- Day 11: Analytics tools + SQL verification + cohort retention\n- Day 12: PRDs, user stories, acceptance criteria, Figma feedback\n- Day 13: Roadmapping + stakeholder communication\n\nReal world context: LoanPe is a fictional Indian consumer lending app. This week, complaint volume spiked 4x. 40% of complaints mention 'EMI calculation wrong.' The repayment funnel shows a new drop at the confirmation step. A 30-day retention cohort shows users who saw the repayment screen are retaining at 31% vs 47% for users who did not.\n\nYour role today: Ask me one targeted question for each of the 5 Week 2 tools, to check that I can connect the tool to this specific scenario before I write the full case. One question at a time. Do not move on until I answer.\n\nThe 5 questions you will ask me (one at a time):\n1. Fluency with Data: 'Given the complaint volume spike and the cohort data, what is the single most important data check you would run first — and why that one before anything else?'\n2. Feature Specification: 'If your top hypothesis is confirmed, what is the minimum viable fix — the smallest change to the product that would address the root cause without a full rebuild?'\n3. Business Outcome Ownership: 'How would you quantify the business impact of this complaint spike in terms the CPO cares about — not complaint count, but revenue, retention, or LTV?'\n4. Product Vision + Roadmapping: 'Where does the fix sit in a Now/Next/Later roadmap — and what does that tell you about how urgent it really is?'\n5. Managing Up: 'What is the first sentence of your leadership update about this incident — before you have confirmed the root cause?'\n\nAfter all 5 questions, tell me which tool I applied most confidently and which one I should slow down on in the full assessment.\n\nBegin with question 1.",
+          "minutes": 30
+        }
+      ],
+      "bonusTasks": [
+        {
+          "id": "d14b1",
+          "type": "search",
+          "title": "Indian consumer lending app product challenges",
+          "keyword": "consumer lending app India product management EMI repayment UX challenges NBFC 2023 2024",
+          "summary": "Searching for how PMs at Indian consumer lending companies (KreditBee, MoneyTap, EarlySalary, Navi) describe their product challenges — specifically around repayment flows, EMI calculation transparency, and user trust — gives Pranav real context before the integration case. Look for product teardowns, PM interviews, or inc42/YourStory articles about the UX and product challenges in Indian consumer fintech lending.",
+          "minutes": 25
+        }
+      ],
+      "assessmentTask": {
+        "type": "do",
+        "taskDescription": "Given a complaint spike log, a funnel anomaly, and a retention cohort for a fictional Indian lending app, produce 5 deliverables in sequence: RCA tree, root cause hypothesis, mini PRD for the fix, 3 OKRs for next quarter, and a 5-line leadership update.",
+        "rawMaterial": "You are an APM at LoanPe — a fictional Indian consumer lending app that offers personal loans and buy-now-pay-later products. Users take a loan, receive the funds, and repay via EMIs through the app.\n\nCOMPLAINT LOG — THIS WEEK:\nTotal new complaints: 1,247 (vs weekly average of ~310 last month — a 4x spike)\nTop complaint themes:\n- 'EMI calculation wrong' — 498 complaints (40%): 'App shows my EMI as ₹3,420 but when I add up principal + interest it comes to ₹3,390. Where does the extra ₹30 go?' / 'The amount on the repayment screen changes after I tap Confirm. I have a screenshot.'\n- 'Payment not reflected' — 311 complaints (25%): EMI paid but app still shows it as due\n- 'Cannot see repayment schedule' — 186 complaints (15%): 'How do I see all my remaining EMIs in one place?'\n- Other — 252 complaints (20%)\n\nFUNNEL DATA — REPAYMENT FLOW (vs same period last month):\nStep 1: Repayment screen opened → Amount confirmed: 81% (was 89%) — drop of 8 points\nStep 2: Amount confirmed → Payment method selected: 76% (was 77%) — flat\nStep 3: Payment method selected → Payment completed: 91% (was 92%) — flat\nNote: Engineering shipped app version 4.1.2 nine days ago. No changelog was shared with the PM team.\n\nCOHORT DATA — 30-DAY RETENTION:\nUsers who visited the repayment screen in the last 30 days: 30-day retention = 31%\nUsers who did NOT visit the repayment screen in the last 30 days: 30-day retention = 47%\nNote: 'Retention' here means the user made at least one app open in the 30-day window after their first repayment.\n\nYour 5 deliverables:\n\n1. RCA TREE: A 2-level MECE tree of all possible causes for the complaint spike. Place each of the top 3 complaint themes (EMI calculation wrong / Payment not reflected / Cannot see repayment schedule) in the correct branch. Label where the funnel data and cohort data provide evidence.\n\n2. ROOT CAUSE HYPOTHESIS: One specific sentence naming what broke, when it broke, which screen it affects, and what the user-visible symptom is.\n\n3. MINI PRD: For the fix to your top hypothesis only. Include: problem statement (4-component format), 2 user stories with acceptance criteria (happy path + 1 edge case each), 2 success metrics, and 2 out-of-scope items.\n\n4. THREE OKRs: For the LoanPe product team next quarter. One Objective, three Key Results. The OKRs must address the trust and repayment experience problems revealed by this incident — not just fix the bug but improve the broader repayment experience.\n\n5. LEADERSHIP UPDATE (5 lines maximum): What happened / What we know so far / What we are doing immediately / What we are doing next quarter / What we need from leadership. Each line: one sentence.",
+        "outputFormat": "Five clearly labelled sections. RCA tree: indented structure with complaint theme placement labelled. Hypothesis: one sentence. Mini PRD: 4-component problem statement, then 2 user stories each with labelled acceptance criteria (a) happy path (b) edge case, then 2 success metrics, then 2 out-of-scope bullets. OKRs: one Objective statement followed by 3 Key Results formatted as 'KR1: [metric] from [baseline] to [target] by [date]'. Leadership update: 5 numbered lines, one sentence each.",
+        "claudePrompt": "You are a senior PM reviewing my Week 2 integration assessment for the LoanPe complaint spike case.\n\nI studied this week:\n- Day 8: North Star metric + AARRR funnel\n- Day 9: Metric drop diagnosis and root cause analysis\n- Day 10: A/B testing and experimentation design\n- Day 11: Analytics tools, SQL verification, cohort retention\n- Day 12: PRDs, user stories with acceptance criteria, Figma feedback\n- Day 13: Now/Next/Later roadmapping and stakeholder communication\n\nReal world context I should apply:\nLoanPe complaint spike — 4x volume, 40% about EMI calculation discrepancy, engineering shipped v4.1.2 nine days ago without sharing a changelog. Repayment funnel shows 8-point drop at Step 1. Retention for repayment screen visitors is 31% vs 47% for non-visitors.\n\nMY TASK TODAY WAS: Produce 5 deliverables — RCA tree, hypothesis, mini PRD, 3 OKRs, and 5-line leadership update.\n\nHere is my work:\n[Pranav pastes his full 5-section answer here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation — check: is the RCA tree MECE? Is the hypothesis specific and testable? Do acceptance criteria cover edge cases for Indian payment infrastructure (UPI payment pending states, net banking redirect failures)? Are the OKR key results measurable with a baseline and target? Does the leadership update avoid jargon and lead with impact?]\n\nBLIND SPOTS:\n- [things I did not consider at all — e.g., the v4.1.2 release nine days ago aligns almost exactly with the complaint spike start date, making it the most likely proximate cause before even reading the complaints; the 'payment not reflected' complaints suggest a separate reconciliation bug that may need its own PRD; or the fact that retention at 31% for repayment screen visitors likely means the repayment experience is directly causing early churn, which is a business-critical finding that deserves its own OKR]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about EMI calculation transparency in Indian consumer lending — RBI's Fair Practices Code for NBFCs requires lenders to disclose the complete cost of credit clearly before disbursement and at every repayment — a discrepancy between the displayed EMI and the actual charge is not just a UX problem but a potential regulatory compliance issue that the PM should flag explicitly in the leadership update]\n\nOPEN POINTS FOR NEXT WEEK:\n- [3 specific items from Week 2 that Pranav should revisit in Week 3 — name his weakest deliverable from this assessment and why]\n\nWEEK 2 SCORE: [X/10]\nREFORGE COMPETENCIES ASSESSED THIS WEEK:\n- Fluency with Data: [Needs Focus / On Track / Outperform]\n- Feature Specification: [Needs Focus / On Track / Outperform]\n- Business Outcome Ownership: [Needs Focus / On Track / Outperform]\n- Managing Up: [Needs Focus / On Track / Outperform]",
+        "minutes": 60
+      }
+    },
+    {
+      "day": 15,
+      "week": 3,
+      "theme": "Strategy, market sizing, OKRs, and TAM/SAM/SOM",
+      "competenciesCovered": [
+        "Strategic Impact",
+        "Business Outcome Ownership",
+        "Product Vision + Roadmapping"
+      ],
+      "objective": "Size a market using the top-down method with every assumption stated and a sanity check applied, write 3 OKRs with measurable key results for a specific PM context, and build a TAM/SAM/SOM model using provided assumptions.",
+      "estimatedMinutes": 120,
+      "realWorldAnchor": {
+        "company": "Zomato",
+        "example": "Zomato's reported evaluation of entering B2B catering — supplying corporate cafeterias and event catering at scale — required a structured market sizing exercise: how large is the Indian B2B food service market, how much of it is currently unorganised, what share could a tech-enabled platform realistically capture, and does the unit economics work at that scale? Publicly available analyst reports and Zomato's investor presentations reference this kind of strategic market analysis."
+      },
+      "teamContext": "Strategy and market sizing are the PM's primary interface with the Leadership and Finance teams — when a PM proposes entering a new market or building a new product line, leadership expects a structured size estimate with stated assumptions, not a confident-sounding number without working.",
+      "tasks": [
+        {
+          "id": "d15t1",
+          "type": "read",
+          "title": "Market Sizing for Product Managers — Product School",
+          "url": "https://productschool.com/blog/product-management/market-sizing/",
+          "summary": "This article explains the two market sizing methods used in PM interviews and strategy work — top-down (start with the total population and narrow down) and bottom-up (start with unit economics and scale up). For Pranav, market sizing is both an interview skill and a real PM skill: product decisions about whether to build for a new segment, enter a new city, or launch a new product line all require a structured size estimate.",
+          "keyTakeaways": [
+            "Top-down market sizing starts with the total addressable population and applies filters: total population → relevant demographic → users who need the product → users willing to pay → your realistic market share. Each filter must have a stated assumption — a number without an assumption is a guess, not an estimate",
+            "Bottom-up market sizing starts from transaction data: number of units sold × average price × frequency. For a product PM, bottom-up sizing is often more credible because it uses actual behaviour data rather than demographic assumptions — but it requires reliable data, which makes it harder to use for new markets",
+            "Sanity-checking a market size estimate means verifying it from a completely different angle: if top-down gives you a ₹50,000 crore market, check it against publicly available data — analyst reports, government statistics, competitor revenue disclosures. If the cross-check is wildly different, your assumptions need revisiting"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d15t2",
+          "type": "read",
+          "title": "OKRs for Product Teams: A Practical Guide — Product School",
+          "url": "https://productschool.com/blog/product-management/okrs-product-management/",
+          "summary": "This article explains how product teams use OKRs (Objectives and Key Results) to connect quarterly feature work to business outcomes — the Objective sets the direction (qualitative, inspirational), the Key Results define how you will measure success (quantitative, specific, time-bound). For Pranav, OKRs are the bridge between the roadmap (what we are building) and the strategy (why we are building it).",
+          "keyTakeaways": [
+            "An Objective answers 'what are we trying to achieve this quarter?' and must be qualitative and aspirational — 'Make Zepto the default grocery purchase for Bangalore households' is a good Objective; 'Increase orders' is not an Objective, it is a metric",
+            "Key Results answer 'how will we know we achieved the Objective?' and must be quantitative, specific, and time-bound — 'Increase week-4 retention from 28% to 38% by end of Q3' is a good Key Result; 'Improve retention' is not. Each OKR should have 2-4 Key Results, not one (one KR can be gamed) and not seven (seven KRs means no prioritisation)",
+            "The most common OKR mistake in product teams is writing Key Results that measure output (features shipped, experiments run) rather than outcome (retention improved, conversion increased) — output KRs encourage feature factories; outcome KRs encourage product thinking"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d15t3",
+          "type": "search",
+          "keyword": "Zomato B2B catering market entry strategy analysis India food service corporate 2022 2023",
+          "whyItMatters": "Zomato's evaluation of the B2B catering and corporate food service market is publicly referenced in analyst notes and investor presentations — searching for analysis of this strategic move gives Pranav a real example of how a consumer internet company evaluates a new market adjacency, including the market size reasoning, the competitive landscape, and the unit economics questions that need answers before committing.",
+          "whatToLearn": [
+            "How Zomato's leadership reportedly thought about the B2B catering opportunity — specifically, how the market size estimate (Indian B2B food service is a large, mostly unorganised market) was weighed against the operational complexity of serving institutional clients vs individual consumers",
+            "What the strategic arguments for and against the move were — understanding both sides of a strategic debate is more valuable than knowing the outcome, because the same analytical structure applies to any new market entry question in a PM interview"
+          ],
+          "minutes": 15
+        },
+        {
+          "id": "d15t4",
+          "type": "activity",
+          "promptTitle": "Excel/Sheets parallel — build a TAM/SAM/SOM model for Indian quick commerce",
+          "claudePrompt": "You are a senior PM helping me practice building a TAM/SAM/SOM market sizing model — a core skill for product strategy presentations and PM interviews.\n\nToday I studied:\n- Top-down market sizing: population → relevant demographic → willing to pay → realistic share\n- Bottom-up market sizing: units × price × frequency\n- Sanity-checking: verifying your estimate from a completely different angle\n- OKRs: connecting quarterly feature work to business outcomes\n\nReal world context: I am an APM preparing a market sizing model for Indian quick commerce (10-minute grocery and essentials delivery). My PM lead has asked me to build a TAM/SAM/SOM model to support a strategic recommendation about whether to expand to 15 new Tier 2 cities.\n\nYour role today: Act as the PM lead reviewing my model. Challenge every assumption I state. If I give a number without a source or reasoning, ask 'where does that come from?' If my SAM is suspiciously close to my TAM, ask me to justify the filter.\n\nHere are the assumptions to work with (provided by the strategy team):\n- India total population: 1.4 billion\n- Urban population (cities with population > 100,000): ~500 million people, ~120 million urban households\n- Households with monthly income > ₹40,000 (the approximate quick commerce core user segment): ~30 million households\n- Smartphone penetration in this segment: ~95%\n- Current quick commerce service availability (cities where dark stores exist today): covers approximately 35 million of the 30M target households\n- Average monthly quick commerce spend per active household: ₹1,600\n- Current penetration rate of quick commerce among serviceable households: ~22%\n- Realistic 3-year market share for a single player (in cities where they operate): ~30-35%\n\nActivity:\nStep 1: I define TAM (Total Addressable Market) — all households that could use quick commerce — and calculate the annual revenue figure using the assumptions.\nStep 2: I define SAM (Serviceable Addressable Market) — households in cities where quick commerce infrastructure exists today.\nStep 3: I define SOM (Serviceable Obtainable Market) — what a single player can realistically capture in 3 years.\nStep 4: I sanity-check my SOM against one public data point (Blinkit, Zepto, or Swiggy Instamart revenue or GMV from any public filing or analyst estimate).\n\nAfter all 4 steps, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight — the ₹40,000 monthly income threshold used for the TAM filter is a rough proxy for the quick commerce user segment, but in India this threshold varies significantly by city: a household earning ₹40,000 in Tier 2 city X has very different purchasing power and delivery willingness than one in Mumbai — Tier 2 expansion changes the segment definition, not just the geography]\nCOACHING NOTE: [one specific tip on presenting TAM/SAM/SOM to leadership — what they always push back on]\n\nBegin with: 'Start with TAM. Using the assumptions provided, what is your definition of the Total Addressable Market — and what is the annual revenue figure? Show your working step by step.'",
+          "minutes": 20
+        },
+        {
+          "id": "d15t5",
+          "type": "activity",
+          "promptTitle": "OKR thread — write 3 OKRs for a Zepto APM focused on activation rate",
+          "claudePrompt": "You are a senior PM helping me practice writing OKRs that connect product feature work to business outcomes — not output OKRs (features shipped) but outcome OKRs (user behaviour changed).\n\nToday I studied:\n- OKR structure: Objective (qualitative, aspirational direction) + Key Results (quantitative, specific, time-bound outcomes)\n- The difference between output KRs ('ship the reorder button') and outcome KRs ('increase repeat purchase rate from 34% to 48%')\n- How OKRs connect roadmap items to strategy\n\nReal world context: I am an APM at Zepto, focused on the activation squad. 'Activation' for Zepto means: a new user who installs the app and completes their first order within 7 days. Current activation rate: 31% of new installs complete a first order within 7 days. The squad's Q3 focus is improving this rate.\n\nYour role today: Review my 3 OKRs. Push back if the Objective is not aspirational enough, if any Key Result is measuring output rather than outcome, if a Key Result is not time-bound, or if the 3 Key Results together are not sufficient to achieve the Objective.\n\nActivity:\nStep 1: I write 1 Objective for the Zepto activation squad this quarter.\nStep 2: I write 3 Key Results that would prove we achieved the Objective. For each, I state: what we are measuring, the baseline, the target, and the deadline.\nStep 3: You push back on at least one KR and I revise or defend it.\n\nAfter all 3 steps, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight — Zepto's activation rate in India is shaped by a specific behavioural barrier that Western quick commerce companies do not face: many first-time Zepto users already have a kirana store relationship they trust — the activation problem is partly a trust problem, not just a friction problem. OKRs that only target funnel metrics will miss the trust dimension]\nCOACHING NOTE: [one specific improvement tip for writing Key Results that are ambitious but credible]\n\nBegin with: 'Write your Objective first. Remember: it should be qualitative and aspirational — it should make the team excited, not just informed. What is the Zepto activation squad trying to achieve this quarter in one sentence?'",
+          "minutes": 20
+        }
+      ],
+      "bonusTasks": [
+        {
+          "id": "d15b1",
+          "type": "search",
+          "title": "Indian quick commerce market size public estimates",
+          "keyword": "Indian quick commerce market size Zepto Blinkit Swiggy Instamart GMV revenue analyst estimate 2023 2024 Redseer Bain",
+          "summary": "Searching for analyst estimates of the Indian quick commerce market — from firms like Redseer, Bain, or KPMG, or from public investor filings from Zomato (which owns Blinkit) — gives Pranav real numbers to use as a sanity check on the TAM/SAM/SOM model he built in today's activity. This is exactly how a PM validates a market sizing model: compare your bottom-up estimate to a credible third-party top-down estimate.",
+          "minutes": 20
+        }
+      ],
+      "assessmentTask": {
+        "type": "do",
+        "taskDescription": "Size the Indian edtech market for working professionals (not students) using the top-down method with every assumption stated, apply a sanity check, and write 3 OKRs for a Zepto APM focused on improving activation rate this quarter.",
+        "rawMaterial": "PART 1 — MARKET SIZING:\nSize the Indian edtech market for working professionals aged 22-45 who are learning new skills for career advancement (exclude K-12, school tuition, and competitive exam prep).\n\nUse the top-down method. You may use these anchor numbers as starting assumptions (adjust if you have better reasoning):\n- India workforce (employed adults aged 22-45): approximately 280 million people\n- Proportion with internet access and smartphone: approximately 65%\n- Proportion in roles where upskilling is relevant and incentivised: approximately 35% of the internet-connected workforce\n- Proportion willing to pay for structured online learning (vs free YouTube): approximately 20% of the relevant workforce\n- Average annual spend per paying learner: approximately ₹8,000-12,000 per year\n\nShow every step. State every assumption. At the end, apply a sanity check: find one public reference (an analyst report, a company disclosure, or a news article) that gives a different estimate for the same or an adjacent market, and state whether your estimate is consistent with it or not.\n\nPART 2 — OKRs:\nYou are an APM at Zepto on the activation squad. Current state:\n- Activation rate (new installs completing first order within 7 days): 31%\n- Primary drop-off: 48% of new installs never even add an item to cart\n- Secondary drop-off: of users who add to cart, 41% do not complete checkout\n- Top stated reason from user interviews: 'I wanted to check prices but wasn't ready to order yet'\n\nWrite 1 Objective and 3 Key Results for Q3. OKR format:\nObjective: [one aspirational sentence]\nKR1: [metric] from [baseline] to [target] by [end of Q3]\nKR2: [metric] from [baseline] to [target] by [end of Q3]\nKR3: [metric] from [baseline] to [target] by [end of Q3]",
+        "outputFormat": "PART 1: A numbered list showing each step of the top-down calculation with the assumption labelled at each step. Final answer in ₹ crore. Sanity check: one paragraph referencing a public source and stating whether your estimate is consistent. PART 2: One Objective sentence, then KR1/KR2/KR3 each on its own line in the specified format.",
+        "claudePrompt": "You are a senior PM reviewing my work on Day 15: Strategy, Market Sizing, OKRs, and TAM/SAM/SOM.\n\nI studied today:\n- Top-down market sizing: filter from total population to realistic market share, stating every assumption\n- Sanity-checking: cross-referencing your estimate against a public data point from a different angle\n- OKR structure: Objective (aspirational, qualitative) + Key Results (quantitative, specific, time-bound, outcome-focused)\n- The difference between output KRs (features shipped) and outcome KRs (user behaviour changed)\n\nReal world context I should apply:\nIndian edtech market for working professionals — a large, fragmented, and rapidly evolving market where credibility of the sizing depends entirely on the quality of the assumptions. Zepto activation OKRs — a squad whose core problem is that nearly half of new users never even add an item to cart.\n\nMY TASK TODAY WAS: Size the Indian working-professional edtech market top-down with sanity check, and write 3 OKRs for the Zepto activation squad.\n\nHere is my work:\n[Pranav pastes his market sizing calculation and OKRs here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation — check: is each market sizing assumption stated and justified? Does the sanity check use an actual public reference, not a made-up number? Are the OKR Key Results outcome-focused, time-bound, and ambitious but credible given the current baselines?]\n\nBLIND SPOTS:\n- [things I did not consider at all — e.g., the working-professional edtech market has a structural difference from the student market: the buyer and the user are often different (employer pays, employee learns), which changes both willingness-to-pay assumptions and the realistic paying-user percentage; or that Zepto's KR for cart add rate and checkout completion rate are measuring two different drop-off points that need two different interventions]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about the Indian working-professional edtech market specifically — the market is dominated by upskilling for IT/tech roles (largely because Indian IT services companies pay for certifications), which means a 'working professionals' TAM that does not account for sector skew will overestimate the addressable market for non-tech skills like design, marketing, or product management]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Strategic Impact — [Needs Focus / On Track / Outperform]",
+        "minutes": 20
+      }
+    },
+    {
+      "day": 16,
+      "week": 3,
+      "theme": "Indian product landscape deep dive",
+      "competenciesCovered": [
+        "Strategic Impact",
+        "Business Outcome Ownership",
+        "Managing Up"
+      ],
+      "objective": "Compare two Indian product companies across 5 strategic dimensions using a structured framework, and make one specific product recommendation for one of them — supported by user, business, and competitive reasoning.",
+      "estimatedMinutes": 120,
+      "realWorldAnchor": {
+        "company": "Swiggy vs Zomato vs Blinkit",
+        "example": "Swiggy, Zomato, and Blinkit operate in overlapping markets but have made fundamentally different bets: Swiggy built horizontal breadth (food + Instamart + Genie), Zomato acquired Blinkit to own the quick commerce vertical outright, and Blinkit (pre-acquisition) focused on supply chain depth in a smaller number of cities — understanding why each company made different choices is a core PM skill for anyone preparing to join the Indian consumer internet space."
+      },
+      "teamContext": "Deep knowledge of the Indian product landscape is the PM's primary input to the Managing Up and Strategic Impact competencies — a PM who cannot articulate how their company is positioned relative to competitors cannot make a credible strategic recommendation to leadership, because leadership is always thinking about competitive context even when feature discussions are tactical.",
+      "tasks": [
+        {
+          "id": "d16t1",
+          "type": "read",
+          "title": "How to Run a Competitive Analysis as a Product Manager — Product School",
+          "url": "https://productschool.com/blog/product-management/competitive-analysis/",
+          "summary": "This article covers the structured approach to competitive analysis for PMs — what dimensions to compare (user segment, core value prop, business model, growth lever, product differentiators), how to distinguish between direct competitors (same user, same job) and indirect competitors (same job, different solution), and how to translate competitive insights into product decisions rather than just observation. For Pranav, competitive analysis is both an interview skill and a daily PM tool.",
+          "keyTakeaways": [
+            "Competitive analysis is not a feature comparison table — it is a strategic map that answers: who is each company building for, what job are they solving, how do they make money, and what would it take for a user to switch from them to us (or from us to them)?",
+            "The most useful competitive analysis for a PM is not 'they have this feature and we don't' but 'their product makes a fundamentally different bet about user behaviour — here is why, and here is what that means for our roadmap'",
+            "In Indian consumer internet, the most important competitive dimension is often unit economics at scale — two companies can have similar features but completely different cost structures, and the one with the better unit economics will win a feature war even if the other has a temporarily better product"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d16t2",
+          "type": "read",
+          "title": "The Indian Consumer Internet Landscape: What Every PM Should Know — Inc42",
+          "url": "https://inc42.com/buzz/indias-internet-economy/",
+          "summary": "Inc42's coverage of India's internet economy provides the market context that every PM working in or preparing to join an Indian product company needs — which segments are growing, which are consolidating, what the regulatory environment looks like, and how Indian consumer behaviour differs from Western benchmarks. This is Pranav's reference read for thinking about companies like Swiggy, Zomato, CRED, PhonePe, and Razorpay as parts of a connected ecosystem rather than isolated products.",
+          "keyTakeaways": [
+            "Indian consumer internet is driven by three structural forces that shape every product decision: the scale of the next 500 million internet users coming from Tier 2 and Tier 3 cities, the dominance of UPI as a payment rail that changed the economics of every fintech product, and the regulatory environment (RBI, TRAI, IT Act) that creates both constraints and moats",
+            "The lines between Indian consumer internet categories are blurring: Swiggy is a food company that does quick commerce; PhonePe is a payments company that does insurance and wealth management; CRED is a credit card bill payments company that does luxury e-commerce. Every major Indian consumer app is expanding into adjacent categories, which means every PM must understand the competitive threat from unexpected directions",
+            "Valuation and funding cycles in Indian consumer internet directly affect product roadmap priorities — when capital is cheap (2020-2021), companies expand features and geographies aggressively; when capital tightens (2022-2023), the focus shifts to unit economics and retention over growth, and PMs need to reorient their roadmap priorities accordingly"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d16t3",
+          "type": "search",
+          "keyword": "Swiggy vs Zomato vs Blinkit strategic difference product bet quick commerce food delivery India 2023 2024",
+          "whyItMatters": "The Swiggy/Zomato/Blinkit triangle is the most-discussed strategic case study in the Indian product and startup community — understanding the different bets each made (Swiggy's horizontal breadth, Zomato's Blinkit acquisition, Blinkit's supply chain depth) from public sources gives Pranav a living case study in product strategy that he can use in interviews, conversations with hiring managers, and in his own product thinking.",
+          "whatToLearn": [
+            "What the Blinkit acquisition rationale was from Zomato's perspective — how Zomato's management publicly explained why owning quick commerce infrastructure was strategically necessary rather than building it organically, and what that says about how they viewed the long-term competitive dynamics of Indian food and grocery delivery",
+            "How Swiggy's Instamart-within-Swiggy approach differs from the Blinkit standalone app approach — and what the product implications are for user acquisition, retention, and cross-sell that a PM would need to consider if working at either company"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d16t4",
+          "type": "activity",
+          "promptTitle": "Deep-dive competitive analysis — CRED vs PhonePe across 5 strategic dimensions",
+          "claudePrompt": "You are a senior PM helping me practice structured competitive analysis across two Indian fintech companies — CRED and PhonePe — as preparation for my assessment.\n\nToday I studied:\n- Competitive analysis structure: user segment, core value prop, business model, growth lever, competitive moat and risk\n- How Indian consumer internet companies are expanding into adjacent categories\n- How funding cycles affect roadmap priorities: growth in cheap-capital periods, unit economics in tight-capital periods\n\nReal world context: I am preparing for an interview with an Indian fintech company. The interviewer is likely to ask me to compare CRED and PhonePe — two companies that operate in adjacent spaces but have completely different product and business strategies.\n\nYour role today: Act as an experienced PM who knows both companies well. When I compare them on a dimension, push back if I am describing features rather than strategy. If I say 'CRED has a rewards catalogue and PhonePe doesn't,' ask: 'So what does that mean strategically for CRED's business model? Why does having a rewards catalogue matter for their P&L?' Push the conversation one level deeper than observation.\n\nThe 5 dimensions to compare (one at a time):\n1. North Star metric — what does each company optimise for, and why are they different?\n2. Primary user segment — who are they building for, and how does that shape every product decision?\n3. Core value proposition — what is the single most important thing each product does for its user?\n4. Main growth lever — how does each company grow its user base and revenue in a sustainable way?\n5. Biggest product risk — what is the one thing that, if it goes wrong, could seriously damage each company's product position?\n\nActivity:\nFor each dimension, I state my comparison. You push back, confirm, or add nuance. We move through all 5.\n\nAfter all 5 dimensions, you ask me: 'If you were APM at CRED tomorrow — not CEO, not CPO, just an APM with one squad — what is the single most impactful product change you would push for? Why that change, and how would you build the business case for it?'\n\nAfter I answer, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight — CRED's business model is under more scrutiny post-2022 because its path to profitability depends on monetising a premium user base through financial products (loans, investments) rather than just rewards — a PM at CRED in 2024 is navigating a strategic pivot from 'build trust through rewards' to 'monetise trust through credit and wealth products', which is a fundamentally different product job than the one that existed in 2019]\nCOACHING NOTE: [one specific tip for making competitive analysis answers in PM interviews more impressive]\n\nBegin with: 'Let's start with Dimension 1 — North Star metric. Tell me: what do you think CRED's North Star metric is, and what do you think PhonePe's is? And why are they different, given that both companies touch credit card payments?'",
+          "minutes": 35
+        }
+      ],
+      "bonusTasks": [
+        {
+          "id": "d16b1",
+          "type": "search",
+          "title": "CRED business model and path to profitability",
+          "keyword": "CRED business model revenue monetisation path profitability 2022 2023 2024 Kunal Shah product strategy",
+          "summary": "CRED's path from a rewards-driven bill payment app to a profitable business is one of the most debated product and business strategy questions in the Indian startup ecosystem. Searching for public analysis of CRED's monetisation strategy — their push into lending, wealth management, and CRED Pay — gives Pranav the strategic depth needed to make a credible APM product recommendation for CRED in his assessment.",
+          "minutes": 20
+        },
+        {
+          "id": "d16b2",
+          "type": "search",
+          "title": "PhonePe product strategy and financial services expansion",
+          "keyword": "PhonePe product strategy insurance mutual funds wealth management expansion 2023 2024 PM perspective",
+          "summary": "PhonePe's expansion from UPI payments into insurance, mutual funds, and international remittances is documented in public filings, press coverage, and product teardowns. Searching for analysis of this expansion — specifically the product decisions behind it — gives Pranav context for the second company in his assessment comparison, and helps him understand how a payments company builds a financial services superapp.",
+          "minutes": 20
+        }
+      ],
+      "assessmentTask": {
+        "type": "do",
+        "taskDescription": "Compare CRED and PhonePe across 5 strategic dimensions in a structured table, then write a 3-paragraph product recommendation for one specific improvement if you were APM at CRED.",
+        "rawMaterial": "Compare CRED and PhonePe using exactly these 5 dimensions. For each cell, write 2-3 sentences — specific, not generic.\n\nDimension 1: North Star metric — what is the single metric each company most likely optimises for internally, and why?\nDimension 2: Primary user segment — who is the core user each company is building for? (Be specific about who they are, not just 'urban millennials')\nDimension 3: Core value proposition — what is the single most important thing each product does for its primary user that no other product does as well?\nDimension 4: Main growth lever — how does each company acquire new users or grow revenue from existing users sustainably?\nDimension 5: Biggest product risk — what is the one thing that, if it changed (user behaviour, regulation, competitor move), would most seriously damage each company's product position?\n\nAfter the table, write a product recommendation:\n\nIf you were APM at CRED (not CEO, not CPO — an APM with one squad and one sprint cycle), what is the single most impactful product change you would push for?\n\nWrite 3 paragraphs:\nParagraph 1 — The user problem: what specific user pain or unmet need are you addressing? (Use JTBD format.)\nParagraph 2 — The product change: what exactly would you build, and what does it look like for the user?\nParagraph 3 — The business case: why does this change matter for CRED's business, not just for the user experience? Connect it to one of the 5 dimensions from your comparison table.",
+        "outputFormat": "Part 1: A table with 3 columns (Dimension | CRED | PhonePe) and 5 rows. Each cell: 2-3 sentences. Part 2: Three labelled paragraphs (User Problem / Product Change / Business Case). Total length: aim for 400-600 words.",
+        "claudePrompt": "You are a senior PM reviewing my work on Day 16: Indian Product Landscape Deep Dive.\n\nI studied today:\n- Competitive analysis structure: user segment, core value prop, business model, growth lever, risk\n- The Swiggy/Zomato/Blinkit triangle as a strategic case study in different product bets\n- How Indian consumer internet companies are expanding into adjacent categories under funding pressure\n- CRED and PhonePe as two companies in adjacent fintech spaces with fundamentally different strategies\n\nReal world context I should apply:\nCRED (premium rewards + financial products for 750+ credit score users) vs PhonePe (mass-market UPI payments + financial services superapp for India's next 500 million). Both companies touch payments and credit, but serve different users with different propositions.\n\nMY TASK TODAY WAS: Compare CRED and PhonePe across 5 strategic dimensions in a table, and write a 3-paragraph APM product recommendation for CRED.\n\nHere is my work:\n[Pranav pastes his comparison table and product recommendation here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation — check: are the North Star metrics genuinely different and justified, or did Pranav write the same type of metric for both? Is the CRED product recommendation specific enough to be scoped by engineering, or is it a strategic aspiration dressed as a product feature? Does the business case paragraph connect the recommendation to CRED's monetisation path, not just user experience?]\n\nBLIND SPOTS:\n- [things I did not consider at all — e.g., how CRED's exclusive user segment (750+ score) is both their biggest moat and their biggest growth ceiling; how PhonePe's 500+ million user scale creates data advantages that CRED's premium segment cannot match; or how regulatory changes to credit bureau data sharing could affect both companies' product roadmaps simultaneously]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about the competitive dynamics between premium and mass-market fintech in India specifically — the co-existence of CRED and PhonePe in the same country is possible because India has extreme income stratification: the top 30 million households (CRED's market) and the next 400 million households (PhonePe's market) have sufficiently different financial behaviours that the two companies rarely compete for the same user at the same moment]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Strategic Impact — [Needs Focus / On Track / Outperform]",
+        "minutes": 20
+      }
+    }
+  ,
+    {
+      "day": 17,
+      "week": 3,
+      "theme": "Bharat vs India: Designing for India's Next 400 Million Users",
+      "competenciesCovered": ["Voice of Customer", "Strategic Impact", "UX Design Sense"],
+      "objective": "Understand the product and strategic decisions that enabled Jio to bring 400 million new users online; map the behavioural differences between urban Indian (India) and small-town/rural Indian (Bharat) users; and redesign a feature for Bharat using structured Figma annotations.",
+      "estimatedMinutes": 120,
+      "realWorldAnchor": {
+        "company": "Jio + ONDC",
+        "context": "Jio's 2016 launch fundamentally changed who uses the internet in India. Their product decisions — free voice calls, ₹149/month unlimited data, Hindi-first UX — were deliberate product bets, not engineering choices. Understanding these decisions is foundational to designing for Bharat. ONDC (Open Network for Digital Commerce) is the government-backed protocol that aims to replicate UPI's success for e-commerce — and its success or failure will be decided by whether product teams can make it accessible to both Bharat merchants and Bharat consumers."
+      },
+      "parallelSkillThread": "Figma (Day 17 of thread): Structured annotation — redesigning an urban feature for Tier 2 users with written justification for every design decision.",
+      "tasks": [
+        {
+          "id": "d17t1",
+          "type": "read",
+          "title": "Jio's product strategy: how one company changed what the internet means in India",
+          "url": "https://www.reforge.com/blog/product-strategy",
+          "summary": "Jio's launch strategy is a masterclass in market creation: they did not compete with Airtel or Vodafone for existing users — they created an entirely new internet user class. The product decisions that drove this (free voice, subsidised handsets, JioPhone lite UI, Hindi content partnerships) are documented across press coverage, case studies, and product teardowns. This reading is a synthesis of that strategy, focused on what the PM decisions were and why they were made.",
+          "keyTakeaways": [
+            "Jio's North Star was not ARPU — it was user activation at scale, because the long-term bet was data monetisation, not per-user revenue in Year 1",
+            "The JioPhone keypad form factor was a deliberate product decision: the target user owned a feature phone and would not upgrade to a smartphone for a telecom product alone",
+            "Hindi-first content (Jio Cinema, Jio TV) was a product decision, not a localisation afterthought — the insight was that Bharat users would use mobile internet for video first, not text",
+            "Free voice calls eliminated the biggest barrier to switching (call credit management) for users who had never held a postpaid plan",
+            "The product constraint Jio optimised for: users with 2-4GB data/day on ₹150/month budgets, using phones with 512MB RAM, in areas with inconsistent connectivity"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d17t2",
+          "type": "read",
+          "title": "ONDC: what it is, why it matters, and how it is different from Swiggy/Zomato",
+          "url": "https://inc42.com/features/ondc-indias-open-network-for-digital-commerce-explained/",
+          "summary": "ONDC is a government-backed open protocol for e-commerce that aims to unbundle the buyer app, the seller app, and the logistics layer — similar to how UPI separated the payment rail from the bank app. Understanding ONDC matters for PMs because it changes what is technically possible for small merchants in Tier 2 India who cannot afford Zomato/Swiggy commissions. Whether ONDC succeeds depends almost entirely on whether product teams can make it accessible to both Bharat merchants and Bharat consumers.",
+          "keyTakeaways": [
+            "ONDC separates buyer apps (where users browse) from seller apps (where merchants list) — any buyer app can show any seller's products, eliminating exclusive platform lock-in",
+            "The strategic purpose: reduce the 15-30% commission that Zomato/Swiggy/Amazon charge by creating competition between buyer apps and seller apps",
+            "ONDC's product challenge: the UX is currently too fragmented because there is no single authoritative buyer app, and onboarding a small merchant still requires technical integration",
+            "Bharat relevance: ONDC's success case is the kirana store owner in Nagpur who cannot afford ₹10,000/month for a Zomato listing but can be onboarded via WhatsApp Business",
+            "PM implication: if you are building for Bharat merchants, you need to understand ONDC's protocol before deciding whether to build on top of it or alongside it"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d17t3",
+          "type": "search",
+          "keyword": "Tier 2 Tier 3 India user behaviour mobile internet first time users product design assumptions",
+          "title": "Research Bharat user behaviour and design assumptions",
+          "whyItMatters": "Most PMs in Indian startups (including those at Bengaluru-headquartered companies) were themselves urban internet users before they became PMs. This means they have a systematic blind spot: they design products for users who look like themselves. Researching the documented behavioural differences between urban and Bharat users — literacy levels, data costs, phone storage, language preference, payment trust — is the first step to closing that blind spot.",
+          "whatToLearn": [
+            "What percentage of Indian smartphone users primarily use regional language interfaces rather than English?",
+            "What is the typical RAM and storage constraint on phones used by Tier 2/3 users, and how does this affect app size limits?",
+            "What are the documented trust barriers for first-time digital payments users in non-metro India?",
+            "Which Indian apps have successfully crossed the India-Bharat divide (high DAU in both metro and Tier 3), and what product decisions enabled this?",
+            "What does publicly available data show about average daily mobile data consumption in rural India vs metro India?"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d17t4",
+          "type": "activity",
+          "promptTitle": "Figma annotation: Redesign the Zepto cart screen for a Tier 2 Hindi-speaking user",
+          "claudePrompt": "You are a senior product designer and PM coach.\n\nRole: You are coaching me through a structured design annotation exercise. My goal is to take an existing urban-optimised Indian app screen and redesign it for a specific Bharat user persona — not just translate the language, but rethink every design assumption.\n\nToday I studied:\n- Jio's product strategy for 400M new internet users and the specific product decisions behind their Bharat expansion\n- ONDC's open commerce model and why it matters for Tier 2 merchants\n- Documented behavioural differences between urban Indian and Bharat users (literacy, data, language, trust, phone specs)\n\nReal world context:\nZepto's cart screen is optimised for an urban user: English interface, high-resolution product images, complex discount stacking UI, trust signals that assume prior e-commerce experience (Zepto Catch, Pass membership). The user I am redesigning for is:\n- Name: Ramesh, 32 years old, Nashik (Tier 2 Maharashtra)\n- Phone: Android with 2GB RAM, 16GB storage\n- Data: Jio 2GB/day plan\n- Language: Hindi primary, basic English reading\n- Internet experience: 3 years on smartphone, uses WhatsApp, YouTube, Google Pay\n- E-commerce experience: has ordered 2-3 times from Meesho, not from quick-commerce apps\n- Trust level: cautious about digital payments above ₹200; prefers cash-on-delivery for first orders\n\nYour role: Walk me through this step by step.\n\nActivity steps:\n\nStep 1 — Assumption audit\nList 8 design assumptions that Zepto's current cart screen makes about the user. For each assumption, write: [Assumption] → [Why it fails for Ramesh]\n\nExamples to start with:\n- 'User can read English product names quickly' → Ramesh reads Hindi primary; English slows his decision-making\n- 'User trusts digital payment at checkout' → Ramesh will abandon if cash-on-delivery is not the default option shown\n(Add 6 more)\n\nStep 2 — Redesign decisions\nFor each of the 8 assumptions, write a specific redesign decision. Format:\n[Original assumption] → [Redesign decision] → [Figma annotation text I would write]\n\nThe Figma annotation text is what you would actually write as a label on the design file for the engineering team.\n\nStep 3 — Priority ranking\nRank your 8 redesign decisions by impact on Ramesh completing his first order. Justify the top 3 with one sentence each.\n\nStep 4 — One thing you would NOT change\nIdentify one element of the urban Zepto cart that you would keep unchanged even for Ramesh — and explain why.\n\nFeedback format after I complete the exercise:\nWHAT WORKED: [specific design decisions that show genuine Bharat insight vs surface-level localisation]\nWHAT MISSED: [assumptions I did not catch, or redesign decisions that are actually urban-lens solutions dressed as Bharat solutions]\nINDIA-SPECIFIC NOTE: [one insight about the difference between 'translating an app' and 'designing for a different mental model']\nCOACHING NOTE: [one thing Pranav should do differently the next time he runs a design annotation exercise]\n\nBegin with Step 1 — the assumption audit.",
+          "minutes": 35
+        }
+      ],
+      "bonusTasks": [
+        {
+          "id": "d17b1",
+          "type": "search",
+          "title": "Search for TRAI annual report data on regional language internet usage",
+          "keyword": "TRAI annual report 2023 2024 regional language internet users India rural urban split",
+          "why": "TRAI publishes annual telecom subscriber data and internet usage statistics. Grounding your Bharat design understanding in actual published numbers — rather than intuition — is a habit all senior PMs develop.",
+          "minutes": 10
+        }
+      ],
+      "assessmentTask": {
+        "type": "do",
+        "taskDescription": "Take one specific feature from an urban Indian app (not Zepto — choose Swiggy, CRED, PhonePe, or Razorpay). Write the current user story as it exists for an urban user. Then fully rewrite it for a Tier 2 user matching Ramesh's profile. For each rewrite, explicitly list every assumption you changed and why.",
+        "rawMaterial": "Urban Indian apps are designed by PMs who mostly live in Bengaluru, Mumbai, or Delhi and use iPhones or high-end Androids. This means their user stories carry hidden assumptions: 'User can read English', 'User has stable 4G', 'User has used this app category before', 'User trusts in-app payment'. Your task is to make these hidden assumptions visible — and then redesign around them.\n\nPick ONE feature from one of these apps:\n- Swiggy: the 'Reorder' feature (one-tap reorder from order history)\n- CRED: the 'Rent Payment' feature\n- PhonePe: the 'Send Money' flow (UPI transfer to a new contact)\n- Razorpay: the payment link creation flow (for a small merchant)\n\nStep 1 — Current user story (urban lens)\nWrite the user story in standard format:\nAs a [urban user type], I want to [action] so that [outcome].\nAcceptance criteria: list 4-5 specific acceptance criteria that a PM at this company would have written.\n\nStep 2 — Assumption inventory\nBefore rewriting, list every assumption embedded in the original user story and its acceptance criteria. Format:\n[Assumption #] [The assumption] [Evidence it is an urban-first assumption]\nAim for at least 6 assumptions.\n\nStep 3 — Tier 2 user story rewrite\nRewrite the user story for Ramesh (Nashik, 32, Jio 2GB/day, Hindi primary, 2GB RAM Android, cautious digital payment user, WhatsApp/YouTube/Google Pay only).\nAs a [specific Tier 2 user], I want to [action] so that [outcome].\nRewrite all 4-5 acceptance criteria to match Ramesh's context.\n\nStep 4 — Assumption change log\nFor each assumption you changed between Step 1 and Step 3, write:\n[Assumption changed] → [What it became] → [Why this matters for Ramesh specifically]",
+        "outputFormat": "Four labelled sections: (1) Feature chosen and original urban user story with 4-5 acceptance criteria. (2) Assumption inventory — minimum 6 assumptions, each with evidence it is urban-first. (3) Tier 2 user story rewrite with revised acceptance criteria. (4) Assumption change log — one row per changed assumption. Total length: aim for 500-700 words.",
+        "claudePrompt": "You are a senior PM reviewing my Day 17 work on Bharat vs India product design.\n\nI studied today:\n- Jio's product strategy for 400M new users and the specific product decisions behind Bharat expansion\n- ONDC and its relevance for Tier 2 merchants and consumers\n- Documented behavioural differences between urban Indian and Bharat users\n- How to run a design annotation exercise: auditing urban assumptions and redesigning for a specific Bharat persona\n\nReal world context I should apply:\nThe user I am designing for is Ramesh — 32, Nashik, Jio 2GB/day, Hindi primary, 2GB RAM Android, 3 years on smartphone (WhatsApp/YouTube/Google Pay only), cautious about digital payments above ₹200. He is not a hypothetical user — he is the person that Jio's 400M new user expansion actually reached.\n\nMY TASK TODAY WAS: Take one feature from an urban Indian app, write the current urban user story with acceptance criteria, list every embedded assumption, rewrite it for Ramesh's context, and produce an assumption change log.\n\nHere is my work:\n[Pranav pastes his four sections here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets — check: did Pranav catch non-obvious assumptions beyond language and data speed? Did the rewritten acceptance criteria actually reflect Ramesh's constraints, or just add 'Hindi option'?]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets — flag if: the assumption inventory is surface-level (only caught language/data, missed payment trust, phone storage, literacy level, social proof mechanisms); if the rewritten user story still assumes behaviour Ramesh would not have (e.g., assumes he checks email, assumes he has browsing history in the app, assumes he reads error messages); if acceptance criteria were reworded but not actually changed in substance]\n\nBLIND SPOTS:\n- [things Pranav did not consider — e.g., the role of social proof and word-of-mouth in Bharat adoption (Ramesh will trust the app more if his WhatsApp group recommended it than if the app shows ratings); the importance of 'undo' and confirmation screens for users who are not confident they tapped the right thing; how offline-first design affects the feature; how Hindi UX is not just translation but different information hierarchy because Hindi script takes more visual space than English]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about designing for the India-Bharat split specifically — for example: the biggest mistake urban PMs make is assuming Bharat users want a simpler version of the urban product; often they want a fundamentally different interaction model (voice input, WhatsApp bot, missed call activation) because their relationship with the smartphone screen is different]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Voice of Customer — [Needs Focus / On Track / Outperform]; UX Design Sense — [Needs Focus / On Track / Outperform]",
+        "minutes": 20
+      }
+    },
+    {
+      "day": 18,
+      "week": 3,
+      "theme": "Case Practice: Product Design + Estimation + API Basics",
+      "competenciesCovered": ["Feature Specification", "Fluency with Data", "Strategic Impact"],
+      "objective": "Build fluency in two real PM interview formats (product design case and estimation case) under time pressure; and develop foundational API literacy — the ability to have an informed conversation with engineering about what is technically feasible and what questions to ask before writing a spec.",
+      "estimatedMinutes": 120,
+      "realWorldAnchor": {
+        "company": "Jio + Rapido",
+        "context": "Product design and estimation questions are the two most common formats in APM interviews at Indian companies. Jio's rural Maharashtra expansion is the context for today's design case — because designing for connectivity-constrained, Hindi-first users is a real product problem every Indian PM team faces. The API basics thread is anchored in Rapido's ride-booking flow: understanding why PM decisions (show estimated fare before booking, support voice-based destination input) are only possible if specific APIs are available is the concrete way to build API intuition."
+      },
+      "parallelSkillThread": "API Basics (Day 18 of thread): What an API is, why PM decisions depend on API availability, and what questions to ask engineering before spec-ing any feature.",
+      "tasks": [
+        {
+          "id": "d18t1",
+          "type": "read",
+          "title": "APIs for product managers: what every PM needs to know without writing code",
+          "url": "https://www.sachinrekhi.com/apis-for-product-managers",
+          "summary": "Most APMs can describe a feature in a PRD but cannot have an informed conversation with engineering about what is technically feasible. The most common gap is API literacy: not knowing what an API is, what it costs to call one, or what questions to ask engineering before assuming a feature is simple. This reading covers the fundamentals: what REST APIs are, what request/response means, what rate limits and latency mean for product decisions, and the specific questions PMs should ask before spec-ing any feature that depends on an external API.",
+          "keyTakeaways": [
+            "An API is a defined contract between two systems: 'if you send me X, I will send you back Y' — PMs need to understand this contract because it defines what is possible, at what cost, and at what speed",
+            "Every API call has latency (time to respond) and cost (per-call fees for paid APIs) — PM decisions like 'show real-time fare estimate as the user types' require understanding if the maps API can handle 10 calls per second or costs ₹0.50 per call",
+            "Rate limits matter for product design: if WhatsApp's API only allows 1,000 messages per day on a free tier, your 'instant notification' feature is actually a batch notification that might arrive hours late",
+            "Key questions PMs should ask engineering before spec-ing a feature: (1) Does this require a new API integration or can we use an existing one? (2) What is the P95 latency of this API? (3) Are there rate limits that affect how often we can call it? (4) What is the fallback state if the API is down?",
+            "Rapido's fare estimate feature requires a maps API (route calculation), a demand/surge API (driver availability), and a payment API (UPI link generation) — a PM who does not know these exist cannot spec the feature accurately"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d18t2",
+          "type": "search",
+          "keyword": "product manager API knowledge REST API what questions to ask engineering PM technical skills",
+          "title": "Research what API literacy looks like in practice for PMs",
+          "whyItMatters": "API knowledge is consistently listed in APM job descriptions at Indian companies as 'preferred technical skills'. The actual expectation is not that you can write API code, but that you can read API documentation, understand what a response payload means, and know what to ask engineering before writing a spec. This search helps Pranav calibrate what the bar actually is.",
+          "whatToLearn": [
+            "What does a REST API request and response look like in plain English (not code)?",
+            "What is the difference between a GET request and a POST request in terms of what a PM should care about?",
+            "What is a webhook and why does it matter for product features like 'notify user when payment is confirmed'?",
+            "What questions should a PM ask in sprint planning when engineering says 'this feature requires a new API integration'?",
+            "What are the most common APIs used by Indian fintech and consumer apps (Razorpay, Google Maps, Twilio, Firebase push notifications)?"
+          ],
+          "minutes": 15
+        },
+        {
+          "id": "d18t3",
+          "type": "activity",
+          "promptTitle": "API basics: map the APIs behind a Rapido booking feature and write the questions a PM should ask",
+          "claudePrompt": "You are a senior technical PM and APM coach.\n\nRole: You are helping me build API literacy by walking me through a real product feature and mapping its API dependencies.\n\nToday I studied:\n- What REST APIs are and what request/response means in product terms\n- Why API latency, rate limits, and cost affect PM decisions\n- The specific questions PMs should ask engineering before spec-ing a feature\n\nReal world context:\nRapido is India's bike taxi and auto-rickshaw booking app. One of their product features is: 'Show the user a fare estimate within 2 seconds of entering the destination, before they confirm the booking.'\n\nThis seems like a simple product requirement. But it depends on multiple APIs being available, fast, and reliable.\n\nYour role: Walk me through the API mapping exercise step by step.\n\nActivity steps:\n\nStep 1 — API identification\nFor the feature 'Show fare estimate within 2 seconds of entering destination', list every external API or internal service that needs to be called. For each one:\n[API/Service name] → [What it provides] → [Why removing it breaks the feature]\n\nStep 2 — PM questions\nFor each API/service identified in Step 1, write the 2 most important questions a PM should ask engineering before spec-ing this feature. Format:\n[API/Service] → [Question 1] → [Question 2]\n\nStep 3 — Edge case identification\nFor the same feature, identify 3 edge cases that a PM should add to the acceptance criteria specifically because of API dependencies. Format:\n[Edge case] → [Which API dependency causes it] → [How the PM should spec the fallback behaviour]\n\nStep 4 — Simplification check\nIs there a version of this feature that requires fewer API calls? Describe one simpler version and explain what product quality trade-off it makes.\n\nFeedback format:\nWHAT WORKED: [specific API reasoning that shows real technical intuition]\nWHAT MISSED: [APIs or questions I did not identify]\nINDIA-SPECIFIC NOTE: [one insight about API reliability in the Indian infrastructure context — e.g., how 2G/3G fallback matters for Rapido's Tier 2 cities]\nCOACHING NOTE: [one habit Pranav should build when reviewing engineering specs going forward]\n\nBegin with Step 1.",
+          "minutes": 15
+        },
+        {
+          "id": "d18t4",
+          "type": "activity",
+          "promptTitle": "Case practice preparation: CIRCLES framework review + Fermi estimation warm-up",
+          "claudePrompt": "You are an APM interview coach specialising in Indian product companies.\n\nRole: I am about to do two timed case practice sessions (my Day 18 assessment). Before I start the timed cases, I need a focused 25-minute prep session with you.\n\nToday I studied:\n- API literacy for PMs: what REST APIs are, what questions to ask engineering\n- Rapido fare estimate feature API mapping\n\nFrom earlier in the programme:\n- CIRCLES framework (Day 6): Comprehend, Identify, Report, Cut, List, Evaluate, Summarise\n- RICE scoring (Day 5): Reach, Impact, Confidence, Effort\n- Market sizing (Day 15): TAM/SAM/SOM, top-down vs bottom-up\n- Jio + Bharat user context (Day 17): designing for connectivity-constrained, Hindi-first users on JioPhone\n\nPrep activity:\n\nPart 1 — CIRCLES warm-up (10 minutes)\nGive me a micro version of a product design question and walk me through what a strong 8/10 answer structure looks like. The question should involve a Bharat user context (because my timed case today is set in rural Maharashtra).\n\nPart 2 — Estimation warm-up (10 minutes)\nGive me a simple estimation question (not auto-rickshaws in Mumbai — save that for my timed case). Walk me through: (a) how to state your assumptions explicitly before calculating, (b) how to structure the calculation in layers (population → segment → behaviour → number), and (c) what makes an estimation answer 'good' in an APM interview even if the final number is off.\n\nPart 3 — One coaching tip (5 minutes)\nBased on the two warm-ups, give me one specific thing to watch out for in my timed cases today.\n\nBegin with Part 1.",
+          "minutes": 25
+        }
+      ],
+      "bonusTasks": [
+        {
+          "id": "d18b1",
+          "type": "search",
+          "title": "Search for Rapido or OlaMaps developer API documentation",
+          "keyword": "Rapido API documentation developer partner OR Ola Maps API India developer docs",
+          "why": "Reading actual developer documentation for an Indian app API gives you a visceral sense of what an 'API response payload' means and why PM decisions like 'show real-time ETA' depend on specific fields being present in the API response.",
+          "minutes": 10
+        }
+      ],
+      "assessmentTask": {
+        "type": "do",
+        "taskDescription": "Two timed product cases back-to-back. Case 1 (25 min): Product design using CIRCLES for a Jio feature in rural Maharashtra. Case 2 (15 min): Estimation — how many auto-rickshaws operate in Mumbai at any given moment on a weekday afternoon? Self-score against the rubric provided in the Claude prompt.",
+        "rawMaterial": "This is a dual-case timed assessment. Start a timer for each case. Do NOT pause the timer to look things up.\n\nCASE 1 — Product Design (25 minutes)\nJio wants to build a feature that helps kirana store owners in rural Maharashtra accept digital payments from customers who do not have smartphones. The feature must work on JioPhone (keypad device, basic internet, Hindi UI). Design this feature using the CIRCLES framework.\n\nCASE 2 — Estimation (15 minutes)\nHow many auto-rickshaws are operating in Mumbai at any given moment on a weekday afternoon?\n\nAfter completing both cases, paste your work into the Claude prompt below and self-score using the rubric before reading Claude's feedback.",
+        "outputFormat": "Case 1: Labelled CIRCLES sections (C / I / R / C / L / E / S) with 2-4 sentences per section. The feature recommendation at S (Summarise) must be specific enough for engineering to start scoping — not a product direction, but a product decision. Case 2: Structured estimation with explicit assumptions, layered calculation, a final number, and a confidence range. Total length: aim for 600-800 words across both cases.",
+        "claudePrompt": "You are a senior APM interview coach at an Indian product company.\n\nI just completed two timed product cases as my Day 18 assessment. I had:\n- 25 minutes for Case 1 (product design, CIRCLES framework, Jio kirana payments feature in rural Maharashtra)\n- 15 minutes for Case 2 (estimation, auto-rickshaws operating in Mumbai on a weekday afternoon)\n\nI studied today:\n- API basics for PMs: REST APIs, latency, rate limits, PM questions for engineering\n- Rapido fare estimate API mapping exercise\n- CIRCLES framework and Fermi estimation warm-up with a coach\n- Jio and Bharat user context (from Day 17): designing for JioPhone, Hindi-first, kirana store owner persona\n\nHere is my work:\n[Pranav pastes both case answers here]\n\nSELF-SCORE RUBRIC (fill this out BEFORE reading my feedback):\n\nCase 1 Product Design:\n- CIRCLES structure followed in order with each section building on the previous: 0-2 points\n- User identified specifically (not 'kirana owners in rural Maharashtra' but a named persona with a specific constraint): 0-2 points\n- Feature recommendation is specific and technically scoped for JioPhone (keypad, Hindi, no app store): 0-3 points\n- India-specific constraint called out explicitly (ONDC compatibility, cash-first trust ladder, low-literacy UI): 0-3 points\nCase 1 self-score: /10\n\nCase 2 Estimation:\n- Assumptions stated explicitly before the calculation begins: 0-2 points\n- Layered structure used (population → registered autos → active autos → utilisation rate → operating count): 0-3 points\n- Sanity check against a known reference point (Mumbai has approximately 700,000 registered autos per RTO data): 0-2 points\n- Confidence range stated, not just one number: 0-3 points\nCase 2 self-score: /10\n\nNow review my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets — for Case 1: did the CIRCLES sections build logically on each other? Was the feature recommendation specific and implementable on JioPhone, or was it a smartphone-first solution relabelled? For Case 2: did the estimation have explicit assumptions, a layered structure, and a sanity check?]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets — flag if: in Case 1, the CIRCLES sections are not internally consistent (e.g., the user segment in I contradicts the use case in C); the feature recommendation does not account for JioPhone's technical constraints (no app store, keypad input, Hindi only); the solution solves for the kirana owner but not for the customer who also needs to complete the payment without a smartphone. For Case 2: flag if assumptions are not stated before calculation; if there is no sanity check; if the structure does not separate registered autos from active autos from currently-operating autos]\n\nBLIND SPOTS:\n- [things Pranav missed entirely — e.g., in Case 1: the customer's side of the transaction (if the customer does not have a smartphone, how do they authorise the UPI payment? — this is the actual product problem, not just the merchant's side); ONDC compatibility as a strategic consideration (from Day 17); in Case 2: the utilisation rate variable is the key insight — even if 700K autos are registered, only 60-70% may be active on a given weekday, and within that active fleet, not all are carrying passengers at the same moment]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about how Indian APM interviews specifically differ from US PM interview prep advice — e.g., Indian interviewers often value India-specific constraints being called out (JioPhone spec, ONDC compatibility, RTO registration data for estimation) over generic frameworks applied generically; if Pranav's CIRCLES answer could have been written by someone who has never been to India, that is a missed opportunity]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: Case 1: [X/10] | Case 2: [X/10]\nREFORGE COMPETENCY: Feature Specification — [Needs Focus / On Track / Outperform]; Fluency with Data — [Needs Focus / On Track / Outperform]",
+        "minutes": 40
+      }
     }
   ]
 }

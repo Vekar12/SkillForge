@@ -102,14 +102,14 @@ export default function Header() {
             </div>
             <button
               onClick={() => { setShowGroqInput(true); setShowUserMenu(false) }}
-              className="w-full text-left px-3 py-2 text-sm rounded-xl transition-all hover:bg-white/5"
+              className="w-full text-left px-3 py-2 text-sm rounded-xl transition-all hover:bg-black/5"
               style={{ color: groqKey ? '#30D158' : '#FF9F0A', background: 'none', border: 'none', cursor: 'pointer' }}
             >
               {groqKey ? '🔑 Change Groq Key' : '🔑 Add Groq Key'}
             </button>
             <button
               onClick={() => { logout(); setShowUserMenu(false) }}
-              className="w-full text-left px-3 py-2 text-sm rounded-xl transition-all hover:bg-white/5"
+              className="w-full text-left px-3 py-2 text-sm rounded-xl transition-all hover:bg-black/5"
               style={{ color: '#FF453A', background: 'none', border: 'none', cursor: 'pointer' }}
             >
               Sign Out
@@ -122,7 +122,7 @@ export default function Header() {
       {(showGroqInput || showKeyEdit) && (
         <div
           className="fixed top-14 left-0 right-0 z-40 px-4 py-3"
-          style={{ background: '#1C1C1E', borderBottom: '1px solid var(--border-2)' }}
+          style={{ background: 'var(--surface-1)', borderBottom: '1px solid var(--border-2)' }}
         >
           <div className="max-w-2xl mx-auto">
             <p className="text-xs font-bold mb-2" style={{ color: 'var(--text-3)', letterSpacing: '0.08em' }}>

@@ -68,7 +68,7 @@ function AddSkillModal({ onClose, onSubmit }) {
           </>
         ) : (
           <>
-            <p className="text-sm mb-3" style={{ color: 'rgba(255,255,255,0.6)' }}>Paste the JSON output from Claude. Our team will review and set up your skill track.</p>
+            <p className="text-sm mb-3" style={{ color: 'var(--text-2)' }}>Paste the JSON output from Claude. Our team will review and set up your skill track.</p>
             <textarea value={output} onChange={e => setOutput(e.target.value)}
               placeholder={'{\n  "skillId": "...",\n  "title": "...",\n  ...\n}'}
               rows={8} className="w-full rounded-xl p-4 text-sm mb-4 resize-none focus:outline-none"
@@ -139,7 +139,7 @@ export default function SkillsDashboard() {
                       )}
                     </div>
                     <h3 className="text-base font-bold leading-tight" style={{ letterSpacing: '-0.2px' }}>{skill.title}</h3>
-                    <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.35)' }}>{skill.subtitle}</p>
+                    <p className="text-xs mt-0.5" style={{ color: 'var(--text-4)' }}>{skill.subtitle}</p>
                   </div>
                   <div className="relative flex-shrink-0">
                     <ProgressRing progress={skillProgress} color={skill.color} size={52} />
@@ -149,7 +149,7 @@ export default function SkillsDashboard() {
                   </div>
                 </div>
 
-                <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.45)' }}>{skill.description}</p>
+                <p className="text-xs leading-relaxed" style={{ color: 'var(--text-2)' }}>{skill.description}</p>
 
                 <div className="flex flex-wrap gap-1.5">
                   {skill.competencies.slice(0, 3).map(c => (
@@ -185,7 +185,7 @@ export default function SkillsDashboard() {
             style={{ background: 'var(--surface-1)', border: '1px dashed var(--border-4)', cursor: 'pointer' }}>
             <div className="w-12 h-12 rounded-full flex items-center justify-center text-2xl" style={{ background: 'var(--border-2)' }}>+</div>
             <div className="text-center">
-              <p className="text-sm font-semibold" style={{ color: 'rgba(255,255,255,0.6)' }}>Add New Skill</p>
+              <p className="text-sm font-semibold" style={{ color: 'var(--text-2)' }}>Add New Skill</p>
               <p className="text-xs mt-1" style={{ color: 'var(--text-5)' }}>Build a custom 14–21 day track</p>
             </div>
           </button>
@@ -211,7 +211,7 @@ export default function SkillsDashboard() {
                   className="w-full flex items-center gap-2 text-left transition-opacity hover:opacity-70"
                   style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
                   <span className="text-sm">{TYPE_ICONS[t.type]}</span>
-                  <span className="text-xs truncate" style={{ color: 'rgba(255,255,255,0.6)' }}>{t.title || t.keyword}</span>
+                  <span className="text-xs truncate" style={{ color: 'var(--text-2)' }}>{t.title || t.keyword}</span>
                 </button>
               ))}
             </div>
