@@ -3,9 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 
 const TYPE_CONFIG = {
-  read: { icon: '📖', label: 'READ', color: '#0A84FF', bg: 'rgba(10,132,255,0.12)' },
-  search: { icon: '🔍', label: 'SEARCH', color: '#30D158', bg: 'rgba(48,209,88,0.12)' },
-  activity: { icon: '⚡', label: 'ACTIVITY', color: '#BF5AF2', bg: 'rgba(191,90,242,0.12)' },
+  read: { icon: '📖', label: 'READ', color: 'var(--blue)', bg: 'rgba(10,132,255,0.12)' },
+  search: { icon: '🔍', label: 'SEARCH', color: 'var(--green)', bg: 'rgba(48,209,88,0.12)' },
+  activity: { icon: '⚡', label: 'ACTIVITY', color: 'var(--purple)', bg: 'rgba(191,90,242,0.12)' },
 }
 
 function SectionCard({ children }) {
@@ -37,7 +37,7 @@ function CopyButton({ text, label = 'Copy' }) {
       className="text-xs font-semibold px-3 py-1.5 rounded-full transition-all active:scale-95"
       style={{
         background: copied ? 'rgba(48,209,88,0.15)' : 'rgba(10,132,255,0.15)',
-        color: copied ? '#30D158' : '#0A84FF',
+        color: copied ? 'var(--green)' : 'var(--blue)',
         border: `1px solid ${copied ? 'rgba(48,209,88,0.25)' : 'rgba(10,132,255,0.25)'}`,
         cursor: 'pointer',
       }}
@@ -49,7 +49,7 @@ function CopyButton({ text, label = 'Copy' }) {
 
 function PrimaryButton({ onClick, children, disabled, href, target }) {
   const style = {
-    background: disabled ? 'var(--border-3)' : '#0A84FF',
+    background: disabled ? 'var(--border-3)' : 'var(--blue)',
     color: disabled ? 'var(--text-5)' : '#fff',
     height: '52px',
     borderRadius: '14px',
@@ -83,7 +83,7 @@ function PrimaryButton({ onClick, children, disabled, href, target }) {
 function SecondaryButton({ onClick, children, href, target }) {
   const style = {
     background: 'var(--border-2)',
-    color: '#0A84FF',
+    color: 'var(--blue)',
     height: '52px',
     borderRadius: '14px',
     fontWeight: 600,
@@ -114,7 +114,7 @@ function ReadView({ task, onDone }) {
           {task.keyTakeaways.map((t, i) => (
             <li key={i} className="flex gap-3">
               <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5"
-                style={{ background: 'rgba(10,132,255,0.15)', color: '#0A84FF', fontSize: '11px' }}>
+                style={{ background: 'rgba(10,132,255,0.15)', color: 'var(--blue)', fontSize: '11px' }}>
                 {i + 1}
               </span>
               <span className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)', lineHeight: '1.55' }}>{t}</span>
@@ -152,7 +152,7 @@ function SearchView({ task, onDone }) {
         <ul className="space-y-3">
           {task.whatToLearn.map((item, i) => (
             <li key={i} className="flex gap-3">
-              <span style={{ color: '#30D158', flexShrink: 0, marginTop: '2px' }}>→</span>
+              <span style={{ color: 'var(--green)', flexShrink: 0, marginTop: '2px' }}>→</span>
               <span className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)' }}>{item}</span>
             </li>
           ))}
@@ -189,7 +189,7 @@ function ActivityView({ task, onDone }) {
             <li key={i} className="flex gap-3 items-start">
               <span
                 className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5"
-                style={{ background: 'rgba(191,90,242,0.15)', color: '#BF5AF2' }}
+                style={{ background: 'rgba(191,90,242,0.15)', color: 'var(--purple)' }}
               >
                 {i + 1}
               </span>
@@ -241,7 +241,7 @@ function ActivityView({ task, onDone }) {
         </div>
       ) : (
         <div className="rounded-2xl p-4" style={{ background: 'rgba(48,209,88,0.1)', border: '1px solid rgba(48,209,88,0.25)' }}>
-          <p className="text-sm font-semibold" style={{ color: '#30D158' }}>✓ Activity submitted successfully</p>
+          <p className="text-sm font-semibold" style={{ color: 'var(--green)' }}>✓ Activity submitted successfully</p>
         </div>
       )}
     </>
@@ -268,7 +268,7 @@ export default function TaskDetail() {
     return (
       <div className="max-w-2xl mx-auto px-4 py-6 text-center">
         <p style={{ color: 'var(--text-3)' }}>Task not found.</p>
-        <button onClick={() => navigate('/')} style={{ color: '#0A84FF', background: 'none', border: 'none', cursor: 'pointer' }} className="mt-4 text-sm">
+        <button onClick={() => navigate('/')} style={{ color: 'var(--blue)', background: 'none', border: 'none', cursor: 'pointer' }} className="mt-4 text-sm">
           ← Back to Dashboard
         </button>
       </div>
@@ -288,7 +288,7 @@ export default function TaskDetail() {
       <button
         onClick={() => navigate('/')}
         className="flex items-center gap-1.5 text-sm font-medium mb-6 transition-opacity hover:opacity-70"
-        style={{ color: '#0A84FF', background: 'none', border: 'none', cursor: 'pointer' }}
+        style={{ color: 'var(--blue)', background: 'none', border: 'none', cursor: 'pointer' }}
       >
         ‹ Back
       </button>

@@ -3,8 +3,8 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 
 const TYPE = {
-  read:     { label: 'Read',     color: '#3B82F6' },
-  search:   { label: 'Research', color: '#10B981' },
+  read:     { label: 'Read',     color: 'var(--blue)' },
+  search:   { label: 'Research', color: 'var(--green)' },
   activity: { label: 'Do',       color: '#8B5CF6' },
 }
 
@@ -83,7 +83,7 @@ export default function Dashboard() {
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh', textAlign: 'center' }}>
       <div>
         <p style={{ fontSize: 14, color: 'var(--text-3)', marginBottom: 16 }}>Could not load content.</p>
-        <button onClick={() => window.location.reload()} style={{ padding: '10px 20px', borderRadius: 10, background: '#3B82F6', color: '#fff', border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: 600 }}>Retry</button>
+        <button onClick={() => window.location.reload()} style={{ padding: '10px 20px', borderRadius: 10, background: 'var(--blue)', color: '#fff', border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: 600 }}>Retry</button>
       </div>
     </div>
   )
@@ -122,7 +122,7 @@ export default function Dashboard() {
             <h1 style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-0.5px', lineHeight: 1.2, margin: 0 }}>Day {dayData.day}</h1>
             <p style={{ fontSize: 15, color: 'var(--text-2)', marginTop: 4 }}>{dayData.theme || dayData.title}</p>
           </div>
-          <Link to="/roadmap" style={{ fontSize: 13, color: '#3B82F6', textDecoration: 'none', fontWeight: 500 }}>Roadmap →</Link>
+          <Link to="/roadmap" style={{ fontSize: 13, color: 'var(--blue)', textDecoration: 'none', fontWeight: 500 }}>Roadmap →</Link>
         </div>
         <div style={{ marginTop: 18 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
@@ -130,7 +130,7 @@ export default function Dashboard() {
             <span style={{ fontSize: 11, color: 'var(--text-5)' }}>Day {activeDay} of {totalDays}</span>
           </div>
           <div style={{ height: 3, borderRadius: 2, background: 'var(--border-3)', overflow: 'hidden' }}>
-            <div style={{ height: '100%', width: `${overallPct}%`, background: '#3B82F6', borderRadius: 2, transition: 'width 0.5s ease' }} />
+            <div style={{ height: '100%', width: `${overallPct}%`, background: 'var(--blue)', borderRadius: 2, transition: 'width 0.5s ease' }} />
           </div>
         </div>
       </div>
@@ -138,7 +138,7 @@ export default function Dashboard() {
       {/* Context anchor */}
       {dayData.realWorldAnchor && (
         <div style={{ padding: '16px', borderRadius: 14, marginBottom: 24, background: 'rgba(59,130,246,0.06)', border: '1px solid rgba(59,130,246,0.12)' }}>
-          <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#3B82F6' }}>Today's context</span>
+          <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--blue)' }}>Today's context</span>
           <p style={{ fontSize: 13, color: 'var(--text-2)', lineHeight: 1.55, marginTop: 6 }}>
             <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{dayData.realWorldAnchor.company}</strong>
             {' — '}{dayData.realWorldAnchor.example}
@@ -162,7 +162,7 @@ export default function Dashboard() {
           <div style={{ padding: '18px 20px', borderRadius: 14, background: 'rgba(59,130,246,0.07)', border: '1px solid rgba(59,130,246,0.18)' }}>
             <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-primary)', margin: '0 0 4px' }}>{dayData.assessmentTask?.taskDescription || 'Submit your assessment'}</p>
             <p style={{ fontSize: 12, color: 'var(--text-4)', margin: '0 0 16px' }}>{dayData.assessmentTask?.minutes || 20} min · with Groq AI</p>
-            <button onClick={() => navigate('/assessment')} style={{ width: '100%', padding: '12px 0', borderRadius: 10, background: '#3B82F6', color: '#fff', border: 'none', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>
+            <button onClick={() => navigate('/assessment')} style={{ width: '100%', padding: '12px 0', borderRadius: 10, background: 'var(--blue)', color: '#fff', border: 'none', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>
               Start Assessment
             </button>
           </div>
@@ -191,12 +191,12 @@ export default function Dashboard() {
             <>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
                 <span style={s.label}>Bonus tasks</span>
-                {allBonusDone && <span style={{ fontSize: 11, color: '#10B981', fontWeight: 600, marginBottom: 10 }}>All done!</span>}
+                {allBonusDone && <span style={{ fontSize: 11, color: 'var(--green)', fontWeight: 600, marginBottom: 10 }}>All done!</span>}
               </div>
               {bonusTasks.map(task => <TaskRow key={task.id} task={task} isDone={isTaskDone(task.id)} isLocked={false} onToggle={toggleTask} />)}
               {allBonusDone && dayData.day < 21 && (
                 <div style={{ marginTop: 12, padding: '14px 16px', borderRadius: 12, background: 'rgba(16,185,129,0.05)', border: '1px solid rgba(16,185,129,0.12)' }}>
-                  <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#10B981', marginBottom: 6 }}>Amazing work</p>
+                  <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: 6 }}>Amazing work</p>
                   <p style={{ fontSize: 13, color: 'var(--text-2)', lineHeight: 1.5 }}>You finished everything early. Submit the assessment to officially advance to Day {dayData.day + 1}.</p>
                 </div>
               )}

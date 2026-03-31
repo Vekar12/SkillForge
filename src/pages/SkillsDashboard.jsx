@@ -40,11 +40,11 @@ function AddSkillModal({ onClose, onSubmit }) {
         {step === 'prompt' ? (
           <>
             <div className="rounded-2xl p-4 mb-4" style={{ background: 'rgba(10,132,255,0.08)', border: '1px solid rgba(10,132,255,0.15)' }}>
-              <p className="text-xs font-bold mb-2" style={{ color: '#0A84FF', letterSpacing: '0.08em' }}>HOW IT WORKS</p>
+              <p className="text-xs font-bold mb-2" style={{ color: 'var(--blue)', letterSpacing: '0.08em' }}>HOW IT WORKS</p>
               <ol className="space-y-1.5">
                 {['Copy the prompt below','Open Claude.ai and paste it','Answer Claude\'s questions','Copy Claude\'s JSON output','Come back and paste it here'].map((s,i) => (
                   <li key={i} className="flex gap-2 text-xs" style={{ color: 'var(--text-2)' }}>
-                    <span className="w-4 h-4 rounded-full flex items-center justify-center font-bold flex-shrink-0" style={{ background: 'rgba(10,132,255,0.2)', color: '#0A84FF', fontSize: '10px' }}>{i+1}</span>{s}
+                    <span className="w-4 h-4 rounded-full flex items-center justify-center font-bold flex-shrink-0" style={{ background: 'rgba(10,132,255,0.2)', color: 'var(--blue)', fontSize: '10px' }}>{i+1}</span>{s}
                   </li>
                 ))}
               </ol>
@@ -52,12 +52,12 @@ function AddSkillModal({ onClose, onSubmit }) {
             <div className="flex gap-2">
               <button onClick={() => { navigator.clipboard.writeText(addSkillPrompt); setCopied(true); setTimeout(() => setCopied(false), 2000) }}
                 className="flex-1 font-semibold py-3 rounded-xl transition-all"
-                style={{ background: copied ? 'rgba(48,209,88,0.15)' : '#0A84FF', color: copied ? '#30D158' : '#fff', border: copied ? '1px solid rgba(48,209,88,0.3)' : 'none', cursor: 'pointer' }}>
+                style={{ background: copied ? 'rgba(48,209,88,0.15)' : 'var(--blue)', color: copied ? 'var(--green)' : '#fff', border: copied ? '1px solid rgba(48,209,88,0.3)' : 'none', cursor: 'pointer' }}>
                 {copied ? '✓ Copied!' : 'Copy Prompt'}
               </button>
               <a href="https://claude.ai" target="_blank" rel="noopener noreferrer"
                 className="flex-1 flex items-center justify-center font-semibold py-3 rounded-xl text-sm"
-                style={{ background: 'rgba(191,90,242,0.12)', color: '#BF5AF2', border: '1px solid rgba(191,90,242,0.2)', textDecoration: 'none' }}>
+                style={{ background: 'rgba(191,90,242,0.12)', color: 'var(--purple)', border: '1px solid rgba(191,90,242,0.2)', textDecoration: 'none' }}>
                 Open Claude.ai ↗
               </a>
             </div>
@@ -78,7 +78,7 @@ function AddSkillModal({ onClose, onSubmit }) {
                 style={{ background: 'var(--border-2)', color: 'var(--text-2)', border: 'none', cursor: 'pointer' }}>← Back</button>
               <button onClick={() => { if (output.trim()) { onSubmit(output); onClose() } }} disabled={!output.trim()}
                 className="flex-1 py-3 rounded-xl font-semibold text-sm"
-                style={{ background: output.trim() ? '#0A84FF' : 'var(--border-2)', color: output.trim() ? '#fff' : 'var(--text-6)', border: 'none', cursor: output.trim() ? 'pointer' : 'not-allowed' }}>
+                style={{ background: output.trim() ? 'var(--blue)' : 'var(--border-2)', color: output.trim() ? '#fff' : 'var(--text-6)', border: 'none', cursor: output.trim() ? 'pointer' : 'not-allowed' }}>
                 Submit for Review
               </button>
             </div>
@@ -114,7 +114,7 @@ export default function SkillsDashboard() {
 
         {submittedRequest && (
           <div className="rounded-2xl p-4 mb-6" style={{ background: 'rgba(255,159,10,0.08)', border: '1px solid rgba(255,159,10,0.15)' }}>
-            <p className="text-xs font-bold mb-1" style={{ color: '#FF9F0A', letterSpacing: '0.08em' }}>SKILL REQUEST SUBMITTED</p>
+            <p className="text-xs font-bold mb-1" style={{ color: 'var(--orange)', letterSpacing: '0.08em' }}>SKILL REQUEST SUBMITTED</p>
             <p className="text-sm" style={{ color: 'var(--text-2)' }}>Your new skill request is under review. We'll notify you once it's ready.</p>
           </div>
         )}
@@ -135,7 +135,7 @@ export default function SkillsDashboard() {
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-2xl">{skill.icon}</span>
                       {activeSkillId === skill.id && (
-                        <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: 'rgba(10,132,255,0.15)', color: '#0A84FF' }}>Active</span>
+                        <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: 'rgba(10,132,255,0.15)', color: 'var(--blue)' }}>Active</span>
                       )}
                     </div>
                     <h3 className="text-base font-bold leading-tight" style={{ letterSpacing: '-0.2px' }}>{skill.title}</h3>
@@ -201,7 +201,7 @@ export default function SkillsDashboard() {
           <p className="text-xs font-bold tracking-widest mb-3" style={{ color: 'var(--text-4)', letterSpacing: '0.1em' }}>PENDING TODAY</p>
           {pendingTasks.length === 0 ? (
             <div className="rounded-2xl p-4" style={{ background: 'var(--surface-1)', border: '1px solid rgba(48,209,88,0.15)' }}>
-              <p className="text-sm font-semibold" style={{ color: '#30D158' }}>✓ All caught up!</p>
+              <p className="text-sm font-semibold" style={{ color: 'var(--green)' }}>✓ All caught up!</p>
               <p className="text-xs mt-1" style={{ color: 'var(--text-4)' }}>No pending tasks</p>
             </div>
           ) : (

@@ -46,7 +46,7 @@ function BottomTabBar() {
               style={{ opacity: active ? 1 : 0.4, border: 'none', background: 'transparent', cursor: 'pointer' }}
             >
               <span className="text-lg leading-none">{tab.icon}</span>
-              <span style={{ fontSize: '10px', fontWeight: 600, color: active ? '#0A84FF' : 'var(--text-2)' }}>
+              <span style={{ fontSize: '10px', fontWeight: 600, color: active ? 'var(--blue)' : 'var(--text-2)' }}>
                 {tab.label}
               </span>
             </button>

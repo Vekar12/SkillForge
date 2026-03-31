@@ -8,58 +8,62 @@
 
 /* ── Design tokens (dark, default) ─────────────────────────────────────── */
 :root {
-  --bg:        #000000;
-  --surface-1: #1C1C1E;
-  --surface-2: #161616;
-  --surface-3: #111111;
-  --surface-4: #2C2C2E;
-  --header-bg: rgba(0,0,0,0.85);
+  --bg:        #09090B;
+  --surface-1: #18181B;
+  --surface-2: #141414;
+  --surface-3: #0F0F0F;
+  --surface-4: #27272A;
+  --header-bg: rgba(9,9,11,0.88);
   --border-1:  rgba(255,255,255,0.04);
   --border-2:  rgba(255,255,255,0.07);
-  --border-3:  rgba(255,255,255,0.10);
-  --border-4:  rgba(255,255,255,0.15);
-  --text-1:       #FFFFFF;
-  --text-primary: rgba(255,255,255,0.88);
-  --text-2:       rgba(255,255,255,0.60);
-  --text-3:       rgba(255,255,255,0.45);
-  --text-4:       rgba(255,255,255,0.35);
-  --text-5:       rgba(255,255,255,0.25);
-  --text-6:       rgba(255,255,255,0.18);
-  --separator: rgba(255,255,255,0.10);
-  --blue:   #0A84FF;
-  --green:  #30D158;
-  --orange: #FF9F0A;
-  --red:    #FF453A;
-  --purple: #BF5AF2;
-  --teal:   #5AC8FA;
+  --border-3:  rgba(255,255,255,0.11);
+  --border-4:  rgba(255,255,255,0.16);
+  --text-1:       #FAFAFA;
+  --text-primary: rgba(250,250,250,0.90);
+  --text-2:       rgba(250,250,250,0.62);
+  --text-3:       rgba(250,250,250,0.46);
+  --text-4:       rgba(250,250,250,0.34);
+  --text-5:       rgba(250,250,250,0.24);
+  --text-6:       rgba(250,250,250,0.16);
+  --separator: rgba(255,255,255,0.08);
+  --card-shadow: none;
+  /* Brand */
+  --blue:   #6366F1;
+  --green:  #22C55E;
+  --orange: #F59E0B;
+  --red:    #EF4444;
+  --purple: #A78BFA;
+  --teal:   #06B6D4;
 }
 
-/* ── Light mode overrides (Apple HIG system colors) ─────────────────────── */
+/* ── Light mode — Dribbble-inspired indigo/gray palette ─────────────────── */
 :root[data-theme="light"] {
-  --bg:        #F2F2F7;
+  --bg:        #F5F5F7;
   --surface-1: #FFFFFF;
-  --surface-2: #F8F8FA;
-  --surface-3: #F0F0F5;
-  --surface-4: #E5E5EA;
-  --header-bg: rgba(242,242,247,0.92);
-  --border-1:  rgba(0,0,0,0.04);
-  --border-2:  rgba(0,0,0,0.07);
-  --border-3:  rgba(0,0,0,0.10);
-  --border-4:  rgba(0,0,0,0.15);
-  --text-1:       #000000;
-  --text-primary: #1A1A1A;
-  --text-2:       #3C3C43;
-  --text-3:       #636366;
-  --text-4:       #8E8E93;
-  --text-5:       #AEAEB2;
-  --text-6:       #C7C7CC;
-  --separator: rgba(0,0,0,0.10);
-  --blue:   #007AFF;
-  --green:  #34C759;
-  --orange: #FF9500;
-  --red:    #FF3B30;
-  --purple: #AF52DE;
-  --teal:   #32ADE6;
+  --surface-2: #FAFAFA;
+  --surface-3: #F3F4F6;
+  --surface-4: #E5E7EB;
+  --header-bg: rgba(255,255,255,0.92);
+  --border-1:  #F3F4F6;
+  --border-2:  #E5E7EB;
+  --border-3:  #D1D5DB;
+  --border-4:  #9CA3AF;
+  --text-1:       #111827;
+  --text-primary: #1F2937;
+  --text-2:       #374151;
+  --text-3:       #6B7280;
+  --text-4:       #9CA3AF;
+  --text-5:       #D1D5DB;
+  --text-6:       #E5E7EB;
+  --separator: #E5E7EB;
+  --card-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  /* Brand — slightly deeper for light backgrounds */
+  --blue:   #4F46E5;
+  --green:  #16A34A;
+  --orange: #D97706;
+  --red:    #DC2626;
+  --purple: #7C3AED;
+  --teal:   #0891B2;
 }
 
 body {
@@ -68,6 +72,12 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
   margin: 0;
   transition: background 0.25s ease, color 0.25s ease;
+}
+
+/* Card elevation in light mode (no JSX changes needed) */
+:root[data-theme="light"] .rounded-2xl,
+:root[data-theme="light"] .rounded-3xl {
+  box-shadow: var(--card-shadow);
 }
 
 /* Custom scrollbar */

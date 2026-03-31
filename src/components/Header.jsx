@@ -43,7 +43,7 @@ export default function Header() {
         <button
           onClick={() => navigate('/skills')}
           className="text-base font-bold transition-opacity hover:opacity-70"
-          style={{ color: '#0A84FF', letterSpacing: '-0.3px', background: 'none', border: 'none', cursor: 'pointer' }}
+          style={{ color: 'var(--blue)', letterSpacing: '-0.3px', background: 'none', border: 'none', cursor: 'pointer' }}
         >
           SkillForge
         </button>
@@ -55,7 +55,7 @@ export default function Header() {
             <button
               onClick={() => setShowKeyEdit(!showKeyEdit)}
               className="hidden sm:flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full transition-all"
-              style={{ background: 'rgba(48,209,88,0.12)', color: '#30D158', border: '1px solid rgba(48,209,88,0.2)', cursor: 'pointer' }}
+              style={{ background: 'rgba(48,209,88,0.12)', color: 'var(--green)', border: '1px solid rgba(48,209,88,0.2)', cursor: 'pointer' }}
             >
               <span>●</span> Groq Connected
             </button>
@@ -63,7 +63,7 @@ export default function Header() {
             <button
               onClick={() => setShowGroqInput(!showGroqInput)}
               className="hidden sm:flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full transition-all"
-              style={{ background: 'rgba(255,159,10,0.12)', color: '#FF9F0A', border: '1px solid rgba(255,159,10,0.2)', cursor: 'pointer' }}
+              style={{ background: 'rgba(255,159,10,0.12)', color: 'var(--orange)', border: '1px solid rgba(255,159,10,0.2)', cursor: 'pointer' }}
             >
               <span>⚠</span> Add Groq Key
             </button>
@@ -83,7 +83,7 @@ export default function Header() {
             <button
               onClick={() => setShowUserMenu(!showUserMenu)}
               className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-opacity hover:opacity-80"
-              style={{ background: '#0A84FF', color: '#fff', border: 'none', cursor: 'pointer' }}
+              style={{ background: 'var(--blue)', color: '#fff', border: 'none', cursor: 'pointer' }}
             >
               {user.avatar}
             </button>
@@ -103,14 +103,14 @@ export default function Header() {
             <button
               onClick={() => { setShowGroqInput(true); setShowUserMenu(false) }}
               className="w-full text-left px-3 py-2 text-sm rounded-xl transition-all hover:bg-black/5"
-              style={{ color: groqKey ? '#30D158' : '#FF9F0A', background: 'none', border: 'none', cursor: 'pointer' }}
+              style={{ color: groqKey ? 'var(--green)' : 'var(--orange)', background: 'none', border: 'none', cursor: 'pointer' }}
             >
               {groqKey ? '🔑 Change Groq Key' : '🔑 Add Groq Key'}
             </button>
             <button
               onClick={() => { logout(); setShowUserMenu(false) }}
               className="w-full text-left px-3 py-2 text-sm rounded-xl transition-all hover:bg-black/5"
-              style={{ color: '#FF453A', background: 'none', border: 'none', cursor: 'pointer' }}
+              style={{ color: 'var(--red)', background: 'none', border: 'none', cursor: 'pointer' }}
             >
               Sign Out
             </button>
