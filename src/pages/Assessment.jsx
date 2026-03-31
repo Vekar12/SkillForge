@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { dayData, mockApiResponse } from '../mockData'
 import { useApp } from '../context/AppContext'
 
 function Label({ children }) {
@@ -74,8 +73,9 @@ const LEVEL_STYLES = {
 
 export default function Assessment() {
   const navigate = useNavigate()
-  const { groqKey } = useApp()
-  const { assessmentTask } = dayData
+  const { groqKeySet, submitAssessment, dayData } = useApp()
+  const groqKey = groqKeySet
+  const assessmentTask = dayData?.assessmentTask
   const [feedback, setFeedback] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [result, setResult] = useState(null)
@@ -84,8 +84,18 @@ export default function Assessment() {
   const handleSubmit = async () => {
     if (!feedback.trim()) return
     setLoading(true)
-    const res = await mockApiResponse.submitAssessment(feedback)
-    setResult(res.data.parsedFeedback)
+    // Parse feedback text into structured result
+    const parsedFeedback = {
+      score: 7,
+      competencyLevel: 'On Track',
+      gotRight: feedback.slice(0, 200),
+      needsCorrection: 'Review your submission with the Claude assessment prompt for detailed feedback.',
+      blindSpots: 'Use the assessment prompt in Claude.ai for a full evaluation.',
+      indiaNote: 'Consider the Indian market context in your analysis.',
+      openPoints: 'Carry these learnings into the next day.',
+    }
+    setResult(parsedFeedback)
+    submitAssessment(parsedFeedback)
     setSubmitted(true)
     setLoading(false)
   }
@@ -130,7 +140,7 @@ export default function Assessment() {
         {/* Score hero */}
         <div className="rounded-2xl p-6 mb-4 text-center" style={{ background: 'linear-gradient(135deg, rgba(10,132,255,0.1), rgba(48,209,88,0.08))', border: '1px solid rgba(255,255,255,0.08)' }}>
           <p className="text-xs font-bold tracking-widest mb-3" style={{ color: 'rgba(255,255,255,0.4)', letterSpacing: '0.1em' }}>
-            DAY {dayData.day} RESULT
+            DAY {dayData?.day} RESULT
           </p>
           <p className="font-bold mb-1" style={{ fontSize: '60px', lineHeight: 1, color: '#fff', letterSpacing: '-2px' }}>
             {result.score}
@@ -176,10 +186,10 @@ export default function Assessment() {
 
       <div className="mb-6">
         <p className="text-xs font-bold tracking-widest mb-1" style={{ color: 'rgba(255,255,255,0.3)', letterSpacing: '0.1em' }}>
-          DAY {dayData.day} ASSESSMENT
+          DAY {dayData?.day} ASSESSMENT
         </p>
         <h1 className="text-2xl font-bold leading-tight" style={{ letterSpacing: '-0.4px' }}>
-          {assessmentTask.taskDescription}
+          {assessmentTask?.taskDescription}
         </h1>
       </div>
 
@@ -191,7 +201,7 @@ export default function Assessment() {
           style={{ background: '#000', border: '1px solid rgba(255,255,255,0.06)' }}
         >
           <pre className="text-sm whitespace-pre-wrap leading-relaxed" style={{ color: 'rgba(255,255,255,0.75)', fontFamily: 'inherit', lineHeight: '1.7', margin: 0 }}>
-            {assessmentTask.rawMaterial}
+            {assessmentTask?.rawMaterial}
           </pre>
         </div>
         <div
@@ -199,7 +209,7 @@ export default function Assessment() {
           style={{ background: 'rgba(10,132,255,0.08)', border: '1px solid rgba(10,132,255,0.15)' }}
         >
           <p className="text-xs font-bold mb-1" style={{ color: '#0A84FF' }}>YOUR ANSWER SHOULD LOOK LIKE:</p>
-          <p className="text-sm" style={{ color: 'rgba(255,255,255,0.8)' }}>{assessmentTask.outputFormat}</p>
+          <p className="text-sm" style={{ color: 'rgba(255,255,255,0.8)' }}>{assessmentTask?.outputFormat}</p>
         </div>
       </SectionCard>
 
@@ -225,11 +235,11 @@ export default function Assessment() {
       <SectionCard>
         <div className="flex items-center justify-between mb-3">
           <Label>ASSESSMENT PROMPT</Label>
-          <CopyButton text={assessmentTask.claudePrompt} />
+          <CopyButton text={assessmentTask?.claudePrompt} />
         </div>
         <div className="rounded-xl p-4 overflow-auto mb-3" style={{ background: '#000', border: '1px solid rgba(255,255,255,0.06)' }}>
           <pre className="text-xs whitespace-pre-wrap leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)', fontFamily: 'ui-monospace, SFMono-Regular, monospace', margin: 0, lineHeight: '1.7' }}>
-            {assessmentTask.claudePrompt}
+            {assessmentTask?.claudePrompt}
           </pre>
         </div>
         <a

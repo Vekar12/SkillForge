@@ -1,0 +1,23 @@
+[
+  { "day": 1, "week": 1, "theme": "The PM Role — What You Actually Do", "competenciesCovered": ["Strategic Thinking", "Product Intuition"] },
+  { "day": 2, "week": 1, "theme": "Understanding Your Users", "competenciesCovered": ["Voice of Customer", "Empathy Mapping"] },
+  { "day": 3, "week": 1, "theme": "User Thinking — Personas + JTBD", "competenciesCovered": ["Voice of Customer", "UX Design Sense"] },
+  { "day": 4, "week": 1, "theme": "Metrics That Matter", "competenciesCovered": ["Fluency with Data", "Goal Setting"] },
+  { "day": 5, "week": 1, "theme": "Prioritisation Frameworks", "competenciesCovered": ["Strategic Thinking", "Stakeholder Alignment"] },
+  { "day": 6, "week": 1, "theme": "Writing PRDs", "competenciesCovered": ["Communication", "Product Intuition"] },
+  { "day": 7, "week": 1, "theme": "Week 1 Review + Reflection", "competenciesCovered": ["Strategic Thinking", "Voice of Customer"] },
+  { "day": 8, "week": 2, "theme": "Working with Engineering", "competenciesCovered": ["Technical Credibility", "Execution"] },
+  { "day": 9, "week": 2, "theme": "Working with Design", "competenciesCovered": ["UX Design Sense", "Collaboration"] },
+  { "day": 10, "week": 2, "theme": "Data-Driven Decisions", "competenciesCovered": ["Fluency with Data", "Analytical Thinking"] },
+  { "day": 11, "week": 2, "theme": "OKRs and Goal Frameworks", "competenciesCovered": ["Goal Setting", "Strategic Thinking"] },
+  { "day": 12, "week": 2, "theme": "Roadmapping", "competenciesCovered": ["Product Intuition", "Stakeholder Alignment"] },
+  { "day": 13, "week": 2, "theme": "Competitive Analysis", "competenciesCovered": ["Strategic Thinking", "Market Awareness"] },
+  { "day": 14, "week": 2, "theme": "Week 2 Review + Reflection", "competenciesCovered": ["Execution", "Communication"] },
+  { "day": 15, "week": 3, "theme": "Growth and Retention", "competenciesCovered": ["Fluency with Data", "Product Intuition"] },
+  { "day": 16, "week": 3, "theme": "Monetisation Strategies", "competenciesCovered": ["Strategic Thinking", "Market Awareness"] },
+  { "day": 17, "week": 3, "theme": "Go-To-Market Planning", "competenciesCovered": ["Communication", "Stakeholder Alignment"] },
+  { "day": 18, "week": 3, "theme": "Launch and Post-Launch", "competenciesCovered": ["Execution", "Analytical Thinking"] },
+  { "day": 19, "week": 3, "theme": "Stakeholder Management", "competenciesCovered": ["Stakeholder Alignment", "Communication"] },
+  { "day": 20, "week": 3, "theme": "Case Study: Scaling a Feature", "competenciesCovered": ["Strategic Thinking", "Execution"] },
+  { "day": 21, "week": 3, "theme": "Final Capstone + Reflection", "competenciesCovered": ["All Competencies"] }
+]

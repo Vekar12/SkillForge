@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { dayData } from '../mockData'
 import { useApp } from '../context/AppContext'
 
 const TYPE_CONFIG = {
@@ -252,9 +251,9 @@ function ActivityView({ task, onDone }) {
 export default function TaskDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
-  const { toggleTask } = useApp()
+  const { toggleTask, isTaskDone, dayData } = useApp()
 
-  const allTasks = [...dayData.tasks, ...dayData.bonusTasks]
+  const allTasks = dayData ? [...(dayData.tasks || []), ...(dayData.bonusTasks || [])] : []
   const task = allTasks.find(t => t.id === id)
 
   if (!task) {

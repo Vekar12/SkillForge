@@ -3,7 +3,8 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 
 export default function Header() {
-  const { user, logout, groqKey, setGroqKey } = useApp()
+  const { user, logout, groqKeySet, saveGroqKey } = useApp()
+  const groqKey = groqKeySet
   const navigate = useNavigate()
   const location = useLocation()
   const [showGroqInput, setShowGroqInput] = useState(false)
@@ -11,9 +12,9 @@ export default function Header() {
   const [showUserMenu, setShowUserMenu] = useState(false)
   const [showKeyEdit, setShowKeyEdit] = useState(false)
 
-  const handleSaveKey = () => {
+  const handleSaveKey = async () => {
     if (keyInput.trim()) {
-      setGroqKey(keyInput.trim())
+      saveGroqKey(keyInput.trim())
       setKeyInput('')
       setShowGroqInput(false)
       setShowKeyEdit(false)
