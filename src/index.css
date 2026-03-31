@@ -8,20 +8,16 @@
 
 /* ── Design tokens (dark, default) ─────────────────────────────────────── */
 :root {
-  /* backgrounds */
   --bg:        #000000;
   --surface-1: #1C1C1E;
   --surface-2: #161616;
   --surface-3: #111111;
   --surface-4: #2C2C2E;
-  /* header */
   --header-bg: rgba(0,0,0,0.85);
-  /* borders */
   --border-1: rgba(255,255,255,0.04);
   --border-2: rgba(255,255,255,0.06);
   --border-3: rgba(255,255,255,0.08);
   --border-4: rgba(255,255,255,0.12);
-  /* text */
   --text-1: #FFFFFF;
   --text-primary: rgba(255,255,255,0.88);
   --text-2: rgba(255,255,255,0.55);
@@ -29,9 +25,7 @@
   --text-4: rgba(255,255,255,0.3);
   --text-5: rgba(255,255,255,0.25);
   --text-6: rgba(255,255,255,0.2);
-  /* separator */
   --separator: rgba(255,255,255,0.08);
-  /* accents — same in both themes */
   --blue:   #0A84FF;
   --green:  #30D158;
   --orange: #FF9F0A;
@@ -89,7 +83,6 @@ textarea {
   }
 }
 
-/* Spin animation */
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
