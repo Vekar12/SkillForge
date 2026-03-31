@@ -1,13 +1,45 @@
 {
-  "day": 17, "week": 3, "theme": "Go-To-Market Planning",
-  "competenciesCovered": ["Communication", "Stakeholder Alignment"],
+  "day": 17,
+  "week": 3,
+  "theme": "Go-To-Market Planning",
+  "competenciesCovered": [
+    "Communication",
+    "Stakeholder Alignment"
+  ],
   "teamContext": "Coming soon",
   "objective": "Content for this day is being prepared.",
-  "realWorldAnchor": { "company": "TBD", "example": "Content coming soon" },
+  "realWorldAnchor": {
+    "company": "TBD",
+    "example": "Content coming soon"
+  },
   "tasks": [
-    { "id": "d17t1", "type": "read", "title": "Content Coming Soon", "url": "#", "summary": "This day's content is being prepared. Check back soon.", "keyTakeaways": ["Content in progress"], "minutes": 20 }
+    {
+      "id": "d17t1",
+      "type": "read",
+      "title": "Content Coming Soon",
+      "url": "#",
+      "summary": "This day's content is being prepared. Check back soon.",
+      "keyTakeaways": [
+        "Content in progress"
+      ],
+      "minutes": 20
+    }
   ],
-  "bonusTasks": [],
+  "bonusTasks": [
+    {
+      "id": "d17b1",
+      "type": "read",
+      "title": "Design Critique at Google \u2014 What PMs Should Know",
+      "url": "https://design.google/library/",
+      "summary": "Google's design culture gives PMs a framework for giving useful critique \u2014 specific, objective, and tied to user outcomes rather than personal taste.",
+      "keyTakeaways": [
+        "Feedback should reference user goals, not personal preference",
+        "Separate 'I don't like this' from 'this will confuse users' \u2014 only the second is useful critique",
+        "Design reviews are alignment meetings, not approval gates"
+      ],
+      "minutes": 20
+    }
+  ],
   "assessmentTask": {
     "taskDescription": "Assessment coming soon",
     "rawMaterial": "Content being prepared",

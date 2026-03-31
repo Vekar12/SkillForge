@@ -1,13 +1,38 @@
 {
-  "day": 21, "week": 3, "theme": "Final Capstone + Reflection",
-  "competenciesCovered": ["All Competencies"],
+  "day": 21,
+  "week": 3,
+  "theme": "Final Capstone + Reflection",
+  "competenciesCovered": [
+    "All Competencies"
+  ],
   "teamContext": "Coming soon",
   "objective": "Content for this day is being prepared.",
-  "realWorldAnchor": { "company": "TBD", "example": "Content coming soon" },
+  "realWorldAnchor": {
+    "company": "TBD",
+    "example": "Content coming soon"
+  },
   "tasks": [
-    { "id": "d21t1", "type": "read", "title": "Content Coming Soon", "url": null, "summary": "This day's content is being prepared. Check back soon.", "keyTakeaways": ["Content in progress"], "minutes": 20 }
+    {
+      "id": "d21t1",
+      "type": "read",
+      "title": "Content Coming Soon",
+      "url": null,
+      "summary": "This day's content is being prepared. Check back soon.",
+      "keyTakeaways": [
+        "Content in progress"
+      ],
+      "minutes": 20
+    }
   ],
-  "bonusTasks": [],
+  "bonusTasks": [
+    {
+      "id": "d21b1",
+      "type": "activity",
+      "promptTitle": "Capstone: Full Product Pitch",
+      "claudePrompt": "I have completed a 21-day APM foundations course. For my capstone, I want to pitch a product idea: a hyperlocal job board specifically for blue-collar workers in Tier-2 Indian cities, using WhatsApp as the primary interface. Help me structure and critique my pitch across: problem statement, target user, solution, business model, go-to-market, success metrics, and risks. Be a tough evaluator \u2014 this is my portfolio piece.",
+      "minutes": 40
+    }
+  ],
   "assessmentTask": {
     "taskDescription": "Assessment coming soon",
     "rawMaterial": "Content being prepared",

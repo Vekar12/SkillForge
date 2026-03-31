@@ -1,21 +1,87 @@
 {
-  "day": 5, "week": 1,
+  "day": 5,
+  "week": 1,
   "theme": "Prioritisation Frameworks",
-  "competenciesCovered": ["Strategic Thinking", "Stakeholder Alignment"],
+  "competenciesCovered": [
+    "Strategic Thinking",
+    "Stakeholder Alignment"
+  ],
   "teamContext": "Today's focus team: Product + Engineering",
   "objective": "Apply RICE and MoSCoW prioritisation to a real feature backlog and defend your choices to a sceptical stakeholder.",
-  "realWorldAnchor": { "company": "Razorpay", "example": "Razorpay's decision to build payment links before a full merchant dashboard — a prioritisation bet that unlocked 10x more merchants" },
+  "realWorldAnchor": {
+    "company": "Razorpay",
+    "example": "Razorpay's decision to build payment links before a full merchant dashboard \u2014 a prioritisation bet that unlocked 10x more merchants"
+  },
   "tasks": [
-    { "id": "d5t1", "type": "read", "title": "RICE: Simple Prioritisation for Product Managers", "url": "https://www.intercom.com/blog/rice-simple-prioritization-for-product-managers/", "summary": "Intercom's RICE framework (Reach, Impact, Confidence, Effort) is one of the most widely used prioritisation tools in product management. This article explains how to score features and why having a formula beats gut feel.", "keyTakeaways": ["RICE forces you to quantify intuitions you normally leave vague", "Confidence score is the most important and most ignored variable", "RICE works best for comparing similar types of features", "The number isn't the answer — the conversation around the number is"], "minutes": 20 },
-    { "id": "d5t2", "type": "read", "title": "MoSCoW Method — Prioritising with Stakeholders", "url": "https://productschool.com/blog/product-management/moscow-method", "summary": "MoSCoW (Must Have, Should Have, Could Have, Won't Have) is a prioritisation technique designed for stakeholder alignment. When engineering capacity is fixed, it forces everyone to agree on what's truly non-negotiable.", "keyTakeaways": ["MoSCoW is not about what you want — it's about what you can ship by deadline", "The 'Won't Have' category is where hard conversations happen", "'Should Have' is the graveyard of good ideas", "Use MoSCoW with a specific time constraint in mind"], "minutes": 15 },
-    { "id": "d5t3", "type": "search", "keyword": "product prioritisation framework startup India engineering constraints", "whyItMatters": "Indian startups often have smaller engineering teams than their Western counterparts. Prioritisation under tight constraints requires a different calibration than building with abundant resources.", "whatToLearn": ["How Indian startup PMs talk about feature prioritisation with limited eng bandwidth", "Any examples of hard prioritisation decisions from Zomato, Ola, or similar", "How customer support tickets are used as a prioritisation signal in India", "Differences in how B2B vs B2C products prioritise"], "minutes": 15 },
-    { "id": "d5t4", "type": "activity", "title": "Prioritise a Feature Backlog", "promptTitle": "Prioritise a Feature Backlog with RICE", "claudePrompt": "You are a PM coach working with Pranav on prioritisation.\n\nGive him this backlog for a fictional food delivery app and ask him to apply RICE scoring:\n1. Dark mode\n2. Faster checkout (save payment method)\n3. Real-time order tracking on map\n4. Restaurant review system\n5. Group ordering feature\n\nFor each, ask him to estimate Reach (users/month), Impact (1-3 scale), Confidence (%), and Effort (person-weeks).\n\nAfter he scores, challenge his assumptions on at least two items. Push him to explain why Confidence is high or low.\n\nEnd with: which one should they build first, and what would you tell the stakeholder who wants dark mode instead?\n\nScore 1-10.", "minutes": 20 }
+    {
+      "id": "d5t1",
+      "type": "read",
+      "title": "RICE: Simple Prioritisation for Product Managers",
+      "url": "https://www.intercom.com/blog/rice-simple-prioritization-for-product-managers/",
+      "summary": "Intercom's RICE framework (Reach, Impact, Confidence, Effort) is one of the most widely used prioritisation tools in product management. This article explains how to score features and why having a formula beats gut feel.",
+      "keyTakeaways": [
+        "RICE forces you to quantify intuitions you normally leave vague",
+        "Confidence score is the most important and most ignored variable",
+        "RICE works best for comparing similar types of features",
+        "The number isn't the answer \u2014 the conversation around the number is"
+      ],
+      "minutes": 20
+    },
+    {
+      "id": "d5t2",
+      "type": "read",
+      "title": "MoSCoW Method \u2014 Prioritising with Stakeholders",
+      "url": "https://productschool.com/blog/product-management/moscow-method",
+      "summary": "MoSCoW (Must Have, Should Have, Could Have, Won't Have) is a prioritisation technique designed for stakeholder alignment. When engineering capacity is fixed, it forces everyone to agree on what's truly non-negotiable.",
+      "keyTakeaways": [
+        "MoSCoW is not about what you want \u2014 it's about what you can ship by deadline",
+        "The 'Won't Have' category is where hard conversations happen",
+        "'Should Have' is the graveyard of good ideas",
+        "Use MoSCoW with a specific time constraint in mind"
+      ],
+      "minutes": 15
+    },
+    {
+      "id": "d5t3",
+      "type": "search",
+      "keyword": "product prioritisation framework startup India engineering constraints",
+      "whyItMatters": "Indian startups often have smaller engineering teams than their Western counterparts. Prioritisation under tight constraints requires a different calibration than building with abundant resources.",
+      "whatToLearn": [
+        "How Indian startup PMs talk about feature prioritisation with limited eng bandwidth",
+        "Any examples of hard prioritisation decisions from Zomato, Ola, or similar",
+        "How customer support tickets are used as a prioritisation signal in India",
+        "Differences in how B2B vs B2C products prioritise"
+      ],
+      "minutes": 15
+    },
+    {
+      "id": "d5t4",
+      "type": "activity",
+      "title": "Prioritise a Feature Backlog",
+      "promptTitle": "Prioritise a Feature Backlog with RICE",
+      "claudePrompt": "You are a PM coach working with Pranav on prioritisation.\n\nGive him this backlog for a fictional food delivery app and ask him to apply RICE scoring:\n1. Dark mode\n2. Faster checkout (save payment method)\n3. Real-time order tracking on map\n4. Restaurant review system\n5. Group ordering feature\n\nFor each, ask him to estimate Reach (users/month), Impact (1-3 scale), Confidence (%), and Effort (person-weeks).\n\nAfter he scores, challenge his assumptions on at least two items. Push him to explain why Confidence is high or low.\n\nEnd with: which one should they build first, and what would you tell the stakeholder who wants dark mode instead?\n\nScore 1-10.",
+      "minutes": 20
+    }
   ],
-  "bonusTasks": [],
+  "bonusTasks": [
+    {
+      "id": "d5b1",
+      "type": "read",
+      "title": "CRED's Contrarian Roadmap \u2014 Saying No to Growth",
+      "url": "https://the-ken.com/story/cred-kunal-shah/",
+      "summary": "CRED deliberately avoided mass-market features for 3 years. Their roadmap prioritised trust and exclusivity over DAU \u2014 a rare product bet in Indian tech.",
+      "keyTakeaways": [
+        "Roadmap discipline means knowing what NOT to build",
+        "Saying no to features protects the product's core promise",
+        "Premium positioning requires actively restricting access"
+      ],
+      "minutes": 20
+    }
+  ],
   "assessmentTask": {
     "taskDescription": "Prioritise Ola's next 3 features",
-    "rawMaterial": "Ola has the following 6 feature requests in their backlog, all requested by real users or internal stakeholders:\n1. In-app SOS button with police integration (safety feature)\n2. Subscription plan for daily commuters (₹999/month for 30 rides)\n3. Pet-friendly cab category\n4. Carbon offset option (plant a tree per ride)\n5. Improved driver rating system (more granular feedback)\n6. Scheduled rides (book 24 hours in advance)\n\nOla's current focus: increasing repeat bookings from daily commuters in metro cities.",
-    "outputFormat": "1. RICE score for each feature (show your working)\n2. Your top 3 in priority order with a 1-line justification each\n3. One feature you would explicitly say 'Not Now' to — and how you'd communicate that to the stakeholder who requested it",
+    "rawMaterial": "Ola has the following 6 feature requests in their backlog, all requested by real users or internal stakeholders:\n1. In-app SOS button with police integration (safety feature)\n2. Subscription plan for daily commuters (\u20b9999/month for 30 rides)\n3. Pet-friendly cab category\n4. Carbon offset option (plant a tree per ride)\n5. Improved driver rating system (more granular feedback)\n6. Scheduled rides (book 24 hours in advance)\n\nOla's current focus: increasing repeat bookings from daily commuters in metro cities.",
+    "outputFormat": "1. RICE score for each feature (show your working)\n2. Your top 3 in priority order with a 1-line justification each\n3. One feature you would explicitly say 'Not Now' to \u2014 and how you'd communicate that to the stakeholder who requested it",
     "claudePrompt": "You are reviewing Pranav's Day 5 assessment on Ola's feature prioritisation.\n\n**What I Got Right**\n**What Needs Correction**\n**Blind Spots**\n**India-Specific Note** (does he understand the Indian cab market context?)\n**Open Points for Tomorrow**\n\nScore: X/10\nReforge Level: Needs Focus / On Track / Outperform"
   }
 }

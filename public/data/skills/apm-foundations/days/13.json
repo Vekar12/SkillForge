@@ -1,13 +1,46 @@
 {
-  "day": 13, "week": 2, "theme": "Competitive Analysis",
-  "competenciesCovered": ["Strategic Thinking", "Market Awareness"],
+  "day": 13,
+  "week": 2,
+  "theme": "Competitive Analysis",
+  "competenciesCovered": [
+    "Strategic Thinking",
+    "Market Awareness"
+  ],
   "teamContext": "Coming soon",
   "objective": "Content for this day is being prepared.",
-  "realWorldAnchor": { "company": "TBD", "example": "Content coming soon" },
+  "realWorldAnchor": {
+    "company": "TBD",
+    "example": "Content coming soon"
+  },
   "tasks": [
-    { "id": "d13t1", "type": "read", "title": "Content Coming Soon", "url": null, "comingSoon": true, "summary": "This day's content is being prepared. Check back soon.", "keyTakeaways": ["Content in progress"], "minutes": 20 }
+    {
+      "id": "d13t1",
+      "type": "read",
+      "title": "Content Coming Soon",
+      "url": null,
+      "comingSoon": true,
+      "summary": "This day's content is being prepared. Check back soon.",
+      "keyTakeaways": [
+        "Content in progress"
+      ],
+      "minutes": 20
+    }
   ],
-  "bonusTasks": [],
+  "bonusTasks": [
+    {
+      "id": "d13b1",
+      "type": "read",
+      "title": "How UPI Achieved 10 Billion Transactions \u2014 Product Lessons",
+      "url": "https://www.npci.org.in/what-we-do/upi/product-overview",
+      "summary": "UPI's design decisions \u2014 interoperability, zero MDR, 24x7 availability \u2014 were product choices as much as technical ones. Study the decisions that made it the world's largest real-time payments network.",
+      "keyTakeaways": [
+        "Interoperability by design removes network effects as a moat \u2014 and grows the whole market",
+        "Zero MDR was a deliberate choice to prioritise adoption over monetisation",
+        "Regulatory partnerships can be a product accelerant, not just a constraint"
+      ],
+      "minutes": 20
+    }
+  ],
   "assessmentTask": {
     "taskDescription": "Assessment coming soon",
     "rawMaterial": "Content being prepared",

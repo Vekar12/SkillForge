@@ -1,13 +1,39 @@
 {
-  "day": 12, "week": 2, "theme": "Roadmapping",
-  "competenciesCovered": ["Product Intuition", "Stakeholder Alignment"],
+  "day": 12,
+  "week": 2,
+  "theme": "Roadmapping",
+  "competenciesCovered": [
+    "Product Intuition",
+    "Stakeholder Alignment"
+  ],
   "teamContext": "Coming soon",
   "objective": "Content for this day is being prepared.",
-  "realWorldAnchor": { "company": "TBD", "example": "Content coming soon" },
+  "realWorldAnchor": {
+    "company": "TBD",
+    "example": "Content coming soon"
+  },
   "tasks": [
-    { "id": "d12t1", "type": "read", "title": "Content Coming Soon", "url": "#", "summary": "This day's content is being prepared. Check back soon.", "keyTakeaways": ["Content in progress"], "minutes": 20 }
+    {
+      "id": "d12t1",
+      "type": "read",
+      "title": "Content Coming Soon",
+      "url": "#",
+      "summary": "This day's content is being prepared. Check back soon.",
+      "keyTakeaways": [
+        "Content in progress"
+      ],
+      "minutes": 20
+    }
   ],
-  "bonusTasks": [],
+  "bonusTasks": [
+    {
+      "id": "d12b1",
+      "type": "activity",
+      "promptTitle": "Prioritise a Conflicted Backlog",
+      "claudePrompt": "I am a PM at a B2C fintech app in India. My backlog has these four items: (1) Loan EMI reminder push notification requested by 300 support tickets, (2) Dark mode requested by 1200 users in App Store reviews, (3) UPI Lite integration demanded by the CEO for a partnership, (4) Fraud detection improvement flagged by the security team as urgent. Help me prioritise these using RICE scoring and explain the trade-offs I am making.",
+      "minutes": 25
+    }
+  ],
   "assessmentTask": {
     "taskDescription": "Assessment coming soon",
     "rawMaterial": "Content being prepared",

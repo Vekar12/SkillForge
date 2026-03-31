@@ -1,13 +1,39 @@
 {
-  "day": 8, "week": 2, "theme": "Working with Engineering",
-  "competenciesCovered": ["Technical Credibility", "Execution"],
+  "day": 8,
+  "week": 2,
+  "theme": "Working with Engineering",
+  "competenciesCovered": [
+    "Technical Credibility",
+    "Execution"
+  ],
   "teamContext": "Coming soon",
   "objective": "Content for this day is being prepared.",
-  "realWorldAnchor": { "company": "TBD", "example": "Content coming soon" },
+  "realWorldAnchor": {
+    "company": "TBD",
+    "example": "Content coming soon"
+  },
   "tasks": [
-    { "id": "d8t1", "type": "read", "title": "Content Coming Soon", "url": "#", "summary": "This day's content is being prepared. Check back soon.", "keyTakeaways": ["Content in progress"], "minutes": 20 }
+    {
+      "id": "d8t1",
+      "type": "read",
+      "title": "Content Coming Soon",
+      "url": "#",
+      "summary": "This day's content is being prepared. Check back soon.",
+      "keyTakeaways": [
+        "Content in progress"
+      ],
+      "minutes": 20
+    }
   ],
-  "bonusTasks": [],
+  "bonusTasks": [
+    {
+      "id": "d8b1",
+      "type": "activity",
+      "promptTitle": "Wireframe a Feature for Rural India",
+      "claudePrompt": "I am a PM designing a feature for a rural Indian user who owns a small kirana store and is using a smartphone for the first time. The feature is: inventory tracking via voice input in Hindi. Help me think through the wireframe \u2014 what screens do I need, what are the edge cases, and what assumptions am I making about the user's mental model?",
+      "minutes": 25
+    }
+  ],
   "assessmentTask": {
     "taskDescription": "Assessment coming soon",
     "rawMaterial": "Content being prepared",

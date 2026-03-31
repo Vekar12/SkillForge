@@ -1,13 +1,39 @@
 {
-  "day": 15, "week": 3, "theme": "Growth and Retention",
-  "competenciesCovered": ["Fluency with Data", "Product Intuition"],
+  "day": 15,
+  "week": 3,
+  "theme": "Growth and Retention",
+  "competenciesCovered": [
+    "Fluency with Data",
+    "Product Intuition"
+  ],
   "teamContext": "Coming soon",
   "objective": "Content for this day is being prepared.",
-  "realWorldAnchor": { "company": "TBD", "example": "Content coming soon" },
+  "realWorldAnchor": {
+    "company": "TBD",
+    "example": "Content coming soon"
+  },
   "tasks": [
-    { "id": "d15t1", "type": "read", "title": "Content Coming Soon", "url": "#", "summary": "This day's content is being prepared. Check back soon.", "keyTakeaways": ["Content in progress"], "minutes": 20 }
+    {
+      "id": "d15t1",
+      "type": "read",
+      "title": "Content Coming Soon",
+      "url": "#",
+      "summary": "This day's content is being prepared. Check back soon.",
+      "keyTakeaways": [
+        "Content in progress"
+      ],
+      "minutes": 20
+    }
   ],
-  "bonusTasks": [],
+  "bonusTasks": [
+    {
+      "id": "d15b1",
+      "type": "activity",
+      "promptTitle": "Design a Growth Loop for a D2C Brand",
+      "claudePrompt": "I am a PM at a D2C skincare brand in India (\u20b9500\u20132000 price range, mostly women 22\u201335 in metro cities). We have 50K monthly orders. Help me design a referral + loyalty growth loop. What is the hook, the reward mechanic, the viral coefficient target, and how do I measure if the loop is working? Give me a concrete implementation plan.",
+      "minutes": 25
+    }
+  ],
   "assessmentTask": {
     "taskDescription": "Assessment coming soon",
     "rawMaterial": "Content being prepared",

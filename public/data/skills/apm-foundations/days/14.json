@@ -1,13 +1,45 @@
 {
-  "day": 14, "week": 2, "theme": "Week 2 Review + Reflection",
-  "competenciesCovered": ["Execution", "Communication"],
+  "day": 14,
+  "week": 2,
+  "theme": "Week 2 Review + Reflection",
+  "competenciesCovered": [
+    "Execution",
+    "Communication"
+  ],
   "teamContext": "Coming soon",
   "objective": "Content for this day is being prepared.",
-  "realWorldAnchor": { "company": "TBD", "example": "Content coming soon" },
+  "realWorldAnchor": {
+    "company": "TBD",
+    "example": "Content coming soon"
+  },
   "tasks": [
-    { "id": "d14t1", "type": "read", "title": "Content Coming Soon", "url": "#", "summary": "This day's content is being prepared. Check back soon.", "keyTakeaways": ["Content in progress"], "minutes": 20 }
+    {
+      "id": "d14t1",
+      "type": "read",
+      "title": "Content Coming Soon",
+      "url": "#",
+      "summary": "This day's content is being prepared. Check back soon.",
+      "keyTakeaways": [
+        "Content in progress"
+      ],
+      "minutes": 20
+    }
   ],
-  "bonusTasks": [],
+  "bonusTasks": [
+    {
+      "id": "d14b1",
+      "type": "read",
+      "title": "Freshworks' Journey from SMB to Enterprise \u2014 Product Pivots",
+      "url": "https://www.freshworks.com/company/blog/",
+      "summary": "Freshworks started as a helpdesk for small businesses and evolved into a multi-product enterprise suite. Their product decisions at each stage reveal the B2B PM playbook.",
+      "keyTakeaways": [
+        "SMB product is about self-serve; enterprise product is about relationships",
+        "Moving upmarket requires adding admin controls, SSO, audit logs \u2014 not just more features",
+        "Pricing architecture must change as you move from per-seat to outcome-based models"
+      ],
+      "minutes": 20
+    }
+  ],
   "assessmentTask": {
     "taskDescription": "Assessment coming soon",
     "rawMaterial": "Content being prepared",

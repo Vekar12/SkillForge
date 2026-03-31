@@ -1,13 +1,39 @@
 {
-  "day": 10, "week": 2, "theme": "Data-Driven Decisions",
-  "competenciesCovered": ["Fluency with Data", "Analytical Thinking"],
+  "day": 10,
+  "week": 2,
+  "theme": "Data-Driven Decisions",
+  "competenciesCovered": [
+    "Fluency with Data",
+    "Analytical Thinking"
+  ],
   "teamContext": "Coming soon",
   "objective": "Content for this day is being prepared.",
-  "realWorldAnchor": { "company": "TBD", "example": "Content coming soon" },
+  "realWorldAnchor": {
+    "company": "TBD",
+    "example": "Content coming soon"
+  },
   "tasks": [
-    { "id": "d10t1", "type": "read", "title": "Content Coming Soon", "url": "#", "summary": "This day's content is being prepared. Check back soon.", "keyTakeaways": ["Content in progress"], "minutes": 20 }
+    {
+      "id": "d10t1",
+      "type": "read",
+      "title": "Content Coming Soon",
+      "url": "#",
+      "summary": "This day's content is being prepared. Check back soon.",
+      "keyTakeaways": [
+        "Content in progress"
+      ],
+      "minutes": 20
+    }
   ],
-  "bonusTasks": [],
+  "bonusTasks": [
+    {
+      "id": "d10b1",
+      "type": "activity",
+      "promptTitle": "Design an A/B Test for Zomato",
+      "claudePrompt": "I am a PM at Zomato. I want to test whether showing 'estimated calories' on restaurant menu pages increases or decreases order conversion. Help me design a proper A/B test: what is the hypothesis, what is the primary metric, what are the guardrail metrics, what sample size do I need, and what would a significant result mean for the roadmap?",
+      "minutes": 25
+    }
+  ],
   "assessmentTask": {
     "taskDescription": "Assessment coming soon",
     "rawMaterial": "Content being prepared",

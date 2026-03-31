@@ -1,13 +1,39 @@
 {
-  "day": 18, "week": 3, "theme": "Launch and Post-Launch",
-  "competenciesCovered": ["Execution", "Analytical Thinking"],
+  "day": 18,
+  "week": 3,
+  "theme": "Launch and Post-Launch",
+  "competenciesCovered": [
+    "Execution",
+    "Analytical Thinking"
+  ],
   "teamContext": "Coming soon",
   "objective": "Content for this day is being prepared.",
-  "realWorldAnchor": { "company": "TBD", "example": "Content coming soon" },
+  "realWorldAnchor": {
+    "company": "TBD",
+    "example": "Content coming soon"
+  },
   "tasks": [
-    { "id": "d18t1", "type": "read", "title": "Content Coming Soon", "url": "#", "summary": "This day's content is being prepared. Check back soon.", "keyTakeaways": ["Content in progress"], "minutes": 20 }
+    {
+      "id": "d18t1",
+      "type": "read",
+      "title": "Content Coming Soon",
+      "url": "#",
+      "summary": "This day's content is being prepared. Check back soon.",
+      "keyTakeaways": [
+        "Content in progress"
+      ],
+      "minutes": 20
+    }
   ],
-  "bonusTasks": [],
+  "bonusTasks": [
+    {
+      "id": "d18b1",
+      "type": "activity",
+      "promptTitle": "Build vs Buy Decision for Payments",
+      "claudePrompt": "I am a PM at a mid-sized Indian e-commerce company (5M monthly orders). We currently use Razorpay for payments. The CEO wants to evaluate building our own in-house payment stack to save 1.5% MDR. Help me structure the build vs buy vs partner decision. What are the hidden costs of building, what capabilities would we need, what are the regulatory requirements, and what would you recommend?",
+      "minutes": 25
+    }
+  ],
   "assessmentTask": {
     "taskDescription": "Assessment coming soon",
     "rawMaterial": "Content being prepared",
