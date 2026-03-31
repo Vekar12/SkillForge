@@ -41,8 +41,8 @@ router.get(
       process.env.JWT_SECRET,
       { expiresIn: '7d' }
     );
-    // Redirect to frontend with token in query string; frontend stores in localStorage
-    res.redirect(`http://localhost:5173/auth/callback?token=${token}`);
+    // Use fragment (#) — not sent to servers in referrer headers, not stored in server logs
+    res.redirect(`http://localhost:5173/auth/callback#token=${token}`);
   }
 );
 

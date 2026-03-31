@@ -45,6 +45,11 @@ router.post('/', requireAuth, async (req, res) => {
       return res.status(400).json({ error: 'skillId, day, and rawFeedback are required' });
     }
 
+    const existing = await sheets.getAssessmentForUser(req.user.sub, skillId, Number(day));
+    if (existing) {
+      return res.status(409).json({ error: 'Assessment already submitted for this day' });
+    }
+
     const parsed = { ...parseAssessment(rawFeedback), rawFeedback };
 
     await sheets.appendAssessmentForUser(req.user.sub, skillId, day, parsed);

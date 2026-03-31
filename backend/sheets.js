@@ -80,6 +80,15 @@ async function getTasksForUser(userId, skillId, day) {
     .map(r => ({ day: r[0], taskId: r[1], type: r[2], status: r[3], completedAt: r[4] }));
 }
 
+// Fetch all tasks for a user+skill in one API call (avoids N+1 in roadmap endpoint)
+async function getAllTasksForUserSkill(userId, skillId) {
+  const rows = await getRows('TASKS');
+  return rows
+    .slice(1)
+    .filter(r => r[6] === userId && r[5] === skillId)
+    .map(r => ({ day: Number(r[0]), taskId: r[1], type: r[2], status: r[3] }));
+}
+
 async function appendTaskCompletionForUser(userId, skillId, day, taskId, type, status = 'completed') {
   await appendRow('TASKS', [day, taskId, type, status, new Date().toISOString(), skillId, userId]);
 }
@@ -165,7 +174,7 @@ async function getSkillRequests(status = null) {
     userId: r[1],
     skillTitle: r[2],
     status: r[3],
-    generatedSpec: r[4] ? JSON.parse(r[4]) : null,
+    generatedSpec: (() => { try { return r[4] ? JSON.parse(r[4]) : null; } catch { return null; } })(),
     reviewedBy: r[5],
     reviewNote: r[6],
     createdAt: r[7],
@@ -247,6 +256,7 @@ module.exports = {
   setStateForUser,
   getUserSkills,
   getTasksForUser,
+  getAllTasksForUserSkill,
   appendTaskCompletionForUser,
   appendAssessmentForUser,
   getAssessmentForUser,

@@ -18,7 +18,12 @@ app.use(express.json());
 
 // express-session is only used for the OAuth handshake (passport needs it briefly)
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'skillforge-dev',
+  secret: process.env.SESSION_SECRET || (() => {
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error('SESSION_SECRET must be set in production');
+    }
+    return 'skillforge-dev';
+  })(),
   resave: false,
   saveUninitialized: false,
 }));
@@ -43,5 +48,5 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`✓ SkillForge backend running on http://localhost:${PORT}`);
-  console.log('  Auth: http://localhost:${PORT}/auth/google');
+  console.log(`  Auth: http://localhost:${PORT}/auth/google`);
 });

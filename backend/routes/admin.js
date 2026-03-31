@@ -22,6 +22,9 @@ router.post('/skill-requests/:id/approve', requireAdmin, async (req, res) => {
 
     const request = await sheets.getSkillRequestById(id);
     if (!request) return res.status(404).json({ error: 'Skill request not found' });
+    if (request.status !== 'pending') {
+      return res.status(400).json({ error: `Request already ${request.status}` });
+    }
 
     await sheets.updateSkillRequest(id, {
       status: 'approved',
@@ -47,6 +50,9 @@ router.post('/skill-requests/:id/reject', requireAdmin, async (req, res) => {
 
     const request = await sheets.getSkillRequestById(id);
     if (!request) return res.status(404).json({ error: 'Skill request not found' });
+    if (request.status !== 'pending') {
+      return res.status(400).json({ error: `Request already ${request.status}` });
+    }
 
     await sheets.updateSkillRequest(id, {
       status: 'rejected',

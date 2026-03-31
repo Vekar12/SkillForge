@@ -96,13 +96,16 @@ router.get('/:skillId/roadmap', requireAuth, async (req, res) => {
     const roadmap = loadRoadmap(skillId);
     const currentDayStr = await sheets.getStateForUser(req.user.sub, skillId, 'current_day');
     const currentDay = Number(currentDayStr || 1);
-    const scores = await sheets.getAllAssessmentScoresForUser(req.user.sub, skillId);
+    const [scores, allTasks] = await Promise.all([
+      sheets.getAllAssessmentScoresForUser(req.user.sub, skillId),
+      sheets.getAllTasksForUserSkill(req.user.sub, skillId),  // single fetch, no N+1
+    ]);
     const scoreMap = Object.fromEntries(scores.map(s => [s.day, s]));
 
-    const days = await Promise.all(
-      roadmap.days.map(async (d) => {
-        const completedTasks = await sheets.getTasksForUser(req.user.sub, skillId, d.day);
-        const completedIds = new Set(completedTasks.map(t => t.taskId));
+    const days = roadmap.days.map((d) => {
+        const completedIds = new Set(
+          allTasks.filter(t => t.day === d.day).map(t => t.taskId)
+        );
         const coreTasks = (d.tasks || []).filter(t => !t.isBonus);
         const allCoreDone = coreTasks.length > 0 && coreTasks.every(t => completedIds.has(t.id));
 
@@ -118,8 +121,7 @@ router.get('/:skillId/roadmap', requireAuth, async (req, res) => {
           score: scoreMap[d.day]?.score ?? null,
           competencyLevel: scoreMap[d.day]?.competencyLevel ?? null,
         };
-      })
-    );
+      });
 
     res.json({ data: { skillId, title: roadmap.skill, totalDays: roadmap.totalDays, currentDay, days } });
   } catch (err) {
