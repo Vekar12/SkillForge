@@ -1,23 +1,211 @@
 [
-  { "day": 1, "week": 1, "theme": "The PM Role — What You Actually Do", "competenciesCovered": ["Strategic Thinking", "Product Intuition"] },
-  { "day": 2, "week": 1, "theme": "Understanding Your Users", "competenciesCovered": ["Voice of Customer", "Empathy Mapping"] },
-  { "day": 3, "week": 1, "theme": "User Thinking — Personas + JTBD", "competenciesCovered": ["Voice of Customer", "UX Design Sense"] },
-  { "day": 4, "week": 1, "theme": "Metrics That Matter", "competenciesCovered": ["Fluency with Data", "Goal Setting"] },
-  { "day": 5, "week": 1, "theme": "Prioritisation Frameworks", "competenciesCovered": ["Strategic Thinking", "Stakeholder Alignment"] },
-  { "day": 6, "week": 1, "theme": "Writing PRDs", "competenciesCovered": ["Communication", "Product Intuition"] },
-  { "day": 7, "week": 1, "theme": "Week 1 Review + Reflection", "competenciesCovered": ["Strategic Thinking", "Voice of Customer"] },
-  { "day": 8, "week": 2, "theme": "Working with Engineering", "competenciesCovered": ["Technical Credibility", "Execution"] },
-  { "day": 9, "week": 2, "theme": "Working with Design", "competenciesCovered": ["UX Design Sense", "Collaboration"] },
-  { "day": 10, "week": 2, "theme": "Data-Driven Decisions", "competenciesCovered": ["Fluency with Data", "Analytical Thinking"] },
-  { "day": 11, "week": 2, "theme": "OKRs and Goal Frameworks", "competenciesCovered": ["Goal Setting", "Strategic Thinking"] },
-  { "day": 12, "week": 2, "theme": "Roadmapping", "competenciesCovered": ["Product Intuition", "Stakeholder Alignment"] },
-  { "day": 13, "week": 2, "theme": "Competitive Analysis", "competenciesCovered": ["Strategic Thinking", "Market Awareness"] },
-  { "day": 14, "week": 2, "theme": "Week 2 Review + Reflection", "competenciesCovered": ["Execution", "Communication"] },
-  { "day": 15, "week": 3, "theme": "Growth and Retention", "competenciesCovered": ["Fluency with Data", "Product Intuition"] },
-  { "day": 16, "week": 3, "theme": "Monetisation Strategies", "competenciesCovered": ["Strategic Thinking", "Market Awareness"] },
-  { "day": 17, "week": 3, "theme": "Go-To-Market Planning", "competenciesCovered": ["Communication", "Stakeholder Alignment"] },
-  { "day": 18, "week": 3, "theme": "Launch and Post-Launch", "competenciesCovered": ["Execution", "Analytical Thinking"] },
-  { "day": 19, "week": 3, "theme": "Stakeholder Management", "competenciesCovered": ["Stakeholder Alignment", "Communication"] },
-  { "day": 20, "week": 3, "theme": "Case Study: Scaling a Feature", "competenciesCovered": ["Strategic Thinking", "Execution"] },
-  { "day": 21, "week": 3, "theme": "Final Capstone + Reflection", "competenciesCovered": ["All Competencies"] }
+  {
+    "day": 1,
+    "week": 1,
+    "theme": "The PM Role \u2014 What You Actually Do",
+    "competenciesCovered": [
+      "Strategic Thinking",
+      "Product Intuition"
+    ],
+    "brief": "Understand what a PM actually does day-to-day \u2014 strategy, execution, and stakeholder alignment. Analyze a real JD and compare it to ground reality at Indian startups."
+  },
+  {
+    "day": 2,
+    "week": 1,
+    "theme": "Understanding Your Users",
+    "competenciesCovered": [
+      "Voice of Customer",
+      "Empathy Mapping"
+    ],
+    "brief": "Learn how to deeply understand users through interviews and surveys. Map pain points using Jobs-to-be-Done and build an empathy map for a Zepto user."
+  },
+  {
+    "day": 3,
+    "week": 1,
+    "theme": "User Thinking \u2014 Personas + JTBD",
+    "competenciesCovered": [
+      "Voice of Customer",
+      "UX Design Sense"
+    ],
+    "brief": "Define the problem precisely before jumping to solutions. Write a crisp problem statement, and practice How Might We framing using CRED's late-payment challenge."
+  },
+  {
+    "day": 4,
+    "week": 1,
+    "theme": "Metrics That Matter",
+    "competenciesCovered": [
+      "Fluency with Data",
+      "Goal Setting"
+    ],
+    "brief": "Build conviction around your solution with a structured hypothesis. Learn assumption mapping and prioritize what to validate first."
+  },
+  {
+    "day": 5,
+    "week": 1,
+    "theme": "Prioritisation Frameworks",
+    "competenciesCovered": [
+      "Strategic Thinking",
+      "Stakeholder Alignment"
+    ],
+    "brief": "Turn user insights into a product roadmap. Learn Now/Next/Later framing and MoSCoW prioritization using a Meesho seller tool scenario."
+  },
+  {
+    "day": 6,
+    "week": 1,
+    "theme": "Writing PRDs",
+    "competenciesCovered": [
+      "Communication",
+      "Product Intuition"
+    ],
+    "brief": "Write PRDs that engineers actually want to read. Cover user stories, acceptance criteria, and edge cases with a PhonePe feature as the case study."
+  },
+  {
+    "day": 7,
+    "week": 1,
+    "theme": "Week 1 Review + Reflection",
+    "competenciesCovered": [
+      "Strategic Thinking",
+      "Voice of Customer"
+    ],
+    "brief": "Understand the trade-offs between native, web, and hybrid apps. Learn mobile-first design principles and review a Razorpay checkout flow."
+  },
+  {
+    "day": 8,
+    "week": 2,
+    "theme": "Working with Engineering",
+    "competenciesCovered": [
+      "Technical Credibility",
+      "Execution"
+    ],
+    "brief": "Translate product requirements into wireframes and flows. Practice low-fi wireframing for a new Zomato order-tracking screen."
+  },
+  {
+    "day": 9,
+    "week": 2,
+    "theme": "Working with Design",
+    "competenciesCovered": [
+      "UX Design Sense",
+      "Collaboration"
+    ],
+    "brief": "Learn the metrics that matter \u2014 activation, retention, DAU/MAU, and NPS. Define success for a CRED reward feature and build a north-star metric framework."
+  },
+  {
+    "day": 10,
+    "week": 2,
+    "theme": "Data-Driven Decisions",
+    "competenciesCovered": [
+      "Fluency with Data",
+      "Analytical Thinking"
+    ],
+    "brief": "Set up and run A/B experiments the right way. Understand statistical significance, sample size, and how Swiggy tests new features."
+  },
+  {
+    "day": 11,
+    "week": 2,
+    "theme": "OKRs and Goal Frameworks",
+    "competenciesCovered": [
+      "Goal Setting",
+      "Strategic Thinking"
+    ],
+    "brief": "Align engineering, design, and business around a single launch plan. Build a lightweight GTM doc and launch checklist."
+  },
+  {
+    "day": 12,
+    "week": 2,
+    "theme": "Roadmapping",
+    "competenciesCovered": [
+      "Product Intuition",
+      "Stakeholder Alignment"
+    ],
+    "brief": "Prioritize ruthlessly using RICE and ICE scoring. Compare feature requests from sales, support, and users \u2014 and make the call."
+  },
+  {
+    "day": 13,
+    "week": 2,
+    "theme": "Competitive Analysis",
+    "competenciesCovered": [
+      "Strategic Thinking",
+      "Market Awareness"
+    ],
+    "brief": "Understand how Indian payment rails work \u2014 UPI, wallets, BNPL. Map the checkout journey and identify drop-off points for a D2C brand."
+  },
+  {
+    "day": 14,
+    "week": 2,
+    "theme": "Week 2 Review + Reflection",
+    "competenciesCovered": [
+      "Execution",
+      "Communication"
+    ],
+    "brief": "Learn B2B product nuances \u2014 longer sales cycles, multi-stakeholder buying, and enterprise contracts. Analyze a Razorpay B2B dashboard case."
+  },
+  {
+    "day": 15,
+    "week": 3,
+    "theme": "Growth and Retention",
+    "competenciesCovered": [
+      "Fluency with Data",
+      "Product Intuition"
+    ],
+    "brief": "Deep-dive into growth loops and viral coefficients. Design a referral mechanic for a fintech app using Zepto's grocery + credit play."
+  },
+  {
+    "day": 16,
+    "week": 3,
+    "theme": "Monetisation Strategies",
+    "competenciesCovered": [
+      "Strategic Thinking",
+      "Market Awareness"
+    ],
+    "brief": "Build your data intuition \u2014 SQL basics for PMs, funnel analysis, and cohort retention. Read a retention chart and find the drop-off."
+  },
+  {
+    "day": 17,
+    "week": 3,
+    "theme": "Go-To-Market Planning",
+    "competenciesCovered": [
+      "Communication",
+      "Stakeholder Alignment"
+    ],
+    "brief": "Understand the PM \u00d7 Design relationship. Learn how to give useful design feedback without micromanaging, using Figma handoff as context."
+  },
+  {
+    "day": 18,
+    "week": 3,
+    "theme": "Launch and Post-Launch",
+    "competenciesCovered": [
+      "Execution",
+      "Analytical Thinking"
+    ],
+    "brief": "Navigate engineering trade-offs \u2014 tech debt, scalability, and build vs buy. Practice a build/buy/partner decision for a logistics feature."
+  },
+  {
+    "day": 19,
+    "week": 3,
+    "theme": "Stakeholder Management",
+    "competenciesCovered": [
+      "Stakeholder Alignment",
+      "Communication"
+    ],
+    "brief": "Prepare for a PM interview \u2014 product sense, estimation, and execution questions. Walk through a full mock with an Indian startup prompt."
+  },
+  {
+    "day": 20,
+    "week": 3,
+    "theme": "Case Study: Scaling a Feature",
+    "competenciesCovered": [
+      "Strategic Thinking",
+      "Execution"
+    ],
+    "brief": "Build your product strategy muscle \u2014 vision, bets, and OKRs. Write a 6-month strategy for a hypothetical Indian edtech product."
+  },
+  {
+    "day": 21,
+    "week": 3,
+    "theme": "Final Capstone + Reflection",
+    "competenciesCovered": [
+      "All Competencies"
+    ],
+    "brief": "Capstone day \u2014 synthesize everything into a mini product pitch. Present a problem, solution, roadmap, and metrics for a product of your choice."
+  }
 ]

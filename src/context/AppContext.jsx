@@ -24,6 +24,7 @@ export function AppProvider({ children }) {
   const [dayLoading, setDayLoading]       = useState(false)
   const [progress, setProgress]           = useState(null)
   const [groqKeySet, setGroqKeySet]       = useState(() => !!localStorage.getItem('sf_groq_key'))
+  const [theme, setTheme]                 = useState(() => localStorage.getItem('sf_theme') || 'dark')
   const [activeDay, setActiveDay]         = useState(1)
 
   // ── Auth ──────────────────────────────────────────────────────────────────
@@ -66,6 +67,14 @@ export function AppProvider({ children }) {
     localStorage.removeItem('sf_token')
     setUser(null); setProgress(null); setDayData(null)
   }, [])
+
+  // ── Theme ────────────────────────────────────────────────────────────────
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('sf_theme', theme)
+  }, [theme])
+
+  const toggleTheme = useCallback(() => setTheme(t => t === 'dark' ? 'light' : 'dark'), [])
 
   // ── Skills catalog ────────────────────────────────────────────────────────
   useEffect(() => {
@@ -180,6 +189,7 @@ export function AppProvider({ children }) {
       toggleTask, isTaskDone, isDayComplete,
       submitAssessment,
       groqKeySet, saveGroqKey, getGroqKey,
+      theme, toggleTheme,
       getPendingTasksForSidebar,
     }}>
       {children}

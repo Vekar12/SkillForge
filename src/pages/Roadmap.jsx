@@ -114,9 +114,15 @@ function DayCard({ day, activeDay, progress, onLoadDay }) {
             </div>
           )}
 
+          {day.brief && (
+            <p className="text-sm mb-3" style={{ color: 'var(--text-4)', lineHeight: 1.6 }}>
+              {day.brief}
+            </p>
+          )}
+
           {isFuture && (
-            <p className="text-xs mb-3" style={{ color: 'var(--text-4)', lineHeight: 1.5 }}>
-              Complete Day {currentDay} to unlock this day.
+            <p className="text-xs" style={{ color: 'var(--text-5)', lineHeight: 1.5, marginTop: day.brief ? 0 : 0 }}>
+              🔒 Complete Day {currentDay} to unlock.
             </p>
           )}
 
