@@ -94,7 +94,6 @@ ${rawFeedback}` }],
 export default function Assessment() {
   const navigate = useNavigate()
   const { groqKeySet, submitAssessment, dayData, resetToActiveDay } = useApp()
-  const groqKey = groqKeySet
   const assessmentTask = dayData?.assessmentTask
   const [feedback, setFeedback] = useState('')
   const [submitted, setSubmitted] = useState(false)
@@ -107,7 +106,7 @@ export default function Assessment() {
     setLoading(true)
     setError('')
     try {
-      const groqKey = getGroqKey()
+      const groqKey = localStorage.getItem('sf_groq_key') || ''
       let parsed
       if (groqKey) {
         parsed = await parseWithGroq(feedback.trim(), groqKey)
