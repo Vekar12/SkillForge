@@ -4,7 +4,7 @@
     "title": "APM Foundations: 21-Day PM Competency Roadmap",
     "learner": "Pranav",
     "framework": "Reforge 12 PM Competency Model by Ravi Mehta",
-    "frameworkSource": "https://www.reforge.com/blog/product-manager-skills",
+    "frameworkSource": "https://www.ravi-mehta.com/product-manager-skills/",
     "totalDays": 21,
     "minutesPerDay": 120,
     "createdDate": "2026-03-30",
@@ -57,7 +57,7 @@
           "id": "d1t1",
           "type": "read",
           "title": "Product Manager Skills by Seniority Level — Ravi Mehta, Reforge",
-          "url": "https://www.reforge.com/blog/product-manager-skills",
+          "url": "https://www.ravi-mehta.com/product-manager-skills/",
           "summary": "Ravi Mehta, former VP of Product at Tinder and author of the Reforge PM competency model, maps the 12 core PM competencies across three seniority levels — APM, PM, and Senior PM. This is the foundational framework for the entire 21-day roadmap; reading it on Day 1 gives Pranav a mental map of every skill he will build over the next three weeks.",
           "keyTakeaways": [
             "The 12 competencies are organised into four pillars — Product Execution, Customer Insight, Product Strategy, and Influencing People — and each pillar matters at the APM level, though execution and customer insight are weighted more heavily than strategy and influence early in a PM career",
@@ -318,7 +318,7 @@
           "id": "d4t2",
           "type": "read",
           "title": "How to Run Effective User Interviews — Lenny's Newsletter",
-          "url": "https://www.lennysnewsletter.com/p/how-to-run-a-user-interview",
+          "url": "https://www.nngroup.com/articles/user-interviews/",
           "summary": "Lenny Rachitsky covers how to design and run user interviews that produce genuine behavioural insight rather than confirmation of existing hypotheses. The article covers question design, interview structure, and how to synthesize findings into actionable product insights — a practitioner-level guide that APMs can apply to user calls starting this week.",
           "keyTakeaways": [
             "The most common interview mistake is asking 'would you use this feature?' — users almost always say yes to hypotheticals because they want to be helpful. Instead ask: 'Tell me about the last time you tried to do X. What actually happened?' — behaviour-based questions reveal real patterns, not ideals",
@@ -398,7 +398,7 @@
           "id": "d5t2",
           "type": "read",
           "title": "How to Prioritize Product Features — Lenny's Newsletter",
-          "url": "https://www.lennysnewsletter.com/p/how-to-prioritize-features",
+          "url": "https://www.lennysnewsletter.com/p/prioritizing",
           "summary": "Lenny Rachitsky surveys how top product teams at companies like Airbnb, Figma, and Duolingo actually prioritise features — not just what framework they use, but how they balance quantitative scoring with strategic judgment and when they override the numbers. The article is especially useful for understanding the limits of RICE and the most common prioritisation mistakes.",
           "keyTakeaways": [
             "No framework replaces strategic judgment: a feature with a high RICE score that contradicts the company's current strategic focus should still be deprioritised — frameworks inform decisions, they do not make them",
@@ -478,7 +478,7 @@
           "id": "d6t2",
           "type": "read",
           "title": "How to Answer Product Design Questions in PM Interviews — Lenny's Newsletter",
-          "url": "https://www.lennysnewsletter.com/p/how-to-answer-product-design-questions",
+          "url": "https://www.lennysnewsletter.com/p/the-definitive-guide-to-mastering",
           "summary": "Lenny Rachitsky compiles advice from PM interviewers and hiring managers on what separates strong from weak product design answers — covering not just what to say but how to say it: thinking out loud, handling clarifying questions under pressure, demonstrating user empathy through specificity, and managing time across the 7 CIRCLES steps.",
           "keyTakeaways": [
             "The biggest differentiator in design answers is demonstrating user empathy through specificity — 'a 34-year-old CRED user who wants to understand what is pulling her credit score down after adding a new credit card' is more impressive than 'urban working professionals,' because it shows real user thinking",
@@ -606,7 +606,7 @@
           "id": "d8t1",
           "type": "read",
           "title": "North Star Metric: What It Is and How to Find Yours — Lenny's Newsletter",
-          "url": "https://www.lennysnewsletter.com/p/north-star-metric",
+          "url": "https://www.lennysnewsletter.com/p/choosing-your-north-star-metric",
           "summary": "Lenny Rachitsky surveys how top product teams at companies like Duolingo, Figma, Notion, and Spotify define and use their North Star metric. The article explains what makes a good North Star (captures value delivered to users AND predicts long-term business health), shows examples of bad North Stars (revenue, DAU without context), and explains why two companies in the same space can have completely different North Stars depending on their business model.",
           "keyTakeaways": [
             "A good North Star metric has three properties: it measures the value your product delivers to users (not just internal business health), it is leading (it predicts future revenue rather than trailing it), and the whole team can influence it — a metric only the CEO can move is a vanity metric, not a North Star",
@@ -694,7 +694,7 @@
           "id": "d9t1",
           "type": "read",
           "title": "A Framework for Diagnosing Metric Drops — Lenny's Newsletter",
-          "url": "https://www.lennysnewsletter.com/p/a-framework-for-diagnosing-metric-drops",
+          "url": "https://amplitude.com/blog/product-metrics-guide",
           "summary": "This article lays out a structured step-by-step playbook for diagnosing a product metric drop — covering how to isolate the affected funnel stage, how to split by platform and geography, and how to differentiate between internal (product/engineering) and external (market/competitive) causes. For Pranav, this is the operational version of Week 1's MECE tree: a specific diagnosis playbook rather than a general thinking method.",
           "keyTakeaways": [
             "The first question in any metric drop is: which part of the funnel is affected? A drop in orders with flat sessions means the problem is in the conversion funnel (activation or checkout); a drop in both orders and sessions means the problem is upstream (acquisition or a major bug causing users to not even open the app)",
@@ -794,7 +794,7 @@
           "id": "d10t2",
           "type": "read",
           "title": "Experimentation at Scale: How to Build a Culture of Testing — First Round Review",
-          "url": "https://review.firstround.com/the-power-of-the-why-behind-your-product-hypothesis",
+          "url": "https://review.firstround.com/how-a-b-testing-at-linkedin-wealthfront-and-ebay-made-me-a-better-manager/",
           "summary": "This First Round Review article covers how product teams build an experimentation culture — not just how to run individual A/B tests, but how to decide which experiments are worth running, how to handle inconclusive results without reverting to opinions, and how to communicate experiment results to stakeholders who want a cleaner answer than 'it depends.' For Pranav, this adds the organisational dimension to the technical framework from the first reading.",
           "keyTakeaways": [
             "The biggest waste in A/B testing is running experiments without a clear hypothesis — teams that test everything without prioritising end up with a backlog of inconclusive results and no learning, because they tested features rather than specific mechanisms",
@@ -873,7 +873,7 @@
           "id": "d11t2",
           "type": "read",
           "title": "Cohort Analysis: The Most Useful Framework You're Probably Ignoring — Lenny's Newsletter",
-          "url": "https://www.lennysnewsletter.com/p/cohort-analysis",
+          "url": "https://www.lennysnewsletter.com/p/measuring-cohort-retention",
           "summary": "Lenny Rachitsky explains cohort analysis — grouping users by when they joined and tracking how each group behaves over time — as the single most underused PM analytical framework. The article shows how cohort retention tables reveal whether product changes improved retention for new users, whether certain acquisition channels produce better-retaining users, and where in the retention curve the biggest drop-off occurs.",
           "keyTakeaways": [
             "A retention curve has three characteristic regions: a sharp drop in the first week (activation friction), a gradual decline through weeks 2-8 (habituation), and a flat tail (the retained core). Improvements in each region require completely different interventions — onboarding changes improve the early drop, engagement features improve the middle, and core value delivery improvements flatten the tail",
@@ -1048,7 +1048,7 @@
           "id": "d13t2",
           "type": "read",
           "title": "The Art of the Leadership Update: How PMs Communicate Up — First Round Review",
-          "url": "https://review.firstround.com/the-art-of-the-awkward-1-1",
+          "url": "https://www.lennysnewsletter.com/p/managing-up",
           "summary": "This First Round Review piece covers how strong PMs communicate with leadership — what information to lead with, how to frame uncertainty without losing credibility, and how to distinguish between a status update (what happened) and a leadership update (what it means and what we are doing about it). For Pranav, this is the writing skill that separates an APM who gets promoted from one who stays invisible.",
           "keyTakeaways": [
             "A leadership update has three parts: what happened (specific data, not impressions), what it means (the business implication of that data), and what we are doing next (a clear decision or recommendation, not a list of options). Leaders who receive 'here is what we are exploring' instead of 'here is what we are doing and why' lose confidence in the PM",
@@ -1120,7 +1120,7 @@
           "id": "d14t1",
           "type": "read",
           "title": "The PM as the Connected Tissue of the Product Team — Reforge Blog",
-          "url": "https://www.reforge.com/blog/product-manager-skills",
+          "url": "https://www.ravi-mehta.com/product-manager-skills/",
           "summary": "Re-read Ravi Mehta's Reforge competency post — but this time through the lens of Week 2. On Day 1 you read it to understand what PMs do. Today you read it to evaluate yourself: which of the six Week 2 competencies (Fluency with Data, Feature Specification, Product Delivery, Business Outcome Ownership, Product Vision + Roadmapping, Stakeholder Management) are you currently strongest in? Which are you most uncertain about? Use this re-read as a self-diagnostic before the integration case.",
           "keyTakeaways": [
             "The four Reforge pillars are not independent — a PM who is strong in Customer Insight but weak in Influencing People cannot ship the products they discover; a PM who is strong in Product Execution but weak in Product Strategy builds the right features for the wrong goals",
@@ -1366,7 +1366,7 @@
           "id": "d17t2",
           "type": "read",
           "title": "ONDC: what it is, why it matters, and how it is different from Swiggy/Zomato",
-          "url": "https://inc42.com/features/ondc-indias-open-network-for-digital-commerce-explained/",
+          "url": "https://internetfreedom.in/ondc-an-explainer/",
           "summary": "ONDC is a government-backed open protocol for e-commerce that aims to unbundle the buyer app, the seller app, and the logistics layer — similar to how UPI separated the payment rail from the bank app. Understanding ONDC matters for PMs because it changes what is technically possible for small merchants in Tier 2 India who cannot afford Zomato/Swiggy commissions. Whether ONDC succeeds depends almost entirely on whether product teams can make it accessible to both Bharat merchants and Bharat consumers.",
           "keyTakeaways": [
             "ONDC separates buyer apps (where users browse) from seller apps (where merchants list) — any buyer app can show any seller's products, eliminating exclusive platform lock-in",
@@ -1436,7 +1436,7 @@
           "id": "d18t1",
           "type": "read",
           "title": "APIs for product managers: what every PM needs to know without writing code",
-          "url": "https://www.sachinrekhi.com/apis-for-product-managers",
+          "url": "https://www.mindtheproduct.com/ten-tips-for-product-managers-to-get-confident-with-apis/",
           "summary": "Most APMs can describe a feature in a PRD but cannot have an informed conversation with engineering about what is technically feasible. The most common gap is API literacy: not knowing what an API is, what it costs to call one, or what questions to ask engineering before assuming a feature is simple. This reading covers the fundamentals: what REST APIs are, what request/response means, what rate limits and latency mean for product decisions, and the specific questions PMs should ask before spec-ing any feature that depends on an external API.",
           "keyTakeaways": [
             "An API is a defined contract between two systems: 'if you send me X, I will send you back Y' — PMs need to understand this contract because it defines what is possible, at what cost, and at what speed",
@@ -1513,7 +1513,7 @@
           "id": "d19t1",
           "type": "read",
           "title": "The PM stakeholder management playbook: mapping, aligning, and communicating across functions",
-          "url": "https://www.lenny.news/p/how-to-work-with-engineers",
+          "url": "https://www.lennysnewsletter.com/p/become-a-more-technical-product-manager",
           "summary": "Stakeholder management is not a soft skill — it is a structured practice. The best PMs maintain a stakeholder map that tracks: who has decision authority, who has influence without authority, who will be impacted by the change, and who needs to be informed after the fact. This reading covers how to build that map for a product squad at a fast-moving company, and how to tailor communication to each stakeholder type: founders want business outcomes, engineering leads want clear scope and stable requirements, designers want user problem framing, data analysts want the metric definition upfront.",
           "keyTakeaways": [
             "A stakeholder map has four zones: Decide (has veto power over the decision), Advise (input shapes the decision but does not own it), Execute (builds or operates the output), Inform (needs to know after the decision is made — not before)",
@@ -1612,7 +1612,7 @@
           "id": "d20t2",
           "type": "read",
           "title": "Product launch: how to ship a feature and make it land",
-          "url": "https://www.lenny.news/p/how-to-ship-a-product",
+          "url": "https://www.lennysnewsletter.com/p/how-to-ship-like-a-startup",
           "summary": "Shipping a feature is not the same as launching it. A feature is shipped when engineering merges the code. A feature lands when users discover it, use it, and get value from it. PMs who confuse these two things will consistently under-invest in go-to-market, instrumentation, and post-launch learning. This reading covers the three phases of a product launch: pre-launch preparation (readiness criteria, instrumentation, rollout plan), launch execution (staged rollout, monitoring, comms), and post-launch learning (success metrics, retrospective, follow-on decisions).",
           "keyTakeaways": [
             "Pre-launch checklist minimum viable items: (1) Success metric defined and baseline measured, (2) Tracking events instrumented and verified in staging, (3) Rollback criteria agreed with engineering, (4) Staged rollout plan (1% → 10% → 50% → 100%), (5) User-facing copy reviewed in all supported languages",
@@ -1696,7 +1696,7 @@
           "id": "d21t1",
           "type": "read",
           "title": "The first 90 days as a PM: what to learn, what to ship, and what to resist",
-          "url": "https://www.lenny.news/p/the-first-90-days-as-a-pm",
+          "url": "https://www.lennysnewsletter.com/p/how-to-make-an-impact-in-your-first",
           "summary": "The first 90 days in a PM role are the most important learning period of a PM's career — and the most dangerous time to ship the wrong thing. This reading synthesises the documented advice from senior PMs on what to prioritise in the first 30, 60, and 90 days: the listening and learning phase (Days 1-30), the first contribution (Days 31-60), and the first full ownership cycle (Days 61-90). The framing is specifically relevant to APMs joining an existing team at a mid-stage Indian startup.",
           "keyTakeaways": [
             "Days 1-30: the PM's job is to listen more than talk — map the product, the users, the metrics, the team, and the existing roadmap before forming opinions about what should change",
