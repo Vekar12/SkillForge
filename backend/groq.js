@@ -1,25 +1,16 @@
 const Groq = require('groq-sdk');
 
-async function adjustTomorrowsPlan(
-  openPoints,
-  score,
-  competencyLevel,
-  tomorrowContent,
-  competenciesCovered,
-  apiKey
-) {
+// Adjust tomorrow's plan based on today's assessment
+async function adjustTomorrowsPlan(openPoints, score, competencyLevel, tomorrowContent, competenciesCovered, apiKey) {
   const groq = new Groq({ apiKey });
-
-  const tomorrowTaskTitles = (tomorrowContent?.tasks || []).map(t => t.title).join(', ');
-  const tomorrowCompetencies = (competenciesCovered || []).join(', ');
 
   const prompt = `You are adjusting a skill development plan for an APM learner.
 
 Today's score: ${score}/10
 Competency assessed: ${competencyLevel}
 Open points from today: ${openPoints.join('; ')}
-Tomorrow's planned competencies: ${tomorrowCompetencies}
-Tomorrow's tasks: ${tomorrowTaskTitles}
+Tomorrow's planned competencies: ${(competenciesCovered || []).join(', ')}
+Tomorrow's tasks: ${(tomorrowContent?.tasks || []).map(t => t.title).join(', ')}
 
 Return ONLY valid JSON:
 {
@@ -36,8 +27,45 @@ Return ONLY valid JSON:
   });
 
   const text = response.choices[0].message.content.trim();
-  const cleaned = text.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, '');
-  return JSON.parse(cleaned);
+  return JSON.parse(text.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, ''));
 }
 
-module.exports = { adjustTomorrowsPlan };
+// Generate a skill roadmap spec for admin review
+async function generateSkillSpec(skillTitle, description, apiKey) {
+  const groq = new Groq({ apiKey });
+
+  const prompt = `You are generating a structured learning roadmap spec for a new skill.
+
+Skill title: "${skillTitle}"
+Description: "${description}"
+
+Return ONLY valid JSON matching this structure:
+{
+  "skill": "${skillTitle}",
+  "totalDays": 21,
+  "summary": "2-3 sentence overview of what the learner will achieve",
+  "competencies": ["competency1", "competency2", "competency3"],
+  "sampleDay": {
+    "day": 1,
+    "title": "Day 1 title",
+    "competenciesCovered": ["competency1"],
+    "tasks": [
+      { "id": "d1_read_1", "type": "READ", "title": "Read: ...", "isBonus": false },
+      { "id": "d1_search_1", "type": "SEARCH", "title": "Search: ...", "isBonus": false },
+      { "id": "d1_activity_1", "type": "ACTIVITY", "title": "Activity: ...", "isBonus": false }
+    ]
+  }
+}`;
+
+  const response = await groq.chat.completions.create({
+    model: 'llama-3.3-70b-versatile',
+    max_tokens: 600,
+    temperature: 0.3,
+    messages: [{ role: 'user', content: prompt }],
+  });
+
+  const text = response.choices[0].message.content.trim();
+  return JSON.parse(text.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, ''));
+}
+
+module.exports = { adjustTomorrowsPlan, generateSkillSpec };
