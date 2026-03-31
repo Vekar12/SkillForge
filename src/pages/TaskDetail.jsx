@@ -173,6 +173,31 @@ function SearchView({ task, onDone }) {
   )
 }
 
+function RevisitView({ task, onDone }) {
+  return (
+    <>
+      <SectionCard>
+        <div className="flex items-center justify-between mb-3">
+          <Label>CLAUDE PROMPT</Label>
+          <CopyButton text={task.claudePrompt} label="Copy Prompt" />
+        </div>
+        <div className="rounded-xl p-4 overflow-auto" style={{ background: 'var(--bg)', border: '1px solid var(--border-2)' }}>
+          <pre className="text-xs leading-relaxed whitespace-pre-wrap" style={{ color: 'var(--text-2)', fontFamily: 'ui-monospace, SFMono-Regular, monospace', margin: 0 }}>
+            {task.claudePrompt}
+          </pre>
+        </div>
+        <div className="mt-3">
+          <SecondaryButton href="https://claude.ai" target="_blank">Open Claude.ai ↗</SecondaryButton>
+        </div>
+      </SectionCard>
+      <div className="flex items-center gap-2 mb-5 px-1">
+        <span className="text-sm" style={{ color: 'var(--text-3)' }}>⏱ {task.minutes} min · read and understand</span>
+      </div>
+      <PrimaryButton onClick={onDone}>Mark as Done</PrimaryButton>
+    </>
+  )
+}
+
 function ActivityView({ task, onDone }) {
   const [feedback, setFeedback] = useState('')
   const [submitted, setSubmitted] = useState(false)
@@ -315,7 +340,8 @@ export default function TaskDetail() {
       <div style={{ borderRadius: 20, background: 'var(--surface-1)', border: '1px solid var(--border-2)', padding: '16px' }}>
         {task.type === 'read' && <ReadView task={task} onDone={handleDone} />}
         {task.type === 'search' && <SearchView task={task} onDone={handleDone} />}
-        {(task.type === 'activity' || task.type === 'revisit') && <ActivityView task={task} onDone={handleDone} />}
+        {task.type === 'activity' && <ActivityView task={task} onDone={handleDone} />}
+        {task.type === 'revisit' && <RevisitView task={task} onDone={handleDone} />}
       </div>
 
       <div className="h-6" />

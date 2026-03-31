@@ -10,21 +10,14 @@ const AppContext = createContext(null)
 
 // ── Remedial task builder ─────────────────────────────────────────────────────
 function buildRemedialTask(prevDay, theme, assessment) {
-  const prompt = `You are a PM coach doing a focused follow-up session.
+  const prompt = `You are a PM coach. A student studied "${theme}" and scored ${assessment.score ?? '?'}/10 on their assessment.
 
-Yesterday the student studied "${theme}" and scored ${assessment.score ?? '?'}/10 on the assessment.
+Gaps identified:
+- Needs correction: ${assessment.needsCorrection || 'General review needed'}
+- Blind spots: ${assessment.blindSpots || 'None identified'}
+- Open questions: ${assessment.openPoints || 'None'}
 
-What needs correction: ${assessment.needsCorrection || 'General review needed'}
-Blind spots identified: ${assessment.blindSpots || 'None identified'}
-Open points flagged for today: ${assessment.openPoints || 'None'}
-
-Your goal: Help them close these specific gaps through reflection — not re-teaching.
-
-1. Ask them to explain the concept they struggled with most, in their own words.
-2. Probe their answer with 2 follow-up questions to deepen understanding.
-3. End by suggesting exactly 2–3 specific search terms or article topics they should read today to address the gaps. Frame these as actionable reading prompts, using Indian startup contexts where relevant.
-
-Keep the session tight — under 20 minutes.`
+Please explain the weak concepts clearly and simply, as if teaching them for the first time. Focus only on the gaps listed above. Use plain language, concrete examples from Indian startup contexts where possible, and keep it under 400 words. Do not ask questions — just explain.`
 
   return {
     id: `remedial-day-${prevDay}`,
