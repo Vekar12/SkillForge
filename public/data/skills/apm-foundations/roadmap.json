@@ -23,7 +23,9 @@
         "Team Leadership",
         "Managing Up"
       ],
-      "estimatedMinutes": 120
+      "estimatedMinutes": 120,
+      "brief": "Covers the Reforge 12 PM Competency Model and the PM role as defined by Ravi Mehta and Marty Cagan. Includes a search on real APM structures at Indian companies. Activity: map 15 real Swiggy PM tasks to the 4 Reforge pillars to see how each competency shows up in day-to-day work.",
+      "anchor": "Swiggy"
     },
     {
       "day": 2,
@@ -33,7 +35,9 @@
         "Feature Specification",
         "Strategic Impact"
       ],
-      "estimatedMinutes": 120
+      "estimatedMinutes": 120,
+      "brief": "Covers MECE structured thinking and first principles reasoning — the two core frameworks for breaking down any ambiguous product problem. Includes a worked example search on metric drop trees. Activity: build a MECE tree for Zomato's Monday order volume drop.",
+      "anchor": "Zepto"
     },
     {
       "day": 3,
@@ -43,7 +47,9 @@
         "Voice of Customer",
         "UX Design Sense"
       ],
-      "estimatedMinutes": 120
+      "estimatedMinutes": 120,
+      "brief": "Covers Jobs-to-be-Done (JTBD) and user persona construction — the two frameworks for understanding who you are building for and why. Includes a search on CRED's credit score user segmentation decision. Activity: build a persona, JTBD statement, and feature proposal from a real Zepto app store complaint.",
+      "anchor": "CRED"
     },
     {
       "day": 4,
@@ -53,7 +59,9 @@
         "Voice of Customer",
         "Feature Specification"
       ],
-      "estimatedMinutes": 120
+      "estimatedMinutes": 120,
+      "brief": "Covers how to write a properly scoped product problem statement and how to design a user interview script. Includes a search on how Razorpay reframed payment failures as a trust problem. Activity: reframe 3 vague problem statements and write a 5-question user interview guide.",
+      "anchor": "Razorpay"
     },
     {
       "day": 5,
@@ -63,7 +71,9 @@
         "Feature Specification",
         "Business Outcome Ownership"
       ],
-      "estimatedMinutes": 120
+      "estimatedMinutes": 120,
+      "brief": "Covers RICE prioritization (Reach, Impact, Confidence, Effort) and how to score features objectively against each other. Includes a search on RICE worked examples. Activity: RICE-score 8 PhonePe features live, with a skeptical PM lead pushing back on weak justifications.",
+      "anchor": "Swiggy"
     },
     {
       "day": 6,
@@ -73,7 +83,9 @@
         "UX Design Sense",
         "Feature Specification"
       ],
-      "estimatedMinutes": 120
+      "estimatedMinutes": 120,
+      "brief": "Covers the CIRCLES product design framework (Comprehend, Identify, Report, Cut, List, Evaluate, Summarise) used in PM case interviews. Includes a search on CIRCLES applied to Indian fintech. Activity: complete a live CIRCLES walkthrough for a CRED credit score feature in interview simulation format.",
+      "anchor": "CRED"
     },
     {
       "day": 7,
@@ -89,7 +101,9 @@
         "Business Outcome Ownership",
         "Strategic Impact"
       ],
-      "estimatedMinutes": 120
+      "estimatedMinutes": 120,
+      "brief": "Week 1 integration day. Reads Marty Cagan on the four big product risks. One guided warm-up activity applies all 5 Week 1 tools — MECE, Personas, JTBD, RICE, CIRCLES — to a fictional fintech KYC drop-off case. Full 60-minute integration assessment follows.",
+      "anchor": "Swiggy"
     },
     {
       "day": 8,
@@ -99,7 +113,9 @@
         "Fluency with Data",
         "Business Outcome Ownership"
       ],
-      "estimatedMinutes": 120
+      "estimatedMinutes": 120,
+      "brief": "Covers North Star metric definition and the AARRR funnel (Acquisition, Activation, Retention, Revenue, Referral). Includes a search on how Zepto and CRED have fundamentally different North Stars. SQL parallel: read a real SELECT + GROUP BY query, explain what it returns, and extend it.",
+      "anchor": "Zepto vs CRED"
     },
     {
       "day": 9,
@@ -109,7 +125,9 @@
         "Fluency with Data",
         "Feature Specification"
       ],
-      "estimatedMinutes": 120
+      "estimatedMinutes": 120,
+      "brief": "Covers structured metric drop diagnosis and root cause analysis (RCA) tree construction. Includes a search on Swiggy order drop case studies. SQL parallel: given a query output table, identify the data anomaly and state what it tells you about the drop.",
+      "anchor": "Swiggy"
     },
     {
       "day": 10,
@@ -119,7 +137,9 @@
         "Fluency with Data",
         "Product Quality"
       ],
-      "estimatedMinutes": 120
+      "estimatedMinutes": 120,
+      "brief": "Covers A/B testing design: hypothesis, control and treatment variants, primary metric, guardrail metrics, and minimum detectable effect. Includes a search on experimentation at Indian consumer apps. Activity: design and stress-test a complete A/B test plan for removing Zomato's tip prompt.",
+      "anchor": "Swiggy"
     },
     {
       "day": 11,
@@ -128,7 +148,9 @@
       "competenciesCovered": [
         "Fluency with Data"
       ],
-      "estimatedMinutes": 120
+      "estimatedMinutes": 120,
+      "brief": "Covers product analytics tools (Mixpanel, Amplitude) and how PMs read funnel and cohort data. SQL parallel: verify whether a plain-English analyst request matches a given SQL query. Excel parallel: given a 6-month cohort retention table, identify where users drop off and extract 3 insights.",
+      "anchor": "Razorpay"
     },
     {
       "day": 12,
@@ -138,7 +160,9 @@
         "Feature Specification",
         "Product Delivery"
       ],
-      "estimatedMinutes": 120
+      "estimatedMinutes": 120,
+      "brief": "Covers PRD structure and user story writing with acceptance criteria. Figma parallel: write 3 structured PM feedback comments on a Zepto cart screen wireframe — one comment per design issue in annotation format. Assessment: write a mini PRD for a 'Save for Later' cart feature.",
+      "anchor": "Zomato"
     },
     {
       "day": 13,
@@ -149,7 +173,9 @@
         "Stakeholder Management",
         "Managing Up"
       ],
-      "estimatedMinutes": 120
+      "estimatedMinutes": 120,
+      "brief": "Covers product roadmapping (Now/Next/Later) and how PMs communicate the roadmap differently to engineering, sales, and leadership. Excel parallel: sort 10 Razorpay features into a Now/Next/Later grid. Activity: write a leadership update on a PhonePe KYC flow post-launch.",
+      "anchor": "Razorpay"
     },
     {
       "day": 14,
@@ -164,7 +190,9 @@
         "Stakeholder Management",
         "Managing Up"
       ],
-      "estimatedMinutes": 120
+      "estimatedMinutes": 120,
+      "brief": "Week 2 integration day. Applies all Week 2 tools — RCA, hypothesis, mini PRD, OKRs, and leadership update — to a single fictional lending app complaint spike. Full 60-minute case with 5 deliverables: RCA tree, top hypothesis, PRD, OKRs, and a 5-line leadership update.",
+      "anchor": "PhonePe"
     },
     {
       "day": 15,
@@ -175,7 +203,9 @@
         "Business Outcome Ownership",
         "Product Vision + Roadmapping"
       ],
-      "estimatedMinutes": 120
+      "estimatedMinutes": 120,
+      "brief": "Covers product strategy thinking, market sizing (TAM/SAM/SOM), and OKR writing. Includes a search on Zomato's B2B catering market entry analysis. Excel parallel: build a TAM/SAM/SOM model for Indian quick commerce using given population and spending assumptions.",
+      "anchor": "Zomato"
     },
     {
       "day": 16,
@@ -186,7 +216,9 @@
         "Business Outcome Ownership",
         "Managing Up"
       ],
-      "estimatedMinutes": 120
+      "estimatedMinutes": 120,
+      "brief": "Covers competitive analysis frameworks and the Indian consumer internet landscape — Swiggy vs Zomato vs Blinkit as three companies making three different strategic bets. Activity: compare CRED and PhonePe across 5 strategic dimensions and write a product recommendation.",
+      "anchor": "Swiggy vs Zomato vs Blinkit"
     },
     {
       "day": 17,
@@ -197,7 +229,9 @@
         "Strategic Impact",
         "UX Design Sense"
       ],
-      "estimatedMinutes": 120
+      "estimatedMinutes": 120,
+      "brief": "Covers the Bharat vs India user divide, Jio's product decisions for 400M new internet users, and ONDC. Includes a search on Tier 2/3 user behaviour and design assumptions. Figma parallel: redesign the Zepto cart screen for a Hindi-speaking Tier 2 user with structured annotations for every change.",
+      "anchor": "Jio + ONDC"
     },
     {
       "day": 18,
@@ -208,34 +242,40 @@
         "Fluency with Data",
         "Strategic Impact"
       ],
-      "estimatedMinutes": 120
+      "estimatedMinutes": 120,
+      "brief": "Covers API basics for PMs — what REST APIs are, latency, rate limits, and what questions to ask engineering before writing a spec. Includes a search on PM API literacy. Activity: map every API behind Rapido's fare estimate feature and write the two PM questions for each dependency.",
+      "anchor": "Jio + Rapido"
     },
     {
       "day": 19,
       "week": 3,
-      "theme": "Influencing Without Authority: Stakeholder Management and Managing Up",
+      "theme": "Case Practice: Metrics + Strategy",
       "competenciesCovered": [
-        "Stakeholder Management",
-        "Managing Up",
-        "Team Leadership"
+        "Fluency with Data",
+        "Strategic Impact",
+        "Business Outcome Ownership"
       ],
-      "estimatedMinutes": 120
+      "estimatedMinutes": 120,
+      "brief": "Covers metric drop diagnosis and strategy case frameworks used in APM interviews. Warm-up coaching session with a mini RCA and mini strategy framing before timed cases. Assessment: two cases — Swiggy order volume drop RCA (25 min) and Swiggy grocery subscription strategy recommendation (20 min).",
+      "anchor": "Swiggy"
     },
     {
       "day": 20,
       "week": 3,
-      "theme": "Product Quality, Launch Readiness, and the PM's Role in Shipping",
+      "theme": "Behavioral Cases + Influencing People",
       "competenciesCovered": [
-        "Product Quality",
-        "Product Delivery",
-        "Feature Specification"
+        "Stakeholder Management",
+        "Team Leadership",
+        "Managing Up"
       ],
-      "estimatedMinutes": 120
+      "estimatedMinutes": 120,
+      "brief": "Covers behavioral interviews for PMs, the STAR method, and influencing without authority. Includes a search on real behavioral questions from Flipkart, Razorpay, and CRED panels. Activity: STAR story construction with a coach. Assessment: write 4 STAR stories and run a full mock behavioral interview.",
+      "anchor": "Flipkart, Razorpay, CRED"
     },
     {
       "day": 21,
       "week": 3,
-      "theme": "Week 3 Integration: Full PM Synthesis — Strategy, Execution, and the 90-Day APM Plan",
+      "theme": "Final Integration + Personal Gap Map",
       "competenciesCovered": [
         "Feature Specification",
         "Product Delivery",
@@ -250,7 +290,9 @@
         "Team Leadership",
         "Managing Up"
       ],
-      "estimatedMinutes": 120
+      "estimatedMinutes": 120,
+      "brief": "Final integration day covering all 12 Reforge competencies. Returns to Ravi Mehta's competency model as a Day 21 retrospective. OKR self-evaluation: did you hit your Day 15 OKRs? 3-part assessment: full B2B SaaS churn case, self-score across all 12 competencies, and a personal next-30-days improvement plan.",
+      "anchor": "SaaSCraft (fictional Indian B2B SaaS)"
     }
   ]
 }

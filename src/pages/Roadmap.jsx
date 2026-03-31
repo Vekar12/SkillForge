@@ -73,6 +73,12 @@ function DayCard({ day, activeDay, progress, onLoadDay }) {
                 <span style={{ fontSize: 12, color: 'var(--text-5)', transition: 'transform 0.2s', display: 'inline-block', transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
               </div>
             </div>
+            {/* Brief description — always visible */}
+            {day.brief && (
+              <p className="text-xs mt-1.5 leading-relaxed" style={{ color: 'var(--text-3)', lineHeight: 1.55 }}>
+                {day.brief}
+              </p>
+            )}
             {/* Competency pills — always visible, max 4 shown */}
             {day.competenciesCovered && (
               <div className="flex flex-wrap gap-1.5 mt-2">
@@ -123,12 +129,6 @@ function DayCard({ day, activeDay, progress, onLoadDay }) {
                 <span className="text-xs" style={{ color: 'var(--text-3)' }}>· {assessment.gotRight.slice(0, 80)}{assessment.gotRight.length > 80 ? '…' : ''}</span>
               )}
             </div>
-          )}
-
-          {day.brief && (
-            <p className="text-sm mb-3" style={{ color: 'var(--text-2)', lineHeight: 1.6 }}>
-              {day.brief}
-            </p>
           )}
 
           {isFuture && (
