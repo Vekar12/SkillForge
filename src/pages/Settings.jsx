@@ -8,22 +8,25 @@ export default function Settings() {
   const [groqKey, setGroqKey] = useState('')
   const [error, setError] = useState('')
   const [saved, setSaved] = useState(false)
+  const [saving, setSaving] = useState(false)
 
   useEffect(() => {
     if (groqKeySet) setSaved(true)
   }, [groqKeySet])
 
   async function handleSave() {
+    if (saving) return
     setError('')
     if (!groqKey.trim()) return setError('Groq API key is required')
+    setSaving(true)
     try {
       await saveGroqKey(groqKey.trim())
-      // Also keep local key for the existing lib/api.js keysConfigured() check
-      localStorage.setItem('sf_groq_key', groqKey.trim())
       setSaved(true)
       setTimeout(() => navigate('/'), 1000)
     } catch {
       setError('Failed to save Groq key. Please try again.')
+    } finally {
+      setSaving(false)
     }
   }
 
@@ -57,20 +60,22 @@ export default function Settings() {
 
       <button
         onClick={handleSave}
+        disabled={saving || saved}
         style={{
           marginTop: 24,
-          background: saved ? '#16A34A' : '#6366F1',
+          background: saving ? '#4B5563' : saved ? '#16A34A' : '#6366F1',
           color: '#fff',
           border: 'none',
           borderRadius: 8,
           padding: '10px 24px',
           fontWeight: 600,
           fontSize: 14,
-          cursor: 'pointer',
+          cursor: saving || saved ? 'not-allowed' : 'pointer',
           width: '100%',
+          opacity: saving || saved ? 0.8 : 1,
         }}
       >
-        {saved ? 'Saved! Redirecting...' : 'Save & Continue'}
+        {saving ? 'Saving...' : saved ? 'Saved! Redirecting...' : 'Save & Continue'}
       </button>
     </div>
   )

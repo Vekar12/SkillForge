@@ -1,13 +1,9 @@
 import client from './client'
 
 export const assessmentApi = {
-  // GET /api/assessment/:skillId/:day
-  get(skillId, day) {
-    return client.get(`/api/assessment/${skillId}/${day}`)
-  },
-
-  // POST /api/assessment — submit assessment feedback
-  submit(skillId, day, feedback) {
-    return client.post('/api/assessment', { skillId, day, feedback })
+  // POST /api/assessment — { day, rawFeedback } (matches backend contract)
+  // Note: GET /api/assessment/:skillId/:day does not exist on the backend
+  submit(day, rawFeedback) {
+    return client.post('/api/assessment', { day, rawFeedback })
   },
 }

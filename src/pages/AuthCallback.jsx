@@ -4,16 +4,19 @@ import { useApp } from '../context/AppContext'
 
 export default function AuthCallback() {
   const navigate = useNavigate()
-  const { user } = useApp()
+  const { user, userLoading } = useApp()
 
   useEffect(() => {
-    // AppContext handles token extraction from URL
-    // Once user is set, redirect to skills
-    const timer = setTimeout(() => {
-      navigate('/', { replace: true })
-    }, 500)
-    return () => clearTimeout(timer)
-  }, [user])
+    // Wait for auth processing to complete before redirecting
+    if (userLoading) return
+
+    if (user) {
+      navigate('/skills', { replace: true })
+    } else {
+      // No token was processed (e.g. direct navigation without OAuth token)
+      navigate('/login', { replace: true })
+    }
+  }, [user, userLoading, navigate])
 
   return (
     <div className="min-h-screen flex items-center justify-center" style={{ background: '#000' }}>

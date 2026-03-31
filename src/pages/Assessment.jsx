@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { dayData, mockApiResponse } from '../mockData'
+import { useApp } from '../context/AppContext'
 
 function Label({ children }) {
   return (
@@ -34,6 +35,7 @@ function CopyButton({ text }) {
         background: copied ? 'rgba(48,209,88,0.15)' : 'rgba(10,132,255,0.15)',
         color: copied ? '#30D158' : '#0A84FF',
         border: `1px solid ${copied ? 'rgba(48,209,88,0.25)' : 'rgba(10,132,255,0.25)'}`,
+        cursor: 'pointer',
       }}
     >
       {copied ? '✓ Copied' : 'Copy Prompt'}
@@ -72,6 +74,7 @@ const LEVEL_STYLES = {
 
 export default function Assessment() {
   const navigate = useNavigate()
+  const { groqKey, groqKeySet } = useApp()
   const { assessmentTask } = dayData
   const [feedback, setFeedback] = useState('')
   const [submitted, setSubmitted] = useState(false)
@@ -85,6 +88,39 @@ export default function Assessment() {
     setResult(res.data.parsedFeedback)
     setSubmitted(true)
     setLoading(false)
+  }
+
+  // Groq key gate — check both the key value (mock mode) and server-side flag (real mode)
+  if (!groqKey && !groqKeySet && !submitted) {
+    return (
+      <div className="max-w-2xl mx-auto px-4 py-6 lg:px-8 lg:py-10">
+        <button onClick={() => navigate('/')} className="flex items-center gap-1.5 text-sm font-medium mb-6 hover:opacity-70" style={{ color: '#0A84FF', background: 'none', border: 'none', cursor: 'pointer' }}>‹ Back</button>
+        <div className="rounded-3xl p-8 text-center" style={{ background: '#1C1C1E', border: '1px solid rgba(255,159,10,0.2)' }}>
+          <div className="text-4xl mb-4">🔑</div>
+          <h2 className="text-xl font-bold mb-2" style={{ letterSpacing: '-0.3px' }}>Groq API Key Required</h2>
+          <p className="text-sm mb-6 max-w-xs mx-auto" style={{ color: 'rgba(255,255,255,0.5)', lineHeight: '1.65' }}>
+            Assessment scoring uses Groq to parse Claude's feedback. Without a key, we can't track your score or competency level.
+          </p>
+          <div className="rounded-2xl p-4 mb-6 text-left" style={{ background: 'rgba(255,159,10,0.06)', border: '1px solid rgba(255,159,10,0.15)' }}>
+            <p className="text-xs font-bold mb-2" style={{ color: '#FF9F0A', letterSpacing: '0.08em' }}>HOW TO GET A FREE KEY</p>
+            <ol className="space-y-1.5">
+              {['Go to console.groq.com', 'Sign up for free', 'Create an API key', 'Paste it in the header above'].map((s, i) => (
+                <li key={i} className="flex gap-2 text-xs" style={{ color: 'rgba(255,255,255,0.6)' }}>
+                  <span className="w-4 h-4 rounded-full flex items-center justify-center font-bold flex-shrink-0" style={{ background: 'rgba(255,159,10,0.15)', color: '#FF9F0A', fontSize: '10px' }}>{i+1}</span>
+                  {s}
+                </li>
+              ))}
+            </ol>
+          </div>
+          <a href="https://console.groq.com" target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center justify-center w-full font-semibold transition-all hover:opacity-90"
+            style={{ background: '#FF9F0A', color: '#000', height: '52px', borderRadius: '14px', fontSize: '15px', textDecoration: 'none' }}
+          >
+            Get Free Groq Key ↗
+          </a>
+        </div>
+      </div>
+    )
   }
 
   if (submitted && result) {
@@ -133,7 +169,7 @@ export default function Assessment() {
       <button
         onClick={() => navigate('/')}
         className="flex items-center gap-1.5 text-sm font-medium mb-6 transition-opacity hover:opacity-70"
-        style={{ color: '#0A84FF' }}
+        style={{ color: '#0A84FF', background: 'none', border: 'none', cursor: 'pointer' }}
       >
         ‹ Back
       </button>
