@@ -1,50 +1,81 @@
 {
   "day": 13,
   "week": 2,
-  "theme": "Competitive Analysis",
+  "theme": "Roadmapping and stakeholder communication",
   "competenciesCovered": [
-    "Strategic Thinking",
-    "Market Awareness"
+    "Product Vision + Roadmapping",
+    "Stakeholder Management",
+    "Managing Up"
   ],
-  "teamContext": "Coming soon",
-  "objective": "Content for this day is being prepared.",
+  "objective": "Sort 10 features into a Now/Next/Later roadmap with written justification for each placement, and write a 1-page leadership update that communicates what shipped, what the data shows, and what is next — with a different emphasis for engineering vs leadership audiences.",
+  "estimatedMinutes": 120,
   "realWorldAnchor": {
-    "company": "TBD",
-    "example": "Content coming soon"
+    "company": "Razorpay",
+    "example": "Razorpay's product team reportedly communicates roadmap differently to three audiences: to sales they emphasise features that close deals; to engineering they emphasise technical dependencies and sequencing; to leadership they emphasise business outcomes and competitive positioning — the same roadmap, told three different ways, because each audience's question is different."
   },
+  "teamContext": "Roadmapping and stakeholder communication span all four cross-functional relationships — Engineering needs sequencing and dependency clarity, Design needs feature intent and user context, Data needs success metrics upfront, and Leadership needs business outcome framing. A PM who communicates the same roadmap the same way to all four audiences loses each of them.",
   "tasks": [
     {
       "id": "d13t1",
       "type": "read",
-      "title": "Content Coming Soon",
-      "url": null,
-      "comingSoon": true,
-      "summary": "This day's content is being prepared. Check back soon.",
+      "title": "How to Build a Product Roadmap — Product School",
+      "url": "https://productschool.com/blog/product-management/product-roadmap/",
+      "summary": "This article explains the purpose and structure of a product roadmap — what it is (a communication tool expressing product direction), what it is not (a project plan with fixed dates), and how to choose between roadmap formats (Now/Next/Later vs quarterly themes vs feature-based). For Pranav, understanding roadmap formats matters because the format chosen signals the company's product maturity — a date-based roadmap in a fast-moving startup is a commitment nobody can keep.",
       "keyTakeaways": [
-        "Content in progress"
+        "A product roadmap is a communication tool, not a commitment document — its job is to align stakeholders on direction and priorities, not to promise delivery dates. PMs who treat their roadmap as a contract end up managing stakeholder expectations instead of building product",
+        "Now/Next/Later is the most honest roadmap format for fast-moving teams: 'Now' means actively being built this sprint, 'Next' means the next priority once Now is done, and 'Later' means acknowledged but not scheduled — it is deliberately timeline-free, which prevents the trap of over-committing to future work",
+        "The biggest roadmap anti-pattern is feature-stuffing: adding everything to the roadmap to satisfy stakeholders, which signals that nothing is truly prioritised. A roadmap with 4 items in Now, 6 in Next, and 3 in Later is credible; a roadmap with 20 items in Now is not a roadmap, it is a wish list"
+      ],
+      "minutes": 25
+    },
+    {
+      "id": "d13t2",
+      "type": "read",
+      "title": "The Art of the Leadership Update: How PMs Communicate Up — First Round Review",
+      "url": "https://www.lennysnewsletter.com/p/managing-up",
+      "summary": "This First Round Review piece covers how strong PMs communicate with leadership — what information to lead with, how to frame uncertainty without losing credibility, and how to distinguish between a status update (what happened) and a leadership update (what it means and what we are doing about it). For Pranav, this is the writing skill that separates an APM who gets promoted from one who stays invisible.",
+      "keyTakeaways": [
+        "A leadership update has three parts: what happened (specific data, not impressions), what it means (the business implication of that data), and what we are doing next (a clear decision or recommendation, not a list of options). Leaders who receive 'here is what we are exploring' instead of 'here is what we are doing and why' lose confidence in the PM",
+        "Leading with data before context is the most common APM communication mistake — starting with 'KYC completion rate improved 12%' without first saying 'the KYC project we launched 2 weeks ago is now showing results' forces the reader to remember context they may not have",
+        "Managing up does not mean reporting up — it means giving your manager or leadership team the information they need to make a decision or unblock you, proactively, before they have to ask. A PM who waits to be asked is always one step behind"
       ],
       "minutes": 20
+    },
+    {
+      "id": "d13t3",
+      "type": "search",
+      "keyword": "Razorpay product roadmap communication stakeholder engineering sales leadership India PM 2022 2023",
+      "whyItMatters": "Searching for how Razorpay's product team describes their roadmap communication internally — or how former Razorpay PMs describe it in interviews and blogs — gives Pranav a real reference point for a B2B product company where stakeholder alignment is structurally harder than at a B2C consumer app (because sales, engineering, and leadership all have different urgencies and different definitions of 'done').",
+      "whatToLearn": [
+        "How a B2B product company like Razorpay handles the tension between sales-driven roadmap requests ('the enterprise client needs this feature to sign the contract') and product-led priorities ('this feature serves 200 merchants vs the infrastructure work that serves 200,000') — this tension is more acute in Indian B2B companies where enterprise sales often drives disproportionate revenue",
+        "How PMs at Indian payment companies communicate regulatory roadmap items — features mandated by RBI, NPCI, or banking partners — to leadership alongside discretionary product improvements, and how they frame urgency differently for compliance vs growth work"
+      ],
+      "minutes": 20
+    },
+    {
+      "id": "d13t4",
+      "type": "activity",
+      "promptTitle": "Excel/Sheets parallel — sort 10 Razorpay features into a Now/Next/Later roadmap",
+      "claudePrompt": "You are a senior PM helping me practice building a Now/Next/Later roadmap and justifying each placement — a core PM skill for communicating priorities to engineering, design, and leadership.\n\nToday I studied:\n- Product roadmap formats: Now/Next/Later is timeline-free and honest; date-based roadmaps in fast-moving teams create commitment traps\n- Roadmap as a communication tool: its job is to align stakeholders on direction, not to promise delivery\n- Leadership communication: what happened / what it means / what we are doing next\n\nReal world context: I am an APM at Razorpay. It is the start of Q3. Engineering capacity for the next 3 months: 8 engineers, 2 sprints per month. I need to build the Now/Next/Later roadmap for the merchant dashboard squad and present it to engineering and leadership this week.\n\nYour role today: Act as my PM lead reviewing my roadmap. Push back on any 'Now' placement that seems too ambitious given the team size. Challenge any 'Later' placement that looks like it is avoiding a difficult but important piece of work. Ask me for dependency reasoning — what must ship before something else can start?\n\nHere are the 10 features in the backlog:\n\n1. Auto-reconciliation dashboard — merchants can see all transactions matched against bank statements automatically (effort: high — 6 weeks)\n2. Smart retry for failed recurring payments — system automatically retries failed subscription charges at optimal times (effort: medium — 3 weeks)\n3. GST-compliant invoice auto-generation — Razorpay generates a GST invoice after every transaction automatically (effort: medium — 3 weeks)\n4. Multi-currency support — merchants can accept USD, EUR, GBP (effort: very high — 10 weeks)\n5. Payment link expiry notification — sender gets an SMS/email when a payment link they sent is about to expire (effort: low — 1 week)\n6. Dark mode for merchant dashboard (effort: low — 1.5 weeks)\n7. QR code offline payments — generate a QR code from the dashboard for in-person collection (effort: medium — 4 weeks)\n8. Bulk payout scheduling — schedule payouts to multiple vendors in a single batch (effort: high — 5 weeks)\n9. WhatsApp payment confirmation to customers — customer gets a WhatsApp message after paying (effort: low — 1 week, pending WhatsApp Business API approval)\n10. Analytics API for enterprise merchants — programmatic access to transaction and settlement data (effort: very high — 8 weeks)\n\nActivity:\nStep 1: I place all 10 features into Now / Next / Later with a 1-sentence justification for each placement.\nStep 2: You push back on at least 2 placements and ask me to defend them.\nStep 3: I revise any placements I agree need to change, and hold firm on any I disagree with — explaining why.\n\nAfter all 3 steps, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight — GST-compliant invoice generation and RBI-mandated features occupy a special position in Indian product roadmaps: they are not optional, not prioritised by user value, and not deprioritisable the way product features are — a PM who puts a regulatory compliance feature in 'Later' without checking if there is a compliance deadline will create a serious problem]\nCOACHING NOTE: [one specific improvement tip for Pranav on roadmap justification — what makes a 'Later' justification credible vs evasive]\n\nBegin with: 'Good. You have 8 engineers for 3 months — roughly 24 engineer-weeks of capacity. Now/Next/Later is your format. Place all 10 features and give me one sentence of justification for each. Start.'",
+      "minutes": 35
     }
   ],
   "bonusTasks": [
     {
       "id": "d13b1",
-      "type": "read",
-      "title": "How UPI Achieved 10 Billion Transactions \u2014 Product Lessons",
-      "url": "https://www.npci.org.in/what-we-do/upi/product-overview",
-      "summary": "UPI's design decisions \u2014 interoperability, zero MDR, 24x7 availability \u2014 were product choices as much as technical ones. Study the decisions that made it the world's largest real-time payments network.",
-      "keyTakeaways": [
-        "Interoperability by design removes network effects as a moat \u2014 and grows the whole market",
-        "Zero MDR was a deliberate choice to prioritise adoption over monetisation",
-        "Regulatory partnerships can be a product accelerant, not just a constraint"
-      ],
+      "type": "search",
+      "title": "OKR vs roadmap — how they work together at Indian startups",
+      "keyword": "OKRs product roadmap alignment Indian startup PM quarterly planning Swiggy Razorpay how they connect 2023",
+      "summary": "OKRs (which appear in detail on Day 15) and roadmaps are often treated as separate documents — but in well-run product teams they are linked: each roadmap item should map to at least one OKR's key result. Searching for how Indian product teams connect these two planning tools gives Pranav context before he writes his first set of OKRs in two days.",
       "minutes": 20
     }
   ],
   "assessmentTask": {
-    "taskDescription": "Assessment coming soon",
-    "rawMaterial": "Content being prepared",
-    "outputFormat": "Content being prepared",
-    "claudePrompt": "Content being prepared"
+    "type": "do",
+    "taskDescription": "Write a 1-page leadership update for a PhonePe KYC project — covering what shipped, what the data shows, and what is next — and then rewrite the same update as a 5-bullet engineering team summary with different emphasis.",
+    "rawMaterial": "You are an APM at PhonePe. Two weeks ago your team shipped a new KYC flow redesign. Here is everything you know:\n\nWHAT SHIPPED:\n- New KYC flow with a 4-step progress bar (previously no progress indicator)\n- Plain-language instructions at each step in both English and Hindi\n- OTP expiry timer now visible on screen (previously hidden)\n- Bug fix: address input field was not saving correctly on Android 12 (fixed in this release)\n\nDATA (2 weeks post-launch, compared to 2 weeks pre-launch):\n- Overall KYC completion rate: 51% (was 39%) — improvement of 12 percentage points\n- Step 1 → Step 2 completion: 89% (was 81%)\n- Step 2 → Step 3 completion: 76% (was 71%)\n- Step 3 → Step 4 (Aadhaar OTP) completion: 61% (was 58%)\n- Step 4 → KYC complete: 94% (was 95%) — slight regression\n- Drop-off at Step 3 is still disproportionately high vs the industry benchmark of ~78% for this step\n- Support tickets related to KYC: down 34%\n\nWHAT IS NEXT:\n- Q3 plan: full rebuild of Step 3 (Aadhaar OTP) — adding an OTP not received flow, alternative verification via DigiLocker, and a retry with different number option\n- Estimated impact: if Step 3 completion reaches 78% (industry benchmark), overall KYC completion rate would reach ~62%\n- Engineering capacity needed: 4 engineers for 6 weeks\n\nWrite two documents:\n\nDOCUMENT 1 — LEADERSHIP UPDATE (1 page, ~300 words):\nAudience: CPO and Head of Growth. They care about business impact and what is coming next. They do not need technical detail. Structure: what shipped and what changed / what the data shows and what it means / what we are doing next and why.\n\nDOCUMENT 2 — ENGINEERING TEAM SUMMARY (5 bullets, ~100 words total):\nAudience: Engineering lead and 4 engineers on the squad. They care about what worked technically, what the data revealed about the product, and what the next build scope is. Different emphasis from Document 1 — highlight the Step 3 regression, the Step 4 slight regression, and the Q3 rebuild scope.",
+    "outputFormat": "Two clearly labelled sections: DOCUMENT 1 — LEADERSHIP UPDATE (prose, ~300 words, three labelled paragraphs: What Shipped / What the Data Shows / What Is Next). DOCUMENT 2 — ENGINEERING SUMMARY (5 bullet points, each 1-2 sentences, focused on technical and product detail).",
+    "claudePrompt": "You are a senior PM reviewing my work on Day 13: Roadmapping and Stakeholder Communication.\n\nI studied today:\n- Product roadmap formats: Now/Next/Later as a communication tool, not a commitment document\n- Leadership communication: what happened / what it means / what we are doing next — leading with data before context is a common mistake\n- Managing up: giving leadership the information they need to make a decision, proactively, before they ask\n\nReal world context I should apply:\nPhonePe KYC redesign — 2 weeks post-launch. Completion rate improved from 39% to 51%. Step 3 still the biggest drop-off. Step 4 showing a slight regression. Q3 plan is to rebuild Step 3.\n\nMY TASK TODAY WAS: Write a 1-page leadership update AND a 5-bullet engineering summary — same project, different audiences, different emphasis.\n\nHere is my work:\n[Pranav pastes his leadership update and engineering summary here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation — especially check: does the leadership update lead with context before data? Does it have a clear recommendation for what to approve or unblock? Does the engineering summary emphasise the Step 4 regression and the Q3 rebuild scope, which are the two things engineers care most about?]\n\nBLIND SPOTS:\n- [things I did not consider at all — e.g., explaining WHY Step 3 completion is still low despite the new progress bar; quantifying the business value of reaching the 62% completion target (how many more activated users per month?); or flagging the engineering capacity request (4 engineers for 6 weeks) with a business case rather than just a number]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about KYC communication in Indian fintech — KYC completion rate is a regulated metric that RBI monitors, which means 'KYC completion improved 12 points' is not just a product win but potentially a compliance improvement as well — a PM communicating to leadership should know whether to frame this as a product achievement or a regulatory risk reduction]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Managing Up — [Needs Focus / On Track / Outperform]",
+    "minutes": 20
   }
 }

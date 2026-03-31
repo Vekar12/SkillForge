@@ -1,43 +1,87 @@
 {
   "day": 12,
   "week": 2,
-  "theme": "Roadmapping",
+  "theme": "PRDs, user stories, and Figma feedback",
   "competenciesCovered": [
-    "Product Intuition",
-    "Stakeholder Alignment"
+    "Feature Specification",
+    "Product Delivery"
   ],
-  "teamContext": "Coming soon",
-  "objective": "Content for this day is being prepared.",
+  "objective": "Write a mini PRD for a specific Zepto cart feature — including a scoped problem statement, 3 user stories with acceptance criteria, success metrics, out-of-scope items, and one engineering edge case — and write 3 structured Figma-format PM comments on a described checkout screen.",
+  "estimatedMinutes": 120,
   "realWorldAnchor": {
-    "company": "TBD",
-    "example": "Content coming soon"
+    "company": "Zomato",
+    "example": "Zomato's group ordering feature — where multiple people can add items to a shared cart before checkout — required a PRD that carefully specified the exact user stories for each participant type (the initiator vs the guest), the edge cases (what happens if a guest adds an out-of-stock item?), and the acceptance criteria that engineering used to confirm the feature was production-ready."
   },
+  "teamContext": "PRDs and user stories are the PM's primary output for the Engineering team — a well-written PRD with clear acceptance criteria is what allows engineers to build autonomously without needing to interrupt the PM with questions. A Figma comment is the PM's primary output for the Design team — structured, actionable, and tied to a specific screen location.",
   "tasks": [
     {
       "id": "d12t1",
       "type": "read",
-      "title": "Content Coming Soon",
-      "url": "#",
-      "summary": "This day's content is being prepared. Check back soon.",
+      "title": "How to Write a Product Requirements Document (PRD) — Product School",
+      "url": "https://productschool.com/blog/product-management/product-requirements-document-prd/",
+      "summary": "This article walks through the structure and purpose of a PRD — the document that communicates what to build, for whom, and why, in enough detail that an engineer can scope and build it without constant PM involvement. For Pranav, who has consulting exposure to documentation, a PRD is a familiar structured document but with a different audience and purpose — it is optimised for engineering clarity, not stakeholder persuasion.",
       "keyTakeaways": [
-        "Content in progress"
+        "A PRD is not a functional specification — it describes the user's goal and the business requirement, not the technical implementation. Engineers own the technical design; the PM owns the 'what' and 'why', and the engineer owns the 'how'",
+        "The most important section of a PRD is 'out of scope' — explicitly listing what will NOT be built in this version prevents scope creep during development and gives engineers permission to say no to late additions without escalating to the PM",
+        "Acceptance criteria are the PM's quality gate: they are testable conditions that, when all met, mean the feature is working as intended. Bad acceptance criteria ('the feature should work well') are untestable; good acceptance criteria ('when a user taps Save for Later, the item moves from the active cart to a Saved section within 500ms and a confirmation toast appears') are specific and verifiable"
+      ],
+      "minutes": 25
+    },
+    {
+      "id": "d12t2",
+      "type": "read",
+      "title": "User Stories: The Complete Guide for Product Managers — Product School",
+      "url": "https://productschool.com/blog/product-management/user-stories/",
+      "summary": "This article explains how to write user stories — the 'As a [user], I want [goal], so that [benefit]' format — and how to attach acceptance criteria to each story so that engineering can verify completion without ambiguity. The article also covers story splitting (breaking large stories into testable increments) and the difference between user stories (what the user does) and technical tasks (how engineering implements it).",
+      "keyTakeaways": [
+        "A user story is not a feature description — it is a statement of user intent. 'As a daily Zepto user, I want to save items to a list so that I can reorder them quickly tomorrow' is a user story; 'Build a save-for-later button' is a feature request. The format forces the PM to specify who benefits and why, not just what to build",
+        "Acceptance criteria complete the user story by defining the boundary conditions: what must be true when the story is done? They should cover the happy path, at least one edge case, and one error state — a story with acceptance criteria only for the happy path will always have unresolved questions during engineering",
+        "In Indian product teams, user stories often need an additional dimension for vernacular and low-connectivity edge cases: 'As a user on a 2G connection in a Tier 2 city, I want the cart to load within 3 seconds even without images' is a valid user story that an Indian PM must write explicitly, because it will never appear in a generic user story template"
       ],
       "minutes": 20
+    },
+    {
+      "id": "d12t3",
+      "type": "search",
+      "keyword": "product manager PRD template user stories acceptance criteria Indian startup Zepto Swiggy example 2023 2024",
+      "whyItMatters": "Searching for real PRD templates and user story examples used by Indian product teams gives Pranav a concrete reference point for what 'good' looks like at the companies he is preparing to join. Look for PM blogs, LinkedIn posts, or product teardowns that share actual PRD sections or user story formats — even partial examples are useful anchors.",
+      "whatToLearn": [
+        "What a typical PRD looks like at a fast-moving Indian consumer internet company — the format is usually leaner than a corporate spec document, favouring a 1-2 page structure with problem statement, user stories, metrics, and out-of-scope items over a 10-page technical specification",
+        "What acceptance criteria actually look like when written by experienced PMs at Indian product companies — specifically, how they handle edge cases for low-connectivity users, vernacular content, and payment-related states (pending, failed, refunded) which are more complex in Indian payment infrastructure than in Western markets"
+      ],
+      "minutes": 20
+    },
+    {
+      "id": "d12t4",
+      "type": "activity",
+      "promptTitle": "Figma parallel — write 3 structured PM feedback comments on a Zepto cart screen",
+      "claudePrompt": "You are a senior PM helping me practice writing structured Figma feedback comments — the format a PM uses to give actionable design feedback that an engineer can implement without further clarification.\n\nToday I studied:\n- PRD structure: problem statement, user stories with acceptance criteria, out-of-scope items, edge cases\n- User story format: 'As a [user], I want [goal], so that [benefit]' — with acceptance criteria for happy path, edge case, and error state\n- How acceptance criteria must be testable, not aspirational\n\nReal world context: I am an APM at Zepto reviewing the cart screen design before it goes to engineering. The designer has shared a wireframe in Figma and asked for my feedback before the handoff.\n\nTHE WIREFRAME DESCRIPTION (treat this as if you are looking at the screen):\nZepto Android cart screen. Top of screen: delivery address showing '14, Koramangala 5th Block, Bangalore' with a small pencil icon next to it but no label saying what the icon does. Below the address: a list of 4 items, each showing the item name, quantity (with + and - tappable buttons), and item price. Below the item list: a horizontally scrolling row of 3 'You might also like' product suggestions with an Add button on each. Below that: a grey text field labelled 'Have a promo code?' with a 'Apply' button. At the bottom: a fixed footer bar showing 'Total: ₹487' on the left and a large green 'Place Order' button on the right. There is no delivery fee line item shown anywhere on the screen.\n\nFigma comment format — use EXACTLY this structure for each comment:\n[COMMENT N]\nLocation: [specific screen element or area]\nIssue: [what the problem is — describe it as a user would experience it]\nSuggestion: [specific, implementable change — one sentence]\nPriority: [P1 = blocks launch / P2 = should fix before launch / P3 = nice to have]\n\nYour role today: Act as the designer receiving my feedback. For each comment I write:\n- If the location is vague (e.g., 'the bottom area'), ask me to be more specific\n- If the issue is an opinion rather than a user problem (e.g., 'this looks cluttered'), ask me to reframe it as a user experience problem\n- If the suggestion is not implementable in one sentence, ask me to simplify it\n\nActivity:\nI write 3 Figma comments on this cart screen. You review each one before I write the next.\n\nAfter all 3 comments are reviewed, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight — the missing delivery fee line item on the Zepto cart screen is a significant trust issue in the Indian e-commerce context: Indian users, especially in Tier 2 cities, are highly sensitive to hidden charges appearing at checkout — 'surprise' delivery fees at the final payment step are a documented cause of cart abandonment in Indian consumer research]\nCOACHING NOTE: [one specific tip for writing PM Figma comments that engineers love vs comments that frustrate them]\n\nBegin with: 'Good. You have the wireframe in front of you. Write your first Figma comment. Use the exact format: [COMMENT 1] / Location / Issue / Suggestion / Priority. Pick the most important problem you see on this screen first.'",
+      "minutes": 35
     }
   ],
   "bonusTasks": [
     {
       "id": "d12b1",
+      "type": "search",
+      "title": "PRD formats at top Indian product companies",
+      "keyword": "PRD product requirements document format Flipkart Meesho Razorpay product manager template India lean",
+      "summary": "Different Indian product companies use different PRD formats — some use Notion templates, some use Confluence, some use Google Docs with a standard section structure. Searching for how fast-moving Indian startups structure their PRDs gives Pranav real reference points before he writes his own in the assessment. Look for PM blog posts that share actual PRD templates or sections, not just articles about PRDs in the abstract.",
+      "minutes": 20
+    },
+    {
+      "id": "d12b2",
       "type": "activity",
-      "promptTitle": "Prioritise a Conflicted Backlog",
-      "claudePrompt": "I am a PM at a B2C fintech app in India. My backlog has these four items: (1) Loan EMI reminder push notification requested by 300 support tickets, (2) Dark mode requested by 1200 users in App Store reviews, (3) UPI Lite integration demanded by the CEO for a partnership, (4) Fraud detection improvement flagged by the security team as urgent. Help me prioritise these using RICE scoring and explain the trade-offs I am making.",
+      "promptTitle": "Redesign the Zepto cart screen for a Tier 2 non-English user",
+      "claudePrompt": "You are a senior PM helping me practice inclusive product design — specifically, thinking about how a screen designed for urban English-first users needs to change to work for a Tier 2 Hindi-speaking user.\n\nContext: I completed the core Figma feedback activity on the Zepto Android cart screen (described above). Now I want to think about how the same screen would need to change for a user who: uses Hindi as their primary language, has a 3G connection (average page load 2-4 seconds), uses a mid-range Redmi device, and is purchasing on Zepto for the first time.\n\nYour role today: Help me think through the changes systematically. When I describe a change, ask: 'Is this a language change, a UX change, a performance change, or a trust change?' — because each type of change requires a different kind of engineering work.\n\nActivity — I will describe the changes needed for each section of the screen:\n1. The delivery address section\n2. The item list with quantity selectors\n3. The promo code field\n4. The footer with price and Place Order button\n\nFor each section, I describe what I would change and why. You push back on any change that is not justified by the Tier 2 user's specific constraints, and add any change I missed.\n\nAfter all 4 sections, tell me: which single change would have the highest impact on conversion for this user, and why?\n\nBegin with: 'Let's start with the delivery address section at the top of the screen. What would you change about it for a first-time Tier 2 Hindi-speaking user — and what specific constraint drives that change?'",
       "minutes": 25
     }
   ],
   "assessmentTask": {
-    "taskDescription": "Assessment coming soon",
-    "rawMaterial": "Content being prepared",
-    "outputFormat": "Content being prepared",
-    "claudePrompt": "Content being prepared"
+    "type": "do",
+    "taskDescription": "Write a mini PRD for the Zepto 'Save for Later' feature — including a scoped problem statement, 3 user stories with acceptance criteria, 2 success metrics, a numbered out-of-scope list, and one edge case flagged to engineering.",
+    "rawMaterial": "You are an APM at Zepto. The feature: a 'Save for Later' option in the cart that lets users move items out of the active cart without deleting them, storing them in a separate 'Saved Items' section they can add back to the cart on a future visit.\n\nBackground you have:\n- From Day 3's user research: users who buy the same groceries daily find the cart frustrating because they have to re-add items every time. A Save for Later feature would let them maintain a persistent list of staples.\n- Cart abandonment rate: 34% of users who add items to cart do not complete the order\n- Users who abandon their cart: 41% return within 24 hours and place an order (with or without the same items)\n- The feature should work on Android first (iOS to follow in the next sprint)\n\nWrite the following sections:\n\n1. PROBLEM STATEMENT — one sentence in the format: 'When [user in specific situation] tries to [goal], they experience [pain], which results in [business impact].'\n\n2. USER STORIES — write exactly 3, each in the format: 'As a [specific user type], I want to [specific action], so that [specific benefit].' Each user story must have acceptance criteria covering: (a) the happy path, (b) one edge case, (c) one error state.\n\n3. SUCCESS METRICS — exactly 2 metrics in the format: 'We will know this worked if [measurable outcome] within [time period].'\n\n4. OUT OF SCOPE — a numbered list of at least 4 items that explicitly will NOT be built in this version.\n\n5. EDGE CASE FOR ENGINEERING — describe one specific edge case this feature creates that engineering needs to handle, in 2-3 sentences. Be specific: what is the scenario, what could go wrong, and what should the product do?",
+    "outputFormat": "Five clearly labelled sections. User stories section must show each story's format line followed by an indented list of acceptance criteria labelled (a), (b), (c). Out of scope must be a numbered list. Edge case must be a paragraph of 2-3 sentences.",
+    "claudePrompt": "You are a senior PM reviewing my work on Day 12: PRDs, User Stories, and Figma Feedback.\n\nI studied today:\n- PRD structure: problem statement, user stories, success metrics, out-of-scope, edge cases — each section serves a different audience and purpose\n- User story format: 'As a [user], I want [goal], so that [benefit]' — with acceptance criteria for happy path, edge case, and error state\n- Figma comment format: structured feedback that an engineer can implement without further clarification\n\nReal world context I should apply:\nZepto 'Save for Later' feature — addressing the daily grocery buyer who re-adds the same items every day. Cart abandonment: 34%. 41% of abandoners return within 24 hours.\n\nMY TASK TODAY WAS: Write a mini PRD with problem statement, 3 user stories with acceptance criteria, 2 success metrics, 4+ out-of-scope items, and 1 engineering edge case.\n\nHere is my work:\n[Pranav pastes his mini PRD here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation of why — especially check: are acceptance criteria actually testable? Is the problem statement using all 4 components? Are the out-of-scope items genuinely boundary-setting or just things that don't exist yet? Is the edge case specific enough for an engineer to act on?]\n\nBLIND SPOTS:\n- [things I did not consider at all — e.g., what happens to saved items when they go out of stock or are removed from the Zepto catalogue; whether saved items should sync across devices for the same user account; the interaction between saved items and the 'You might also like' recommendation row; or the data storage and query cost of maintaining a persistent saved-items list per user at Zepto's scale]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about the Indian grocery buying context that should inform the acceptance criteria — e.g., many Zepto users share a family account on one device, which means 'saved items' may be added by one family member and ordered by another — this multi-user household account pattern is common in India and often overlooked in user story writing]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Feature Specification — [Needs Focus / On Track / Outperform]",
+    "minutes": 20
   }
 }

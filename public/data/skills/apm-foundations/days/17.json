@@ -1,49 +1,89 @@
 {
   "day": 17,
   "week": 3,
-  "theme": "Go-To-Market Planning",
+  "theme": "Bharat vs India: Designing for India's Next 400 Million Users",
   "competenciesCovered": [
-    "Communication",
-    "Stakeholder Alignment"
+    "Voice of Customer",
+    "Strategic Impact",
+    "UX Design Sense"
   ],
-  "teamContext": "Coming soon",
-  "objective": "Content for this day is being prepared.",
+  "objective": "Understand the product and strategic decisions that enabled Jio to bring 400 million new users online; map the behavioural differences between urban Indian (India) and small-town/rural Indian (Bharat) users; and redesign a feature for Bharat using structured Figma annotations.",
+  "estimatedMinutes": 120,
   "realWorldAnchor": {
-    "company": "TBD",
-    "example": "Content coming soon"
+    "company": "Jio + ONDC",
+    "context": "Jio's 2016 launch fundamentally changed who uses the internet in India. Their product decisions — free voice calls, ₹149/month unlimited data, Hindi-first UX — were deliberate product bets, not engineering choices. Understanding these decisions is foundational to designing for Bharat. ONDC (Open Network for Digital Commerce) is the government-backed protocol that aims to replicate UPI's success for e-commerce — and its success or failure will be decided by whether product teams can make it accessible to both Bharat merchants and Bharat consumers."
   },
+  "parallelSkillThread": "Figma (Day 17 of thread): Structured annotation — redesigning an urban feature for Tier 2 users with written justification for every design decision.",
   "tasks": [
     {
       "id": "d17t1",
       "type": "read",
-      "title": "Content Coming Soon",
-      "url": "#",
-      "summary": "This day's content is being prepared. Check back soon.",
+      "title": "Jio's product strategy: how one company changed what the internet means in India",
+      "url": "https://www.reforge.com/blog/product-strategy",
+      "summary": "Jio's launch strategy is a masterclass in market creation: they did not compete with Airtel or Vodafone for existing users — they created an entirely new internet user class. The product decisions that drove this (free voice, subsidised handsets, JioPhone lite UI, Hindi content partnerships) are documented across press coverage, case studies, and product teardowns. This reading is a synthesis of that strategy, focused on what the PM decisions were and why they were made.",
       "keyTakeaways": [
-        "Content in progress"
+        "Jio's North Star was not ARPU — it was user activation at scale, because the long-term bet was data monetisation, not per-user revenue in Year 1",
+        "The JioPhone keypad form factor was a deliberate product decision: the target user owned a feature phone and would not upgrade to a smartphone for a telecom product alone",
+        "Hindi-first content (Jio Cinema, Jio TV) was a product decision, not a localisation afterthought — the insight was that Bharat users would use mobile internet for video first, not text",
+        "Free voice calls eliminated the biggest barrier to switching (call credit management) for users who had never held a postpaid plan",
+        "The product constraint Jio optimised for: users with 2-4GB data/day on ₹150/month budgets, using phones with 512MB RAM, in areas with inconsistent connectivity"
+      ],
+      "minutes": 25
+    },
+    {
+      "id": "d17t2",
+      "type": "read",
+      "title": "ONDC: what it is, why it matters, and how it is different from Swiggy/Zomato",
+      "url": "https://internetfreedom.in/ondc-an-explainer/",
+      "summary": "ONDC is a government-backed open protocol for e-commerce that aims to unbundle the buyer app, the seller app, and the logistics layer — similar to how UPI separated the payment rail from the bank app. Understanding ONDC matters for PMs because it changes what is technically possible for small merchants in Tier 2 India who cannot afford Zomato/Swiggy commissions. Whether ONDC succeeds depends almost entirely on whether product teams can make it accessible to both Bharat merchants and Bharat consumers.",
+      "keyTakeaways": [
+        "ONDC separates buyer apps (where users browse) from seller apps (where merchants list) — any buyer app can show any seller's products, eliminating exclusive platform lock-in",
+        "The strategic purpose: reduce the 15-30% commission that Zomato/Swiggy/Amazon charge by creating competition between buyer apps and seller apps",
+        "ONDC's product challenge: the UX is currently too fragmented because there is no single authoritative buyer app, and onboarding a small merchant still requires technical integration",
+        "Bharat relevance: ONDC's success case is the kirana store owner in Nagpur who cannot afford ₹10,000/month for a Zomato listing but can be onboarded via WhatsApp Business",
+        "PM implication: if you are building for Bharat merchants, you need to understand ONDC's protocol before deciding whether to build on top of it or alongside it"
       ],
       "minutes": 20
+    },
+    {
+      "id": "d17t3",
+      "type": "search",
+      "keyword": "Tier 2 Tier 3 India user behaviour mobile internet first time users product design assumptions",
+      "title": "Research Bharat user behaviour and design assumptions",
+      "whyItMatters": "Most PMs in Indian startups (including those at Bengaluru-headquartered companies) were themselves urban internet users before they became PMs. This means they have a systematic blind spot: they design products for users who look like themselves. Researching the documented behavioural differences between urban and Bharat users — literacy levels, data costs, phone storage, language preference, payment trust — is the first step to closing that blind spot.",
+      "whatToLearn": [
+        "What percentage of Indian smartphone users primarily use regional language interfaces rather than English?",
+        "What is the typical RAM and storage constraint on phones used by Tier 2/3 users, and how does this affect app size limits?",
+        "What are the documented trust barriers for first-time digital payments users in non-metro India?",
+        "Which Indian apps have successfully crossed the India-Bharat divide (high DAU in both metro and Tier 3), and what product decisions enabled this?",
+        "What does publicly available data show about average daily mobile data consumption in rural India vs metro India?"
+      ],
+      "minutes": 20
+    },
+    {
+      "id": "d17t4",
+      "type": "activity",
+      "promptTitle": "Figma annotation: Redesign the Zepto cart screen for a Tier 2 Hindi-speaking user",
+      "claudePrompt": "You are a senior product designer and PM coach.\n\nRole: You are coaching me through a structured design annotation exercise. My goal is to take an existing urban-optimised Indian app screen and redesign it for a specific Bharat user persona — not just translate the language, but rethink every design assumption.\n\nToday I studied:\n- Jio's product strategy for 400M new internet users and the specific product decisions behind their Bharat expansion\n- ONDC's open commerce model and why it matters for Tier 2 merchants\n- Documented behavioural differences between urban Indian and Bharat users (literacy, data, language, trust, phone specs)\n\nReal world context:\nZepto's cart screen is optimised for an urban user: English interface, high-resolution product images, complex discount stacking UI, trust signals that assume prior e-commerce experience (Zepto Catch, Pass membership). The user I am redesigning for is:\n- Name: Ramesh, 32 years old, Nashik (Tier 2 Maharashtra)\n- Phone: Android with 2GB RAM, 16GB storage\n- Data: Jio 2GB/day plan\n- Language: Hindi primary, basic English reading\n- Internet experience: 3 years on smartphone, uses WhatsApp, YouTube, Google Pay\n- E-commerce experience: has ordered 2-3 times from Meesho, not from quick-commerce apps\n- Trust level: cautious about digital payments above ₹200; prefers cash-on-delivery for first orders\n\nYour role: Walk me through this step by step.\n\nActivity steps:\n\nStep 1 — Assumption audit\nList 8 design assumptions that Zepto's current cart screen makes about the user. For each assumption, write: [Assumption] → [Why it fails for Ramesh]\n\nExamples to start with:\n- 'User can read English product names quickly' → Ramesh reads Hindi primary; English slows his decision-making\n- 'User trusts digital payment at checkout' → Ramesh will abandon if cash-on-delivery is not the default option shown\n(Add 6 more)\n\nStep 2 — Redesign decisions\nFor each of the 8 assumptions, write a specific redesign decision. Format:\n[Original assumption] → [Redesign decision] → [Figma annotation text I would write]\n\nThe Figma annotation text is what you would actually write as a label on the design file for the engineering team.\n\nStep 3 — Priority ranking\nRank your 8 redesign decisions by impact on Ramesh completing his first order. Justify the top 3 with one sentence each.\n\nStep 4 — One thing you would NOT change\nIdentify one element of the urban Zepto cart that you would keep unchanged even for Ramesh — and explain why.\n\nFeedback format after I complete the exercise:\nWHAT WORKED: [specific design decisions that show genuine Bharat insight vs surface-level localisation]\nWHAT MISSED: [assumptions I did not catch, or redesign decisions that are actually urban-lens solutions dressed as Bharat solutions]\nINDIA-SPECIFIC NOTE: [one insight about the difference between 'translating an app' and 'designing for a different mental model']\nCOACHING NOTE: [one thing Pranav should do differently the next time he runs a design annotation exercise]\n\nBegin with Step 1 — the assumption audit.",
+      "minutes": 35
     }
   ],
   "bonusTasks": [
     {
       "id": "d17b1",
-      "type": "read",
-      "title": "Design Critique at Google \u2014 What PMs Should Know",
-      "url": "https://design.google/library/",
-      "summary": "Google's design culture gives PMs a framework for giving useful critique \u2014 specific, objective, and tied to user outcomes rather than personal taste.",
-      "keyTakeaways": [
-        "Feedback should reference user goals, not personal preference",
-        "Separate 'I don't like this' from 'this will confuse users' \u2014 only the second is useful critique",
-        "Design reviews are alignment meetings, not approval gates"
-      ],
-      "minutes": 20
+      "type": "search",
+      "title": "Search for TRAI annual report data on regional language internet usage",
+      "keyword": "TRAI annual report 2023 2024 regional language internet users India rural urban split",
+      "why": "TRAI publishes annual telecom subscriber data and internet usage statistics. Grounding your Bharat design understanding in actual published numbers — rather than intuition — is a habit all senior PMs develop.",
+      "minutes": 10
     }
   ],
   "assessmentTask": {
-    "taskDescription": "Assessment coming soon",
-    "rawMaterial": "Content being prepared",
-    "outputFormat": "Content being prepared",
-    "claudePrompt": "Content being prepared"
+    "type": "do",
+    "taskDescription": "Take one specific feature from an urban Indian app (not Zepto — choose Swiggy, CRED, PhonePe, or Razorpay). Write the current user story as it exists for an urban user. Then fully rewrite it for a Tier 2 user matching Ramesh's profile. For each rewrite, explicitly list every assumption you changed and why.",
+    "rawMaterial": "Urban Indian apps are designed by PMs who mostly live in Bengaluru, Mumbai, or Delhi and use iPhones or high-end Androids. This means their user stories carry hidden assumptions: 'User can read English', 'User has stable 4G', 'User has used this app category before', 'User trusts in-app payment'. Your task is to make these hidden assumptions visible — and then redesign around them.\n\nPick ONE feature from one of these apps:\n- Swiggy: the 'Reorder' feature (one-tap reorder from order history)\n- CRED: the 'Rent Payment' feature\n- PhonePe: the 'Send Money' flow (UPI transfer to a new contact)\n- Razorpay: the payment link creation flow (for a small merchant)\n\nStep 1 — Current user story (urban lens)\nWrite the user story in standard format:\nAs a [urban user type], I want to [action] so that [outcome].\nAcceptance criteria: list 4-5 specific acceptance criteria that a PM at this company would have written.\n\nStep 2 — Assumption inventory\nBefore rewriting, list every assumption embedded in the original user story and its acceptance criteria. Format:\n[Assumption #] [The assumption] [Evidence it is an urban-first assumption]\nAim for at least 6 assumptions.\n\nStep 3 — Tier 2 user story rewrite\nRewrite the user story for Ramesh (Nashik, 32, Jio 2GB/day, Hindi primary, 2GB RAM Android, cautious digital payment user, WhatsApp/YouTube/Google Pay only).\nAs a [specific Tier 2 user], I want to [action] so that [outcome].\nRewrite all 4-5 acceptance criteria to match Ramesh's context.\n\nStep 4 — Assumption change log\nFor each assumption you changed between Step 1 and Step 3, write:\n[Assumption changed] → [What it became] → [Why this matters for Ramesh specifically]",
+    "outputFormat": "Four labelled sections: (1) Feature chosen and original urban user story with 4-5 acceptance criteria. (2) Assumption inventory — minimum 6 assumptions, each with evidence it is urban-first. (3) Tier 2 user story rewrite with revised acceptance criteria. (4) Assumption change log — one row per changed assumption. Total length: aim for 500-700 words.",
+    "claudePrompt": "You are a senior PM reviewing my Day 17 work on Bharat vs India product design.\n\nI studied today:\n- Jio's product strategy for 400M new users and the specific product decisions behind Bharat expansion\n- ONDC and its relevance for Tier 2 merchants and consumers\n- Documented behavioural differences between urban Indian and Bharat users\n- How to run a design annotation exercise: auditing urban assumptions and redesigning for a specific Bharat persona\n\nReal world context I should apply:\nThe user I am designing for is Ramesh — 32, Nashik, Jio 2GB/day, Hindi primary, 2GB RAM Android, 3 years on smartphone (WhatsApp/YouTube/Google Pay only), cautious about digital payments above ₹200. He is not a hypothetical user — he is the person that Jio's 400M new user expansion actually reached.\n\nMY TASK TODAY WAS: Take one feature from an urban Indian app, write the current urban user story with acceptance criteria, list every embedded assumption, rewrite it for Ramesh's context, and produce an assumption change log.\n\nHere is my work:\n[Pranav pastes his four sections here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets — check: did Pranav catch non-obvious assumptions beyond language and data speed? Did the rewritten acceptance criteria actually reflect Ramesh's constraints, or just add 'Hindi option'?]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets — flag if: the assumption inventory is surface-level (only caught language/data, missed payment trust, phone storage, literacy level, social proof mechanisms); if the rewritten user story still assumes behaviour Ramesh would not have (e.g., assumes he checks email, assumes he has browsing history in the app, assumes he reads error messages); if acceptance criteria were reworded but not actually changed in substance]\n\nBLIND SPOTS:\n- [things Pranav did not consider — e.g., the role of social proof and word-of-mouth in Bharat adoption (Ramesh will trust the app more if his WhatsApp group recommended it than if the app shows ratings); the importance of 'undo' and confirmation screens for users who are not confident they tapped the right thing; how offline-first design affects the feature; how Hindi UX is not just translation but different information hierarchy because Hindi script takes more visual space than English]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about designing for the India-Bharat split specifically — for example: the biggest mistake urban PMs make is assuming Bharat users want a simpler version of the urban product; often they want a fundamentally different interaction model (voice input, WhatsApp bot, missed call activation) because their relationship with the smartphone screen is different]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Voice of Customer — [Needs Focus / On Track / Outperform]; UX Design Sense — [Needs Focus / On Track / Outperform]",
+    "minutes": 20
   }
 }

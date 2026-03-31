@@ -1,43 +1,81 @@
 {
   "day": 18,
   "week": 3,
-  "theme": "Launch and Post-Launch",
+  "theme": "Case Practice: Product Design + Estimation + API Basics",
   "competenciesCovered": [
-    "Execution",
-    "Analytical Thinking"
+    "Feature Specification",
+    "Fluency with Data",
+    "Strategic Impact"
   ],
-  "teamContext": "Coming soon",
-  "objective": "Content for this day is being prepared.",
+  "objective": "Build fluency in two real PM interview formats (product design case and estimation case) under time pressure; and develop foundational API literacy — the ability to have an informed conversation with engineering about what is technically feasible and what questions to ask before writing a spec.",
+  "estimatedMinutes": 120,
   "realWorldAnchor": {
-    "company": "TBD",
-    "example": "Content coming soon"
+    "company": "Jio + Rapido",
+    "context": "Product design and estimation questions are the two most common formats in APM interviews at Indian companies. Jio's rural Maharashtra expansion is the context for today's design case — because designing for connectivity-constrained, Hindi-first users is a real product problem every Indian PM team faces. The API basics thread is anchored in Rapido's ride-booking flow: understanding why PM decisions (show estimated fare before booking, support voice-based destination input) are only possible if specific APIs are available is the concrete way to build API intuition."
   },
+  "parallelSkillThread": "API Basics (Day 18 of thread): What an API is, why PM decisions depend on API availability, and what questions to ask engineering before spec-ing any feature.",
   "tasks": [
     {
       "id": "d18t1",
       "type": "read",
-      "title": "Content Coming Soon",
-      "url": "#",
-      "summary": "This day's content is being prepared. Check back soon.",
+      "title": "APIs for product managers: what every PM needs to know without writing code",
+      "url": "https://www.mindtheproduct.com/ten-tips-for-product-managers-to-get-confident-with-apis/",
+      "summary": "Most APMs can describe a feature in a PRD but cannot have an informed conversation with engineering about what is technically feasible. The most common gap is API literacy: not knowing what an API is, what it costs to call one, or what questions to ask engineering before assuming a feature is simple. This reading covers the fundamentals: what REST APIs are, what request/response means, what rate limits and latency mean for product decisions, and the specific questions PMs should ask before spec-ing any feature that depends on an external API.",
       "keyTakeaways": [
-        "Content in progress"
+        "An API is a defined contract between two systems: 'if you send me X, I will send you back Y' — PMs need to understand this contract because it defines what is possible, at what cost, and at what speed",
+        "Every API call has latency (time to respond) and cost (per-call fees for paid APIs) — PM decisions like 'show real-time fare estimate as the user types' require understanding if the maps API can handle 10 calls per second or costs ₹0.50 per call",
+        "Rate limits matter for product design: if WhatsApp's API only allows 1,000 messages per day on a free tier, your 'instant notification' feature is actually a batch notification that might arrive hours late",
+        "Key questions PMs should ask engineering before spec-ing a feature: (1) Does this require a new API integration or can we use an existing one? (2) What is the P95 latency of this API? (3) Are there rate limits that affect how often we can call it? (4) What is the fallback state if the API is down?",
+        "Rapido's fare estimate feature requires a maps API (route calculation), a demand/surge API (driver availability), and a payment API (UPI link generation) — a PM who does not know these exist cannot spec the feature accurately"
       ],
-      "minutes": 20
+      "minutes": 25
+    },
+    {
+      "id": "d18t2",
+      "type": "search",
+      "keyword": "product manager API knowledge REST API what questions to ask engineering PM technical skills",
+      "title": "Research what API literacy looks like in practice for PMs",
+      "whyItMatters": "API knowledge is consistently listed in APM job descriptions at Indian companies as 'preferred technical skills'. The actual expectation is not that you can write API code, but that you can read API documentation, understand what a response payload means, and know what to ask engineering before writing a spec. This search helps Pranav calibrate what the bar actually is.",
+      "whatToLearn": [
+        "What does a REST API request and response look like in plain English (not code)?",
+        "What is the difference between a GET request and a POST request in terms of what a PM should care about?",
+        "What is a webhook and why does it matter for product features like 'notify user when payment is confirmed'?",
+        "What questions should a PM ask in sprint planning when engineering says 'this feature requires a new API integration'?",
+        "What are the most common APIs used by Indian fintech and consumer apps (Razorpay, Google Maps, Twilio, Firebase push notifications)?"
+      ],
+      "minutes": 15
+    },
+    {
+      "id": "d18t3",
+      "type": "activity",
+      "promptTitle": "API basics: map the APIs behind a Rapido booking feature and write the questions a PM should ask",
+      "claudePrompt": "You are a senior technical PM and APM coach.\n\nRole: You are helping me build API literacy by walking me through a real product feature and mapping its API dependencies.\n\nToday I studied:\n- What REST APIs are and what request/response means in product terms\n- Why API latency, rate limits, and cost affect PM decisions\n- The specific questions PMs should ask engineering before spec-ing a feature\n\nReal world context:\nRapido is India's bike taxi and auto-rickshaw booking app. One of their product features is: 'Show the user a fare estimate within 2 seconds of entering the destination, before they confirm the booking.'\n\nThis seems like a simple product requirement. But it depends on multiple APIs being available, fast, and reliable.\n\nYour role: Walk me through the API mapping exercise step by step.\n\nActivity steps:\n\nStep 1 — API identification\nFor the feature 'Show fare estimate within 2 seconds of entering destination', list every external API or internal service that needs to be called. For each one:\n[API/Service name] → [What it provides] → [Why removing it breaks the feature]\n\nStep 2 — PM questions\nFor each API/service identified in Step 1, write the 2 most important questions a PM should ask engineering before spec-ing this feature. Format:\n[API/Service] → [Question 1] → [Question 2]\n\nStep 3 — Edge case identification\nFor the same feature, identify 3 edge cases that a PM should add to the acceptance criteria specifically because of API dependencies. Format:\n[Edge case] → [Which API dependency causes it] → [How the PM should spec the fallback behaviour]\n\nStep 4 — Simplification check\nIs there a version of this feature that requires fewer API calls? Describe one simpler version and explain what product quality trade-off it makes.\n\nFeedback format:\nWHAT WORKED: [specific API reasoning that shows real technical intuition]\nWHAT MISSED: [APIs or questions I did not identify]\nINDIA-SPECIFIC NOTE: [one insight about API reliability in the Indian infrastructure context — e.g., how 2G/3G fallback matters for Rapido's Tier 2 cities]\nCOACHING NOTE: [one habit Pranav should build when reviewing engineering specs going forward]\n\nBegin with Step 1.",
+      "minutes": 15
+    },
+    {
+      "id": "d18t4",
+      "type": "activity",
+      "promptTitle": "Case practice preparation: CIRCLES framework review + Fermi estimation warm-up",
+      "claudePrompt": "You are an APM interview coach specialising in Indian product companies.\n\nRole: I am about to do two timed case practice sessions (my Day 18 assessment). Before I start the timed cases, I need a focused 25-minute prep session with you.\n\nToday I studied:\n- API literacy for PMs: what REST APIs are, what questions to ask engineering\n- Rapido fare estimate feature API mapping\n\nFrom earlier in the programme:\n- CIRCLES framework (Day 6): Comprehend, Identify, Report, Cut, List, Evaluate, Summarise\n- RICE scoring (Day 5): Reach, Impact, Confidence, Effort\n- Market sizing (Day 15): TAM/SAM/SOM, top-down vs bottom-up\n- Jio + Bharat user context (Day 17): designing for connectivity-constrained, Hindi-first users on JioPhone\n\nPrep activity:\n\nPart 1 — CIRCLES warm-up (10 minutes)\nGive me a micro version of a product design question and walk me through what a strong 8/10 answer structure looks like. The question should involve a Bharat user context (because my timed case today is set in rural Maharashtra).\n\nPart 2 — Estimation warm-up (10 minutes)\nGive me a simple estimation question (not auto-rickshaws in Mumbai — save that for my timed case). Walk me through: (a) how to state your assumptions explicitly before calculating, (b) how to structure the calculation in layers (population → segment → behaviour → number), and (c) what makes an estimation answer 'good' in an APM interview even if the final number is off.\n\nPart 3 — One coaching tip (5 minutes)\nBased on the two warm-ups, give me one specific thing to watch out for in my timed cases today.\n\nBegin with Part 1.",
+      "minutes": 25
     }
   ],
   "bonusTasks": [
     {
       "id": "d18b1",
-      "type": "activity",
-      "promptTitle": "Build vs Buy Decision for Payments",
-      "claudePrompt": "I am a PM at a mid-sized Indian e-commerce company (5M monthly orders). We currently use Razorpay for payments. The CEO wants to evaluate building our own in-house payment stack to save 1.5% MDR. Help me structure the build vs buy vs partner decision. What are the hidden costs of building, what capabilities would we need, what are the regulatory requirements, and what would you recommend?",
-      "minutes": 25
+      "type": "search",
+      "title": "Search for Rapido or OlaMaps developer API documentation",
+      "keyword": "Rapido API documentation developer partner OR Ola Maps API India developer docs",
+      "why": "Reading actual developer documentation for an Indian app API gives you a visceral sense of what an 'API response payload' means and why PM decisions like 'show real-time ETA' depend on specific fields being present in the API response.",
+      "minutes": 10
     }
   ],
   "assessmentTask": {
-    "taskDescription": "Assessment coming soon",
-    "rawMaterial": "Content being prepared",
-    "outputFormat": "Content being prepared",
-    "claudePrompt": "Content being prepared"
+    "type": "do",
+    "taskDescription": "Two timed product cases back-to-back. Case 1 (25 min): Product design using CIRCLES for a Jio feature in rural Maharashtra. Case 2 (15 min): Estimation — how many auto-rickshaws operate in Mumbai at any given moment on a weekday afternoon? Self-score against the rubric provided in the Claude prompt.",
+    "rawMaterial": "This is a dual-case timed assessment. Start a timer for each case. Do NOT pause the timer to look things up.\n\nCASE 1 — Product Design (25 minutes)\nJio wants to build a feature that helps kirana store owners in rural Maharashtra accept digital payments from customers who do not have smartphones. The feature must work on JioPhone (keypad device, basic internet, Hindi UI). Design this feature using the CIRCLES framework.\n\nCASE 2 — Estimation (15 minutes)\nHow many auto-rickshaws are operating in Mumbai at any given moment on a weekday afternoon?\n\nAfter completing both cases, paste your work into the Claude prompt below and self-score using the rubric before reading Claude's feedback.",
+    "outputFormat": "Case 1: Labelled CIRCLES sections (C / I / R / C / L / E / S) with 2-4 sentences per section. The feature recommendation at S (Summarise) must be specific enough for engineering to start scoping — not a product direction, but a product decision. Case 2: Structured estimation with explicit assumptions, layered calculation, a final number, and a confidence range. Total length: aim for 600-800 words across both cases.",
+    "claudePrompt": "You are a senior APM interview coach at an Indian product company.\n\nI just completed two timed product cases as my Day 18 assessment. I had:\n- 25 minutes for Case 1 (product design, CIRCLES framework, Jio kirana payments feature in rural Maharashtra)\n- 15 minutes for Case 2 (estimation, auto-rickshaws operating in Mumbai on a weekday afternoon)\n\nI studied today:\n- API basics for PMs: REST APIs, latency, rate limits, PM questions for engineering\n- Rapido fare estimate API mapping exercise\n- CIRCLES framework and Fermi estimation warm-up with a coach\n- Jio and Bharat user context (from Day 17): designing for JioPhone, Hindi-first, kirana store owner persona\n\nHere is my work:\n[Pranav pastes both case answers here]\n\nSELF-SCORE RUBRIC (fill this out BEFORE reading my feedback):\n\nCase 1 Product Design:\n- CIRCLES structure followed in order with each section building on the previous: 0-2 points\n- User identified specifically (not 'kirana owners in rural Maharashtra' but a named persona with a specific constraint): 0-2 points\n- Feature recommendation is specific and technically scoped for JioPhone (keypad, Hindi, no app store): 0-3 points\n- India-specific constraint called out explicitly (ONDC compatibility, cash-first trust ladder, low-literacy UI): 0-3 points\nCase 1 self-score: /10\n\nCase 2 Estimation:\n- Assumptions stated explicitly before the calculation begins: 0-2 points\n- Layered structure used (population → registered autos → active autos → utilisation rate → operating count): 0-3 points\n- Sanity check against a known reference point (Mumbai has approximately 700,000 registered autos per RTO data): 0-2 points\n- Confidence range stated, not just one number: 0-3 points\nCase 2 self-score: /10\n\nNow review my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets — for Case 1: did the CIRCLES sections build logically on each other? Was the feature recommendation specific and implementable on JioPhone, or was it a smartphone-first solution relabelled? For Case 2: did the estimation have explicit assumptions, a layered structure, and a sanity check?]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets — flag if: in Case 1, the CIRCLES sections are not internally consistent (e.g., the user segment in I contradicts the use case in C); the feature recommendation does not account for JioPhone's technical constraints (no app store, keypad input, Hindi only); the solution solves for the kirana owner but not for the customer who also needs to complete the payment without a smartphone. For Case 2: flag if assumptions are not stated before calculation; if there is no sanity check; if the structure does not separate registered autos from active autos from currently-operating autos]\n\nBLIND SPOTS:\n- [things Pranav missed entirely — e.g., in Case 1: the customer's side of the transaction (if the customer does not have a smartphone, how do they authorise the UPI payment? — this is the actual product problem, not just the merchant's side); ONDC compatibility as a strategic consideration (from Day 17); in Case 2: the utilisation rate variable is the key insight — even if 700K autos are registered, only 60-70% may be active on a given weekday, and within that active fleet, not all are carrying passengers at the same moment]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about how Indian APM interviews specifically differ from US PM interview prep advice — e.g., Indian interviewers often value India-specific constraints being called out (JioPhone spec, ONDC compatibility, RTO registration data for estimation) over generic frameworks applied generically; if Pranav's CIRCLES answer could have been written by someone who has never been to India, that is a missed opportunity]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: Case 1: [X/10] | Case 2: [X/10]\nREFORGE COMPETENCY: Feature Specification — [Needs Focus / On Track / Outperform]; Fluency with Data — [Needs Focus / On Track / Outperform]",
+    "minutes": 40
   }
 }

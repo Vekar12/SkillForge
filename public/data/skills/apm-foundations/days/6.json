@@ -1,87 +1,79 @@
 {
   "day": 6,
   "week": 1,
-  "theme": "Writing PRDs",
+  "theme": "Product design frameworks — CIRCLES and BUS",
   "competenciesCovered": [
-    "Communication",
-    "Product Intuition"
+    "UX Design Sense",
+    "Feature Specification"
   ],
-  "teamContext": "Today's focus team: Engineering + Design",
-  "objective": "Write a one-page PRD for a real feature, including problem statement, user stories, and success metrics.",
+  "objective": "Produce a complete written CIRCLES answer for a CRED product design case covering all 7 steps, with a specific user definition, India-specific reasoning at each stage, and a clear recommendation in the final summary step.",
+  "estimatedMinutes": 120,
   "realWorldAnchor": {
-    "company": "Zomato",
-    "example": "Zomato's 'Pure Veg Mode' \u2014 a feature born from a clear PRD that identified a specific user segment (vegetarian families) being underserved"
+    "company": "CRED",
+    "example": "CRED's product design philosophy prioritises aesthetics and reward-loop psychology over feature richness — any design answer for CRED must begin by defining who the user is (the financially responsible, aesthetically oriented, 750+ credit score user) because CRED's design choices are a direct expression of that specific user's mental model and aspirations."
   },
+  "teamContext": "CIRCLES is most directly relevant to the PM's collaboration with the Design team — it provides a shared language for working through a design decision end-to-end, and prevents the most common failure mode in design reviews: jumping to features without first aligning on users, goals, and success criteria.",
   "tasks": [
     {
       "id": "d6t1",
       "type": "read",
-      "title": "How to Write a Great PRD",
-      "url": "https://www.lennysnewsletter.com/p/how-to-write-a-great-prd",
-      "summary": "Lenny Rachitsky breaks down what makes a PRD actually useful \u2014 clear problem statement, defined success metrics, and user stories engineers can act on.",
+      "title": "The CIRCLES Method: A Product Design Framework — Product School",
+      "url": "https://productschool.com/blog/product-management/circles-method/",
+      "summary": "This article explains the CIRCLES method — Comprehend the situation, Identify the customer, Report the customer's needs, Cut through prioritisation, List solutions, Evaluate trade-offs, Summarise your recommendation — as the primary framework for answering product design questions in PM interviews and running internal design discussions. This is the core framework for Day 6 and will be used directly in the assessment.",
       "keyTakeaways": [
-        "The problem section is more important than the solution section",
-        "User stories force you to think from the user's perspective, not the engineer's",
-        "Success metrics must be defined before development starts",
-        "A PRD is a communication tool, not a contract"
+        "CIRCLES is not a rigid checklist — it is a thinking sequence that prevents the two most common PM design failures: jumping to features without defining the user (skipping I and R), and proposing solutions without stating trade-offs (skipping E)",
+        "The most important and most skipped step is C — Comprehend the situation: always begin by asking clarifying questions about the goal, constraints, and context before touching users or features; PM interviewers consistently report this as the single biggest differentiator between strong and weak candidates",
+        "In Indian PM interviews, CIRCLES requires an additional dimension: at step I (Identify the customer), always check whether your user definition covers both urban English-first users and Tier 2 vernacular users — failure to segment often means your solution works for only the easier half of the Indian market"
       ],
       "minutes": 25
     },
     {
       "id": "d6t2",
       "type": "read",
-      "title": "User Stories vs Job Stories \u2014 What to Use When",
-      "url": "https://jtbd.info/replacing-the-user-story-with-the-job-story-af7cdee10c27",
-      "summary": "User stories (As a [user] I want to [action] so that [benefit]) are widely used but often too feature-focused. Job stories connect the feature to a motivating situation. This piece explains when to use each.",
+      "title": "How to Answer Product Design Questions in PM Interviews — Lenny's Newsletter",
+      "url": "https://www.lennysnewsletter.com/p/the-definitive-guide-to-mastering",
+      "summary": "Lenny Rachitsky compiles advice from PM interviewers and hiring managers on what separates strong from weak product design answers — covering not just what to say but how to say it: thinking out loud, handling clarifying questions under pressure, demonstrating user empathy through specificity, and managing time across the 7 CIRCLES steps.",
       "keyTakeaways": [
-        "User stories describe what; job stories explain when and why",
-        "Job stories are harder to write but produce better product decisions",
-        "Combining both gives engineers context and product gives scope",
-        "Bad user stories are feature requests in disguise"
+        "The biggest differentiator in design answers is demonstrating user empathy through specificity — 'a 34-year-old CRED user who wants to understand what is pulling her credit score down after adding a new credit card' is more impressive than 'urban working professionals,' because it shows real user thinking",
+        "Interviewers consistently score reasoning process higher than the final answer — a wrong recommendation with clear, stepwise logical reasoning scores higher than a correct answer with fuzzy or missing reasoning",
+        "Time management guidance for CIRCLES: spend roughly 25% of your time on C/I/R, 20% on Cut, 35% on List and Evaluate, and 20% on Summarise — most candidates rush the user definition and spend too long listing features"
       ],
-      "minutes": 20
+      "minutes": 25
     },
     {
       "id": "d6t3",
       "type": "search",
-      "keyword": "PRD template product requirements document Indian startup example",
-      "whyItMatters": "PRD formats vary widely. Indian startup PMs often write lighter-weight PRDs than large tech companies. Finding real examples helps you calibrate what's expected at early vs growth stage companies.",
+      "keyword": "CIRCLES method CRED credit score feature product design answer PM interview walkthrough India fintech",
+      "whyItMatters": "Seeing the CIRCLES framework applied to a product with a niche, well-defined user segment — specifically an Indian fintech with premium positioning and a specific credit score user — prepares Pranav to apply it to the exact CRED case in his assessment. Look for PM interview prep videos or written walkthroughs where a candidate works through CIRCLES on a credit or financial product design question.",
       "whatToLearn": [
-        "What a real one-page PRD looks like for a consumer feature",
-        "How Indian PMs adapt PRD templates to move faster",
-        "What information engineers actually need vs what PMs over-document",
-        "Any public PRDs or feature specs from Indian product teams"
+        "How candidates handle the 'Identify the customer' step when the product has a deliberately narrow user segment — for CRED, the 750+ credit score user is not just a demographic filter but a proxy for specific values (financial discipline, status consciousness, aesthetic sensitivity) that should directly inform every feature suggestion",
+        "What a strong CIRCLES summary step sounds like — one paragraph that connects the recommended solution back to the user's primary need, the company's strategic positioning, and 2 key trade-offs that were evaluated and rejected"
       ],
-      "minutes": 15
+      "minutes": 20
     },
     {
       "id": "d6t4",
       "type": "activity",
-      "title": "Write a Mini PRD",
-      "promptTitle": "Write a Mini PRD Live",
-      "claudePrompt": "You are a PM coach working with Pranav on Day 6: PRDs.\n\nAsk him to write a one-page PRD for this feature: 'A feature on Swiggy that lets users schedule grocery deliveries from Instamart for a specific time slot (e.g., delivered between 7-8 AM tomorrow)'\n\nGuide him to include:\n1. Problem statement (what user pain does this solve?)\n2. Target user (who specifically?)\n3. User story (As a... I want to... So that...)\n4. Success metric (how will you know it worked?)\n5. Out of scope (what are you explicitly NOT building?)\n\nAfter his draft, give structured feedback. Push him if the problem statement is too vague or the success metric is unmeasurable.\n\nScore 1-10.",
-      "minutes": 25
+      "promptTitle": "Live CIRCLES walkthrough — PM interview simulation for CRED credit score feature",
+      "claudePrompt": "You are a PM interviewer running a live product design interview with me as a candidate for an APM role at CRED.\n\nToday I studied:\n- CIRCLES method: 7 steps — Comprehend, Identify, Report, Cut, List, Evaluate, Summarise\n- How to answer product design questions: user empathy through specificity, thinking out loud, time management\n- CRED's design philosophy: premium aesthetics, reward-loop psychology, exclusively for users with 750+ credit scores\n\nReal world context: This is a live PM interview simulation. I am interviewing for an APM role at CRED in 2024.\n\nYour role today: Play the PM interviewer. When I answer each CIRCLES step, ask the follow-up questions a real interviewer would ask. Push back on vague user definitions. Ask what success looks like before I jump to listing features. If I skip a step, call it out. If my features do not match the user I defined, point out the contradiction.\n\nCase question:\n'You are a PM at CRED. Design a feature that helps CRED users understand and improve their credit score. Walk me through your answer.'\n\nWe will go step by step through CIRCLES. For each step:\n1. I state my answer for that step.\n2. You react as the interviewer: ask a follow-up, push back on vague answers, or confirm and invite me to move on.\n3. We advance only when each step is sufficiently complete.\n\nAfter all 7 steps, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight — credit score literacy in India is fundamentally different from the US: CIBIL, Experian, and CRIF operate differently, many high-score users do not know which factors drive their score, and 'improving your credit score' requires financial education that users might find patronising or reassuring depending on how it is framed]\nCOACHING NOTE: [one specific improvement tip for performing under interview pressure]\n\nBegin with: 'Good. Let's start. Here is your case: You are a PM at CRED. Design a feature that helps CRED users understand and improve their credit score. Take a moment if you need. When you are ready, start with C — Comprehend the situation. What clarifying questions would you ask before diving in?'",
+      "minutes": 30
     }
   ],
   "bonusTasks": [
     {
       "id": "d6b1",
-      "type": "read",
-      "title": "Writing PRDs at Zepto \u2014 Speed vs Completeness",
-      "url": "https://zepto.com/blog/",
-      "summary": "Zepto ships faster than almost any Indian startup. Their docs are lean \u2014 enough context to align, not enough to slow down.",
-      "keyTakeaways": [
-        "A 1-page PRD beats a 10-page spec that no-one reads",
-        "Edge cases should be documented but not block shipping",
-        "Async alignment via written docs saves hours of meetings"
-      ],
-      "minutes": 15
+      "type": "activity",
+      "promptTitle": "Apply BUS framework to the same CRED case — compare with CIRCLES",
+      "claudePrompt": "You are a senior PM helping me compare two product design frameworks: CIRCLES and BUS (Business goal, User goal, Success metrics) using the same CRED case.\n\nI have already completed a full CIRCLES answer for this case: 'Design a feature that helps CRED users understand and improve their credit score.'\n\nYour role today: Guide me through the same case using BUS. BUS is simpler and faster than CIRCLES — it is the framework used in internal design reviews to align a team quickly on what is being built and why, before going into full feature design.\n\nBUS structure:\nB — Business goal: What does CRED want to achieve with this feature? Pick the most important one and justify it.\nU — User goal: What specific job does the CRED user want done? Write it in JTBD format: 'When [situation], I want to [goal], so I can [outcome].'\nS — Success metrics: Name 2-3 metrics that would tell you this feature is working, and 1 guardrail metric that would tell you it is not.\n\nActivity: I answer B, then U, then S. After each answer, you push back or confirm as a senior PM would in a design review.\n\nAfter both frameworks are complete, ask me: 'What did CIRCLES give you that BUS did not? What did BUS give you that CIRCLES did not? When would you use each in a real product team context?'\n\nBegin with: 'Let's run BUS on the CRED credit score feature. Start with B — Business goal. What is CRED trying to achieve with a credit score education feature? Think about their retention challenges, their monetisation model, and their competitive positioning before you answer.'",
+      "minutes": 25
     }
   ],
   "assessmentTask": {
-    "taskDescription": "Write a PRD for Ola's ride scheduling feature",
-    "rawMaterial": "From user research, Ola found that 34% of their cancellations happen because a driver isn't available when the user needs one \u2014 especially for early morning airport trips, school runs, and recurring office commutes. Users currently workaround this by booking 15 minutes early, but still face cancellations. Competitor Rapido has no scheduling feature. Uber has it in select cities.",
-    "outputFormat": "A one-page PRD including:\n1. Problem statement\n2. Target user (be specific)\n3. Proposed solution (2-3 sentences)\n4. User stories (minimum 2)\n5. Success metrics (minimum 2, must be measurable)\n6. Out of scope",
-    "claudePrompt": "You are reviewing Pranav's Day 6 PRD for Ola's scheduling feature.\n\n**What I Got Right**\n**What Needs Correction**\n**Blind Spots**\n**India-Specific Note**\n**Open Points for Tomorrow**\n\nScore: X/10\nReforge Level: Needs Focus / On Track / Outperform"
+    "type": "do",
+    "taskDescription": "Write a complete, structured CIRCLES answer for the CRED credit score feature design case — all 7 steps written out in full, with a specific user definition, at least 3 feature options evaluated with trade-offs stated, and a clear recommendation in the Summarise step.",
+    "rawMaterial": "Case question (treat this as a written response to a PM interview question):\n'You are a PM at CRED. Design a feature that helps CRED users understand and improve their credit score. Walk through your complete answer.'\n\nContext available to you:\n- CRED has approximately 12 million members (publicly reported), all with credit scores above 750\n- CRED's core product loop: pay credit card bills → earn CRED coins → redeem coins for rewards\n- CRED's design philosophy: premium, clean, reward-driven — no clutter, no generic financial advice\n- The credit score space in India: CRIF, TransUnion CIBIL, and Experian all operate here — CRED already pulls and shows users their score\n- User insight (from CRED's public product communications): many CRED users want to understand WHAT is affecting their score, not just see the number\n- Regulatory context: RBI guidelines allow credit bureaus to provide free credit score access — CRED already leverages this, so the score display itself is solved\n- One constraint: any feature must fit CRED's premium aesthetic — it cannot look like a generic bank app",
+    "outputFormat": "Seven clearly labelled sections, one per CIRCLES step (C / I / R / C / L / E / S). Each section: 3-6 sentences minimum. The Summarise section (S) must be a paragraph of at least 5 sentences that a PM could read aloud as their final recommendation. No bullet-only sections — every section needs at least one sentence of reasoning.",
+    "claudePrompt": "You are a senior PM reviewing my written CIRCLES answer for a PM interview design case.\n\nI studied today:\n- CIRCLES method: Comprehend, Identify, Report, Cut, List, Evaluate, Summarise — all 7 steps\n- How to demonstrate user empathy through specificity rather than category descriptions\n- CRED's design philosophy: premium aesthetics, reward-loop psychology, exclusively for 750+ credit score users\n\nReal world context I should apply:\nCRED's 12 million members (public figure) all have credit scores above 750. They already see their score in the app. The opportunity is helping them understand and improve it — which requires credit literacy features designed specifically for a financially disciplined, aesthetically conscious, high-engagement user segment.\n\nMY TASK TODAY WAS: Write a complete 7-section CIRCLES answer for 'Design a feature that helps CRED users understand and improve their credit score.'\n\nHere is my work:\n[Pranav pastes his full 7-section CIRCLES answer here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation of why]\n\nBLIND SPOTS:\n- [things I did not consider at all — e.g., gamification of credit improvement milestones fitting CRED's reward loop; regulatory constraints on how credit data can be displayed; the difference between a user who just wants to see their score vs one who wants an action plan; the risk that financial advice features feel patronising to a high-credit-score user who already considers themselves financially disciplined]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about credit score literacy in India — how CIBIL score awareness differs from the US FICO context, what 'improving your credit score' means differently in India where credit history is shorter for most users, and why many CRED users don't know which specific actions are driving or dragging their score]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: UX Design Sense — [Needs Focus / On Track / Outperform]",
+    "minutes": 20
   }
 }

@@ -1,43 +1,88 @@
 {
   "day": 8,
   "week": 2,
-  "theme": "Working with Engineering",
+  "theme": "North Star metric + AARRR funnel + SQL intro",
   "competenciesCovered": [
-    "Technical Credibility",
-    "Execution"
+    "Fluency with Data",
+    "Business Outcome Ownership"
   ],
-  "teamContext": "Coming soon",
-  "objective": "Content for this day is being prepared.",
+  "objective": "Define a justified North Star metric for Zepto, list one supporting metric per AARRR stage with healthy vs unhealthy benchmarks, and read a real SQL query to explain what it returns and how you would extend it.",
+  "estimatedMinutes": 120,
   "realWorldAnchor": {
-    "company": "TBD",
-    "example": "Content coming soon"
+    "company": "Zepto vs CRED",
+    "example": "Zepto's North Star is likely something like 'monthly transacting households' — a measure of recurring purchase behaviour — while CRED's North Star is closer to 'monthly bill payments via CRED' — these are completely different because Zepto is a frequency-of-purchase business and CRED is a monthly-cycle bill payment business, and the North Star metric you pick shapes every downstream feature and team decision."
   },
+  "teamContext": "North Star and AARRR metrics are most directly relevant to the PM's relationship with the Data/Analytics team — the North Star is the shared language that tells analysts what to instrument, what to report weekly, and what anomalies to flag to the PM without being asked.",
   "tasks": [
     {
       "id": "d8t1",
       "type": "read",
-      "title": "Content Coming Soon",
-      "url": "#",
-      "summary": "This day's content is being prepared. Check back soon.",
+      "title": "North Star Metric: What It Is and How to Find Yours — Lenny's Newsletter",
+      "url": "https://www.lennysnewsletter.com/p/choosing-your-north-star-metric",
+      "summary": "Lenny Rachitsky surveys how top product teams at companies like Duolingo, Figma, Notion, and Spotify define and use their North Star metric. The article explains what makes a good North Star (captures value delivered to users AND predicts long-term business health), shows examples of bad North Stars (revenue, DAU without context), and explains why two companies in the same space can have completely different North Stars depending on their business model.",
       "keyTakeaways": [
-        "Content in progress"
+        "A good North Star metric has three properties: it measures the value your product delivers to users (not just internal business health), it is leading (it predicts future revenue rather than trailing it), and the whole team can influence it — a metric only the CEO can move is a vanity metric, not a North Star",
+        "The most common North Star mistake is choosing a metric that is easy to measure rather than one that is meaningful — DAU (daily active users) without a quality filter is often gamed; a better North Star specifies what 'active' means in the context of the product's core value (e.g., 'users who complete at least one grocery order per week')",
+        "Zepto and CRED have fundamentally different North Stars because their businesses are different: Zepto wins by increasing purchase frequency per household; CRED wins by increasing the value of bills paid per member — mixing these up leads to building the wrong features"
+      ],
+      "minutes": 25
+    },
+    {
+      "id": "d8t2",
+      "type": "read",
+      "title": "AARRR Pirate Metrics: The PM's Guide to Funnel Thinking — Product School",
+      "url": "https://productschool.com/blog/product-management/aarrr-pirate-metrics/",
+      "summary": "This article explains the AARRR framework (Acquisition, Activation, Retention, Referral, Revenue) as a structured way for PMs to map all product metrics to funnel stages, identify where users drop off, and prioritise which stage to fix first. For Pranav, AARRR is the bridge between a single North Star metric and the full set of 5-7 supporting metrics a PM monitors weekly.",
+      "keyTakeaways": [
+        "AARRR gives every metric a home: acquisition metrics (how did users find us?), activation metrics (did they experience the core value?), retention metrics (do they come back?), referral metrics (do they tell others?), revenue metrics (do we make money?) — if a metric does not fit one of these five buckets, it is probably not worth tracking weekly",
+        "The most important and most neglected stage is Activation — it is the bridge between getting a user and keeping them, and most teams under-invest in it because it does not show up in acquisition dashboards or revenue dashboards; it lives in the middle and is invisible unless you specifically measure it",
+        "For Indian consumer apps, Retention and Referral look different than Western markets: retention is shaped by cash-back and offers cycles, and referral is heavily driven by WhatsApp sharing rather than in-app invite flows — a PM who copies US-market AARRR benchmarks without adjusting for India will misread their own funnel"
+      ],
+      "minutes": 25
+    },
+    {
+      "id": "d8t3",
+      "type": "search",
+      "keyword": "Zepto North Star metric quick commerce India CRED North Star difference business model 2023 2024",
+      "whyItMatters": "Searching for how Indian PMs and analysts describe Zepto's and CRED's core metrics gives Pranav real context for today's assessment — where the spec asks him to define Zepto's North Star, seeing how practitioners in the Indian market think about it is better preparation than reading a generic framework article. Look for product teardowns, PM blog posts, or investor analysis that specifically discusses what Zepto optimises for.",
+      "whatToLearn": [
+        "What metric Zepto's product team is most likely to use as their North Star given their business model — frequency of household grocery orders, not just app opens or GMV, because the business wins when households replace their kirana store habit with Zepto",
+        "Why two companies in adjacent spaces (Zepto quick commerce vs CRED fintech) would have North Stars that are structurally different — and why copying a competitor's metric can destroy your own product focus"
       ],
       "minutes": 20
+    },
+    {
+      "id": "d8t4",
+      "type": "activity",
+      "promptTitle": "SQL intro — read a real query, explain what it returns, extend it",
+      "claudePrompt": "You are a senior PM helping me build SQL reading fluency — the ability to look at a real query and understand what it returns, without needing to write SQL myself.\n\nToday I studied:\n- North Star metric: a single metric that captures the value the product delivers to users and predicts long-term business health\n- AARRR funnel: Acquisition, Activation, Retention, Referral, Revenue — every product metric belongs to one of these five stages\n- Why Zepto and CRED have completely different North Stars because their business models are different\n\nReal world context: I am an APM at Zepto. My data analyst just shared this SQL query that runs every Monday morning to check the previous week's order performance:\n\n```sql\nSELECT\n  DATE(created_at)        AS order_date,\n  delivery_city           AS city,\n  COUNT(order_id)         AS total_orders,\n  SUM(order_value_inr)    AS total_revenue_inr,\n  ROUND(AVG(order_value_inr), 2) AS avg_order_value_inr\nFROM orders\nWHERE order_status = 'completed'\n  AND created_at >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)\nGROUP BY DATE(created_at), delivery_city\nORDER BY order_date DESC, total_orders DESC;\n```\n\nYour role today: Act as the analyst who wrote this query. Answer my questions directly and honestly. If I misread the query, correct me. If I ask something the query cannot tell me, explain why.\n\nActivity — 3 questions:\nQuestion 1: I will describe in plain English what this query returns — what rows it produces, what each column contains, and what time period it covers. You confirm or correct.\nQuestion 2: I will identify one thing this query CANNOT tell me that I would want to know as a Zepto APM. You confirm or correct.\nQuestion 3: I will write the plain-English instruction I would give to the analyst to ALSO show orders broken down by hour of day (not just by date). You then show me what the SQL change would look like.\n\nAfter all 3 questions, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight — e.g., why a Zepto analyst running this query every Monday morning is specifically watching for city-level anomalies, and what a city-level drop typically signals in Indian quick commerce vs a national drop]\nCOACHING NOTE: [one specific tip for Pranav on reading SQL as a PM — what to look at first, what to ignore]\n\nBegin with: 'Good. Look at the query carefully. Start with Question 1: in plain English, tell me what this query returns — what does each row represent, what does each column contain, and what time period does it cover?'",
+      "minutes": 30
     }
   ],
   "bonusTasks": [
     {
       "id": "d8b1",
-      "type": "activity",
-      "promptTitle": "Wireframe a Feature for Rural India",
-      "claudePrompt": "I am a PM designing a feature for a rural Indian user who owns a small kirana store and is using a smartphone for the first time. The feature is: inventory tracking via voice input in Hindi. Help me think through the wireframe \u2014 what screens do I need, what are the edge cases, and what assumptions am I making about the user's mental model?",
+      "type": "read",
+      "title": "How to Define Your North Star Metric — Reforge",
+      "url": "https://www.reforge.com/blog/north-star-metric",
+      "summary": "Reforge's longer treatment of the North Star framework goes deeper than Lenny's survey — it explains how the North Star connects to company strategy, how to avoid the common trap of choosing a metric that optimises one part of the funnel at the expense of others, and how to socialise the North Star across engineering, design, and marketing so it actually changes behaviour. Read this after the core task if you want the strategic depth behind metric selection.",
       "minutes": 25
+    },
+    {
+      "id": "d8b2",
+      "type": "search",
+      "title": "AARRR metrics real examples Indian consumer apps",
+      "keyword": "AARRR funnel metrics examples Indian startup Swiggy Zepto PhonePe activation retention product analytics",
+      "summary": "Searching for how practitioners at Indian consumer internet companies describe their AARRR metrics gives Pranav real benchmarks to anchor his assessment answers — what a healthy activation rate looks like for a quick commerce app, what retention looks like for a UPI payments app, and what referral looks like in a market dominated by WhatsApp sharing rather than in-app invite flows.",
+      "minutes": 20
     }
   ],
   "assessmentTask": {
-    "taskDescription": "Assessment coming soon",
-    "rawMaterial": "Content being prepared",
-    "outputFormat": "Content being prepared",
-    "claudePrompt": "Content being prepared"
+    "type": "do",
+    "taskDescription": "Define Zepto's North Star metric with a 3-sentence justification, then list one supporting metric per AARRR stage — for each metric, state what a healthy number looks like and what an unhealthy number looks like.",
+    "rawMaterial": "You are an APM at Zepto. Zepto's business model: 10-minute grocery and household essentials delivery from dark stores in metro and Tier 2 Indian cities. Revenue comes from delivery fees, platform commissions from FMCG brands, and private-label product margins. The business wins when urban households replace their kirana store or weekly supermarket run with Zepto — meaning frequency of purchase per household is the core behaviour the business depends on.\n\nPart 1: Define Zepto's North Star metric.\nWrite the metric name, how it is calculated (one sentence), and a 3-sentence justification covering: why it captures the value Zepto delivers to users, why it predicts long-term business health, and why it is better than an obvious alternative you considered and rejected.\n\nPart 2: List 5 supporting metrics — one per AARRR stage.\nFor each metric: name it, state which AARRR stage it belongs to, define it in one sentence, then complete this table row:\n\nMetric | AARRR Stage | Definition | Healthy Number | Unhealthy Number\n\nHealthy and unhealthy numbers should be specific (e.g., 'above 40% week-1 retention' not 'retention is good') — you can use reasonable estimates based on Indian consumer app benchmarks.",
+    "outputFormat": "Part 1: Three clearly labelled sentences (metric name + calculation / why it captures user value / why it beats the alternative). Part 2: A table with 5 rows — one per AARRR stage — with all 5 columns filled.",
+    "claudePrompt": "You are a senior PM reviewing my work on Day 8: North Star Metric + AARRR Funnel + SQL Intro.\n\nI studied today:\n- North Star metric: captures value delivered to users, is leading (predicts future revenue), and can be influenced by the whole team\n- AARRR funnel: Acquisition, Activation, Retention, Referral, Revenue — every product metric belongs to one of these five stages\n- Why Zepto and CRED have structurally different North Stars because their business models are different\n- SQL reading: SELECT, WHERE, GROUP BY, ORDER BY — what each clause does and what the output looks like\n\nReal world context I should apply:\nZepto's business model — 10-minute grocery delivery from dark stores. The business wins when urban households make Zepto their default for daily and weekly household essentials, meaning frequency of purchase per household is the core behaviour.\n\nMY TASK TODAY WAS: Define Zepto's North Star metric with justification, and list 5 AARRR supporting metrics with healthy vs unhealthy benchmarks.\n\nHere is my work:\n[Pranav pastes his North Star definition and AARRR table here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation of why — especially check whether the North Star is truly leading (predictive) vs lagging (descriptive), and whether the AARRR metrics are truly one per stage without overlap]\n\nBLIND SPOTS:\n- [things I did not consider at all — e.g., whether the North Star accounts for household-level vs user-level behaviour, whether the Activation metric correctly captures the moment of 'first core value experienced' for a grocery delivery app, or whether the Referral metric reflects India's WhatsApp-driven sharing behaviour]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about how AARRR benchmarks for Indian quick commerce differ from US e-commerce benchmarks — e.g., Day-30 retention for Zepto should be measured differently given monthly salary cycles, kirana store habits, and festive season spikes that distort weekly retention curves]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Fluency with Data — [Needs Focus / On Track / Outperform]",
+    "minutes": 20
   }
 }

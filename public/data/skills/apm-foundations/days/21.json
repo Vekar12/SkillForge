@@ -1,42 +1,69 @@
 {
   "day": 21,
   "week": 3,
-  "theme": "Final Capstone + Reflection",
+  "theme": "Week 3 Integration: Full PM Synthesis — Strategy, Execution, and the 90-Day APM Plan",
   "competenciesCovered": [
-    "All Competencies"
+    "Feature Specification",
+    "Product Delivery",
+    "Product Quality",
+    "Fluency with Data",
+    "Voice of Customer",
+    "UX Design Sense",
+    "Business Outcome Ownership",
+    "Product Vision + Roadmapping",
+    "Strategic Impact",
+    "Stakeholder Management",
+    "Team Leadership",
+    "Managing Up"
   ],
-  "teamContext": "Coming soon",
-  "objective": "Content for this day is being prepared.",
+  "objective": "Synthesise all 21 days of learning into a single integrated PM output — a complete product case that requires strategy, execution, user insight, and stakeholder thinking simultaneously — and close the OKR thread by writing the OKRs you would actually pursue in your first 90 days as an APM.",
+  "estimatedMinutes": 120,
+  "integrationDay": true,
   "realWorldAnchor": {
-    "company": "TBD",
-    "example": "Content coming soon"
+    "company": "Blinkit",
+    "context": "Blinkit (formerly Grofers, acquired by Zomato in 2022) is India's market leader in quick-commerce — 10-minute grocery and essential delivery through a network of dark stores. As of 2024, Blinkit operates primarily in metro and Tier 1 cities. Expanding to Tier 2 cities is their documented next growth frontier. This expansion is not a simple geographic rollout — it requires rethinking the dark store model for lower order density, adjusting the product catalogue for different household basket patterns, redesigning the app for users similar to Ramesh (from Day 17), and making the unit economics work at lower average order values. It is the ideal comprehensive case for this final integration day."
   },
+  "parallelSkillThread": "OKRs (Day 21 — closes the thread from Day 15): Write the final, polished OKR set for your first 90 days as an APM, stress-tested against everything learned in this programme.",
   "tasks": [
     {
       "id": "d21t1",
       "type": "read",
-      "title": "Content Coming Soon",
-      "url": null,
-      "summary": "This day's content is being prepared. Check back soon.",
+      "title": "The first 90 days as a PM: what to learn, what to ship, and what to resist",
+      "url": "https://www.lennysnewsletter.com/p/how-to-make-an-impact-in-your-first",
+      "summary": "The first 90 days in a PM role are the most important learning period of a PM's career — and the most dangerous time to ship the wrong thing. This reading synthesises the documented advice from senior PMs on what to prioritise in the first 30, 60, and 90 days: the listening and learning phase (Days 1-30), the first contribution (Days 31-60), and the first full ownership cycle (Days 61-90). The framing is specifically relevant to APMs joining an existing team at a mid-stage Indian startup.",
       "keyTakeaways": [
-        "Content in progress"
+        "Days 1-30: the PM's job is to listen more than talk — map the product, the users, the metrics, the team, and the existing roadmap before forming opinions about what should change",
+        "The most common first-90-days mistake: shipping a change in the first 30 days to prove value; early shipping before fully understanding the system usually creates downstream problems that cost more time than the early win was worth",
+        "By Day 60, a PM should be able to answer: what is our North Star metric, what moves it, and what are the top 3 things currently blocking it? If you cannot answer this, you have not yet done the job",
+        "The first full ownership cycle (Days 61-90) means: running a discovery sprint, writing a PRD or user story set, getting engineering alignment, and tracking the first metric movement — not just shipping code",
+        "At Indian startups, the 90-day period also includes building relationships with founders and senior stakeholders: one insight shared in a product review that turns out to be correct is worth more than 10 correct PRDs for your long-term credibility"
       ],
-      "minutes": 20
+      "minutes": 30
+    },
+    {
+      "id": "d21t2",
+      "type": "activity",
+      "promptTitle": "OKR audit and final APM OKR set: close the OKR thread from Day 15",
+      "claudePrompt": "You are a senior PM and OKR coach.\n\nRole: You are helping me close the OKR thread from Day 15 by writing the final, polished OKR set I would actually pursue in my first 90 days as an APM. This is not a generic exercise — it should reflect everything I have learned across 21 days.\n\nOn Day 15, I wrote my first OKRs. Today I need to revisit them with 6 days of additional learning:\n- Day 16: Indian product landscape — CRED vs PhonePe competitive dynamics\n- Day 17: Bharat vs India — designing for the next 400 million users\n- Day 18: Case practice, API basics, and timed product design + estimation\n- Day 19: Stakeholder management, managing up, and influencing without authority\n- Day 20: Product quality, launch readiness, and the PM's role in shipping\n\nActivity steps:\n\nStep 1 — OKR audit (10 minutes)\nShare the OKRs I wrote on Day 15 [Pranav pastes them here]. Review them against these criteria:\n(a) Is the Objective inspiring and directional without being a metric?\n(b) Are the Key Results measurable, time-bound, and genuinely leading indicators of the Objective — not just activity metrics ('ship 3 features') or lagging vanity metrics ('get 1 million users')?\n(c) Are the OKRs realistic for a first 90 days, given that an APM in Days 1-30 should be listening more than shipping?\n(d) Do the OKRs reflect India-specific context — i.e., would they be different if the company were in the US?\n\nStep 2 — Revision (10 minutes)\nBased on the audit, write a revised OKR set. Structure:\n- 1 Objective\n- 3 Key Results\n\nThe Objective should reflect the APM's primary goal in the first quarter. The Key Results should represent the specific, measurable milestones that prove the Objective is being achieved — not just completed tasks.\n\nStep 3 — Stretch KR (5 minutes)\nAdd one 'stretch' Key Result — the KR that you include knowing it is ambitious but that, if achieved, would signal you outperformed in your first quarter. Mark it clearly as a stretch.\n\nStep 4 — Stakeholder translation (5 minutes)\nFor each Key Result, write one sentence on how you would communicate progress on this KR to your PM lead in your weekly update — using the managing-up format from Day 19 (outcomes, not activity).\n\nFeedback format:\nWHAT WORKED: [specific OKR quality — e.g., Key Results that are genuinely leading indicators, realistic scoping for a first quarter]\nWHAT MISSED: [OKR quality issues — activity metrics disguised as Key Results, Objective that is actually a task, KRs that are not measurable within the 90-day window]\nINDIA-SPECIFIC NOTE: [one insight about OKRs at Indian startups specifically — e.g., at many Indian Series B companies, OKRs are still aspirational documents rather than operating tools; an APM who treats OKRs as a weekly accountability mechanism will stand out]\nCOACHING NOTE: [one OKR habit to build before starting the APM role]\n\nBegin with Step 1 — share the OKRs from Day 15 for the audit.",
+      "minutes": 30
     }
   ],
   "bonusTasks": [
     {
       "id": "d21b1",
-      "type": "activity",
-      "promptTitle": "Capstone: Full Product Pitch",
-      "claudePrompt": "I have completed a 21-day APM foundations course. For my capstone, I want to pitch a product idea: a hyperlocal job board specifically for blue-collar workers in Tier-2 Indian cities, using WhatsApp as the primary interface. Help me structure and critique my pitch across: problem statement, target user, solution, business model, go-to-market, success metrics, and risks. Be a tough evaluator \u2014 this is my portfolio piece.",
-      "minutes": 40
+      "type": "search",
+      "title": "Search for Blinkit's Tier 2 expansion public coverage",
+      "keyword": "Blinkit Tier 2 city expansion dark store model 2023 2024 unit economics quick commerce India",
+      "why": "Before doing the integration assessment on Blinkit Tier 2 expansion, grounding in actual published facts about Blinkit's dark store model and expansion strategy will sharpen every deliverable. Inc42 and YourStory have covered this in depth.",
+      "minutes": 15
     }
   ],
   "assessmentTask": {
-    "taskDescription": "Assessment coming soon",
-    "rawMaterial": "Content being prepared",
-    "outputFormat": "Content being prepared",
-    "claudePrompt": "Content being prepared"
+    "type": "do",
+    "taskDescription": "Comprehensive 5-deliverable integration case: You are an APM at Blinkit assigned to the Tier 2 city expansion initiative. In 60 minutes, produce: (1) a problem statement, (2) two user personas, (3) three feature options RICE-scored, (4) one quarter of OKRs, and (5) a managing-up memo to your PM lead. Each deliverable must draw on a different Reforge competency cluster.",
+    "rawMaterial": "This is your final integration assessment. 60 minutes. Five deliverables. No pausing to look things up.\n\nContext:\nBlinkit operates quick-commerce dark stores in 30+ cities (primarily metro and Tier 1 as of 2024). Zomato's management has publicly stated that Tier 2 expansion is a priority. You are the APM assigned to the first Tier 2 pilot — launching in 3 cities: Nashik, Surat, and Lucknow.\n\nChallenge: Tier 2 expansion is not a copy-paste of the metro model. Key documented differences:\n- Average order value (AOV) in Tier 2 is estimated to be 20-30% lower than metro\n- Quick-commerce category awareness is lower — users in Tier 2 have not used 10-minute delivery before\n- App usage patterns differ: more feature phones, more Hindi/regional language preference, lower average screen time\n- Dark store economics require a minimum order density that is harder to reach in lower-population areas\n- Existing kirana store relationships are stronger in Tier 2 — users trust local stores more than app-based delivery\n\nDeliverable 1 — Problem statement (5 minutes)\nWrite a single MECE problem statement using the format: 'The problem is that [specific user] cannot [specific action] because [specific constraint] which results in [specific business or user outcome missed].' One sentence. No vague words.\n\nDeliverable 2 — User personas (10 minutes)\nWrite two user personas for Blinkit Tier 2 users. Each persona: name, city, age, occupation, phone type, internet usage, current grocery behaviour, JTBD (jobs-to-be-done), and one barrier to using Blinkit today. Personas must be meaningfully different from each other — not just the same person with different cities.\n\nDeliverable 3 — Feature options + RICE scores (15 minutes)\nWrite 3 feature options for the Tier 2 launch that would drive first-order conversion (the most important metric in a new market launch). For each feature:\n- Feature name and one-sentence description\n- RICE score: Reach (how many Tier 2 users does this affect in 90 days?), Impact (1-3 scale: how much does it move first-order conversion?), Confidence (%), Effort (person-weeks)\n- RICE score = (Reach × Impact × Confidence) / Effort\nAfter scoring, state which feature you prioritise and why in one sentence.\n\nDeliverable 4 — OKRs for Q1 of the Tier 2 pilot (10 minutes)\nWrite 1 Objective and 3 Key Results for your first quarter on the Tier 2 expansion. The Objective should reflect what success looks like for the pilot, not for the full expansion. The Key Results should be specific to Tier 2 dynamics — not a copy of the metro OKRs.\n\nDeliverable 5 — Managing-up memo (10 minutes)\nYour PM lead has asked for a 2-paragraph update before the weekly product review. Paragraph 1: current status of the Tier 2 pilot plan (use the outputs from Deliverables 1-4 as your evidence). Paragraph 2: the one thing you need from your PM lead in the next week — specific, time-bound, and framed as an outcome ask not an activity request.\n\nSelf-score after completing all 5 deliverables, before pasting into Claude.",
+    "outputFormat": "Five labelled deliverables. Deliverable 1: 1 sentence. Deliverable 2: 2 personas, each with 7-8 fields. Deliverable 3: 3 features with full RICE breakdown and a final prioritisation sentence. Deliverable 4: 1 Objective + 3 Key Results. Deliverable 5: 2 paragraphs (≤80 words each). Total: aim for 700-900 words.",
+    "claudePrompt": "You are a senior PM reviewing my Day 21 final integration assessment — the culmination of a 21-day APM foundations programme.\n\nI studied across 21 days:\n- Week 1: PM role, MECE, JTBD/personas, problem framing, RICE, CIRCLES framework\n- Week 2: North Star metrics, AARRR, metric diagnosis, A/B testing, SQL basics, PRDs, user stories, Figma, roadmapping, stakeholder communication\n- Week 3: Product strategy, market sizing, OKRs, TAM/SAM/SOM, Indian product landscape, Bharat vs India design, ONDC, case practice, API basics, stakeholder management, managing up, product quality, launch readiness\n\nReal world context I should apply:\nBlinkit Tier 2 expansion — launching 10-minute quick-commerce in Nashik, Surat, and Lucknow. Challenges: lower AOV, lower category awareness, more feature phones, Hindi/regional language preference, stronger kirana store trust. First priority metric: first-order conversion.\n\nMY TASK TODAY WAS: Five deliverables in 60 minutes — problem statement, two user personas, three RICE-scored feature options, one quarter of OKRs, and a managing-up memo to my PM lead.\n\nHere is my work:\n[Pranav pastes all five deliverables here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets across all 5 deliverables — check: is the problem statement truly MECE and specific? Are the personas meaningfully different from each other and from the metro Blinkit user? Are the RICE scores internally consistent (does the Reach estimate match the pilot scope of 3 cities)? Do the OKRs reflect Tier 2 dynamics or are they generic growth OKRs? Is the managing-up memo in outcomes language, not activity language?]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets — flag if: problem statement uses vague words ('users struggle with...', 'the challenge is...') instead of the specific MECE format; personas are urban-lens projections rather than genuine Bharat user profiles; RICE scores use inconsistent units (e.g., Reach in all-India users rather than Tier 2 pilot users); OKRs include activity Key Results ('launch feature X') rather than outcome Key Results ('achieve Y% first-order conversion by end of Q1'); managing-up memo asks for 'input' or 'thoughts' rather than a specific decision or resource]\n\nBLIND SPOTS:\n- [things Pranav did not consider across the 5 deliverables — e.g., the kirana trust dynamic (designing a feature that converts users away from kirana stores, rather than designing a feature that creates a new habit for users who were never going to the kirana for that specific need, is strategically harder and ethically more fraught); the cold-start problem in a new Tier 2 city (the first 100 orders matter more than the average 10,000 orders because they set word-of-mouth reputation in a tight social network); how ONDC compatibility (from Day 17) could be a strategic differentiator for the Tier 2 merchant side of the Blinkit expansion]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about Tier 2 expansion strategy in Indian quick-commerce specifically — e.g., the documented pattern of Indian internet adoption in Tier 2 cities is that YouTube and WhatsApp reach saturation 2-3 years before e-commerce; this means Tier 2 users are digitally literate but e-commerce-naive, which is a very specific product design challenge that is different from both the fully-naive first-time internet user (Ramesh from Day 17) and the highly-experienced metro user]\n\nPROGRAMME SYNTHESIS:\n- [A 2-3 sentence summary of where Pranav is across the Reforge 12 competencies after 21 days — which 2-3 competencies showed the clearest growth, which 1-2 competencies need the most focused work in the next phase of learning]\n\nOPEN POINTS FOR THE NEXT LEARNING PHASE:\n- [3-5 specific topics or skills that Pranav should prioritise in the next 30 days, based on gaps observed across the programme]\n\nFINAL SCORE: [X/10]\nREFORGE COMPETENCY RATINGS:\n- Feature Specification: [Needs Focus / On Track / Outperform]\n- Product Delivery: [Needs Focus / On Track / Outperform]\n- Product Quality: [Needs Focus / On Track / Outperform]\n- Fluency with Data: [Needs Focus / On Track / Outperform]\n- Voice of Customer: [Needs Focus / On Track / Outperform]\n- UX Design Sense: [Needs Focus / On Track / Outperform]\n- Business Outcome Ownership: [Needs Focus / On Track / Outperform]\n- Product Vision + Roadmapping: [Needs Focus / On Track / Outperform]\n- Strategic Impact: [Needs Focus / On Track / Outperform]\n- Stakeholder Management: [Needs Focus / On Track / Outperform]\n- Team Leadership: [Needs Focus / On Track / Outperform]\n- Managing Up: [Needs Focus / On Track / Outperform]",
+    "minutes": 60
   }
 }

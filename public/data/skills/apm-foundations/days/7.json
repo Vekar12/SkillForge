@@ -1,73 +1,62 @@
 {
   "day": 7,
   "week": 1,
-  "theme": "Week 1 Review + Reflection",
+  "theme": "Week 1 integration — end-to-end case using all Week 1 tools",
   "competenciesCovered": [
-    "Strategic Thinking",
-    "Voice of Customer"
+    "Feature Specification",
+    "Product Delivery",
+    "Product Quality",
+    "Fluency with Data",
+    "Voice of Customer",
+    "UX Design Sense",
+    "Business Outcome Ownership",
+    "Strategic Impact"
   ],
-  "teamContext": "Solo reflection day \u2014 no specific team",
-  "objective": "Consolidate Week 1 learnings, identify your strongest and weakest areas, and set a clear intention for Week 2.",
+  "objective": "Apply MECE decomposition, problem framing, RICE prioritisation, and CIRCLES design — in sequence, without prompting — to one end-to-end product case, producing five distinct deliverables that demonstrate Week 1 tools working together.",
+  "estimatedMinutes": 120,
   "realWorldAnchor": {
-    "company": "All Week 1 companies",
-    "example": "Connecting the dots: CRED (personas), Meesho (user research), Zepto (JTBD), PhonePe (metrics), Razorpay (prioritisation), Zomato (PRDs)"
+    "company": "Swiggy",
+    "example": "Swiggy Genie — the instant pick-up-and-deliver service for anything, not just food — is believed to have originated from observing that users were already attempting to use Swiggy's food delivery infrastructure for non-food items, prompting a problem reframe from 'more food categories' to 'general urban logistics on demand,' followed by an MVP before scaling."
   },
+  "teamContext": "Day 7 is a full integration day — all four cross-functional teams are relevant because the end-to-end case requires scoping features (Engineering), designing the solution (Design), defining success metrics (Data), and considering the rollout context (Marketing/Growth).",
   "tasks": [
     {
       "id": "d7t1",
       "type": "read",
-      "title": "The Weekly Review \u2014 A PM Habit Worth Building",
-      "url": "https://www.lennysnewsletter.com/p/the-weekly-review",
-      "summary": "Top PMs treat weekly reflection as a product habit. This piece explains how to run a personal weekly review that surfaces patterns, gaps, and improvement areas.",
+      "title": "The Four Big Risks — Marty Cagan, SVPG",
+      "url": "https://svpg.com/the-four-big-risks/",
+      "summary": "Marty Cagan's framework for product risk — value risk (will users want it?), usability risk (can users use it?), feasibility risk (can engineering build it?), and viability risk (should the business build it?) — provides the integration lens for Day 7. Every tool from Week 1 maps onto one or more of these risks: JTBD and personas address value risk, CIRCLES addresses usability risk, RICE addresses viability risk, and PM-engineering collaboration addresses feasibility. This reading shows how Week 1's toolkit is a coherent risk management system, not a collection of unrelated frameworks.",
       "keyTakeaways": [
-        "What got done vs what moved the needle are different questions",
-        "Capture learnings in writing \u2014 your future self will thank you",
-        "The best PMs know their own blind spots through reflection, not feedback alone",
-        "A 30-minute weekly review compounds into a massive learning advantage over 6 months"
+        "Most product failures happen because one of these four risks was discovered too late — after significant engineering investment, not before it. The PM's job is to reduce all four risks before committing resources, which is why discovery work matters more than execution speed",
+        "Value risk and usability risk are addressed through user research and design thinking (JTBD, personas, CIRCLES). Feasibility risk requires close PM-engineering collaboration. Viability risk requires the PM to understand the business model well enough to say no to things that don't move the right metrics",
+        "For APMs at Indian consumer internet companies, viability risk is the most commonly underweighted — APMs with strong user empathy sometimes over-index on value and usability while underestimating unit economics constraints specific to Indian markets (logistics costs, payment infrastructure costs, data costs for Tier 2 users)"
       ],
-      "minutes": 20
+      "minutes": 30
     },
     {
       "id": "d7t2",
-      "type": "search",
-      "keyword": "APM reflection learning journal product management growth",
-      "whyItMatters": "Week 2 gets harder. Knowing where you struggled in Week 1 helps you prepare for concepts that build on those foundations.",
-      "whatToLearn": [
-        "How experienced PMs reflect on their own growth",
-        "Common Week 1 struggles for APM candidates",
-        "How to turn assessment feedback into a personal learning system",
-        "Any frameworks for tracking PM skill development over time"
-      ],
-      "minutes": 15
-    },
-    {
-      "id": "d7t3",
       "type": "activity",
-      "title": "Week 1 Reflection Session",
-      "promptTitle": "Week 1 Reflection with Your PM Coach",
-      "claudePrompt": "You are a PM coach running a Week 1 end-of-week reflection session with Pranav.\n\nHe has completed 6 days covering: PM role, user research, JTBD + personas, metrics, prioritisation, and PRDs.\n\nAsk him these questions one at a time:\n1. 'Which of the 6 days felt most natural to you? Why?'\n2. 'Which day felt most difficult or confusing?'\n3. 'What is one thing from Week 1 you could apply to a real product decision today?'\n4. 'If you had to explain JTBD to a friend in 60 seconds, what would you say?'\n5. 'What do you think Week 2 (working with engineering, design, and data) will challenge you on?'\n\nAfter his responses, give him:\n- His Week 1 strengths (based on his reflections)\n- His Week 1 development area\n- One mental model to carry into Week 2\n- A week-end score: how ready is he for Week 2? (1-10)\n\nBe encouraging but honest.",
-      "minutes": 25
+      "promptTitle": "Guided warm-up — apply all 5 Week 1 tools to the PayEase KYC case before the full assessment",
+      "claudePrompt": "You are a senior PM helping me practice applying all of Week 1's tools in sequence to a single product case, as a warm-up before I do it alone in my assessment.\n\nThis week I learned:\n- Day 1: The Reforge 12 PM competencies and the PM's core job (valuable, usable, feasible, viable)\n- Day 2: MECE structured thinking and first principles reasoning\n- Day 3: User personas and Jobs-To-Be-Done\n- Day 4: Problem framing (4-component statement) and user interview design\n- Day 5: RICE prioritisation framework\n- Day 6: CIRCLES product design method\n- Day 7 reading: The Four Big Risks as the integration lens\n\nReal world context: I am an APM at PayEase, a fictional Indian fintech offering UPI payments, bill payments, and BNPL. KYC completion rate is 38% against an industry average of 61%. Drop-off is concentrated at the Aadhaar OTP verification step.\n\nYour role today: Guide me through applying each tool in sequence — problem framing first, then MECE, then Cagan risk mapping, then CIRCLES framing. At each step, give me one nudge if I am stuck, but let me do the thinking. The goal is for me to discover the connections between the tools myself, not have them explained to me.\n\nActivity — 4 warm-up steps:\nStep 1: I frame the KYC drop-off as a proper 4-component problem statement. You check whether all 4 components are present and precise.\nStep 2: I sketch the top-level branches of a MECE tree for the causes of KYC drop-off. You check for MECE validity.\nStep 3: I identify which of the 4 Cagan risk categories (value / usability / feasibility / viability) the KYC problem primarily lives in — and which one the solution needs to address most. You push back if I oversimplify.\nStep 4: I state which CIRCLES step would be most important to get right for this specific case — and why. You challenge my reasoning.\n\nAfter all 4 steps, tell me:\n- Which tool I am applying most confidently\n- Which tool I should slow down on in the full assessment\n- One thing to check before I submit my full assessment answer\n\nBegin with: 'Good. Let's start with the foundation. Problem framing first. Using the 4-component structure (user in situation / goal / pain / business impact), frame the KYC drop-off problem at PayEase in one sentence. Go.'",
+      "minutes": 30
     }
   ],
   "bonusTasks": [
     {
       "id": "d7b1",
-      "type": "read",
-      "title": "PhonePe's Mobile-First Approach to 500M Users",
-      "url": "https://tech.phonepe.com/",
-      "summary": "PhonePe was designed for Bharat \u2014 low-end Android devices, patchy networks, first-time smartphone users. Their mobile decisions shaped India's UPI adoption.",
-      "keyTakeaways": [
-        "Performance IS a feature when your users are on 2G",
-        "Offline-first design isn't optional in Tier-2 India",
-        "Localisation goes beyond language \u2014 it includes flow and mental models"
-      ],
-      "minutes": 20
+      "type": "search",
+      "title": "Swiggy Genie product discovery and launch story",
+      "keyword": "Swiggy Genie instant delivery launch origin story product discovery non-food India 2020 2021",
+      "summary": "Searching for the origin story of Swiggy Genie — the product that extended Swiggy's delivery infrastructure beyond food into general urban pick-up-and-drop — gives Pranav a real end-to-end product discovery story told by an Indian team. Look for product blog posts, PM talks at Indian tech conferences, or inc42/YourStory coverage of the Genie launch that describes the user insight behind the product and how the team decided to scope and build the MVP.",
+      "minutes": 25
     }
   ],
   "assessmentTask": {
-    "taskDescription": "Week 1 capstone \u2014 your PM philosophy statement",
-    "rawMaterial": "You have now covered: the PM role, user research, JTBD, personas, metrics, prioritisation, and PRDs. You've seen examples from Zepto, CRED, Meesho, PhonePe, Razorpay, and Zomato.",
-    "outputFormat": "Write a personal PM philosophy statement (150-200 words) that answers:\n1. What do you believe is the most important thing a PM can do?\n2. What do you think most PMs get wrong?\n3. What kind of PM do you want to be in 2 years?",
-    "claudePrompt": "You are reviewing Pranav's Week 1 capstone \u2014 his personal PM philosophy statement.\n\nThis is a reflective piece, not a technical exercise. Evaluate:\n\n**What I Got Right** \u2014 clarity of thinking, honesty, specificity\n**What Needs Correction** \u2014 clich\u00e9s, generic statements, anything that sounds borrowed rather than believed\n**Blind Spots** \u2014 gaps in his self-awareness based on his Week 1 performance\n**Growth Signal** \u2014 one thing this statement reveals about his potential as a PM\n**Intent for Week 2** \u2014 one specific thing to focus on\n\nScore: X/10\nReforge Level: Needs Focus / On Track / Outperform"
+    "type": "do",
+    "taskDescription": "Given a user research summary, a set of 6 proposed solutions, and a team capacity constraint, produce 5 deliverables in sequence: a scoped problem statement, a 2-level MECE tree with all 6 solutions placed, a RICE-scored prioritisation table with full working, a full CIRCLES answer for the top-ranked solution, and 3 measurable success metrics.",
+    "rawMaterial": "You are an APM at PayEase — a fictional Indian fintech offering UPI payments, bill payments, and a buy-now-pay-later product for online shopping.\n\nSituation:\n- 2.4 million users started the KYC verification process in the last 90 days\n- Only 38% completed KYC (industry average for similar apps: 61%)\n- Drop-off analysis: 54% of incomplete KYC users abandon at Step 3 — Aadhaar OTP verification\n- User research (15 user interviews, 200 support tickets): users either do not receive the OTP, receive it late, or do not understand that they have only 3 minutes to enter it before it expires\n- Engineering team: 3 engineers, capacity for 4 weeks of work before the quarter ends\n\nSix proposed solutions:\n\nSolution A: Extend OTP expiry from 3 minutes to 10 minutes\nReach: 1,500,000 users | Impact: 2 | Confidence: 85% | Effort: 1 week (1 engineer-week)\n\nSolution B: Add real-time OTP status indicator on screen ('OTP sent — check your SMS inbox')\nReach: 1,500,000 users | Impact: 2 | Confidence: 80% | Effort: 1 week (1 engineer-week)\n\nSolution C: Add DigiLocker as alternative verification path for users with Aadhaar linked\nReach: 600,000 users | Impact: 3 | Confidence: 65% | Effort: 3 weeks (3 engineer-weeks)\n\nSolution D: Send automated WhatsApp recovery message to users who abandon the OTP step\nReach: 900,000 users | Impact: 2 | Confidence: 70% | Effort: 1.5 weeks (1.5 engineer-weeks)\n\nSolution E: Redesign the full KYC flow with a progress bar and plain-language step-by-step instructions\nReach: 2,400,000 users | Impact: 3 | Confidence: 60% | Effort: 4 weeks (4 engineer-weeks)\n\nSolution F: Add live chat support during KYC for users who get stuck\nReach: 300,000 users | Impact: 3 | Confidence: 75% | Effort: 2 weeks (2 engineer-weeks)\n\nNote: For RICE, use Effort in engineer-weeks (as listed above for each solution).",
+    "outputFormat": "Five clearly labelled sections:\n\nSECTION 1 — PROBLEM STATEMENT: One sentence using the format 'When [user in specific situation] tries to [specific goal], they experience [specific pain], which results in [measurable business impact].'\n\nSECTION 2 — MECE TREE: A 2-level indented tree. Top-level branches must be MECE. Each of the 6 solutions (labelled A-F) must appear under exactly one sub-branch — no solution in two branches.\n\nSECTION 3 — RICE TABLE: Full table with columns: Solution | Reach | Impact | Confidence | Effort (eng-weeks) | RICE Score | Working (arithmetic). Followed by a ranking from highest to lowest RICE score.\n\nSECTION 4 — CIRCLES ANSWER: All 7 steps written out for the top-ranked solution from Section 3. The Summarise step must be a full paragraph.\n\nSECTION 5 — SUCCESS METRICS: Three metrics in the format: 'We will know this worked if [measurable outcome] within [time period].' One per bullet.",
+    "claudePrompt": "You are a senior PM reviewing my Week 1 integration assessment — a 5-deliverable case on the PayEase KYC drop-off problem.\n\nI studied this week:\n- Day 1: Reforge 12 PM competency model — 4 pillars, 12 competencies\n- Day 2: MECE structured thinking and first-principles reasoning\n- Day 3: User personas and Jobs-To-Be-Done\n- Day 4: Problem framing (4-component structure) and user interview design\n- Day 5: RICE prioritisation framework with full arithmetic\n- Day 6: CIRCLES product design method — all 7 steps\n- Day 7 reading: The Four Big Risks as the integration lens\n\nReal world context I should apply:\nPayEase KYC drop-off — 62% of users starting KYC abandon at the Aadhaar OTP step. 3 engineers, 4-week capacity, 6 proposed solutions. The core tension: some solutions fix the symptom (OTP timing), others fix the deeper cause (UX clarity), and one attempts an alternative path (DigiLocker).\n\nMY TASK TODAY WAS: Produce 5 deliverables — problem statement, MECE tree with all 6 solutions placed, RICE table with full working, CIRCLES answer for the top-ranked solution, and 3 success metrics.\n\nHere is my work:\n[Pranav pastes his full 5-section answer here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation of why — check: MECE validity of the tree (no solution in two branches, no branch missing), RICE arithmetic for all 6 solutions, CIRCLES completeness especially steps C and E, and whether success metrics are actually measurable]\n\nBLIND SPOTS:\n- [things I did not consider at all — e.g., Aadhaar OTP failure rates vary significantly by telecom operator in India; DigiLocker penetration is real but unevenly distributed by age and geography; RBI has communication guidelines about fintech outreach during KYC that affect Solution D; the 3-minute OTP window is a UIDAI constraint, not a PayEase decision, which affects how Solution A is actually scoped]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about the Aadhaar-OTP KYC dependency that is specific to India — why this friction point exists, who it hurts most (Tier 2 users, older users, users on slower networks), and how the same drop-off pattern would look completely different in a Western market where phone number verification is the standard]\n\nOPEN POINTS FOR NEXT WEEK:\n- [3 specific items from Week 1 that Pranav should revisit in Week 2 — identify his weakest area clearly by name and tool]\n\nWEEK 1 SCORE: [X/10]\nREFORGE COMPETENCIES ASSESSED THIS WEEK:\n- Feature Specification: [Needs Focus / On Track / Outperform]\n- Voice of Customer: [Needs Focus / On Track / Outperform]\n- UX Design Sense: [Needs Focus / On Track / Outperform]\n- Business Outcome Ownership: [Needs Focus / On Track / Outperform]",
+    "minutes": 60
   }
 }

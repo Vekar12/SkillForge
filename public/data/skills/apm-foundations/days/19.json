@@ -1,43 +1,88 @@
 {
   "day": 19,
   "week": 3,
-  "theme": "Stakeholder Management",
+  "theme": "Influencing Without Authority: Stakeholder Management and Managing Up",
   "competenciesCovered": [
-    "Stakeholder Alignment",
-    "Communication"
+    "Stakeholder Management",
+    "Managing Up",
+    "Team Leadership"
   ],
-  "teamContext": "Coming soon",
-  "objective": "Content for this day is being prepared.",
+  "objective": "Build the Influencing People competencies that separate good PMs from great ones: map stakeholders accurately, communicate decisions in the language each audience needs, and write the kind of managing-up memo that gets a deprioritised feature reconsidered rather than abandoned.",
+  "estimatedMinutes": 120,
   "realWorldAnchor": {
-    "company": "TBD",
-    "example": "Content coming soon"
+    "company": "Zepto",
+    "context": "Zepto operates at extreme speed — 10-minute delivery means engineering, operations, and product are in constant tension. A Zepto APM does not have the luxury of long alignment cycles. They need to communicate priorities to a founder-level leadership team that moves fast, to an engineering squad that has more than enough on their plate, and to a data team that is shared across squads. Understanding how PMs at high-velocity Indian startups build influence — without formal authority — is the practical content behind the Stakeholder Management and Managing Up competencies."
   },
   "tasks": [
     {
       "id": "d19t1",
       "type": "read",
-      "title": "Content Coming Soon",
-      "url": "#",
-      "summary": "This day's content is being prepared. Check back soon.",
+      "title": "The PM stakeholder management playbook: mapping, aligning, and communicating across functions",
+      "url": "https://www.lennysnewsletter.com/p/become-a-more-technical-product-manager",
+      "summary": "Stakeholder management is not a soft skill — it is a structured practice. The best PMs maintain a stakeholder map that tracks: who has decision authority, who has influence without authority, who will be impacted by the change, and who needs to be informed after the fact. This reading covers how to build that map for a product squad at a fast-moving company, and how to tailor communication to each stakeholder type: founders want business outcomes, engineering leads want clear scope and stable requirements, designers want user problem framing, data analysts want the metric definition upfront.",
       "keyTakeaways": [
-        "Content in progress"
+        "A stakeholder map has four zones: Decide (has veto power over the decision), Advise (input shapes the decision but does not own it), Execute (builds or operates the output), Inform (needs to know after the decision is made — not before)",
+        "The most common APM failure in stakeholder management: treating all stakeholders as 'Decide' and trying to get full consensus before moving forward, which paralyses decision-making",
+        "Engineering stakeholder communication requires translating product goals into technical scope: not 'we want users to reorder faster' but 'we want to reduce the taps-to-confirm-reorder from 4 to 2, without changing the cart review screen'",
+        "Founder communication at Indian startups is often oral and fast — a 10-slide deck is not always the right format; a two-paragraph Slack update with one number and one ask is often more effective",
+        "The RACI model (Responsible, Accountable, Consulted, Informed) is a useful starting framework but breaks down for fast-moving squads; the practical version is: 'who can say yes, who can say no, who do I tell after'"
+      ],
+      "minutes": 25
+    },
+    {
+      "id": "d19t2",
+      "type": "read",
+      "title": "Managing up as a PM: how to communicate with leadership when you are not the decision-maker",
+      "url": "https://www.reforge.com/blog/managing-up",
+      "summary": "Managing up is one of the most under-taught PM skills and one of the most important. It is not about being political — it is about giving your manager and leadership the information they need to make good decisions on your behalf. The core skill is translating your ground-level product knowledge into the language of business outcomes that leadership cares about. This reading covers: what managing up actually means, how to write a managing-up document, and the most common ways APMs fail at it (too much detail, wrong metric, no ask).",
+      "keyTakeaways": [
+        "Managing up is not about approval-seeking — it is about keeping leadership informed enough to unblock you, advocate for your work, and make resource decisions in your favour",
+        "The structure of a strong managing-up update: (1) Where we are (current status against the metric that leadership cares about), (2) What changed since last week (the one key development), (3) What I need from you (specific and time-bound ask, not 'your thoughts')",
+        "The most common APM managing-up mistake: reporting activity ('we shipped the feature') instead of outcomes ('DAU from the reorder flow is up 12% week-on-week since the feature launched')",
+        "When your feature gets deprioritised by leadership, managing up is not about arguing — it is about making the opportunity cost of the deprioritisation visible: 'if we do not ship this by end of Q2, we miss the pre-Diwali traffic window which drove 34% of last year's GMV growth'",
+        "At Indian startups with founder-led culture, managing up also means managing across — founders often care about your opinions on things outside your squad scope; having a view (and being willing to share it) builds credibility faster than perfect execution in your own lane"
       ],
       "minutes": 20
+    },
+    {
+      "id": "d19t3",
+      "type": "search",
+      "keyword": "Indian startup product review meeting PM stakeholder alignment sprint review founder communication",
+      "title": "Research how Indian startup PM teams run product reviews and stakeholder alignment",
+      "whyItMatters": "Most PM stakeholder management content is written for US tech companies with structured product review processes (Amazon 6-pager, Google PRD review). Indian startups — especially at Series A and B — operate differently: the founder is often in the product review, decisions happen on WhatsApp, and the 'stakeholder map' is sometimes two people. Understanding how Indian PMs actually navigate this is essential context for Pranav.",
+      "whatToLearn": [
+        "How do Indian startup PMs typically run weekly product reviews — what format, what attendees, what decisions get made?",
+        "What is the role of the founding team in product decisions at Indian Series A/B startups, and how does this affect the PM's authority?",
+        "How do PMs at companies like Zepto, Razorpay, or CRED communicate product strategy decisions to their engineering leads?",
+        "What does 'influence without authority' look like in a flat-hierarchy Indian startup vs a more structured organisation like Flipkart or PhonePe?",
+        "Are there published case studies or interviews with Indian PMs about how they navigate stakeholder conflict?"
+      ],
+      "minutes": 20
+    },
+    {
+      "id": "d19t4",
+      "type": "activity",
+      "promptTitle": "Write a stakeholder communication package for a deprioritised feature at Zepto",
+      "claudePrompt": "You are a senior PM and communication coach.\n\nRole: You are helping me write a complete stakeholder communication package for a real product scenario at a fast-moving Indian startup.\n\nToday I studied:\n- How to build a stakeholder map: Decide / Advise / Execute / Inform zones\n- The RACI model and its practical version for fast-moving squads\n- Managing up: how to communicate with leadership without over-explaining or under-informing\n- How Indian startup PM teams run product reviews\n\nScenario:\nYou are an APM at Zepto. Your squad has been working on a feature: 'Reorder basket' — a one-tap reorder of a user's most recent cart, shown on the app home screen during the evening peak window (6-9pm). You shipped an MVP of this feature 3 weeks ago and have early data:\n- Users who see the reorder basket convert at 31% vs 18% for users who browse manually (same time window)\n- The feature currently shows for only 40% of users (the 40% who had an order in the last 14 days)\n- Engineering estimates 3 sprints to expand coverage to 85% of users and add personalisation (show items from the most-ordered category, not just the last cart)\n\nLastly week, your PM lead told you: 'The reorder basket is on hold — engineering is being pulled onto the new Zepto Catch subscription flow for the next 6 weeks.'\n\nYour task: Write three stakeholder communications.\n\nCommunication 1 — Managing up to your PM lead\nA Slack message (max 150 words) that acknowledges the decision, makes the opportunity cost visible with the data you have, and asks for a specific commitment (not 'can we revisit this' but a specific ask).\n\nCommunication 2 — Informing engineering\nA message to your engineering lead (max 100 words) that tells them the feature is on hold, what to do with the work-in-progress, and what the clear trigger is to restart.\n\nCommunication 3 — Stakeholder map\nDraw the stakeholder map for this feature using the four zones (Decide / Advise / Execute / Inform). For each zone, list the specific roles at Zepto and one sentence on how you would communicate with them about this hold decision.\n\nFeedback format:\nWHAT WORKED: [specific communication decisions that show PM maturity — e.g., using the data correctly, being specific with the ask, not over-explaining]\nWHAT MISSED: [communication mistakes — e.g., was the managing-up message reporting activity instead of outcomes? Was the ask vague? Was the engineering message demotivating rather than clarifying?]\nINDIA-SPECIFIC NOTE: [one insight about communication norms at founder-led Indian startups specifically — e.g., how the tone and format of a Slack message to a founder-PM is different from a message to a hired CPO]\nCOACHING NOTE: [one communication habit Pranav should build before his first APM role]\n\nBegin by writing Communication 1 as a model, then coach me to write Communications 2 and 3.",
+      "minutes": 35
     }
   ],
   "bonusTasks": [
     {
       "id": "d19b1",
-      "type": "activity",
-      "promptTitle": "Mock PM Interview: Estimation Question",
-      "claudePrompt": "Interview me on this estimation question: 'How many UPI transactions happen in India per day?' Walk me through how you'd evaluate my answer \u2014 structure (MECE breakdown), assumptions (stated explicitly), sanity check (order of magnitude), and insight (what does this number mean for a PM building on UPI). Give me feedback as if you are a senior PM interviewer at a Series C Indian startup.",
-      "minutes": 30
+      "type": "search",
+      "title": "Find a public interview with an Indian PM talking about working with founders",
+      "keyword": "Indian PM founder relationship product manager working with founders startup interview podcast",
+      "why": "First-hand accounts of how PMs at Indian startups navigate founder relationships are more practically useful than US-centric stakeholder management frameworks. YourStory, Inc42, and The Ken have published several such interviews.",
+      "minutes": 10
     }
   ],
   "assessmentTask": {
-    "taskDescription": "Assessment coming soon",
-    "rawMaterial": "Content being prepared",
-    "outputFormat": "Content being prepared",
-    "claudePrompt": "Content being prepared"
+    "type": "do",
+    "taskDescription": "You are APM at a mid-size Indian fintech. Your top feature — a bill payment reminder that has shown 22% reduction in late fees for users who receive it — has been cut from next quarter's roadmap because leadership wants to focus all engineering on a new 'credit score simulator' feature. Write the full managing-up package: a one-paragraph situation summary, a one-paragraph opportunity cost argument using the data, and a specific one-sentence ask with a deadline.",
+    "rawMaterial": "Managing up is a skill you will use on Day 1 of your first APM role. This assessment asks you to do it in a real scenario — not with a rubric, but with actual data.\n\nThe scenario:\n- Product: a bill payment reminder feature on a fintech app (similar to CRED's bill reminders)\n- Your data: users who received at least one reminder paid their bill on time at a rate of 78%, vs 56% for users who did not receive a reminder — a 22-percentage-point difference in on-time payment rate\n- Business relevance: late fees generate short-term revenue but increase churn — the company's current North Star is 90-day retention, and on-time payment is the single strongest predictor of 90-day retention in the company's own cohort data\n- The leadership decision: the credit score simulator feature is being prioritised because it is 'more differentiated' and 'will drive press coverage'\n- What you are NOT allowed to do: complain, argue that leadership is wrong, or ask for a 'discussion'\n- What you ARE trying to do: give leadership the information they need to make a better decision, and ask for something specific\n\nWrite three sections:\n\nSection 1 — Situation (max 60 words)\nWhat is the current status of the reminder feature and why does it matter? No opinions — only facts and numbers.\n\nSection 2 — Opportunity cost (max 100 words)\nIf the reminder feature stays off-roadmap for the quarter, what specifically will the business not achieve? Connect this to the North Star metric (90-day retention) using the data you have.\n\nSection 3 — The ask (max 30 words)\nOne specific, time-bound ask — not 'can we discuss', not 'I'd like to revisit' — but an actual commitment you are requesting, with a specific deadline.",
+    "outputFormat": "Three labelled sections: Situation (≤60 words) / Opportunity Cost (≤100 words) / The Ask (≤30 words). Word limits are enforced — managing up is a discipline of brevity. Total: ≤190 words.",
+    "claudePrompt": "You are a senior PM reviewing my Day 19 work on stakeholder management and managing up.\n\nI studied today:\n- Stakeholder mapping: Decide / Advise / Execute / Inform zones\n- Managing up: communicating with leadership in the language of business outcomes\n- How Indian startup PMs navigate product reviews and founder communication\n- Writing stakeholder communications for a deprioritised feature at Zepto\n\nReal world context I should apply:\nI am APM at a fintech. My bill payment reminder feature has been cut. My data shows a 22-point on-time payment rate improvement for users who receive reminders, and on-time payment is the strongest predictor of 90-day retention (our current North Star). Leadership has deprioritised my feature in favour of a credit score simulator.\n\nMY TASK TODAY WAS: Write a three-section managing-up package (Situation / Opportunity Cost / The Ask) within strict word limits.\n\nHere is my work:\n[Pranav pastes his three sections here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets — check: does the Situation section contain only facts and numbers, no opinions? Does the Opportunity Cost section connect the data to the North Star metric, not just to user experience? Is the Ask specific with a deadline, or is it a vague request for consideration?]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets — flag if: Situation contains opinions or framing ('unfortunately' / 'I believe') rather than facts; Opportunity Cost makes the business case but does not quantify what is at stake in the North Star metric specifically; the Ask is vague ('let's discuss'), uses passive voice ('it would be great if'), or lacks a deadline]\n\nBLIND SPOTS:\n- [things Pranav did not consider — e.g., acknowledging the leadership decision before making the counter-argument (not acknowledging the credit score simulator decision makes the message sound adversarial); offering a path that does not require engineering (e.g., can the reminder run on existing infrastructure at lower cost?); noting that the credit score simulator and the reminder feature are not necessarily competing for the same users — they may address different jobs-to-be-done]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about managing up in a founder-led Indian fintech specifically — e.g., Indian founders often make product decisions based on competitive positioning and press visibility rather than retention data; a managing-up message that only uses internal data without acknowledging the competitive narrative will not land as well as one that connects both]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Managing Up — [Needs Focus / On Track / Outperform]; Stakeholder Management — [Needs Focus / On Track / Outperform]",
+    "minutes": 20
   }
 }

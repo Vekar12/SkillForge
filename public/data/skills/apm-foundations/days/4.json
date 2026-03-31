@@ -1,87 +1,80 @@
 {
   "day": 4,
   "week": 1,
-  "theme": "Metrics That Matter",
+  "theme": "Problem framing and user research",
   "competenciesCovered": [
-    "Fluency with Data",
-    "Goal Setting"
+    "Voice of Customer",
+    "Feature Specification"
   ],
-  "teamContext": "Today's focus team: Data + Analytics",
-  "objective": "Identify the North Star metric for a real Indian app and explain why the metrics it optimises for define its product strategy.",
+  "objective": "Reframe three vague problem statements into properly scoped statements using all four required components, and write a 5-question user interview script for one of them using only open-ended, behaviour-based questions.",
+  "estimatedMinutes": 120,
   "realWorldAnchor": {
-    "company": "PhonePe",
-    "example": "PhonePe choosing Total Payment Volume as their North Star over DAU \u2014 a metric choice that shaped every product decision"
+    "company": "Razorpay",
+    "example": "Razorpay's product team reportedly reframed payment failures from 'a technical reliability problem' to 'a trust breakdown at the exact moment a user most needs the product to work' — this reframe shifted the solution space from purely infrastructure fixes to UX interventions: real-time failure explanations, instant retry flows, and visible settlement timelines that rebuilt user confidence."
   },
+  "teamContext": "Problem framing is where the PM's relationship with the Data team becomes most critical — a well-scoped problem statement tells the analyst exactly what data to pull and what anomaly to look for, while a vague problem statement results in weeks of back-and-forth pulling the wrong metrics.",
   "tasks": [
     {
       "id": "d4t1",
       "type": "read",
-      "title": "North Star Metrics Explained",
-      "url": "https://www.reforge.com/blog/north-star-metric",
-      "summary": "Reforge explains how to identify the metric that captures the most value your product delivers. A good North Star metric is a leading indicator of long-term success, not a lagging vanity metric.",
+      "title": "How to Write a Product Problem Statement — Product School",
+      "url": "https://productschool.com/blog/product-management/problem-statement/",
+      "summary": "This article walks through how to write a product problem statement that is specific enough to be actionable — covering the four required components (user in situation, goal, pain, business impact) and showing examples of vague versus well-scoped statements side by side. For Pranav, this directly bridges yesterday's JTBD work with today's skill: a JTBD describes the job the user wants done; a problem statement describes the gap between the current product and that job being done well.",
       "keyTakeaways": [
-        "Your North Star should measure value delivered, not activity",
-        "Revenue is an output metric \u2014 find the input that drives it",
-        "Different business models need different North Stars",
-        "Teams aligned on one metric move faster"
+        "A problem statement requires four components: who the user is in a specific situation (not a demographic), what they are trying to accomplish (specific goal), what is blocking them (specific friction or pain), and why it matters to the business (a metric or outcome that is affected) — missing any one makes it unactionable for engineering and design",
+        "Vague problem statements generate vague solutions: 'users are not engaging' has infinite possible solutions; 'first-time UPI users in Tier 2 cities abandon at the payment confirmation screen because they distrust whether the payment went through' generates a specific, testable intervention",
+        "The business impact component is the most commonly skipped — but without it, the PM cannot prioritise this problem against competing problems, and engineers and designers have no sense of urgency or strategic relevance"
       ],
       "minutes": 25
     },
     {
       "id": "d4t2",
       "type": "read",
-      "title": "Metrics for Consumer Apps \u2014 A PM's Guide",
-      "url": "https://productschool.com/blog/product-management/product-metrics",
-      "summary": "A practical breakdown of the metrics that matter for consumer apps \u2014 acquisition, activation, retention, referral, and revenue (AARRR) \u2014 with examples from apps Indians use.",
+      "title": "How to Run Effective User Interviews — Lenny's Newsletter",
+      "url": "https://www.nngroup.com/articles/user-interviews/",
+      "summary": "Lenny Rachitsky covers how to design and run user interviews that produce genuine behavioural insight rather than confirmation of existing hypotheses. The article covers question design, interview structure, and how to synthesize findings into actionable product insights — a practitioner-level guide that APMs can apply to user calls starting this week.",
       "keyTakeaways": [
-        "AARRR framework maps metrics to the user journey",
-        "Retention is the most important and most ignored metric",
-        "D1/D7/D30 retention benchmarks differ hugely by app category",
-        "Don't track more than 5 core metrics at once"
+        "The most common interview mistake is asking 'would you use this feature?' — users almost always say yes to hypotheticals because they want to be helpful. Instead ask: 'Tell me about the last time you tried to do X. What actually happened?' — behaviour-based questions reveal real patterns, not ideals",
+        "Five well-run user interviews produce more actionable insight than 50 survey responses — qualitative interviews reveal the 'why' behind the 'what' that surveys can only count",
+        "In Indian markets, user interview design requires two additional decisions: language choice (English vs vernacular) and setting (in-person vs phone), because self-reported behaviour in formal English interviews often differs substantially from actual usage behaviour in the product's natural context"
       ],
-      "minutes": 20
+      "minutes": 25
     },
     {
       "id": "d4t3",
       "type": "search",
-      "keyword": "PhonePe metrics product strategy India fintech growth",
-      "whyItMatters": "PhonePe is one of India's most metric-driven product teams. Understanding how they think about payment volume, active users, and merchant penetration shows you how metrics drive strategy in Indian fintech.",
+      "keyword": "Razorpay payment failure trust UX product decisions India fintech blog 2021 2022",
+      "whyItMatters": "Razorpay's reframe of payment failure as a trust problem — not just a technical reliability problem — is a documented product philosophy shift that influenced their UX, content design, and communication decisions. Searching for articles or talks by their product team shows what problem reframing looks like in practice at a real Indian fintech.",
       "whatToLearn": [
-        "What PhonePe publicly says about their core metrics",
-        "How they talk about growth vs engagement",
-        "Any PM or leadership interviews about their product bets",
-        "How their metric choices differ from Google Pay"
+        "What specific UX interventions Razorpay introduced because of the trust-reframe — real-time status indicators, settlement visibility timelines, failure explanation messages — and how each maps back to the reframed problem statement rather than the original technical framing",
+        "How the trust-reframe changed which teams owned the solution: it moved responsibility from purely Engineering to a cross-functional problem requiring PM, Design, and Content Design — which is itself a lesson in how problem framing determines team structure"
       ],
-      "minutes": 15
+      "minutes": 20
     },
     {
       "id": "d4t4",
       "type": "activity",
-      "title": "Define a North Star Metric",
-      "promptTitle": "Define the North Star Metric",
-      "claudePrompt": "You are a PM coach working with Pranav on Day 4: Metrics.\n\nAsk him to pick one Indian app (not the one he used yesterday) and define:\n1. What is the business model?\n2. What behaviour, if repeated, predicts long-term success?\n3. What would be the North Star metric?\n4. What are 2-3 supporting metrics that feed into it?\n\nChallenge his reasoning \u2014 if he picks a vanity metric, push him to find the underlying value metric.\n\nEnd with a score and one insight about metrics he should carry into Day 5.",
-      "minutes": 20
+      "promptTitle": "Reframe 3 vague problem statements + write a user interview script",
+      "claudePrompt": "You are a senior PM helping me practice problem framing — the skill of turning vague observations into specific, actionable product problem statements.\n\nToday I studied:\n- The 4-component problem statement: user in specific situation / specific goal / specific pain / measurable business impact\n- How to design user interviews that reveal behaviour rather than confirm hypotheses — open-ended, behaviour-based questions, not hypotheticals\n- How Razorpay reframed payment failures as a trust problem, not a technical problem — and what that reframe unlocked in terms of solution space\n\nReal world context: I am an APM at a fintech company similar to Razorpay. Three problem statements have been written by different team members in a planning meeting. All three are vague and need reframing.\n\nYour role today: Review my reframed problem statements as a strict senior PM. For each one, if I miss a component (user in situation / goal / pain / business impact), tell me exactly which one is missing and why it matters. After problem reframing, help me write a 5-question interview script for Problem 2.\n\nThe three vague problem statements:\n\nPROBLEM 1: 'Users are not completing transactions on our app.'\nPROBLEM 2: 'We need to improve our onboarding.'\nPROBLEM 3: 'The product has too many steps and users get confused.'\n\nFor each problem statement:\nStep A: I reframe it with all 4 components using this format: 'When [user in specific situation] tries to [specific goal], they experience [specific pain], which results in [measurable business impact].'\nStep B: You review and push back on anything missing, vague, or imprecise.\n\nAfter all 3 reframes are approved, I write a 5-question user interview script specifically for Problem 2 (the onboarding problem). You review the script and flag any questions that are: leading, closed (yes/no only), or hypothetical rather than behavioural.\n\nAfter all work is reviewed, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight — onboarding problems in Indian fintech often have a specific extra layer that Western problem statements would miss: KYC friction, Aadhaar OTP failure rates, first-time digital user anxiety, or the difference between English and vernacular instruction comprehension]\nCOACHING NOTE: [one specific improvement tip for Pranav]\n\nBegin with: 'Let's start with Problem 1. Read it carefully: \"Users are not completing transactions on our app.\" Now reframe it with all 4 components. Write it as a single structured sentence using the format I gave you. Go.'",
+      "minutes": 30
     }
   ],
   "bonusTasks": [
     {
       "id": "d4b1",
-      "type": "read",
-      "title": "How Meesho Validated Social Commerce Before Building",
-      "url": "https://inc42.com/features/how-meesho-cracked-social-commerce/",
-      "summary": "Meesho ran lean experiments on WhatsApp before building a full app \u2014 a masterclass in assumption testing with zero tech investment.",
-      "keyTakeaways": [
-        "Use existing platforms (WhatsApp, Instagram) to test demand before writing code",
-        "Reseller behaviour revealed the real JTBD: income, not just shopping",
-        "High return rates were a signal to re-examine the product assumption, not just logistics"
-      ],
+      "type": "search",
+      "title": "PhonePe Tier 2 user research methods",
+      "keyword": "PhonePe Tier 2 Tier 3 user research Hindi UPI adoption first time digital user product insights India",
+      "summary": "PhonePe's expansion into Tier 2 and Tier 3 cities required a fundamentally different approach to user research — factory workers, small traders, and first-time digital users who communicated differently and whose actual usage patterns contradicted what they said in formal sessions. This search directly extends today's user interview reading into Indian market-specific research practice. Look for PhonePe blog posts, PM talks, or inc42/YourStory coverage of their regional expansion product strategy.",
       "minutes": 20
     }
   ],
   "assessmentTask": {
-    "taskDescription": "Define Swiggy's metric stack",
-    "rawMaterial": "Swiggy operates food delivery, Instamart (quick commerce), and Dineout (restaurant discovery). They have 3 different business lines with different economics and different user behaviours.",
-    "outputFormat": "1. One North Star metric per business line (3 total) with a 1-line justification\n2. One metric Swiggy probably tracks that is a vanity metric \u2014 and why\n3. One metric conflict between the three business lines",
-    "claudePrompt": "You are reviewing Pranav's Day 4 assessment on Swiggy's metric stack.\n\n**What I Got Right**\n**What Needs Correction**\n**Blind Spots**\n**India-Specific Note**\n**Open Points for Tomorrow**\n\nScore: X/10\nReforge Level: Needs Focus / On Track / Outperform"
+    "type": "do",
+    "taskDescription": "Reframe all 3 vague problem statements into properly scoped statements with all 4 components, then write a 5-question user interview script for Problem 2 — every question must be open-ended and behaviour-based.",
+    "rawMaterial": "You are an APM at a company similar to Razorpay. These 3 problem statements were written by different team members in a product planning meeting:\n\nPROBLEM 1: 'Users are not completing transactions on our app.'\nPROBLEM 2: 'We need to improve our onboarding.'\nPROBLEM 3: 'The product has too many steps and users get confused.'\n\nFor each problem statement, reframe it using this exact structure:\n'When [user in specific situation] tries to [specific goal], they experience [specific pain], which results in [measurable business impact].'\n\nFor Problem 2 only:\nAlso write a 5-question user interview script. Rules for every question: open-ended (cannot be answered with yes/no), behaviour-based (asks about what the user actually did, not what they would do), not leading (does not suggest the answer). Include a 1-sentence note after each question: 'What this reveals: [the specific insight this question is designed to surface].'",
+    "outputFormat": "Part 1: Three labelled problem statements, each in the specified 4-component format. Part 2: A numbered list of 5 interview questions, each followed by a 1-sentence 'What this reveals:' note.",
+    "claudePrompt": "You are a senior PM reviewing my work on Day 4: Problem Framing and User Research.\n\nI studied today:\n- The 4-component problem statement structure: user in specific situation / specific goal / specific pain / measurable business impact\n- User interview design: open-ended, behaviour-based questions — never hypothetical or leading\n- Razorpay's trust reframe: how reframing a payment failure as a trust problem (not an infrastructure problem) unlocked UX and content design solutions that pure engineering fixes could not provide\n\nReal world context I should apply:\nI am an APM at a fintech similar to Razorpay. Three vague problem statements need reframing. For Problem 2 (onboarding), I also wrote a 5-question user interview script.\n\nMY TASK TODAY WAS: Reframe 3 problem statements with all 4 components and write a 5-question behaviour-based interview script for Problem 2.\n\nHere is my work:\n[Pranav pastes his 3 reframed problem statements and interview script here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation of why]\n\nBLIND SPOTS:\n- [things I did not consider at all]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about how KYC friction, Aadhaar OTP failure rates, or first-time digital user anxiety creates specific onboarding problems in Indian fintech that would not appear in a US-market problem reframe — and how the interview script would need to change to surface these]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Voice of Customer — [Needs Focus / On Track / Outperform]",
+    "minutes": 20
   }
 }

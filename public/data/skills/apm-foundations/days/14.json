@@ -1,49 +1,61 @@
 {
   "day": 14,
   "week": 2,
-  "theme": "Week 2 Review + Reflection",
+  "theme": "Week 2 integration — full execution simulation",
   "competenciesCovered": [
-    "Execution",
-    "Communication"
+    "Fluency with Data",
+    "Feature Specification",
+    "Product Delivery",
+    "Business Outcome Ownership",
+    "Product Vision + Roadmapping",
+    "Stakeholder Management",
+    "Managing Up"
   ],
-  "teamContext": "Coming soon",
-  "objective": "Content for this day is being prepared.",
+  "objective": "Produce five deliverables from a single dataset — RCA tree, root cause hypothesis, mini PRD, 3 OKRs, and a 5-line leadership update — demonstrating that all Week 2 analytical and communication tools work as a connected system.",
+  "estimatedMinutes": 120,
   "realWorldAnchor": {
-    "company": "TBD",
-    "example": "Content coming soon"
+    "company": "PhonePe",
+    "example": "PhonePe's international expansion ambitions (documented in public filings and press coverage) required the same connected workflow: diagnose the problem (why are Indian diaspora users not using existing UPI rails for cross-border payments?), scope the solution (what specifically needs to be built?), define success (what metrics indicate the product is working?), and communicate the plan (how does leadership approve the investment?)."
   },
+  "teamContext": "Day 14 is a full integration day — all cross-functional relationships are live simultaneously. The data analyst provides the complaint logs and funnel data, the engineering team scopes the PRD, the design team needs the user story context, and leadership needs the OKRs and update. A PM who cannot hold all five deliverables together in one coherent narrative has not yet integrated Week 2's tools.",
   "tasks": [
     {
       "id": "d14t1",
       "type": "read",
-      "title": "Content Coming Soon",
-      "url": "#",
-      "summary": "This day's content is being prepared. Check back soon.",
+      "title": "The PM as the Connected Tissue of the Product Team — Reforge Blog",
+      "url": "https://www.ravi-mehta.com/product-manager-skills/",
+      "summary": "Re-read Ravi Mehta's Reforge competency post — but this time through the lens of Week 2. On Day 1 you read it to understand what PMs do. Today you read it to evaluate yourself: which of the six Week 2 competencies (Fluency with Data, Feature Specification, Product Delivery, Business Outcome Ownership, Product Vision + Roadmapping, Stakeholder Management) are you currently strongest in? Which are you most uncertain about? Use this re-read as a self-diagnostic before the integration case.",
       "keyTakeaways": [
-        "Content in progress"
+        "The four Reforge pillars are not independent — a PM who is strong in Customer Insight but weak in Influencing People cannot ship the products they discover; a PM who is strong in Product Execution but weak in Product Strategy builds the right features for the wrong goals",
+        "Week 2's six competencies span three pillars: Fluency with Data and Feature Specification are Product Execution; Business Outcome Ownership is Product Strategy; Stakeholder Management and Managing Up are Influencing People — a balanced Week 2 APM is developing across all three pillars simultaneously",
+        "The most common Week 2 gap for APMs is Business Outcome Ownership — APMs who are strong at data analysis and writing specs often struggle to connect their work to the company's financial or strategic outcomes. The OKR framework (used in today's case) is the bridge between feature-level work and business-level outcomes"
       ],
-      "minutes": 20
+      "minutes": 30
+    },
+    {
+      "id": "d14t2",
+      "type": "activity",
+      "promptTitle": "Guided warm-up — connect all 5 Week 2 tools to the LoanPe complaint spike before the full case",
+      "claudePrompt": "You are a senior PM helping me warm up before my Week 2 integration case, by quickly connecting each of Week 2's tools to the same problem scenario.\n\nThis week I learned:\n- Day 8: North Star metric + AARRR funnel\n- Day 9: Metric drop diagnosis + RCA\n- Day 10: A/B testing and experimentation\n- Day 11: Analytics tools + SQL verification + cohort retention\n- Day 12: PRDs, user stories, acceptance criteria, Figma feedback\n- Day 13: Roadmapping + stakeholder communication\n\nReal world context: LoanPe is a fictional Indian consumer lending app. This week, complaint volume spiked 4x. 40% of complaints mention 'EMI calculation wrong.' The repayment funnel shows a new drop at the confirmation step. A 30-day retention cohort shows users who saw the repayment screen are retaining at 31% vs 47% for users who did not.\n\nYour role today: Ask me one targeted question for each of the 5 Week 2 tools, to check that I can connect the tool to this specific scenario before I write the full case. One question at a time. Do not move on until I answer.\n\nThe 5 questions you will ask me (one at a time):\n1. Fluency with Data: 'Given the complaint volume spike and the cohort data, what is the single most important data check you would run first — and why that one before anything else?'\n2. Feature Specification: 'If your top hypothesis is confirmed, what is the minimum viable fix — the smallest change to the product that would address the root cause without a full rebuild?'\n3. Business Outcome Ownership: 'How would you quantify the business impact of this complaint spike in terms the CPO cares about — not complaint count, but revenue, retention, or LTV?'\n4. Product Vision + Roadmapping: 'Where does the fix sit in a Now/Next/Later roadmap — and what does that tell you about how urgent it really is?'\n5. Managing Up: 'What is the first sentence of your leadership update about this incident — before you have confirmed the root cause?'\n\nAfter all 5 questions, tell me which tool I applied most confidently and which one I should slow down on in the full assessment.\n\nBegin with question 1.",
+      "minutes": 30
     }
   ],
   "bonusTasks": [
     {
       "id": "d14b1",
-      "type": "read",
-      "title": "Freshworks' Journey from SMB to Enterprise \u2014 Product Pivots",
-      "url": "https://www.freshworks.com/company/blog/",
-      "summary": "Freshworks started as a helpdesk for small businesses and evolved into a multi-product enterprise suite. Their product decisions at each stage reveal the B2B PM playbook.",
-      "keyTakeaways": [
-        "SMB product is about self-serve; enterprise product is about relationships",
-        "Moving upmarket requires adding admin controls, SSO, audit logs \u2014 not just more features",
-        "Pricing architecture must change as you move from per-seat to outcome-based models"
-      ],
-      "minutes": 20
+      "type": "search",
+      "title": "Indian consumer lending app product challenges",
+      "keyword": "consumer lending app India product management EMI repayment UX challenges NBFC 2023 2024",
+      "summary": "Searching for how PMs at Indian consumer lending companies (KreditBee, MoneyTap, EarlySalary, Navi) describe their product challenges — specifically around repayment flows, EMI calculation transparency, and user trust — gives Pranav real context before the integration case. Look for product teardowns, PM interviews, or inc42/YourStory articles about the UX and product challenges in Indian consumer fintech lending.",
+      "minutes": 25
     }
   ],
   "assessmentTask": {
-    "taskDescription": "Assessment coming soon",
-    "rawMaterial": "Content being prepared",
-    "outputFormat": "Content being prepared",
-    "claudePrompt": "Content being prepared"
+    "type": "do",
+    "taskDescription": "Given a complaint spike log, a funnel anomaly, and a retention cohort for a fictional Indian lending app, produce 5 deliverables in sequence: RCA tree, root cause hypothesis, mini PRD for the fix, 3 OKRs for next quarter, and a 5-line leadership update.",
+    "rawMaterial": "You are an APM at LoanPe — a fictional Indian consumer lending app that offers personal loans and buy-now-pay-later products. Users take a loan, receive the funds, and repay via EMIs through the app.\n\nCOMPLAINT LOG — THIS WEEK:\nTotal new complaints: 1,247 (vs weekly average of ~310 last month — a 4x spike)\nTop complaint themes:\n- 'EMI calculation wrong' — 498 complaints (40%): 'App shows my EMI as ₹3,420 but when I add up principal + interest it comes to ₹3,390. Where does the extra ₹30 go?' / 'The amount on the repayment screen changes after I tap Confirm. I have a screenshot.'\n- 'Payment not reflected' — 311 complaints (25%): EMI paid but app still shows it as due\n- 'Cannot see repayment schedule' — 186 complaints (15%): 'How do I see all my remaining EMIs in one place?'\n- Other — 252 complaints (20%)\n\nFUNNEL DATA — REPAYMENT FLOW (vs same period last month):\nStep 1: Repayment screen opened → Amount confirmed: 81% (was 89%) — drop of 8 points\nStep 2: Amount confirmed → Payment method selected: 76% (was 77%) — flat\nStep 3: Payment method selected → Payment completed: 91% (was 92%) — flat\nNote: Engineering shipped app version 4.1.2 nine days ago. No changelog was shared with the PM team.\n\nCOHORT DATA — 30-DAY RETENTION:\nUsers who visited the repayment screen in the last 30 days: 30-day retention = 31%\nUsers who did NOT visit the repayment screen in the last 30 days: 30-day retention = 47%\nNote: 'Retention' here means the user made at least one app open in the 30-day window after their first repayment.\n\nYour 5 deliverables:\n\n1. RCA TREE: A 2-level MECE tree of all possible causes for the complaint spike. Place each of the top 3 complaint themes (EMI calculation wrong / Payment not reflected / Cannot see repayment schedule) in the correct branch. Label where the funnel data and cohort data provide evidence.\n\n2. ROOT CAUSE HYPOTHESIS: One specific sentence naming what broke, when it broke, which screen it affects, and what the user-visible symptom is.\n\n3. MINI PRD: For the fix to your top hypothesis only. Include: problem statement (4-component format), 2 user stories with acceptance criteria (happy path + 1 edge case each), 2 success metrics, and 2 out-of-scope items.\n\n4. THREE OKRs: For the LoanPe product team next quarter. One Objective, three Key Results. The OKRs must address the trust and repayment experience problems revealed by this incident — not just fix the bug but improve the broader repayment experience.\n\n5. LEADERSHIP UPDATE (5 lines maximum): What happened / What we know so far / What we are doing immediately / What we are doing next quarter / What we need from leadership. Each line: one sentence.",
+    "outputFormat": "Five clearly labelled sections. RCA tree: indented structure with complaint theme placement labelled. Hypothesis: one sentence. Mini PRD: 4-component problem statement, then 2 user stories each with labelled acceptance criteria (a) happy path (b) edge case, then 2 success metrics, then 2 out-of-scope bullets. OKRs: one Objective statement followed by 3 Key Results formatted as 'KR1: [metric] from [baseline] to [target] by [date]'. Leadership update: 5 numbered lines, one sentence each.",
+    "claudePrompt": "You are a senior PM reviewing my Week 2 integration assessment for the LoanPe complaint spike case.\n\nI studied this week:\n- Day 8: North Star metric + AARRR funnel\n- Day 9: Metric drop diagnosis and root cause analysis\n- Day 10: A/B testing and experimentation design\n- Day 11: Analytics tools, SQL verification, cohort retention\n- Day 12: PRDs, user stories with acceptance criteria, Figma feedback\n- Day 13: Now/Next/Later roadmapping and stakeholder communication\n\nReal world context I should apply:\nLoanPe complaint spike — 4x volume, 40% about EMI calculation discrepancy, engineering shipped v4.1.2 nine days ago without sharing a changelog. Repayment funnel shows 8-point drop at Step 1. Retention for repayment screen visitors is 31% vs 47% for non-visitors.\n\nMY TASK TODAY WAS: Produce 5 deliverables — RCA tree, hypothesis, mini PRD, 3 OKRs, and 5-line leadership update.\n\nHere is my work:\n[Pranav pastes his full 5-section answer here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation — check: is the RCA tree MECE? Is the hypothesis specific and testable? Do acceptance criteria cover edge cases for Indian payment infrastructure (UPI payment pending states, net banking redirect failures)? Are the OKR key results measurable with a baseline and target? Does the leadership update avoid jargon and lead with impact?]\n\nBLIND SPOTS:\n- [things I did not consider at all — e.g., the v4.1.2 release nine days ago aligns almost exactly with the complaint spike start date, making it the most likely proximate cause before even reading the complaints; the 'payment not reflected' complaints suggest a separate reconciliation bug that may need its own PRD; or the fact that retention at 31% for repayment screen visitors likely means the repayment experience is directly causing early churn, which is a business-critical finding that deserves its own OKR]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about EMI calculation transparency in Indian consumer lending — RBI's Fair Practices Code for NBFCs requires lenders to disclose the complete cost of credit clearly before disbursement and at every repayment — a discrepancy between the displayed EMI and the actual charge is not just a UX problem but a potential regulatory compliance issue that the PM should flag explicitly in the leadership update]\n\nOPEN POINTS FOR NEXT WEEK:\n- [3 specific items from Week 2 that Pranav should revisit in Week 3 — name his weakest deliverable from this assessment and why]\n\nWEEK 2 SCORE: [X/10]\nREFORGE COMPETENCIES ASSESSED THIS WEEK:\n- Fluency with Data: [Needs Focus / On Track / Outperform]\n- Feature Specification: [Needs Focus / On Track / Outperform]\n- Business Outcome Ownership: [Needs Focus / On Track / Outperform]\n- Managing Up: [Needs Focus / On Track / Outperform]",
+    "minutes": 60
   }
 }

@@ -1,84 +1,98 @@
 {
   "day": 1,
   "week": 1,
-  "theme": "The PM Role — What You Actually Do",
-  "competenciesCovered": ["Strategic Thinking", "Product Intuition"],
-  "teamContext": "Today's focus team: Leadership + Strategy",
-  "objective": "Understand what a PM actually does day-to-day, and articulate the difference between a PM and a project manager using a real Indian startup example.",
+  "theme": "What the PM role actually is",
+  "competenciesCovered": [
+    "Feature Specification",
+    "Product Delivery",
+    "Product Quality",
+    "Fluency with Data",
+    "Voice of Customer",
+    "UX Design Sense",
+    "Business Outcome Ownership",
+    "Product Vision + Roadmapping",
+    "Strategic Impact",
+    "Stakeholder Management",
+    "Team Leadership",
+    "Managing Up"
+  ],
+  "objective": "Map all 12 Reforge PM competencies to real PM responsibilities and explain — in writing — what an APM at Swiggy does differently from the engineering lead, the designer, and the data analyst on the same squad.",
+  "estimatedMinutes": 120,
   "realWorldAnchor": {
-    "company": "Zepto",
-    "example": "Zepto's PM team deciding to launch Zepto Cafe inside the grocery app — a classic PM decision balancing user value, engineering effort, and business growth"
+    "company": "Swiggy",
+    "example": "Swiggy operates with dedicated product squads — one each for the consumer app, restaurant partner tools, logistics, and growth — where APMs are embedded in a single squad and own specific feature areas end-to-end alongside engineers, designers, and analysts."
   },
+  "teamContext": "Today's topic touches all four cross-functional partners — Engineering (who builds), Design (who shapes UX), Data/Analytics (who measures), and Marketing/Growth (who acquires users) — because understanding the PM role requires seeing clearly how it differs from each of these functions.",
   "tasks": [
     {
       "id": "d1t1",
       "type": "read",
-      "title": "What Does a Product Manager Actually Do?",
-      "url": "https://www.lennysnewsletter.com/p/what-does-a-product-manager-do",
-      "summary": "This piece cuts through the vague definitions and explains what PMs actually spend their time on — discovery, prioritisation, alignment, and shipping. It's written by Lenny Rachitsky, former Airbnb PM, and is one of the most-read PM explainers on the internet.",
+      "title": "Product Manager Skills by Seniority Level — Ravi Mehta, Reforge",
+      "url": "https://www.ravi-mehta.com/product-manager-skills/",
+      "summary": "Ravi Mehta, former VP of Product at Tinder and author of the Reforge PM competency model, maps the 12 core PM competencies across three seniority levels — APM, PM, and Senior PM. This is the foundational framework for the entire 21-day roadmap; reading it on Day 1 gives Pranav a mental map of every skill he will build over the next three weeks.",
       "keyTakeaways": [
-        "PMs own the 'why' and 'what' — engineers own the 'how'",
-        "Most PM time goes into alignment and communication, not just strategy",
-        "The job changes dramatically by company stage — early stage vs growth stage PM are almost different roles",
-        "Influence without authority is the core PM superpower"
+        "The 12 competencies are organised into four pillars — Product Execution, Customer Insight, Product Strategy, and Influencing People — and each pillar matters at the APM level, though execution and customer insight are weighted more heavily than strategy and influence early in a PM career",
+        "APMs who outperform in Product Execution and Customer Insight get promoted; those who lead with strategy before building execution credibility often lose team trust first",
+        "Being 'product-minded' means every feature decision is connected to a user outcome AND a business metric — this is what separates a PM from a project manager or a business analyst"
       ],
-      "minutes": 20
+      "minutes": 30
     },
     {
       "id": "d1t2",
       "type": "read",
-      "title": "PM vs Project Manager — The Difference That Matters",
-      "url": "https://productschool.com/blog/product-management/product-manager-vs-project-manager",
-      "summary": "Many people confuse PMs with project managers. This article explains the fundamental difference: project managers execute a defined plan, PMs define what the plan should be in the first place. In Indian companies, this confusion is especially common.",
+      "title": "The Product Manager — Marty Cagan, SVPG",
+      "url": "https://svpg.com/the-product-manager/",
+      "summary": "Marty Cagan, founder of SVPG and author of Inspired, defines what a product manager is responsible for — and critically, what they are NOT responsible for — in a product-led company. This gives Pranav a second lens alongside Reforge: where Reforge is a skills and seniority map, SVPG is a responsibilities and accountability map.",
       "keyTakeaways": [
-        "Project managers track timelines; PMs define what's worth building and why",
-        "PMs must be comfortable with ambiguity — project managers reduce it",
-        "In early-stage Indian startups, one person often does both — but conflating them is dangerous",
-        "The clearest test: who decides what NOT to build?"
+        "The PM's core job is to discover a product that is simultaneously valuable (users want it), usable (users can use it), feasible (engineering can build it), and viable (the business should build it) — all four tests apply to every feature, not just new products",
+        "A PM does not own design, engineering, or data — but they are fully accountable for the outcome those teams produce together, which is a fundamentally different relationship than a manager or a consultant",
+        "The biggest failure mode for APMs is becoming a feature factory — executing a list of requests from stakeholders rather than discovering the right problem to solve first"
       ],
-      "minutes": 15
+      "minutes": 25
     },
     {
       "id": "d1t3",
       "type": "search",
-      "keyword": "APM program India product manager day in the life",
-      "whyItMatters": "Most PM content is written about American tech companies. You need to calibrate your understanding to Indian product teams — the pace, the constraints, the user base, and the stakeholder dynamics are all different.",
+      "keyword": "Swiggy APM associate product manager day in life squad structure India 2024",
+      "whyItMatters": "Reading frameworks gives you vocabulary; seeing how a real Indian APM spends their actual day gives you context for applying that vocabulary in practice. Look for blog posts, LinkedIn articles, or YouTube videos by Swiggy, Zomato, or Zepto PMs describing their daily workflow — focus on squad structure, weekly rituals (standups, design reviews, data reviews, stakeholder syncs), and how they handle competing priorities.",
       "whatToLearn": [
-        "What does a typical day look like for a PM at Swiggy, Razorpay, or CRED?",
-        "What skills do Indian startups specifically call out in APM job descriptions?",
-        "How do PMs at Indian fintechs differ from those at consumer apps?",
-        "Find at least one honest 'day in the life' account from an Indian PM"
+        "What percentage of a PM's week is in meetings versus solo work — and what kinds of meetings they run (sprint planning, design review, data review, escalation calls, roadmap presentations)",
+        "How an Indian product team at a consumer internet company divides ownership between APM and PM — what the APM owns independently and what requires PM or leadership sign-off"
       ],
-      "minutes": 15
+      "minutes": 20
     },
     {
       "id": "d1t4",
       "type": "activity",
-      "title": "Define the PM Role in Your Own Words",
-      "promptTitle": "Define the PM Role in Your Own Words",
-      "claudePrompt": "You are a PM coach running a first session with an APM candidate named Pranav who is just starting his product management journey.\n\nToday's goal: help him articulate what a PM does in his own words, and identify the specific skills he'll need to build.\n\nStart by asking him: \"Before we dive in — in one sentence, how would you explain the PM role to someone who has never heard of it?\"\n\nThen probe his answer with follow-up questions:\n1. Ask him to give a specific example of a PM decision he's seen or read about\n2. Ask: \"What's the difference between a PM deciding what to build vs an engineer deciding how to build it?\"\n3. Ask him to think of a product he uses daily (Indian app preferred) and identify one recent feature — \"Who do you think made the call to build that? What information would they have needed?\"\n\nAfter his responses, give him structured feedback:\n- What he got right about the role\n- What common misconception he still holds\n- One mental model he should carry into Day 2\n\nEnd with a 1-10 score on his current PM intuition, with one specific thing to watch for tomorrow.",
-      "minutes": 20
+      "promptTitle": "Map 15 Swiggy PM tasks to the 4 Reforge pillars",
+      "claudePrompt": "You are a senior PM coach helping me build a foundational understanding of the PM role using the Reforge 12-competency model.\n\nToday I studied:\n- Ravi Mehta's 12 PM competencies across 4 pillars: Product Execution, Customer Insight, Product Strategy, Influencing People\n- Marty Cagan's definition of the PM's core job: discover a product that is valuable, usable, feasible, and viable\n- How Swiggy organises its product team into squads with APMs embedded in specific feature areas\n\nReal world context: Imagine I am an APM at Swiggy's consumer app squad. My squad owns the homepage feed, cart, and checkout experience.\n\nYour role today: Test whether I understand what a PM actually does by having me categorise real PM tasks. Push back if I put something in the wrong pillar. Ask me WHY for every answer. Do not move on until I have justified my choice.\n\nActivity — 15 PM tasks to categorise:\nBelow are 15 tasks from a typical Swiggy APM's week. I will tell you which of the 4 Reforge pillars each task belongs to. For each one, ask me to justify my answer before confirming. After all 15, give me a score and tell me where I was confused.\n\n1. Write acceptance criteria for a new restaurant sorting algorithm\n2. Review a Mixpanel funnel showing drop-off at the payment step\n3. Interview 5 Swiggy users about why they abandon their cart\n4. Write a product requirements document for a 'reorder last meal' button\n5. Align with the engineering lead on sprint scope for next week\n6. Present the Q3 product roadmap to the VP of Product\n7. Define the North Star metric for the checkout squad\n8. Review a designer's wireframe for the new address confirmation screen\n9. Identify that app ratings dropped 0.3 stars after the last release\n10. Make the case to leadership for prioritising checkout speed over new features\n11. Run a team retrospective with engineering and design\n12. Analyse a competitor app (Zomato) for differences in the checkout flow\n13. Write a 1-pager on why Swiggy should build offline ordering for low-connectivity areas\n14. Tell the data analyst exactly what query to run and why\n15. Negotiate scope trade-offs with the engineering lead when the sprint is overloaded\n\nAfter I respond to all 15, give feedback in EXACTLY this format:\nWHAT WORKED: [bullets]\nWHAT MISSED: [bullets]\nINDIA-SPECIFIC NOTE: [one insight about how Indian PM roles at consumer internet companies differ from US/global norms — especially the cross-functional dynamics at Swiggy, Zepto, or Razorpay]\nCOACHING NOTE: [one specific improvement tip for Pranav]\n\nBegin with: 'Let's go task by task. Start with Task 1: Write acceptance criteria for a new restaurant sorting algorithm. Which of the 4 Reforge pillars does this belong to — and why?'",
+      "minutes": 25
     }
   ],
   "bonusTasks": [
     {
       "id": "d1b1",
       "type": "read",
-      "title": "Inside Razorpay's Product Team — How They Build",
-      "url": "https://razorpay.com/blog/product/",
-      "summary": "Razorpay's product blog gives rare insight into how a high-growth Indian fintech structures its product work — from discovery to launch.",
-      "keyTakeaways": [
-        "B2B product in India requires deep partnership with sales and customer success",
-        "Razorpay PMs obsess over developer experience as a product metric",
-        "Speed of iteration is treated as a feature, not just an engineering goal"
-      ],
+      "title": "Good Product Team / Failed Product Team — Marty Cagan, SVPG",
+      "url": "https://svpg.com/good-product-team-failed-product-team/",
+      "summary": "Cagan's most-shared article draws a sharp contrast between empowered product teams (who own outcomes) and feature factories (who execute requests). Reading this after Day 1's core tasks reframes the PM role as a cultural and organisational choice — critical context for APMs joining large companies like Swiggy or Razorpay where both team types can exist in the same building.",
       "minutes": 20
+    },
+    {
+      "id": "d1b2",
+      "type": "search",
+      "title": "First-person APM experience at top Indian startups",
+      "keyword": "APM associate product manager first year experience Flipkart Razorpay Meesho blog 2023 2024",
+      "summary": "Search for first-person accounts of the APM role at top Indian companies. Look specifically for posts that describe the onboarding experience, what surprised them most, and what skills they wished they had built before joining. These personal stories add colour that no framework article can provide — and they often reveal informal skills (writing, meeting facilitation, data intuition) that matter as much as formal frameworks.",
+      "minutes": 25
     }
   ],
   "assessmentTask": {
-    "taskDescription": "Write a PM job description for a fictional Indian startup",
-    "rawMaterial": "Imagine a startup called 'KiranaOS' — it builds software for small kirana (neighbourhood grocery) store owners to manage inventory, track credit given to customers, and accept digital payments. The team is 15 people, they've just raised a seed round, and they're hiring their first PM.\n\nHere is what the founding team has said about what they need:\n- \"We need someone who can talk to kirana owners in Hindi and understand their real problems\"\n- \"We're drowning in feature requests from our 200 beta users — we need someone to make sense of it\"\n- \"Our engineers are great but they don't know what to build next\"\n- \"We want to expand to 3 new cities in 6 months\"",
-    "outputFormat": "Write a 1-page PM job description that includes:\n1. Role summary (2-3 sentences)\n2. What you'll do (5 bullet points — specific to KiranaOS, not generic)\n3. What we're looking for (4 bullet points — skills + mindset)\n4. One 'nice to have' that reveals you understand the kirana context",
-    "claudePrompt": "You are a senior PM at a top Indian startup reviewing a job description written by an APM candidate named Pranav.\n\nHe was given a fictional startup brief about KiranaOS (a software platform for kirana store owners) and asked to write a PM job description for their first PM hire.\n\nHis submission is below. Evaluate it on:\n\n**What I Got Right** — specificity to the kirana context, realistic responsibilities, clarity\n**What Needs Correction** — generic PM clichés, unrealistic expectations, missing context\n**Blind Spots** — what a strong candidate would have included that he missed\n**India-Specific Note** — does this JD reflect the reality of early-stage Indian startup PM work?\n**Open Points for Tomorrow** — one question to carry into Day 2 about understanding users\n\nScore: X/10\nReforge Level: Needs Focus / On Track / Outperform\n\nBe direct. Speak like a real hiring manager reviewing this, not a chatbot."
+    "type": "do",
+    "taskDescription": "Sort 20 PM tasks into the 4 Reforge pillars in a table with justifications, then write 3 sentences distinguishing what an APM at Swiggy does versus the engineering lead, the designer, and the data analyst on the same squad.",
+    "rawMaterial": "Here are 20 tasks from a real Swiggy product team's sprint board and meeting calendar. Sort each into one of the 4 Reforge pillars (Product Execution / Customer Insight / Product Strategy / Influencing People):\n\n1. Write user stories for a 'Schedule Order' feature\n2. Analyse why Monday order volume is 18% below forecast\n3. Run a 30-minute user interview with a Swiggy power user\n4. Present product strategy for Q4 to the CPO\n5. Create a wireframe feedback document for the design team\n6. Prioritise 10 backlog features for the next sprint using RICE\n7. Write the product brief for a new loyalty programme\n8. Review NPS scores and cluster the most common complaints by theme\n9. Write the launch checklist for a new payment method\n10. Set success metrics for the new restaurant discovery feed\n11. Negotiate scope trade-offs with the engineering lead\n12. Analyse cohort retention data for users who used the new feed vs those who did not\n13. Conduct a competitive audit of Zomato's restaurant page UX\n14. Write a quarterly business review slide deck for the VP\n15. Define edge cases for the address autocomplete feature\n16. Facilitate a cross-team alignment meeting on API dependencies\n17. Flag a quality regression in the checkout flow to the engineering team\n18. Build the 6-month product roadmap for the consumer app\n19. Write a 1-pager making the case for an offline ordering mode\n20. Review and sign off on the sprint demo before the release goes live",
+    "outputFormat": "Part 1: A table with 4 columns — Task Number | Task Description | Reforge Pillar | Justification (1 sentence). Part 2: Three separate sentences, each starting with 'Unlike the [role], the APM...' — one sentence each for engineering lead, designer, and data analyst.",
+    "claudePrompt": "You are a senior PM reviewing my work on Day 1: What the PM role actually is.\n\nI studied today:\n- Ravi Mehta's Reforge 12 PM Competency Model — 4 pillars, 12 competencies, 3 seniority levels\n- Marty Cagan's SVPG definition of the PM's core job: valuable, usable, feasible, viable\n- How Swiggy's product team is structured into squads with APMs embedded in specific feature areas\n\nReal world context I should apply:\nSwiggy APMs are embedded in squads (consumer app, logistics, restaurant-partner tools, growth) and own specific feature areas. They work daily with one engineering lead, one designer, and one analyst.\n\nMY TASK TODAY WAS: Sort 20 Swiggy PM tasks into the 4 Reforge pillars and write 3 sentences distinguishing the APM role from engineering lead, designer, and data analyst.\n\nHere is my work:\n[Pranav pastes his table and 3-sentence role distinction here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets with explanation]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets with explanation of why]\n\nBLIND SPOTS:\n- [things I did not consider at all]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about Indian product team structures at consumer internet companies like Swiggy — e.g., how the PM-engineering relationship differs from Silicon Valley norms, or the role of ops and growth teams that are unusually influential in Indian companies]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Feature Specification — [Needs Focus / On Track / Outperform]",
+    "minutes": 20
   }
 }
