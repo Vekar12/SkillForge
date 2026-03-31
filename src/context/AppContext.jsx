@@ -4,6 +4,7 @@ import {
   isTaskComplete, areDayTasksDone, saveAssessment,
 } from '../utils/progress'
 import { loadSkillsCatalog, loadRoadmap, loadDayData } from '../utils/dataLoader'
+import { githubEnabled, syncUser, loadProgress, saveProgressDebounced } from '../utils/githubStorage'
 
 const AppContext = createContext(null)
 
@@ -48,7 +49,9 @@ export function AppProvider({ children }) {
 
   const loginWithGoogle = useCallback((credential) => {
     if (!credential) {
-      setUser({ uid: 'demo-uid-001', name: 'Demo User', email: 'demo@example.com', photo: null, avatar: 'DU', token: null })
+      const demoUser = { uid: 'demo-uid-001', name: 'Demo User', email: 'demo@example.com', photo: null, avatar: 'DU', token: null }
+      setUser(demoUser)
+      syncUser(demoUser).catch(() => {})
       return
     }
     const payload = decodeJwtPayload(credential)
@@ -61,6 +64,7 @@ export function AppProvider({ children }) {
     }
     localStorage.setItem('sf_token', credential)
     setUser(u)
+    syncUser(u).catch(err => console.warn('syncUser failed:', err.message))
   }, [])
 
   const logout = useCallback(() => {
@@ -84,15 +88,27 @@ export function AppProvider({ children }) {
   // ── Progress + roadmap ────────────────────────────────────────────────────
   useEffect(() => {
     if (!user || !activeSkillId) return
-    const p = initProgress(user.uid, activeSkillId)
-    setProgress(p)
     setGroqKeySet(!!localStorage.getItem('sf_groq_key'))
-    // Eagerly set activeDay here so the day-loader effect always runs with the
-    // correct day for this skill immediately. Without this the day-loader fires
-    // once with the previous skill's stale activeDay before the separate
-    // progress→activeDay effect can update it, wasting a fetch on the wrong day.
-    setActiveDay(Math.min(p.currentDay || 1, 21))
     loadRoadmap(activeSkillId).then(setRoadmap).catch(() => setRoadmap([]))
+
+    // Try GitHub first, fall back to localStorage
+    const initLocal = () => {
+      const p = initProgress(user.uid, activeSkillId)
+      setProgress(p)
+      setActiveDay(Math.min(p.currentDay || 1, 21))
+    }
+
+    if (githubEnabled()) {
+      loadProgress(user.uid, activeSkillId).then(remote => {
+        if (remote) {
+          // Merge remote into localStorage so utils still work
+          localStorage.setItem(`sf_progress_${user.uid}_${activeSkillId}`, JSON.stringify(remote))
+        }
+        initLocal()
+      }).catch(initLocal)
+    } else {
+      initLocal()
+    }
   }, [user, activeSkillId])
 
   // ── Active day from progress.currentDay ───────────────────────────────────
@@ -138,6 +154,7 @@ export function AppProvider({ children }) {
       ? markTaskIncomplete(user.uid, activeSkillId, day, taskId)
       : markTaskComplete(user.uid, activeSkillId, day, taskId)
     setProgress({ ...newProgress })
+    saveProgressDebounced(user.uid, activeSkillId, newProgress)
   }, [user, progress, dayData, activeSkillId])
 
   const isTaskDone = useCallback((taskId) => {
@@ -160,6 +177,7 @@ export function AppProvider({ children }) {
     }
     const newProgress = saveAssessment(user.uid, activeSkillId, dayData.day, result)
     setProgress({ ...newProgress })
+    saveProgressDebounced(user.uid, activeSkillId, newProgress, 0)  // immediate for assessments
   }, [user, dayData, activeSkillId])
 
   // ── Groq key ──────────────────────────────────────────────────────────────
