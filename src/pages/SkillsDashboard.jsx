@@ -246,20 +246,24 @@ export default function SkillsDashboard() {
         <div>
           <p className="text-xs font-bold tracking-widest mb-3" style={{ color: 'var(--text-4)', letterSpacing: '0.1em' }}>YOUR SKILLS</p>
           <div className="space-y-2">
-            {skills.filter(s => s.enrolled).map(skill => (
-              <button key={skill.id} onClick={() => { setActiveSkillId(skill.id); navigate('/') }}
-                className="w-full rounded-xl p-3 text-left transition-all hover:opacity-80"
-                style={{ background: 'var(--surface-1)', border: `1px solid ${activeSkillId === skill.id ? skill.color + '40' : 'var(--border-2)'}`, cursor: 'pointer' }}>
-                <div className="flex items-center gap-2 mb-1.5">
-                  <span>{skill.icon}</span>
-                  <span className="text-xs font-semibold truncate">{skill.title}</span>
-                </div>
-                <div className="rounded-full h-1 overflow-hidden" style={{ background: 'var(--border-2)' }}>
-                  <div className="h-full rounded-full" style={{ width: `${Math.round(((skillProg?.currentDay || 1) - 1) / skill.totalDays * 100)}%`, background: skill.color }} />
-                </div>
-                <p className="text-xs mt-1" style={{ color: 'var(--text-5)' }}>Day {skillProg?.currentDay || 1} of {skill.totalDays}</p>
-              </button>
-            ))}
+            {skills.filter(s => s.enrolled).map(skill => {
+              const sp = user ? getProgress(user.uid, skill.id) : null
+              const spDay = sp?.currentDay || 1
+              return (
+                <button key={skill.id} onClick={() => { setActiveSkillId(skill.id); navigate('/') }}
+                  className="w-full rounded-xl p-3 text-left transition-all hover:opacity-80"
+                  style={{ background: 'var(--surface-1)', border: `1px solid ${activeSkillId === skill.id ? skill.color + '40' : 'var(--border-2)'}`, cursor: 'pointer' }}>
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span>{skill.icon}</span>
+                    <span className="text-xs font-semibold truncate">{skill.title}</span>
+                  </div>
+                  <div className="rounded-full h-1 overflow-hidden" style={{ background: 'var(--border-2)' }}>
+                    <div className="h-full rounded-full" style={{ width: `${Math.round((spDay - 1) / skill.totalDays * 100)}%`, background: skill.color }} />
+                  </div>
+                  <p className="text-xs mt-1" style={{ color: 'var(--text-5)' }}>Day {spDay} of {skill.totalDays}</p>
+                </button>
+              )
+            })}
           </div>
         </div>
       </aside>
