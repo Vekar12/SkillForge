@@ -33,23 +33,23 @@ export default function Settings() {
   return (
     <div style={{ maxWidth: 480, margin: '80px auto', padding: '0 24px' }}>
       <h1 style={{ fontSize: 24, fontWeight: 700, marginBottom: 8 }}>Settings</h1>
-      <p style={{ color: '#9CA3AF', marginBottom: 32, fontSize: 14 }}>
+      <p style={{ color: 'var(--text-3)', marginBottom: 32, fontSize: 14 }}>
         Saved to your browser only — never touches git.
       </p>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-        <label style={{ fontSize: 13, color: '#D1D5DB', fontWeight: 500 }}>Groq API Key</label>
+        <label style={{ fontSize: 13, color: 'var(--text-2)', fontWeight: 500 }}>Groq API Key</label>
         <input
           type="password"
           value={groqKey}
           onChange={e => setGroqKey(e.target.value)}
           placeholder={groqKeySet ? 'Key already set — enter new key to change' : 'gsk_...'}
           style={{
-            background: '#1A1A1A',
-            border: '1px solid #2D2D2D',
+            background: 'var(--surface-2)',
+            border: '1px solid var(--border-3)',
             borderRadius: 8,
             padding: '10px 14px',
-            color: '#F9FAFB',
+            color: 'var(--text-1)',
             fontSize: 14,
             outline: 'none',
           }}

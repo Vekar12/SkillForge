@@ -22,7 +22,7 @@ export default function AuthCallback() {
     <div className="min-h-screen flex items-center justify-center" style={{ background: '#000' }}>
       <div className="text-center">
         <div className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin mx-auto mb-4" style={{ borderColor: '#0A84FF', borderTopColor: 'transparent' }} />
-        <p className="text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>Signing you in...</p>
+        <p className="text-sm" style={{ color: 'var(--text-4)' }}>Signing you in...</p>
       </div>
     </div>
   )

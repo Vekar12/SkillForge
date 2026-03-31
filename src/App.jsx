@@ -28,7 +28,7 @@ function BottomTabBar() {
     <nav
       className="fixed bottom-0 left-0 right-0 xl:hidden z-50"
       style={{
-        background: 'rgba(0,0,0,0.9)',
+        background: 'var(--header-bg)',
         backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
         borderTop: '1px solid var(--border-2)',
