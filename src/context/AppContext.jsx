@@ -145,6 +145,18 @@ export function AppProvider({ children }) {
     loadDay(activeDay)
   }, [activeDay, loadDay])
 
+  // ── Reset a skill back to Day 1 ───────────────────────────────────────────
+  const resetSkill = useCallback((skillId) => {
+    if (!user) return
+    localStorage.removeItem(`sf_progress_${user.uid}_${skillId}`)
+    const fresh = initProgress(user.uid, skillId)
+    if (skillId === activeSkillId) {
+      setProgress({ ...fresh })
+      setActiveDay(1)
+    }
+    saveProgressDebounced(user.uid, skillId, fresh, 0)
+  }, [user, activeSkillId])
+
   // ── Task toggle ───────────────────────────────────────────────────────────
   const toggleTask = useCallback((taskId) => {
     if (!user || !progress || !dayData) return
@@ -215,6 +227,7 @@ export function AppProvider({ children }) {
       groqKeySet, saveGroqKey, getGroqKey,
       theme, toggleTheme,
       getPendingTasksForSidebar,
+      resetSkill,
     }}>
       {children}
     </AppContext.Provider>

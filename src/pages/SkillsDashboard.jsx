@@ -114,11 +114,39 @@ function AddSkillModal({ onClose, onSubmit, user }) {
   )
 }
 
+function ResetConfirmModal({ skill, onConfirm, onCancel }) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      style={{ background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(8px)' }}>
+      <div className="w-full max-w-sm rounded-3xl p-6" style={{ background: 'var(--surface-1)', border: '1px solid var(--border-3)' }}>
+        <div className="text-3xl mb-4 text-center">🔄</div>
+        <h2 className="text-lg font-bold text-center mb-2" style={{ letterSpacing: '-0.3px' }}>Reset {skill.title}?</h2>
+        <p className="text-sm text-center mb-6" style={{ color: 'var(--text-3)', lineHeight: 1.6 }}>
+          This will erase all your progress, task completions, and assessment scores. You'll start fresh from Day 1.
+        </p>
+        <div className="flex gap-3">
+          <button onClick={onCancel}
+            className="flex-1 py-3 rounded-xl text-sm font-semibold"
+            style={{ background: 'var(--border-2)', color: 'var(--text-2)', border: 'none', cursor: 'pointer' }}>
+            Cancel
+          </button>
+          <button onClick={onConfirm}
+            className="flex-1 py-3 rounded-xl text-sm font-semibold"
+            style={{ background: 'var(--red)', color: '#fff', border: 'none', cursor: 'pointer' }}>
+            Yes, Reset
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function SkillsDashboard() {
   const navigate = useNavigate()
-  const { user, skills, progress, activeSkillId, setActiveSkillId, activeDay, getPendingTasksForSidebar, isTaskDone, dayData } = useApp()
+  const { user, skills, progress, activeSkillId, setActiveSkillId, activeDay, getPendingTasksForSidebar, isTaskDone, dayData, resetSkill } = useApp()
   const [showAddSkill, setShowAddSkill] = useState(false)
   const [submittedRequest, setSubmittedRequest] = useState(false)
+  const [resetTarget, setResetTarget] = useState(null) // skill to reset
 
   const firstName = user?.name?.split(' ')[0] || 'there'
   const today = new Date().toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' })
@@ -183,16 +211,23 @@ export default function SkillsDashboard() {
                 </div>
 
                 {skill.enrolled ? (
-                  <div className="flex gap-2">
-                    <button onClick={() => { setActiveSkillId(skill.id); navigate('/') }}
-                      className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-sm font-semibold transition-all active:scale-[0.97]"
-                      style={{ background: skill.color, color: '#fff', border: 'none', cursor: 'pointer' }}>
-                      Today
-                    </button>
-                    <button onClick={() => { setActiveSkillId(skill.id); navigate('/roadmap') }}
-                      className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-sm font-semibold transition-all active:scale-[0.97]"
-                      style={{ background: 'var(--border-2)', color: 'var(--text-2)', border: '1px solid var(--border-3)', cursor: 'pointer' }}>
-                      Roadmap
+                  <div className="flex flex-col gap-2">
+                    <div className="flex gap-2">
+                      <button onClick={() => { setActiveSkillId(skill.id); navigate('/') }}
+                        className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-sm font-semibold transition-all active:scale-[0.97]"
+                        style={{ background: skill.color, color: '#fff', border: 'none', cursor: 'pointer' }}>
+                        Today
+                      </button>
+                      <button onClick={() => { setActiveSkillId(skill.id); navigate('/roadmap') }}
+                        className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-sm font-semibold transition-all active:scale-[0.97]"
+                        style={{ background: 'var(--border-2)', color: 'var(--text-2)', border: '1px solid var(--border-3)', cursor: 'pointer' }}>
+                        Roadmap
+                      </button>
+                    </div>
+                    <button onClick={() => setResetTarget(skill)}
+                      className="w-full py-2 rounded-xl text-xs font-semibold transition-all hover:opacity-80"
+                      style={{ background: 'transparent', color: 'var(--red)', border: '1px solid rgba(239,68,68,0.25)', cursor: 'pointer' }}>
+                      🔄 Reset Skill
                     </button>
                   </div>
                 ) : (
@@ -217,6 +252,17 @@ export default function SkillsDashboard() {
         </div>
 
         {showAddSkill && <AddSkillModal onClose={() => setShowAddSkill(false)} onSubmit={() => setSubmittedRequest(true)} user={user} />}
+        {resetTarget && (
+          <ResetConfirmModal
+            skill={resetTarget}
+            onCancel={() => setResetTarget(null)}
+            onConfirm={() => {
+              resetSkill(resetTarget.id)
+              setResetTarget(null)
+              navigate('/')
+            }}
+          />
+        )}
         <div className="h-6" />
       </div>
 
