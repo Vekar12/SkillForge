@@ -10,7 +10,7 @@ const TYPE_CONFIG = {
 
 function SectionCard({ children }) {
   return (
-    <div className="rounded-2xl p-5 mb-3" style={{ background: 'var(--surface-1)', border: '1px solid var(--border-2)' }}>
+    <div className="rounded-2xl p-5 mb-3" style={{ background: 'var(--surface-2)', border: '1px solid var(--border-2)' }}>
       {children}
     </div>
   )
@@ -255,7 +255,7 @@ export default function TaskDetail() {
 
   if (dayLoading) {
     return (
-      <div className="max-w-2xl mx-auto px-4 py-6 text-center">
+      <div className="max-w-3xl mx-auto px-4 py-6 text-center">
         <p style={{ color: 'var(--text-3)' }}>Loading task…</p>
       </div>
     )
@@ -266,7 +266,7 @@ export default function TaskDetail() {
 
   if (!task) {
     return (
-      <div className="max-w-2xl mx-auto px-4 py-6 text-center">
+      <div className="max-w-3xl mx-auto px-4 py-6 text-center">
         <p style={{ color: 'var(--text-3)' }}>Task not found.</p>
         <button onClick={() => navigate('/')} style={{ color: 'var(--blue)', background: 'none', border: 'none', cursor: 'pointer' }} className="mt-4 text-sm">
           ← Back to Dashboard
@@ -283,7 +283,7 @@ export default function TaskDetail() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-6 lg:px-8 lg:py-10">
+    <div className="max-w-3xl mx-auto px-4 py-6 lg:px-8 lg:py-10">
       {/* Back */}
       <button
         onClick={() => navigate('/')}
@@ -305,9 +305,11 @@ export default function TaskDetail() {
         {task.title || task.keyword || task.promptTitle}
       </h1>
 
-      {task.type === 'read' && <ReadView task={task} onDone={handleDone} />}
-      {task.type === 'search' && <SearchView task={task} onDone={handleDone} />}
-      {task.type === 'activity' && <ActivityView task={task} onDone={handleDone} />}
+      <div style={{ borderRadius: 20, background: 'var(--surface-1)', border: '1px solid var(--border-2)', padding: '16px' }}>
+        {task.type === 'read' && <ReadView task={task} onDone={handleDone} />}
+        {task.type === 'search' && <SearchView task={task} onDone={handleDone} />}
+        {task.type === 'activity' && <ActivityView task={task} onDone={handleDone} />}
+      </div>
 
       <div className="h-6" />
     </div>

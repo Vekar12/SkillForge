@@ -19,7 +19,7 @@ function TaskRow({ task, isDone, isLocked, onToggle }) {
         padding: '14px 16px', borderRadius: 14, marginBottom: 8,
         background: isDone ? 'var(--border-1)' : 'var(--surface-2)',
         border: `1px solid ${isDone ? 'var(--border-1)' : 'var(--border-3)'}`,
-        opacity: isLocked ? 0.38 : 1,
+        opacity: isLocked ? 0.55 : 1,
         transition: 'opacity 0.15s',
       }}
     >
@@ -30,7 +30,7 @@ function TaskRow({ task, isDone, isLocked, onToggle }) {
         aria-label={`Toggle completion for ${title}`}
         style={{
           flexShrink: 0, width: 22, height: 22, borderRadius: '50%',
-          border: `2px solid ${isDone ? cfg.color : 'var(--text-6)'}`,
+          border: `2px solid ${isDone ? cfg.color : 'var(--border-4)'}`,
           background: isDone ? cfg.color : 'transparent',
           cursor: isLocked ? 'default' : 'pointer',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -58,18 +58,13 @@ function TaskRow({ task, isDone, isLocked, onToggle }) {
 }
 
 export default function Dashboard() {
-  const { dayData, dayLoading, toggleTask, isTaskDone, activeDay, loadDay, skills, activeSkillId } = useApp()
+  const { dayData, dayLoading, toggleTask, isTaskDone, activeDay, skills, activeSkillId } = useApp()
   const navigate = useNavigate()
   const [showBonus, setShowBonus] = useState(false)
 
   const activeSkill = skills.find(s => s.id === activeSkillId)
   const totalDays   = activeSkill?.totalDays || 21
   const skillTitle  = activeSkill?.title     || 'APM Foundations'
-
-  // Snap back to current active day on mount
-  useEffect(() => {
-    if (activeDay && dayData && dayData.day !== activeDay) loadDay(activeDay)
-  }, [activeDay]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => { setShowBonus(false) }, [dayData?.day])
 
@@ -112,7 +107,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div style={{ maxWidth: 620, margin: '0 auto', padding: '24px 16px 100px' }}>
+    <div style={{ maxWidth: 860, margin: '0 auto', padding: '24px 24px 100px' }}>
 
       {/* Header */}
       <div style={{ marginBottom: 28 }}>
@@ -146,17 +141,20 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* Tasks */}
-      <div style={{ marginBottom: 24 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-          <span style={s.label}>Tasks</span>
-          <span style={{ fontSize: 12, color: 'var(--text-4)', marginBottom: 10 }}>{doneCount} / {tasks.length}</span>
-        </div>
-        {tasks.map(task => <TaskRow key={task.id} task={task} isDone={isTaskDone(task.id)} isLocked={isLocked(task)} onToggle={toggleTask} />)}
-      </div>
+      {/* Tasks + Assessment card */}
+      <div style={{ borderRadius: 20, background: 'var(--surface-1)', border: '1px solid var(--border-2)', padding: '20px 16px', marginBottom: 24 }}>
 
-      {/* Assessment */}
-      <div style={{ marginBottom: 24 }}>
+        {/* Tasks */}
+        <div style={{ marginBottom: 24 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+            <span style={s.label}>Tasks</span>
+            <span style={{ fontSize: 12, color: 'var(--text-4)', marginBottom: 10 }}>{doneCount} / {tasks.length}</span>
+          </div>
+          {tasks.map(task => <TaskRow key={task.id} task={task} isDone={isTaskDone(task.id)} isLocked={isLocked(task)} onToggle={toggleTask} />)}
+        </div>
+
+        {/* Assessment */}
+        <div>
         <span style={s.label}>Assessment</span>
         {allCoreDone ? (
           <div style={{ padding: '18px 20px', borderRadius: 14, background: 'rgba(59,130,246,0.07)', border: '1px solid rgba(59,130,246,0.18)' }}>
@@ -175,7 +173,8 @@ export default function Dashboard() {
             </div>
           </div>
         )}
-      </div>
+        </div>{/* /Assessment */}
+      </div>{/* /Tasks+Assessment card */}
 
       {/* Bonus */}
       {allCoreDone && bonusTasks.length > 0 && (

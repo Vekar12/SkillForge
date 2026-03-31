@@ -39,8 +39,8 @@ function DayCard({ day, activeDay, progress, onLoadDay }) {
           <div
             className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm"
             style={{
-              background: isCurrent ? 'var(--blue)' : isPast ? 'rgba(48,209,88,0.15)' : 'var(--border-2)',
-              color: isCurrent ? '#fff' : isPast ? 'var(--green)' : 'var(--text-5)',
+              background: isCurrent ? 'var(--blue)' : isPast ? 'rgba(48,209,88,0.15)' : 'var(--border-3)',
+              color: isCurrent ? '#fff' : isPast ? 'var(--green)' : 'var(--text-2)',
             }}
           >
             {isPast ? '✓' : day.day}
@@ -50,7 +50,7 @@ function DayCard({ day, activeDay, progress, onLoadDay }) {
             <div className="flex items-start justify-between gap-2 mb-1.5">
               <div>
                 <div className="flex items-center gap-2 mb-0.5">
-                  <span className="text-xs font-bold" style={{ color: isCurrent ? 'var(--blue)' : isPast ? 'var(--green)' : 'var(--text-5)' }}>
+                  <span className="text-xs font-bold" style={{ color: isCurrent ? 'var(--blue)' : isPast ? 'var(--green)' : 'var(--text-2)' }}>
                     Day {day.day}
                   </span>
                   {isCurrent && (
@@ -62,7 +62,7 @@ function DayCard({ day, activeDay, progress, onLoadDay }) {
                     <span className="text-xs" style={{ color: 'var(--text-6)' }}>🔒</span>
                   )}
                 </div>
-                <p className="text-sm font-medium leading-snug" style={{ color: isFuture ? 'var(--text-4)' : 'var(--text-1)' }}>
+                <p className="text-sm font-medium leading-snug" style={{ color: isFuture ? 'var(--text-2)' : 'var(--text-1)' }}>
                   {day.theme}
                 </p>
               </div>
@@ -73,21 +73,32 @@ function DayCard({ day, activeDay, progress, onLoadDay }) {
                 <span style={{ fontSize: 12, color: 'var(--text-5)', transition: 'transform 0.2s', display: 'inline-block', transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
               </div>
             </div>
-            {/* Competency pills — always visible */}
+            {/* Competency pills — always visible, max 4 shown */}
             {day.competenciesCovered && (
               <div className="flex flex-wrap gap-1.5 mt-2">
-                {day.competenciesCovered.map(c => (
+                {day.competenciesCovered.slice(0, 4).map(c => (
                   <span
                     key={c}
                     className="text-xs font-medium px-2 py-0.5 rounded-full"
                     style={{
-                      background: isCurrent ? 'rgba(10,132,255,0.12)' : isPast ? 'rgba(48,209,88,0.1)' : 'var(--border-1)',
-                      color: isCurrent ? 'var(--blue)' : isPast ? 'var(--green)' : 'var(--text-6)',
+                      background: isCurrent ? 'rgba(10,132,255,0.12)' : isPast ? 'rgba(48,209,88,0.1)' : 'var(--border-3)',
+                      color: isCurrent ? 'var(--blue)' : isPast ? 'var(--green)' : 'var(--text-2)',
                     }}
                   >
                     {c}
                   </span>
                 ))}
+                {day.competenciesCovered.length > 4 && (
+                  <span
+                    className="text-xs font-medium px-2 py-0.5 rounded-full"
+                    style={{
+                      background: 'var(--border-2)',
+                      color: 'var(--text-4)',
+                    }}
+                  >
+                    +{day.competenciesCovered.length - 4}
+                  </span>
+                )}
               </div>
             )}
           </div>
@@ -115,13 +126,13 @@ function DayCard({ day, activeDay, progress, onLoadDay }) {
           )}
 
           {day.brief && (
-            <p className="text-sm mb-3" style={{ color: 'var(--text-4)', lineHeight: 1.6 }}>
+            <p className="text-sm mb-3" style={{ color: 'var(--text-2)', lineHeight: 1.6 }}>
               {day.brief}
             </p>
           )}
 
           {isFuture && (
-            <p className="text-xs" style={{ color: 'var(--text-5)', lineHeight: 1.5, marginTop: day.brief ? 0 : 0 }}>
+            <p className="text-xs" style={{ color: 'var(--text-3)', lineHeight: 1.5, marginTop: day.brief ? 0 : 0 }}>
               🔒 Complete Day {currentDay} to unlock.
             </p>
           )}
@@ -151,7 +162,7 @@ export default function Roadmap() {
   const doneCount = roadmap.filter(d => !!progress?.assessments?.[d.day]).length
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-6 lg:px-8 lg:py-10">
+    <div className="max-w-3xl mx-auto px-4 py-6 lg:px-8 lg:py-10">
       <div className="mb-8">
         <p className="text-xs font-bold tracking-widest mb-1" style={{ color: 'var(--text-4)', letterSpacing: '0.1em' }}>APM FOUNDATIONS</p>
         <h1 className="text-2xl font-bold" style={{ letterSpacing: '-0.4px' }}>21-Day Roadmap</h1>

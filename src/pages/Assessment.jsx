@@ -136,7 +136,7 @@ export default function Assessment() {
   // Groq key gate
   if (!groqKeySet && !submitted) {
     return (
-      <div className="max-w-2xl mx-auto px-4 py-6 lg:px-8 lg:py-10">
+      <div className="max-w-3xl mx-auto px-4 py-6 lg:px-8 lg:py-10">
         <button onClick={() => navigate('/')} className="flex items-center gap-1.5 text-sm font-medium mb-6 hover:opacity-70" style={{ color: 'var(--blue)', background: 'none', border: 'none', cursor: 'pointer' }}>‹ Back</button>
         <div className="rounded-3xl p-8 text-center" style={{ background: 'var(--surface-1)', border: '1px solid rgba(255,159,10,0.2)' }}>
           <div className="text-4xl mb-4">🔑</div>
@@ -169,7 +169,7 @@ export default function Assessment() {
   if (submitted && result) {
     const level = LEVEL_STYLES[result.competencyLevel] || LEVEL_STYLES['On Track']
     return (
-      <div className="max-w-2xl mx-auto px-4 py-6 lg:px-8 lg:py-10">
+      <div className="max-w-3xl mx-auto px-4 py-6 lg:px-8 lg:py-10">
         {/* Score hero */}
         <div className="rounded-2xl p-6 mb-4 text-center" style={{ background: 'linear-gradient(135deg, rgba(10,132,255,0.1), rgba(48,209,88,0.08))', border: '1px solid var(--border-3)' }}>
           <p className="text-xs font-bold tracking-widest mb-3" style={{ color: 'var(--text-3)', letterSpacing: '0.1em' }}>
@@ -208,7 +208,7 @@ export default function Assessment() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-6 lg:px-8 lg:py-10">
+    <div className="max-w-3xl mx-auto px-4 py-6 lg:px-8 lg:py-10">
       <button
         onClick={() => navigate('/')}
         className="flex items-center gap-1.5 text-sm font-medium mb-6 transition-opacity hover:opacity-70"

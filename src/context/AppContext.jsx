@@ -89,7 +89,7 @@ export function AppProvider({ children }) {
   useEffect(() => {
     if (!user || !activeSkillId) return
     setGroqKeySet(!!localStorage.getItem('sf_groq_key'))
-    loadRoadmap(activeSkillId).then(setRoadmap).catch(() => setRoadmap([]))
+    loadRoadmap(activeSkillId).then(data => setRoadmap(data.days || [])).catch(() => setRoadmap([]))
 
     // Try GitHub first, fall back to localStorage
     const initLocal = () => {

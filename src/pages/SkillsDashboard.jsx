@@ -158,7 +158,7 @@ export default function SkillsDashboard() {
   return (
     <div className="flex min-h-[calc(100vh-56px)]">
       {/* Main content */}
-      <div className="flex-1 px-4 py-8 max-w-3xl mx-auto lg:px-8">
+      <div className="flex-1 px-4 py-8 max-w-5xl mx-auto lg:px-8">
         <div className="mb-8">
           <p className="text-sm mb-1" style={{ color: 'var(--text-3)' }}>{today}</p>
           <h1 className="text-3xl font-bold" style={{ letterSpacing: '-0.5px' }}>Hey, {firstName} 👋</h1>
@@ -172,7 +172,7 @@ export default function SkillsDashboard() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
           {skills.map(skill => {
             const skillProg = user ? getProgress(user.uid, skill.id) : null
             const skillDay = skillProg?.currentDay || 1
