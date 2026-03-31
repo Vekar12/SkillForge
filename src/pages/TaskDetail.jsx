@@ -3,9 +3,10 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 
 const TYPE_CONFIG = {
-  read: { icon: '📖', label: 'READ', color: 'var(--blue)', bg: 'rgba(10,132,255,0.12)' },
-  search: { icon: '🔍', label: 'SEARCH', color: 'var(--green)', bg: 'rgba(48,209,88,0.12)' },
+  read:     { icon: '📖', label: 'READ',     color: 'var(--blue)',   bg: 'rgba(10,132,255,0.12)' },
+  search:   { icon: '🔍', label: 'SEARCH',   color: 'var(--green)',  bg: 'rgba(48,209,88,0.12)' },
   activity: { icon: '⚡', label: 'ACTIVITY', color: 'var(--purple)', bg: 'rgba(191,90,242,0.12)' },
+  revisit:  { icon: '📌', label: 'REVISIT',  color: '#F59E0B',       bg: 'rgba(245,158,11,0.12)' },
 }
 
 function SectionCard({ children }) {
@@ -18,7 +19,7 @@ function SectionCard({ children }) {
 
 function Label({ children }) {
   return (
-    <p className="text-xs font-bold tracking-widest mb-3" style={{ color: 'var(--text-4)', letterSpacing: '0.1em' }}>
+    <p className="text-xs font-bold tracking-widest mb-3" style={{ color: 'var(--text-3)', letterSpacing: '0.1em' }}>
       {children}
     </p>
   )
@@ -108,22 +109,24 @@ function ReadView({ task, onDone }) {
         <Label>SUMMARY</Label>
         <p className="text-base leading-relaxed" style={{ color: 'var(--text-primary)', lineHeight: '1.65' }}>{task.summary}</p>
       </SectionCard>
-      <SectionCard>
-        <Label>WHAT TO TAKE AWAY</Label>
-        <ul className="space-y-3">
-          {task.keyTakeaways.map((t, i) => (
-            <li key={i} className="flex gap-3">
-              <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5"
-                style={{ background: 'rgba(10,132,255,0.15)', color: 'var(--blue)', fontSize: '11px' }}>
-                {i + 1}
-              </span>
-              <span className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)', lineHeight: '1.55' }}>{t}</span>
-            </li>
-          ))}
-        </ul>
-      </SectionCard>
+      {task.keyTakeaways?.length > 0 && (
+        <SectionCard>
+          <Label>WHAT TO TAKE AWAY</Label>
+          <ul className="space-y-3">
+            {task.keyTakeaways.map((t, i) => (
+              <li key={i} className="flex gap-3">
+                <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5"
+                  style={{ background: 'rgba(10,132,255,0.15)', color: 'var(--blue)', fontSize: '11px' }}>
+                  {i + 1}
+                </span>
+                <span className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)', lineHeight: '1.55' }}>{t}</span>
+              </li>
+            ))}
+          </ul>
+        </SectionCard>
+      )}
       <div className="flex items-center gap-2 mb-5 px-1">
-        <span className="text-sm" style={{ color: 'var(--text-4)' }}>⏱ {task.minutes} min estimated read</span>
+        <span className="text-sm" style={{ color: 'var(--text-3)' }}>⏱ {task.minutes} min estimated read</span>
       </div>
       <div className="flex flex-col gap-3">
         <SecondaryButton href={task.url} target="_blank">Open Article ↗</SecondaryButton>
@@ -143,23 +146,27 @@ function SearchView({ task, onDone }) {
           <CopyButton text={task.keyword} />
         </div>
       </SectionCard>
-      <SectionCard>
-        <Label>WHY THIS MATTERS</Label>
-        <p className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)', lineHeight: '1.65' }}>{task.whyItMatters}</p>
-      </SectionCard>
-      <SectionCard>
-        <Label>LOOK FOR THESE SPECIFICALLY</Label>
-        <ul className="space-y-3">
-          {task.whatToLearn.map((item, i) => (
-            <li key={i} className="flex gap-3">
-              <span style={{ color: 'var(--green)', flexShrink: 0, marginTop: '2px' }}>→</span>
-              <span className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)' }}>{item}</span>
-            </li>
-          ))}
-        </ul>
-      </SectionCard>
+      {(task.whyItMatters || task.summary) && (
+        <SectionCard>
+          <Label>WHY THIS MATTERS</Label>
+          <p className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)', lineHeight: '1.65' }}>{task.whyItMatters || task.summary}</p>
+        </SectionCard>
+      )}
+      {task.whatToLearn?.length > 0 && (
+        <SectionCard>
+          <Label>LOOK FOR THESE SPECIFICALLY</Label>
+          <ul className="space-y-3">
+            {task.whatToLearn.map((item, i) => (
+              <li key={i} className="flex gap-3">
+                <span style={{ color: 'var(--green)', flexShrink: 0, marginTop: '2px' }}>→</span>
+                <span className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)' }}>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </SectionCard>
+      )}
       <div className="flex items-center gap-2 mb-5 px-1">
-        <span className="text-sm" style={{ color: 'var(--text-4)' }}>⏱ {task.minutes} min</span>
+        <span className="text-sm" style={{ color: 'var(--text-3)' }}>⏱ {task.minutes} min</span>
       </div>
       <PrimaryButton onClick={onDone}>Mark as Done</PrimaryButton>
     </>
@@ -216,7 +223,7 @@ function ActivityView({ task, onDone }) {
 
       {!submitted ? (
         <div>
-          <p className="text-xs font-bold tracking-widest mb-3 px-1" style={{ color: 'var(--text-4)', letterSpacing: '0.1em' }}>
+          <p className="text-xs font-bold tracking-widest mb-3 px-1" style={{ color: 'var(--text-3)', letterSpacing: '0.1em' }}>
             PASTE CLAUDE'S FEEDBACK
           </p>
           <textarea
@@ -308,7 +315,7 @@ export default function TaskDetail() {
       <div style={{ borderRadius: 20, background: 'var(--surface-1)', border: '1px solid var(--border-2)', padding: '16px' }}>
         {task.type === 'read' && <ReadView task={task} onDone={handleDone} />}
         {task.type === 'search' && <SearchView task={task} onDone={handleDone} />}
-        {task.type === 'activity' && <ActivityView task={task} onDone={handleDone} />}
+        {(task.type === 'activity' || task.type === 'revisit') && <ActivityView task={task} onDone={handleDone} />}
       </div>
 
       <div className="h-6" />

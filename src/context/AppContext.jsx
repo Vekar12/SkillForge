@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react'
+import { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react'
 import {
   initProgress, markTaskComplete, markTaskIncomplete,
   isTaskComplete, areDayTasksDone, saveAssessment,
@@ -7,6 +7,35 @@ import { loadSkillsCatalog, loadRoadmap, loadDayData } from '../utils/dataLoader
 import { githubEnabled, syncUser, loadProgress, saveProgressDebounced } from '../utils/githubStorage'
 
 const AppContext = createContext(null)
+
+// ── Remedial task builder ─────────────────────────────────────────────────────
+function buildRemedialTask(prevDay, theme, assessment) {
+  const prompt = `You are a PM coach doing a focused follow-up session.
+
+Yesterday the student studied "${theme}" and scored ${assessment.score ?? '?'}/10 on the assessment.
+
+What needs correction: ${assessment.needsCorrection || 'General review needed'}
+Blind spots identified: ${assessment.blindSpots || 'None identified'}
+Open points flagged for today: ${assessment.openPoints || 'None'}
+
+Your goal: Help them close these specific gaps through reflection — not re-teaching.
+
+1. Ask them to explain the concept they struggled with most, in their own words.
+2. Probe their answer with 2 follow-up questions to deepen understanding.
+3. End by suggesting exactly 2–3 specific search terms or article topics they should read today to address the gaps. Frame these as actionable reading prompts, using Indian startup contexts where relevant.
+
+Keep the session tight — under 20 minutes.`
+
+  return {
+    id: `remedial-day-${prevDay}`,
+    type: 'revisit',
+    isRemedial: true,
+    title: `Revisit: ${theme}`,
+    promptTitle: `Revisit: ${theme}`,
+    minutes: 20,
+    claudePrompt: prompt,
+  }
+}
 
 function decodeJwtPayload(token) {
   try {
@@ -24,6 +53,8 @@ export function AppProvider({ children }) {
   const [dayData, setDayData]             = useState(null)
   const [dayLoading, setDayLoading]       = useState(false)
   const [progress, setProgress]           = useState(null)
+  const progressRef                       = useRef(null)
+  const roadmapRef                        = useRef([])
   const [groqKeySet, setGroqKeySet]       = useState(() => !!localStorage.getItem('sf_groq_key'))
   const [theme, setTheme]                 = useState(() => localStorage.getItem('sf_theme') || 'dark')
   const [activeDay, setActiveDay]         = useState(1)
@@ -111,34 +142,52 @@ export function AppProvider({ children }) {
     }
   }, [user, activeSkillId])
 
+  // ── Keep refs in sync so loadDay always reads latest values ─────────────
+  useEffect(() => { progressRef.current = progress }, [progress])
+  useEffect(() => { roadmapRef.current = roadmap }, [roadmap])
+
   // ── Active day from progress.currentDay ───────────────────────────────────
   useEffect(() => {
     if (!progress) return
     setActiveDay(Math.min(progress.currentDay || 1, 21))
   }, [progress])
 
-  // ── Load day data when activeDay changes ──────────────────────────────────
-  useEffect(() => {
-    if (!activeSkillId || !activeDay) return
-    setDayLoading(true)
-    loadDayData(activeSkillId, activeDay)
-      .then(setDayData)
-      .catch(() => setDayData(null))
-      .finally(() => setDayLoading(false))
-  }, [activeSkillId, activeDay])
-
   // ── Load a specific day for viewing ──────────────────────────────────────
   const loadDay = useCallback(async (day) => {
     setDayLoading(true)
     try {
       const d = await loadDayData(activeSkillId, day)
+
+      // Use refs to always access latest progress/roadmap — avoids stale closure
+      const p = progressRef.current
+      const rm = roadmapRef.current
+      if (day > 1 && p) {
+        const prevAssessment = p.assessments?.[day - 1]
+        if (prevAssessment?.competencyLevel === 'Needs Focus') {
+          const remedialId = `remedial-day-${day - 1}`
+          const alreadyDone = isTaskComplete(p, day, remedialId)
+          const alreadyInjected = d.tasks?.some(t => t.id === remedialId)
+          if (!alreadyDone && !alreadyInjected) {
+            const prevDayInfo = rm.find(r => r.day === day - 1)
+            const remedialTask = buildRemedialTask(day - 1, prevDayInfo?.theme || `Day ${day - 1}`, prevAssessment)
+            d.tasks = [remedialTask, ...(d.tasks || [])]
+          }
+        }
+      }
+
       setDayData(d)
     } catch {
       setDayData(null)
     } finally {
       setDayLoading(false)
     }
-  }, [activeSkillId])
+  }, [activeSkillId]) // refs are stable — no need to list progress/roadmap here
+
+  // ── Load day data when activeDay changes ──────────────────────────────────
+  useEffect(() => {
+    if (!activeSkillId || !activeDay) return
+    loadDay(activeDay)
+  }, [activeSkillId, activeDay]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Snap back to current active day ──────────────────────────────────────
   const resetToActiveDay = useCallback(() => {

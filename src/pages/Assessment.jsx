@@ -71,25 +71,46 @@ const LEVEL_STYLES = {
   'Outperform': { color: 'var(--green)', bg: 'rgba(48,209,88,0.12)', border: 'rgba(48,209,88,0.3)' },
 }
 
+// Extract a labelled section from Claude's structured feedback text
+function extractSection(text, ...labels) {
+  for (const label of labels) {
+    const pattern = new RegExp(
+      label + '[^:\\n]*[:\\n]+([\\s\\S]*?)(?=\\n{1,2}[A-Z][A-Z\\s\\-]+:|SCORE:|$)',
+      'i'
+    )
+    const m = text.match(pattern)
+    if (m) return m[1].replace(/^\n+/, '').trim().slice(0, 600)
+  }
+  return ''
+}
+
 async function parseWithGroq(rawFeedback, groqKey) {
+  // Truncate to avoid token overflow — Groq llama3-8b has 8k context
+  const truncated = rawFeedback.slice(0, 5000)
   try {
     const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${groqKey}` },
       body: JSON.stringify({
         model: 'llama3-8b-8192',
-        messages: [{ role: 'user', content: `Parse this PM assessment feedback. Return ONLY a JSON object — no markdown, no explanation:
-{"score":<1-10>,"competencyLevel":"Needs Focus|On Track|Outperform","gotRight":"...","needsCorrection":"...","blindSpots":"...","indiaNote":"...","openPoints":"..."}
+        messages: [{ role: 'user', content: `Extract fields from this PM assessment feedback and return ONLY a valid JSON object. All string values must be single-line (replace newlines with spaces). No markdown fences.
+
+{"score":<integer 1-10>,"competencyLevel":"Needs Focus|On Track|Outperform","gotRight":"<summary>","needsCorrection":"<summary>","blindSpots":"<summary>","indiaNote":"<summary>","openPoints":"<summary>"}
 
 Feedback:
-${rawFeedback}` }],
+${truncated}` }],
         temperature: 0.1,
       }),
     })
     if (!res.ok) return null
     const data = await res.json()
-    const text = data.choices[0].message.content.trim().replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, '')
-    return JSON.parse(text)
+    const raw = data.choices[0].message.content.trim()
+    // Strip markdown fences if present
+    const cleaned = raw.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, '').trim()
+    // Extract just the JSON object in case there's surrounding text
+    const jsonMatch = cleaned.match(/\{[\s\S]*\}/)
+    if (!jsonMatch) return null
+    return JSON.parse(jsonMatch[0])
   } catch {
     return null
   }
@@ -97,13 +118,19 @@ ${rawFeedback}` }],
 
 export default function Assessment() {
   const navigate = useNavigate()
-  const { groqKeySet, submitAssessment, dayData, resetToActiveDay } = useApp()
+  const { groqKeySet, submitAssessment, dayData, isDayComplete } = useApp()
   const assessmentTask = dayData?.assessmentTask
   const [feedback, setFeedback] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+
+  // If this day's assessment was already submitted (e.g. user navigated back), go to dashboard
+  if (!submitted && dayData && isDayComplete(dayData.day)) {
+    navigate('/')
+    return null
+  }
 
   const handleSubmit = async () => {
     if (!feedback.trim()) return
@@ -113,17 +140,17 @@ export default function Assessment() {
     let parsed = groqKey ? await parseWithGroq(feedback.trim(), groqKey) : null
 
     if (!parsed) {
-      // Fallback: regex parse or basic scoring — always succeeds
-      const scoreMatch = feedback.match(/\b([1-9]|10)\s*\/\s*10\b/)
+      // Fallback: extract sections directly from Claude's structured output
+      const scoreMatch = feedback.match(/\b(\d+(?:\.\d+)?)\s*\/\s*10\b/)
       const levelMatch = feedback.match(/\b(Needs Focus|On Track|Outperform)\b/i)
       parsed = {
-        score: scoreMatch ? parseInt(scoreMatch[1], 10) : 6,
+        score: scoreMatch ? Math.round(parseFloat(scoreMatch[1])) : 6,
         competencyLevel: levelMatch ? levelMatch[1] : 'On Track',
-        gotRight: feedback.slice(0, 300).trim(),
-        needsCorrection: 'Open Claude.ai with the prompt above for detailed correction feedback.',
-        blindSpots: 'Use the assessment prompt in Claude.ai for a full blind-spot analysis.',
-        indiaNote: '',
-        openPoints: 'Carry these learnings into the next day.',
+        gotRight:        extractSection(feedback, 'WHAT YOU GOT RIGHT', 'WHAT I GOT RIGHT', 'GOT RIGHT'),
+        needsCorrection: extractSection(feedback, 'WHAT NEEDS CORRECTION', 'NEEDS CORRECTION'),
+        blindSpots:      extractSection(feedback, 'BLIND SPOTS'),
+        indiaNote:       extractSection(feedback, 'INDIA-SPECIFIC NOTE', 'INDIA SPECIFIC'),
+        openPoints:      extractSection(feedback, 'OPEN POINTS FOR TOMORROW', 'OPEN POINTS'),
       }
     }
 
@@ -196,7 +223,7 @@ export default function Assessment() {
         </div>
 
         <button
-          onClick={() => { resetToActiveDay(); navigate('/') }}
+          onClick={() => navigate('/')}
           className="w-full font-semibold transition-all active:scale-[0.98] hover:opacity-90"
           style={{ background: 'var(--blue)', color: '#fff', height: '52px', borderRadius: '14px', fontSize: '17px', letterSpacing: '-0.2px', border: 'none', cursor: 'pointer' }}
         >
@@ -228,7 +255,10 @@ export default function Assessment() {
 
       {/* Raw Material */}
       <SectionCard>
-        <Label>YOUR TASK TODAY</Label>
+        <div className="flex items-center justify-between mb-3">
+          <Label>YOUR TASK TODAY</Label>
+          <CopyButton text={assessmentTask?.rawMaterial} />
+        </div>
         <div
           className="rounded-xl p-4 mb-4"
           style={{ background: 'var(--bg)', border: '1px solid var(--border-2)' }}
