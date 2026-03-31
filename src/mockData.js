@@ -251,6 +251,47 @@ export const mockApiResponse = {
     }),
 };
 
+// ─── MOCK API (mirrors real API shapes exactly) ───────────────────────────────
+// Used when USE_MOCK = true in AppContext. Swap to src/api/* for production.
+export const mockApi = {
+  // GET /api/skills
+  listSkills: () => Promise.resolve(skillsCatalog),
+
+  // GET /api/skills/:skillId/roadmap
+  getRoadmap: (_skillId) => Promise.resolve(roadmapDays),
+
+  // GET /api/skills/:skillId/day/:day
+  getDayData: (_skillId, _day) => Promise.resolve(dayData),
+
+  // POST /api/task/complete
+  completeTask: (taskId, skillId, day, type) =>
+    Promise.resolve({ success: true, taskId, skillId, day, type }),
+
+  // GET /api/assessment/:skillId/:day
+  getAssessment: (_skillId, _day) => Promise.resolve(null),
+
+  // POST /api/assessment — matches backend: { day, rawFeedback }
+  submitAssessment: (_day, _rawFeedback) => Promise.resolve({
+    success: true,
+    parsed: {
+      gotRight: "You correctly identified the core user frustration.",
+      needsCorrection: "Your JTBD statement confused the situation with the motivation.",
+      blindSpots: "You missed the emotional job entirely.",
+      indiaNote: "Your feature recommendation is strong for metro users.",
+      openPoints: "Ask yourself: what would Zepto track to know if they're solving the right job?",
+      score: 7,
+      competencyLevel: "On Track",
+    },
+  }),
+
+  // GET /api/settings
+  getSettings: () => Promise.resolve({ groqKeySet: false }),
+
+  // POST /api/settings/groq-key
+  saveGroqKey: (_key) => Promise.resolve({ success: true }),
+}
+
+
 // ─── ADD NEW SKILL PROMPT ─────────────────────────────────────────────────────
 export const addSkillPrompt = `You are a curriculum designer for SkillForge, a platform that helps ambitious professionals build specific skills through structured 21-day programs.
 

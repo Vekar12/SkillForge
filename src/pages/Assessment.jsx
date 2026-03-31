@@ -74,7 +74,7 @@ const LEVEL_STYLES = {
 
 export default function Assessment() {
   const navigate = useNavigate()
-  const { groqKey } = useApp()
+  const { groqKey, groqKeySet } = useApp()
   const { assessmentTask } = dayData
   const [feedback, setFeedback] = useState('')
   const [submitted, setSubmitted] = useState(false)
@@ -90,8 +90,8 @@ export default function Assessment() {
     setLoading(false)
   }
 
-  // Groq key gate
-  if (!groqKey && !submitted) {
+  // Groq key gate — check both the key value (mock mode) and server-side flag (real mode)
+  if (!groqKey && !groqKeySet && !submitted) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-6 lg:px-8 lg:py-10">
         <button onClick={() => navigate('/')} className="flex items-center gap-1.5 text-sm font-medium mb-6 hover:opacity-70" style={{ color: '#0A84FF', background: 'none', border: 'none', cursor: 'pointer' }}>‹ Back</button>

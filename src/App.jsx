@@ -4,16 +4,25 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import RightSidebar from './components/RightSidebar'
 import Login from './pages/Login'
+import AuthCallback from './pages/AuthCallback'
+import Settings from './pages/Settings'
 import SkillsDashboard from './pages/SkillsDashboard'
 import Dashboard from './pages/Dashboard'
 import TaskDetail from './pages/TaskDetail'
 import Assessment from './pages/Assessment'
 import Roadmap from './pages/Roadmap'
 
+function ProtectedRoute({ children }) {
+  const { user, userLoading } = useApp()
+  if (userLoading) return null
+  if (!user) return <Navigate to="/login" replace />
+  return children
+}
+
 function BottomTabBar() {
   const location = useLocation()
   const navigate = useNavigate()
-  const isDetail = location.pathname.startsWith('/task/') || location.pathname === '/assessment' || location.pathname === '/login'
+  const isDetail = location.pathname.startsWith('/task/') || location.pathname === '/assessment' || location.pathname === '/login' || location.pathname === '/auth/callback' || location.pathname === '/settings'
   const { user } = useApp()
 
   if (!user || isDetail) return null
@@ -57,12 +66,6 @@ function BottomTabBar() {
   )
 }
 
-function ProtectedRoute({ children }) {
-  const { user } = useApp()
-  if (!user) return <Navigate to="/login" replace />
-  return children
-}
-
 function AppLayout() {
   const { user } = useApp()
   const location = useLocation()
@@ -88,6 +91,8 @@ function AppLayout() {
           <div className="flex-1 min-w-0 overflow-y-auto pb-20 xl:pb-0">
             <Routes>
               <Route path="/login" element={<Login />} />
+              <Route path="/auth/callback" element={<AuthCallback />} />
+              <Route path="/settings" element={<Settings />} />
               <Route path="/skills" element={<ProtectedRoute><SkillsDashboard /></ProtectedRoute>} />
               <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
               <Route path="/task/:id" element={<ProtectedRoute><TaskDetail /></ProtectedRoute>} />
