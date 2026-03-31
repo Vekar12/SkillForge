@@ -1496,5 +1496,243 @@
         "minutes": 40
       }
     }
+  ,
+    {
+      "day": 19,
+      "week": 3,
+      "theme": "Influencing Without Authority: Stakeholder Management and Managing Up",
+      "competenciesCovered": ["Stakeholder Management", "Managing Up", "Team Leadership"],
+      "objective": "Build the Influencing People competencies that separate good PMs from great ones: map stakeholders accurately, communicate decisions in the language each audience needs, and write the kind of managing-up memo that gets a deprioritised feature reconsidered rather than abandoned.",
+      "estimatedMinutes": 120,
+      "realWorldAnchor": {
+        "company": "Zepto",
+        "context": "Zepto operates at extreme speed — 10-minute delivery means engineering, operations, and product are in constant tension. A Zepto APM does not have the luxury of long alignment cycles. They need to communicate priorities to a founder-level leadership team that moves fast, to an engineering squad that has more than enough on their plate, and to a data team that is shared across squads. Understanding how PMs at high-velocity Indian startups build influence — without formal authority — is the practical content behind the Stakeholder Management and Managing Up competencies."
+      },
+      "tasks": [
+        {
+          "id": "d19t1",
+          "type": "read",
+          "title": "The PM stakeholder management playbook: mapping, aligning, and communicating across functions",
+          "url": "https://www.lenny.news/p/how-to-work-with-engineers",
+          "summary": "Stakeholder management is not a soft skill — it is a structured practice. The best PMs maintain a stakeholder map that tracks: who has decision authority, who has influence without authority, who will be impacted by the change, and who needs to be informed after the fact. This reading covers how to build that map for a product squad at a fast-moving company, and how to tailor communication to each stakeholder type: founders want business outcomes, engineering leads want clear scope and stable requirements, designers want user problem framing, data analysts want the metric definition upfront.",
+          "keyTakeaways": [
+            "A stakeholder map has four zones: Decide (has veto power over the decision), Advise (input shapes the decision but does not own it), Execute (builds or operates the output), Inform (needs to know after the decision is made — not before)",
+            "The most common APM failure in stakeholder management: treating all stakeholders as 'Decide' and trying to get full consensus before moving forward, which paralyses decision-making",
+            "Engineering stakeholder communication requires translating product goals into technical scope: not 'we want users to reorder faster' but 'we want to reduce the taps-to-confirm-reorder from 4 to 2, without changing the cart review screen'",
+            "Founder communication at Indian startups is often oral and fast — a 10-slide deck is not always the right format; a two-paragraph Slack update with one number and one ask is often more effective",
+            "The RACI model (Responsible, Accountable, Consulted, Informed) is a useful starting framework but breaks down for fast-moving squads; the practical version is: 'who can say yes, who can say no, who do I tell after'"
+          ],
+          "minutes": 25
+        },
+        {
+          "id": "d19t2",
+          "type": "read",
+          "title": "Managing up as a PM: how to communicate with leadership when you are not the decision-maker",
+          "url": "https://www.reforge.com/blog/managing-up",
+          "summary": "Managing up is one of the most under-taught PM skills and one of the most important. It is not about being political — it is about giving your manager and leadership the information they need to make good decisions on your behalf. The core skill is translating your ground-level product knowledge into the language of business outcomes that leadership cares about. This reading covers: what managing up actually means, how to write a managing-up document, and the most common ways APMs fail at it (too much detail, wrong metric, no ask).",
+          "keyTakeaways": [
+            "Managing up is not about approval-seeking — it is about keeping leadership informed enough to unblock you, advocate for your work, and make resource decisions in your favour",
+            "The structure of a strong managing-up update: (1) Where we are (current status against the metric that leadership cares about), (2) What changed since last week (the one key development), (3) What I need from you (specific and time-bound ask, not 'your thoughts')",
+            "The most common APM managing-up mistake: reporting activity ('we shipped the feature') instead of outcomes ('DAU from the reorder flow is up 12% week-on-week since the feature launched')",
+            "When your feature gets deprioritised by leadership, managing up is not about arguing — it is about making the opportunity cost of the deprioritisation visible: 'if we do not ship this by end of Q2, we miss the pre-Diwali traffic window which drove 34% of last year's GMV growth'",
+            "At Indian startups with founder-led culture, managing up also means managing across — founders often care about your opinions on things outside your squad scope; having a view (and being willing to share it) builds credibility faster than perfect execution in your own lane"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d19t3",
+          "type": "search",
+          "keyword": "Indian startup product review meeting PM stakeholder alignment sprint review founder communication",
+          "title": "Research how Indian startup PM teams run product reviews and stakeholder alignment",
+          "whyItMatters": "Most PM stakeholder management content is written for US tech companies with structured product review processes (Amazon 6-pager, Google PRD review). Indian startups — especially at Series A and B — operate differently: the founder is often in the product review, decisions happen on WhatsApp, and the 'stakeholder map' is sometimes two people. Understanding how Indian PMs actually navigate this is essential context for Pranav.",
+          "whatToLearn": [
+            "How do Indian startup PMs typically run weekly product reviews — what format, what attendees, what decisions get made?",
+            "What is the role of the founding team in product decisions at Indian Series A/B startups, and how does this affect the PM's authority?",
+            "How do PMs at companies like Zepto, Razorpay, or CRED communicate product strategy decisions to their engineering leads?",
+            "What does 'influence without authority' look like in a flat-hierarchy Indian startup vs a more structured organisation like Flipkart or PhonePe?",
+            "Are there published case studies or interviews with Indian PMs about how they navigate stakeholder conflict?"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d19t4",
+          "type": "activity",
+          "promptTitle": "Write a stakeholder communication package for a deprioritised feature at Zepto",
+          "claudePrompt": "You are a senior PM and communication coach.\n\nRole: You are helping me write a complete stakeholder communication package for a real product scenario at a fast-moving Indian startup.\n\nToday I studied:\n- How to build a stakeholder map: Decide / Advise / Execute / Inform zones\n- The RACI model and its practical version for fast-moving squads\n- Managing up: how to communicate with leadership without over-explaining or under-informing\n- How Indian startup PM teams run product reviews\n\nScenario:\nYou are an APM at Zepto. Your squad has been working on a feature: 'Reorder basket' — a one-tap reorder of a user's most recent cart, shown on the app home screen during the evening peak window (6-9pm). You shipped an MVP of this feature 3 weeks ago and have early data:\n- Users who see the reorder basket convert at 31% vs 18% for users who browse manually (same time window)\n- The feature currently shows for only 40% of users (the 40% who had an order in the last 14 days)\n- Engineering estimates 3 sprints to expand coverage to 85% of users and add personalisation (show items from the most-ordered category, not just the last cart)\n\nLastly week, your PM lead told you: 'The reorder basket is on hold — engineering is being pulled onto the new Zepto Catch subscription flow for the next 6 weeks.'\n\nYour task: Write three stakeholder communications.\n\nCommunication 1 — Managing up to your PM lead\nA Slack message (max 150 words) that acknowledges the decision, makes the opportunity cost visible with the data you have, and asks for a specific commitment (not 'can we revisit this' but a specific ask).\n\nCommunication 2 — Informing engineering\nA message to your engineering lead (max 100 words) that tells them the feature is on hold, what to do with the work-in-progress, and what the clear trigger is to restart.\n\nCommunication 3 — Stakeholder map\nDraw the stakeholder map for this feature using the four zones (Decide / Advise / Execute / Inform). For each zone, list the specific roles at Zepto and one sentence on how you would communicate with them about this hold decision.\n\nFeedback format:\nWHAT WORKED: [specific communication decisions that show PM maturity — e.g., using the data correctly, being specific with the ask, not over-explaining]\nWHAT MISSED: [communication mistakes — e.g., was the managing-up message reporting activity instead of outcomes? Was the ask vague? Was the engineering message demotivating rather than clarifying?]\nINDIA-SPECIFIC NOTE: [one insight about communication norms at founder-led Indian startups specifically — e.g., how the tone and format of a Slack message to a founder-PM is different from a message to a hired CPO]\nCOACHING NOTE: [one communication habit Pranav should build before his first APM role]\n\nBegin by writing Communication 1 as a model, then coach me to write Communications 2 and 3.",
+          "minutes": 35
+        }
+      ],
+      "bonusTasks": [
+        {
+          "id": "d19b1",
+          "type": "search",
+          "title": "Find a public interview with an Indian PM talking about working with founders",
+          "keyword": "Indian PM founder relationship product manager working with founders startup interview podcast",
+          "why": "First-hand accounts of how PMs at Indian startups navigate founder relationships are more practically useful than US-centric stakeholder management frameworks. YourStory, Inc42, and The Ken have published several such interviews.",
+          "minutes": 10
+        }
+      ],
+      "assessmentTask": {
+        "type": "do",
+        "taskDescription": "You are APM at a mid-size Indian fintech. Your top feature — a bill payment reminder that has shown 22% reduction in late fees for users who receive it — has been cut from next quarter's roadmap because leadership wants to focus all engineering on a new 'credit score simulator' feature. Write the full managing-up package: a one-paragraph situation summary, a one-paragraph opportunity cost argument using the data, and a specific one-sentence ask with a deadline.",
+        "rawMaterial": "Managing up is a skill you will use on Day 1 of your first APM role. This assessment asks you to do it in a real scenario — not with a rubric, but with actual data.\n\nThe scenario:\n- Product: a bill payment reminder feature on a fintech app (similar to CRED's bill reminders)\n- Your data: users who received at least one reminder paid their bill on time at a rate of 78%, vs 56% for users who did not receive a reminder — a 22-percentage-point difference in on-time payment rate\n- Business relevance: late fees generate short-term revenue but increase churn — the company's current North Star is 90-day retention, and on-time payment is the single strongest predictor of 90-day retention in the company's own cohort data\n- The leadership decision: the credit score simulator feature is being prioritised because it is 'more differentiated' and 'will drive press coverage'\n- What you are NOT allowed to do: complain, argue that leadership is wrong, or ask for a 'discussion'\n- What you ARE trying to do: give leadership the information they need to make a better decision, and ask for something specific\n\nWrite three sections:\n\nSection 1 — Situation (max 60 words)\nWhat is the current status of the reminder feature and why does it matter? No opinions — only facts and numbers.\n\nSection 2 — Opportunity cost (max 100 words)\nIf the reminder feature stays off-roadmap for the quarter, what specifically will the business not achieve? Connect this to the North Star metric (90-day retention) using the data you have.\n\nSection 3 — The ask (max 30 words)\nOne specific, time-bound ask — not 'can we discuss', not 'I'd like to revisit' — but an actual commitment you are requesting, with a specific deadline.",
+        "outputFormat": "Three labelled sections: Situation (≤60 words) / Opportunity Cost (≤100 words) / The Ask (≤30 words). Word limits are enforced — managing up is a discipline of brevity. Total: ≤190 words.",
+        "claudePrompt": "You are a senior PM reviewing my Day 19 work on stakeholder management and managing up.\n\nI studied today:\n- Stakeholder mapping: Decide / Advise / Execute / Inform zones\n- Managing up: communicating with leadership in the language of business outcomes\n- How Indian startup PMs navigate product reviews and founder communication\n- Writing stakeholder communications for a deprioritised feature at Zepto\n\nReal world context I should apply:\nI am APM at a fintech. My bill payment reminder feature has been cut. My data shows a 22-point on-time payment rate improvement for users who receive reminders, and on-time payment is the strongest predictor of 90-day retention (our current North Star). Leadership has deprioritised my feature in favour of a credit score simulator.\n\nMY TASK TODAY WAS: Write a three-section managing-up package (Situation / Opportunity Cost / The Ask) within strict word limits.\n\nHere is my work:\n[Pranav pastes his three sections here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets — check: does the Situation section contain only facts and numbers, no opinions? Does the Opportunity Cost section connect the data to the North Star metric, not just to user experience? Is the Ask specific with a deadline, or is it a vague request for consideration?]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets — flag if: Situation contains opinions or framing ('unfortunately' / 'I believe') rather than facts; Opportunity Cost makes the business case but does not quantify what is at stake in the North Star metric specifically; the Ask is vague ('let's discuss'), uses passive voice ('it would be great if'), or lacks a deadline]\n\nBLIND SPOTS:\n- [things Pranav did not consider — e.g., acknowledging the leadership decision before making the counter-argument (not acknowledging the credit score simulator decision makes the message sound adversarial); offering a path that does not require engineering (e.g., can the reminder run on existing infrastructure at lower cost?); noting that the credit score simulator and the reminder feature are not necessarily competing for the same users — they may address different jobs-to-be-done]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about managing up in a founder-led Indian fintech specifically — e.g., Indian founders often make product decisions based on competitive positioning and press visibility rather than retention data; a managing-up message that only uses internal data without acknowledging the competitive narrative will not land as well as one that connects both]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Managing Up — [Needs Focus / On Track / Outperform]; Stakeholder Management — [Needs Focus / On Track / Outperform]",
+        "minutes": 20
+      }
+    },
+    {
+      "day": 20,
+      "week": 3,
+      "theme": "Product Quality, Launch Readiness, and the PM's Role in Shipping",
+      "competenciesCovered": ["Product Quality", "Product Delivery", "Feature Specification"],
+      "objective": "Understand what PMs own (and do not own) in product quality; build a launch readiness checklist that covers user experience, data instrumentation, and rollback criteria; and write a launch plan for a real feature that an engineering team could actually use to ship.",
+      "estimatedMinutes": 120,
+      "realWorldAnchor": {
+        "company": "Razorpay",
+        "context": "Razorpay processes payments for over 8 million businesses in India — a product quality failure is not a bad user experience, it is lost revenue for every merchant whose payment fails. Their engineering and product culture is documented in public engineering blogs, conference talks, and press coverage. Understanding how a payments company thinks about product quality — reliability, observability, graceful degradation — gives Pranav a model for the Product Quality competency that is more rigorous than the typical consumer app framing."
+      },
+      "tasks": [
+        {
+          "id": "d20t1",
+          "type": "read",
+          "title": "Product quality: what PMs own and what they delegate",
+          "url": "https://www.reforge.com/blog/product-quality",
+          "summary": "Product quality is one of the most misunderstood PM competencies because it is often confused with QA testing (which is engineering's job). A PM's role in product quality is upstream: defining what 'quality' means for the specific user and use case, setting measurable quality criteria before development begins, instrumenting the right metrics to detect quality degradation after launch, and making the call on whether quality is good enough to ship. This reading defines each of these responsibilities and gives a framework for thinking about quality trade-offs under time pressure.",
+          "keyTakeaways": [
+            "PMs do not test software — they define what 'acceptable quality' means for the user, in measurable terms, before engineering writes a single line of code",
+            "Quality criteria belong in the acceptance criteria of every user story: not just 'feature works as intended' but 'feature loads within 2 seconds on a 4G connection in Tier 2 cities, error state shows a readable Hindi message, and the user can retry without re-entering their data'",
+            "Observability is a PM responsibility: if you cannot measure whether quality has degraded after launch, you will learn about quality problems from user complaints rather than dashboards — which means you learn late and after damage is done",
+            "The quality vs speed trade-off at Indian startups: moving fast is a competitive advantage, but launching with poor quality in payments, healthcare, or lending has regulatory and trust consequences that slow the company down more than a delayed launch would have",
+            "Rollback criteria are a PM deliverable: before every launch, the PM should define the specific metric threshold that triggers a rollback — e.g., 'if payment success rate drops below 94% in the 2 hours after launch, we roll back immediately'"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d20t2",
+          "type": "read",
+          "title": "Product launch: how to ship a feature and make it land",
+          "url": "https://www.lenny.news/p/how-to-ship-a-product",
+          "summary": "Shipping a feature is not the same as launching it. A feature is shipped when engineering merges the code. A feature lands when users discover it, use it, and get value from it. PMs who confuse these two things will consistently under-invest in go-to-market, instrumentation, and post-launch learning. This reading covers the three phases of a product launch: pre-launch preparation (readiness criteria, instrumentation, rollout plan), launch execution (staged rollout, monitoring, comms), and post-launch learning (success metrics, retrospective, follow-on decisions).",
+          "keyTakeaways": [
+            "Pre-launch checklist minimum viable items: (1) Success metric defined and baseline measured, (2) Tracking events instrumented and verified in staging, (3) Rollback criteria agreed with engineering, (4) Staged rollout plan (1% → 10% → 50% → 100%), (5) User-facing copy reviewed in all supported languages",
+            "Staged rollout is a PM tool, not an engineering tool — the decision of when to move from 10% to 50% rollout should be driven by the PM's review of quality and success metrics, not by an automatic timer",
+            "Post-launch learning requires a structured 'week 1 review': what did the success metric actually do? What is the biggest surprise (positive or negative)? What is the one decision this data drives for the next sprint?",
+            "At Indian companies, launch communications often span internal (Slack to the full company), customer-facing (push notification or email), and press (for major features) — each requires different framing and timing",
+            "The biggest APM launch mistake: declaring success based on feature adoption rate ('40% of users tried the feature') without checking whether the feature is driving the intended outcome ('did users who tried the feature retain at a higher rate than users who did not?')"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d20t3",
+          "type": "search",
+          "keyword": "product launch checklist PM readiness criteria rollback plan staged rollout instrumentation",
+          "title": "Research production-ready launch checklists and rollout practices",
+          "whyItMatters": "Every APM will ship their first feature within their first 90 days. Having a personal launch checklist — not a generic template but one that reflects the specific quality standards of Indian consumer and fintech products — is one of the most practical tools Pranav can build from this programme.",
+          "whatToLearn": [
+            "What does a production-ready launch checklist look like for a consumer app feature in India?",
+            "What specific tracking events should a PM instrument before launching a new feature (e.g., feature_viewed, feature_engaged, feature_completed, error_state_shown)?",
+            "What is a 'canary release' or 'staged rollout' and how does a PM decide when to advance each stage?",
+            "What rollback criteria do payments companies like Razorpay or Cashfree set before a launch, and how are they different from consumer app rollback criteria?",
+            "What does a post-launch retrospective template look like for a PM — what questions should it answer and who should attend?"
+          ],
+          "minutes": 20
+        },
+        {
+          "id": "d20t4",
+          "type": "activity",
+          "promptTitle": "Write a complete launch plan for a Razorpay payment link feature",
+          "claudePrompt": "You are a senior PM and launch readiness coach.\n\nRole: You are helping me build my first complete product launch plan — one that an engineering team could actually use to ship safely.\n\nToday I studied:\n- What PMs own in product quality: quality criteria, observability, rollback thresholds\n- The three phases of product launch: pre-launch, launch execution, post-launch learning\n- Staged rollout, instrumentation requirements, and post-launch retrospective structure\n\nScenario:\nYou are an APM at Razorpay on the Payments Links squad. The feature you are launching: 'Instant Payment Link via WhatsApp' — a merchant can generate a payment link directly inside Razorpay's dashboard and share it to a customer's WhatsApp number in one click, without leaving the Razorpay interface. The payment link opens in the customer's WhatsApp, clicking it opens the Razorpay payment page in the browser.\n\nTech dependencies: Razorpay dashboard (existing), WhatsApp Business API (Twilio), Razorpay payment page (existing). Target users: small merchants (kirana stores, tutors, freelancers) who currently share payment links manually via copy-paste.\n\nYour task: Build the complete launch plan across three phases.\n\nPhase 1 — Pre-launch readiness checklist\nFor each of the following areas, write 2-3 specific checklist items (not generic statements — specific, verifiable items):\n(a) Success metric and baseline\n(b) Tracking events to instrument\n(c) Quality criteria in acceptance criteria format\n(d) Rollback threshold\n(e) Staged rollout plan with percentage milestones and go/no-go criteria\n\nPhase 2 — Launch day monitoring plan\nWrite the monitoring plan for the first 4 hours after launch at 1% rollout. What are you watching, at what frequency, and what triggers a rollback call?\n\nPhase 3 — Week 1 review template\nWrite the 5 questions your week-1 review will answer, with the specific data source for each answer.\n\nFeedback format:\nWHAT WORKED: [specific launch plan decisions that show PM maturity — e.g., rollback criteria that are specific and measurable, tracking events that are named specifically, go/no-go criteria that are not just 'no bugs']\nWHAT MISSED: [gaps in the launch plan — e.g., missing WhatsApp API-specific failure modes, no instrumentation for the customer side of the flow (only merchant), no differentiation between Tier 1 and Tier 2 merchant quality expectations]\nINDIA-SPECIFIC NOTE: [one insight about product quality standards in Indian payments specifically — e.g., RBI guidelines require specific error handling and audit logging for payment failures, which means rollback criteria at a payments company have regulatory as well as product dimensions]\nCOACHING NOTE: [one launch planning habit Pranav should build before his first APM role]\n\nBegin with Phase 1.",
+          "minutes": 40
+        }
+      ],
+      "bonusTasks": [
+        {
+          "id": "d20b1",
+          "type": "search",
+          "title": "Search for Razorpay engineering blog posts about their release process",
+          "keyword": "Razorpay engineering blog release process deployment payment infrastructure India",
+          "why": "Razorpay publishes a public engineering blog. Reading their release and infrastructure posts gives you a ground-level view of how a real Indian payments company thinks about quality and deployment — more valuable than a textbook launch checklist.",
+          "minutes": 10
+        }
+      ],
+      "assessmentTask": {
+        "type": "do",
+        "taskDescription": "Write the quality criteria and rollback plan for one feature at a company of your choice (from the companies covered in this programme). The feature must be real (publicly documented or logically derivable from what the company does). Your output must be specific enough that an engineering lead could read it and know exactly when to ship and exactly when to roll back.",
+        "rawMaterial": "Product quality is not a feeling — it is a measurable standard set before development begins and monitored continuously after launch. This assessment asks you to write quality criteria with the specificity and measurability that a real APM would need on their first day.\n\nPick one feature from one company in this programme:\n- Swiggy: the 'Instamart dark store availability' indicator on the home screen\n- Zepto: the 'Reorder basket' on the home screen during evening peak (6-9pm)\n- Razorpay: the 'Instant Payment Link via WhatsApp' feature (from today's activity)\n- PhonePe: the 'UPI Lite' offline payment flow\n- CRED: the 'Bill payment auto-debit' setup flow\n\nSection 1 — Quality criteria (acceptance criteria format)\nWrite 5 quality criteria for your chosen feature. Each must:\n- Be measurable (not 'works correctly' but 'payment success rate ≥ 96% in P95 latency')\n- Cover at least one user-facing quality dimension (speed, clarity, error handling) and one system-level dimension (reliability, data correctness, fallback behaviour)\n- Be testable before launch — i.e., a QA engineer reading this criteria should be able to verify it without interpreting it\n\nSection 2 — Rollback plan\nWrite the rollback plan with three components:\n(a) Trigger threshold: the specific metric value and observation window that triggers a rollback decision (e.g., 'if X drops below Y% within Z hours of launch')\n(b) Rollback procedure: what happens when the trigger is hit — who makes the call, what gets turned off, what user communication goes out\n(c) Recovery criteria: what must be true before the feature can be re-launched after a rollback",
+        "outputFormat": "Two labelled sections: (1) Quality Criteria — 5 numbered criteria, each ≤40 words, each measurable and testable. (2) Rollback Plan — three labelled sub-sections (Trigger Threshold / Rollback Procedure / Recovery Criteria), each ≤60 words. Total: aim for 300-400 words.",
+        "claudePrompt": "You are a senior PM reviewing my Day 20 work on product quality and launch readiness.\n\nI studied today:\n- What PMs own in product quality: defining measurable quality criteria, observability, and rollback thresholds\n- The three phases of product launch: pre-launch readiness, launch execution, post-launch learning\n- Staged rollout, tracking instrumentation, and post-launch retrospective structure\n- How to write a launch plan for a real Indian product feature (Razorpay payment link)\n\nReal world context I should apply:\nQuality criteria and rollback plans are not bureaucratic documents — they are the PM's way of making the implicit standard explicit. The test of a good quality criterion is: can a QA engineer run a test against it without asking me to clarify? The test of a good rollback plan is: if I am offline and the metric hits the trigger threshold, can the engineering lead make the rollback call without calling me?\n\nMY TASK TODAY WAS: Write 5 quality criteria in acceptance criteria format and a three-part rollback plan for one real feature at one company from this programme.\n\nHere is my work:\n[Pranav pastes his quality criteria and rollback plan here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets — check: are the quality criteria actually measurable? Do they cover both user-facing and system-level dimensions? Is the rollback trigger specific (number + time window) or vague ('if there are problems')? Is the recovery criteria different from the original quality criteria, or is it just a restatement of them?]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets — flag if: quality criteria use subjective language ('fast', 'smooth', 'no errors') rather than specific thresholds; rollback trigger does not specify an observation window (saying 'if success rate drops below 95%' without saying 'within 2 hours of launch' is not actionable); rollback procedure does not name who makes the call; recovery criteria are too vague to be verifiable]\n\nBLIND SPOTS:\n- [things Pranav did not consider — e.g., the difference between a technical rollback (turning off a feature flag) and a data rollback (what happens to transactions that already completed during the degraded state?); the user communication dimension of a rollback (what does the user see or receive if the feature is turned off while they are mid-flow?); the India-specific reliability consideration — 2G/3G fallback states in Tier 2 cities need their own quality criteria separate from the primary 4G state]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about quality standards in the specific domain Pranav chose — payments, quick-commerce, or credit — where Indian regulatory or operational constraints (RBI, TRAI, low-connectivity infrastructure) make the quality bar different from a US consumer app]\n\nOPEN POINTS FOR TOMORROW:\n- [1-3 specific, actionable items only]\n\nSCORE: [X/10]\nREFORGE COMPETENCY: Product Quality — [Needs Focus / On Track / Outperform]; Product Delivery — [Needs Focus / On Track / Outperform]",
+        "minutes": 20
+      }
+    },
+    {
+      "day": 21,
+      "week": 3,
+      "theme": "Week 3 Integration: Full PM Synthesis — Strategy, Execution, and the 90-Day APM Plan",
+      "competenciesCovered": [
+        "Feature Specification",
+        "Product Delivery",
+        "Product Quality",
+        "Fluency with Data",
+        "Voice of Customer",
+        "UX Design Sense",
+        "Business Outcome Ownership",
+        "Product Vision + Roadmapping",
+        "Strategic Impact",
+        "Stakeholder Management",
+        "Team Leadership",
+        "Managing Up"
+      ],
+      "objective": "Synthesise all 21 days of learning into a single integrated PM output — a complete product case that requires strategy, execution, user insight, and stakeholder thinking simultaneously — and close the OKR thread by writing the OKRs you would actually pursue in your first 90 days as an APM.",
+      "estimatedMinutes": 120,
+      "integrationDay": true,
+      "realWorldAnchor": {
+        "company": "Blinkit",
+        "context": "Blinkit (formerly Grofers, acquired by Zomato in 2022) is India's market leader in quick-commerce — 10-minute grocery and essential delivery through a network of dark stores. As of 2024, Blinkit operates primarily in metro and Tier 1 cities. Expanding to Tier 2 cities is their documented next growth frontier. This expansion is not a simple geographic rollout — it requires rethinking the dark store model for lower order density, adjusting the product catalogue for different household basket patterns, redesigning the app for users similar to Ramesh (from Day 17), and making the unit economics work at lower average order values. It is the ideal comprehensive case for this final integration day."
+      },
+      "parallelSkillThread": "OKRs (Day 21 — closes the thread from Day 15): Write the final, polished OKR set for your first 90 days as an APM, stress-tested against everything learned in this programme.",
+      "tasks": [
+        {
+          "id": "d21t1",
+          "type": "read",
+          "title": "The first 90 days as a PM: what to learn, what to ship, and what to resist",
+          "url": "https://www.lenny.news/p/the-first-90-days-as-a-pm",
+          "summary": "The first 90 days in a PM role are the most important learning period of a PM's career — and the most dangerous time to ship the wrong thing. This reading synthesises the documented advice from senior PMs on what to prioritise in the first 30, 60, and 90 days: the listening and learning phase (Days 1-30), the first contribution (Days 31-60), and the first full ownership cycle (Days 61-90). The framing is specifically relevant to APMs joining an existing team at a mid-stage Indian startup.",
+          "keyTakeaways": [
+            "Days 1-30: the PM's job is to listen more than talk — map the product, the users, the metrics, the team, and the existing roadmap before forming opinions about what should change",
+            "The most common first-90-days mistake: shipping a change in the first 30 days to prove value; early shipping before fully understanding the system usually creates downstream problems that cost more time than the early win was worth",
+            "By Day 60, a PM should be able to answer: what is our North Star metric, what moves it, and what are the top 3 things currently blocking it? If you cannot answer this, you have not yet done the job",
+            "The first full ownership cycle (Days 61-90) means: running a discovery sprint, writing a PRD or user story set, getting engineering alignment, and tracking the first metric movement — not just shipping code",
+            "At Indian startups, the 90-day period also includes building relationships with founders and senior stakeholders: one insight shared in a product review that turns out to be correct is worth more than 10 correct PRDs for your long-term credibility"
+          ],
+          "minutes": 30
+        },
+        {
+          "id": "d21t2",
+          "type": "activity",
+          "promptTitle": "OKR audit and final APM OKR set: close the OKR thread from Day 15",
+          "claudePrompt": "You are a senior PM and OKR coach.\n\nRole: You are helping me close the OKR thread from Day 15 by writing the final, polished OKR set I would actually pursue in my first 90 days as an APM. This is not a generic exercise — it should reflect everything I have learned across 21 days.\n\nOn Day 15, I wrote my first OKRs. Today I need to revisit them with 6 days of additional learning:\n- Day 16: Indian product landscape — CRED vs PhonePe competitive dynamics\n- Day 17: Bharat vs India — designing for the next 400 million users\n- Day 18: Case practice, API basics, and timed product design + estimation\n- Day 19: Stakeholder management, managing up, and influencing without authority\n- Day 20: Product quality, launch readiness, and the PM's role in shipping\n\nActivity steps:\n\nStep 1 — OKR audit (10 minutes)\nShare the OKRs I wrote on Day 15 [Pranav pastes them here]. Review them against these criteria:\n(a) Is the Objective inspiring and directional without being a metric?\n(b) Are the Key Results measurable, time-bound, and genuinely leading indicators of the Objective — not just activity metrics ('ship 3 features') or lagging vanity metrics ('get 1 million users')?\n(c) Are the OKRs realistic for a first 90 days, given that an APM in Days 1-30 should be listening more than shipping?\n(d) Do the OKRs reflect India-specific context — i.e., would they be different if the company were in the US?\n\nStep 2 — Revision (10 minutes)\nBased on the audit, write a revised OKR set. Structure:\n- 1 Objective\n- 3 Key Results\n\nThe Objective should reflect the APM's primary goal in the first quarter. The Key Results should represent the specific, measurable milestones that prove the Objective is being achieved — not just completed tasks.\n\nStep 3 — Stretch KR (5 minutes)\nAdd one 'stretch' Key Result — the KR that you include knowing it is ambitious but that, if achieved, would signal you outperformed in your first quarter. Mark it clearly as a stretch.\n\nStep 4 — Stakeholder translation (5 minutes)\nFor each Key Result, write one sentence on how you would communicate progress on this KR to your PM lead in your weekly update — using the managing-up format from Day 19 (outcomes, not activity).\n\nFeedback format:\nWHAT WORKED: [specific OKR quality — e.g., Key Results that are genuinely leading indicators, realistic scoping for a first quarter]\nWHAT MISSED: [OKR quality issues — activity metrics disguised as Key Results, Objective that is actually a task, KRs that are not measurable within the 90-day window]\nINDIA-SPECIFIC NOTE: [one insight about OKRs at Indian startups specifically — e.g., at many Indian Series B companies, OKRs are still aspirational documents rather than operating tools; an APM who treats OKRs as a weekly accountability mechanism will stand out]\nCOACHING NOTE: [one OKR habit to build before starting the APM role]\n\nBegin with Step 1 — share the OKRs from Day 15 for the audit.",
+          "minutes": 30
+        }
+      ],
+      "bonusTasks": [
+        {
+          "id": "d21b1",
+          "type": "search",
+          "title": "Search for Blinkit's Tier 2 expansion public coverage",
+          "keyword": "Blinkit Tier 2 city expansion dark store model 2023 2024 unit economics quick commerce India",
+          "why": "Before doing the integration assessment on Blinkit Tier 2 expansion, grounding in actual published facts about Blinkit's dark store model and expansion strategy will sharpen every deliverable. Inc42 and YourStory have covered this in depth.",
+          "minutes": 15
+        }
+      ],
+      "assessmentTask": {
+        "type": "do",
+        "taskDescription": "Comprehensive 5-deliverable integration case: You are an APM at Blinkit assigned to the Tier 2 city expansion initiative. In 60 minutes, produce: (1) a problem statement, (2) two user personas, (3) three feature options RICE-scored, (4) one quarter of OKRs, and (5) a managing-up memo to your PM lead. Each deliverable must draw on a different Reforge competency cluster.",
+        "rawMaterial": "This is your final integration assessment. 60 minutes. Five deliverables. No pausing to look things up.\n\nContext:\nBlinkit operates quick-commerce dark stores in 30+ cities (primarily metro and Tier 1 as of 2024). Zomato's management has publicly stated that Tier 2 expansion is a priority. You are the APM assigned to the first Tier 2 pilot — launching in 3 cities: Nashik, Surat, and Lucknow.\n\nChallenge: Tier 2 expansion is not a copy-paste of the metro model. Key documented differences:\n- Average order value (AOV) in Tier 2 is estimated to be 20-30% lower than metro\n- Quick-commerce category awareness is lower — users in Tier 2 have not used 10-minute delivery before\n- App usage patterns differ: more feature phones, more Hindi/regional language preference, lower average screen time\n- Dark store economics require a minimum order density that is harder to reach in lower-population areas\n- Existing kirana store relationships are stronger in Tier 2 — users trust local stores more than app-based delivery\n\nDeliverable 1 — Problem statement (5 minutes)\nWrite a single MECE problem statement using the format: 'The problem is that [specific user] cannot [specific action] because [specific constraint] which results in [specific business or user outcome missed].' One sentence. No vague words.\n\nDeliverable 2 — User personas (10 minutes)\nWrite two user personas for Blinkit Tier 2 users. Each persona: name, city, age, occupation, phone type, internet usage, current grocery behaviour, JTBD (jobs-to-be-done), and one barrier to using Blinkit today. Personas must be meaningfully different from each other — not just the same person with different cities.\n\nDeliverable 3 — Feature options + RICE scores (15 minutes)\nWrite 3 feature options for the Tier 2 launch that would drive first-order conversion (the most important metric in a new market launch). For each feature:\n- Feature name and one-sentence description\n- RICE score: Reach (how many Tier 2 users does this affect in 90 days?), Impact (1-3 scale: how much does it move first-order conversion?), Confidence (%), Effort (person-weeks)\n- RICE score = (Reach × Impact × Confidence) / Effort\nAfter scoring, state which feature you prioritise and why in one sentence.\n\nDeliverable 4 — OKRs for Q1 of the Tier 2 pilot (10 minutes)\nWrite 1 Objective and 3 Key Results for your first quarter on the Tier 2 expansion. The Objective should reflect what success looks like for the pilot, not for the full expansion. The Key Results should be specific to Tier 2 dynamics — not a copy of the metro OKRs.\n\nDeliverable 5 — Managing-up memo (10 minutes)\nYour PM lead has asked for a 2-paragraph update before the weekly product review. Paragraph 1: current status of the Tier 2 pilot plan (use the outputs from Deliverables 1-4 as your evidence). Paragraph 2: the one thing you need from your PM lead in the next week — specific, time-bound, and framed as an outcome ask not an activity request.\n\nSelf-score after completing all 5 deliverables, before pasting into Claude.",
+        "outputFormat": "Five labelled deliverables. Deliverable 1: 1 sentence. Deliverable 2: 2 personas, each with 7-8 fields. Deliverable 3: 3 features with full RICE breakdown and a final prioritisation sentence. Deliverable 4: 1 Objective + 3 Key Results. Deliverable 5: 2 paragraphs (≤80 words each). Total: aim for 700-900 words.",
+        "claudePrompt": "You are a senior PM reviewing my Day 21 final integration assessment — the culmination of a 21-day APM foundations programme.\n\nI studied across 21 days:\n- Week 1: PM role, MECE, JTBD/personas, problem framing, RICE, CIRCLES framework\n- Week 2: North Star metrics, AARRR, metric diagnosis, A/B testing, SQL basics, PRDs, user stories, Figma, roadmapping, stakeholder communication\n- Week 3: Product strategy, market sizing, OKRs, TAM/SAM/SOM, Indian product landscape, Bharat vs India design, ONDC, case practice, API basics, stakeholder management, managing up, product quality, launch readiness\n\nReal world context I should apply:\nBlinkit Tier 2 expansion — launching 10-minute quick-commerce in Nashik, Surat, and Lucknow. Challenges: lower AOV, lower category awareness, more feature phones, Hindi/regional language preference, stronger kirana store trust. First priority metric: first-order conversion.\n\nMY TASK TODAY WAS: Five deliverables in 60 minutes — problem statement, two user personas, three RICE-scored feature options, one quarter of OKRs, and a managing-up memo to my PM lead.\n\nHere is my work:\n[Pranav pastes all five deliverables here]\n\nReview my work and give feedback in EXACTLY this format — do not change these headers:\n\nWHAT I GOT RIGHT:\n- [specific bullets across all 5 deliverables — check: is the problem statement truly MECE and specific? Are the personas meaningfully different from each other and from the metro Blinkit user? Are the RICE scores internally consistent (does the Reach estimate match the pilot scope of 3 cities)? Do the OKRs reflect Tier 2 dynamics or are they generic growth OKRs? Is the managing-up memo in outcomes language, not activity language?]\n\nWHAT NEEDS CORRECTION:\n- [specific bullets — flag if: problem statement uses vague words ('users struggle with...', 'the challenge is...') instead of the specific MECE format; personas are urban-lens projections rather than genuine Bharat user profiles; RICE scores use inconsistent units (e.g., Reach in all-India users rather than Tier 2 pilot users); OKRs include activity Key Results ('launch feature X') rather than outcome Key Results ('achieve Y% first-order conversion by end of Q1'); managing-up memo asks for 'input' or 'thoughts' rather than a specific decision or resource]\n\nBLIND SPOTS:\n- [things Pranav did not consider across the 5 deliverables — e.g., the kirana trust dynamic (designing a feature that converts users away from kirana stores, rather than designing a feature that creates a new habit for users who were never going to the kirana for that specific need, is strategically harder and ethically more fraught); the cold-start problem in a new Tier 2 city (the first 100 orders matter more than the average 10,000 orders because they set word-of-mouth reputation in a tight social network); how ONDC compatibility (from Day 17) could be a strategic differentiator for the Tier 2 merchant side of the Blinkit expansion]\n\nINDIA-SPECIFIC NOTE:\n- [one insight about Tier 2 expansion strategy in Indian quick-commerce specifically — e.g., the documented pattern of Indian internet adoption in Tier 2 cities is that YouTube and WhatsApp reach saturation 2-3 years before e-commerce; this means Tier 2 users are digitally literate but e-commerce-naive, which is a very specific product design challenge that is different from both the fully-naive first-time internet user (Ramesh from Day 17) and the highly-experienced metro user]\n\nPROGRAMME SYNTHESIS:\n- [A 2-3 sentence summary of where Pranav is across the Reforge 12 competencies after 21 days — which 2-3 competencies showed the clearest growth, which 1-2 competencies need the most focused work in the next phase of learning]\n\nOPEN POINTS FOR THE NEXT LEARNING PHASE:\n- [3-5 specific topics or skills that Pranav should prioritise in the next 30 days, based on gaps observed across the programme]\n\nFINAL SCORE: [X/10]\nREFORGE COMPETENCY RATINGS:\n- Feature Specification: [Needs Focus / On Track / Outperform]\n- Product Delivery: [Needs Focus / On Track / Outperform]\n- Product Quality: [Needs Focus / On Track / Outperform]\n- Fluency with Data: [Needs Focus / On Track / Outperform]\n- Voice of Customer: [Needs Focus / On Track / Outperform]\n- UX Design Sense: [Needs Focus / On Track / Outperform]\n- Business Outcome Ownership: [Needs Focus / On Track / Outperform]\n- Product Vision + Roadmapping: [Needs Focus / On Track / Outperform]\n- Strategic Impact: [Needs Focus / On Track / Outperform]\n- Stakeholder Management: [Needs Focus / On Track / Outperform]\n- Team Leadership: [Needs Focus / On Track / Outperform]\n- Managing Up: [Needs Focus / On Track / Outperform]",
+        "minutes": 60
+      }
+    }
   ]
 }
