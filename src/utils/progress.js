@@ -78,13 +78,15 @@ export function getActiveDay(progress, allDayData) {
   return allDayData[allDayData.length - 1]?.day || 1
 }
 
-export function isDayUnlocked(progress, day) {
+// Day N unlocks when Day N-1 is fully complete.
+// Pass prevDayTasks (array of task objects) for an accurate check.
+// If prevDayTasks is omitted, falls back to progress.currentDay.
+export function isDayUnlocked(progress, day, prevDayTasks = null) {
   if (day === 1) return true
-  // Day N is unlocked if day N-1 tasks are all complete
-  const prevCompletions = progress?.taskCompletions?.[day - 1] || []
-  // We need to check against actual task count — caller must pass
-  // For now unlock if prev day has any completions recorded
-  return progress?.taskCompletions?.[day - 1]?.length > 0
+  if (prevDayTasks !== null) {
+    return areDayTasksDone(progress, day - 1, prevDayTasks)
+  }
+  return (progress?.currentDay || 1) >= day
 }
 
 export function saveAssessment(userId, skillId, day, result) {

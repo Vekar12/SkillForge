@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 import { addSkillPrompt } from '../mockData'
+import { getProgress } from '../utils/progress'
 
 function ProgressRing({ progress, color, size = 52 }) {
   const r = (size - 8) / 2
@@ -120,8 +121,10 @@ export default function SkillsDashboard() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
           {skills.map(skill => {
-            const skillProgress = progress && skill.enrolled
-              ? Math.round(((activeDay - 1) / skill.totalDays) * 100)
+            const skillProg = user ? getProgress(user.uid, skill.id) : null
+            const skillDay = skillProg?.currentDay || 1
+            const skillProgress = skill.enrolled
+              ? Math.round(((skillDay - 1) / skill.totalDays) * 100)
               : 0
 
             return (

@@ -71,12 +71,25 @@ export default function Dashboard() {
   const [bonusExpanded, setBonusExpanded] = useState(false)
   const today = new Date().toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' })
 
-  if (dayLoading || !dayData) {
+  if (dayLoading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <div className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin mx-auto mb-4" style={{ borderColor: '#0A84FF', borderTopColor: 'transparent' }} />
           <p className="text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>Loading today's content...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (!dayData) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="text-center">
+          <p className="text-sm mb-3" style={{ color: 'rgba(255,255,255,0.4)' }}>Could not load day content.</p>
+          <button onClick={() => window.location.reload()} className="text-sm px-4 py-2 rounded-xl" style={{ background: '#0A84FF', color: '#fff', border: 'none', cursor: 'pointer' }}>
+            Retry
+          </button>
         </div>
       </div>
     )

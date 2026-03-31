@@ -12,12 +12,16 @@ export default function Header() {
   const [showUserMenu, setShowUserMenu] = useState(false)
   const [showKeyEdit, setShowKeyEdit] = useState(false)
 
-  const handleSaveKey = async () => {
+  const handleSaveKey = () => {
     if (keyInput.trim()) {
-      saveGroqKey(keyInput.trim())
-      setKeyInput('')
-      setShowGroqInput(false)
-      setShowKeyEdit(false)
+      try {
+        saveGroqKey(keyInput.trim())
+        setKeyInput('')
+        setShowGroqInput(false)
+        setShowKeyEdit(false)
+      } catch (err) {
+        console.error('Failed to save Groq key', err)
+      }
     }
   }
 

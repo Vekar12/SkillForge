@@ -251,9 +251,17 @@ function ActivityView({ task, onDone }) {
 export default function TaskDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
-  const { toggleTask, isTaskDone, dayData } = useApp()
+  const { toggleTask, isTaskDone, dayData, dayLoading } = useApp()
 
-  const allTasks = dayData ? [...(dayData.tasks || []), ...(dayData.bonusTasks || [])] : []
+  if (dayLoading) {
+    return (
+      <div className="max-w-2xl mx-auto px-4 py-6 text-center">
+        <p style={{ color: 'rgba(255,255,255,0.4)' }}>Loading task…</p>
+      </div>
+    )
+  }
+
+  const allTasks = [...(dayData?.tasks || []), ...(dayData?.bonusTasks || [])]
   const task = allTasks.find(t => t.id === id)
 
   if (!task) {

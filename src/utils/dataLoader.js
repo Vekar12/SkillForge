@@ -1,15 +1,27 @@
 const BASE = '/data/skills'
 
-// Cache fetched data in memory
+// In-memory cache and in-flight request deduplication
 const cache = {}
+const inflight = {}
 
 async function fetchJSON(path) {
-  if (cache[path]) return cache[path]
-  const res = await fetch(path)
-  if (!res.ok) throw new Error(`Failed to load ${path}`)
-  const data = await res.json()
-  cache[path] = data
-  return data
+  if (Object.prototype.hasOwnProperty.call(cache, path)) return cache[path]
+  if (inflight[path]) return inflight[path]
+  inflight[path] = fetch(path)
+    .then(res => {
+      if (!res.ok) throw new Error(`Failed to load ${path}`)
+      return res.json()
+    })
+    .then(data => {
+      cache[path] = data
+      delete inflight[path]
+      return data
+    })
+    .catch(err => {
+      delete inflight[path]
+      throw err
+    })
+  return inflight[path]
 }
 
 export async function loadSkillsCatalog() {

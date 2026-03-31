@@ -57,8 +57,8 @@ export function AppProvider({ children }) {
 
   const loginWithGoogle = async () => {
     if (!hasConfig) {
-      // Mock login
-      const mockUser = { uid: 'mock-uid-001', name: 'Pranav Vekar', email: 'divmaharshi@gmail.com', avatar: 'PV', photo: null }
+      // Demo mode — use a generic identity, no real PII
+      const mockUser = { uid: 'demo-uid-001', name: 'Demo User', email: 'demo@example.com', avatar: 'DU', photo: null }
       setUser(mockUser)
       localStorage.setItem('sf_user', JSON.stringify(mockUser))
       return
@@ -94,21 +94,12 @@ export function AppProvider({ children }) {
     }).catch(() => setRoadmap([]))
   }, [user, activeSkillId])
 
-  // ── Determine active day from progress ───────────────────────────────────
+  // ── Derive active day directly from progress.currentDay ──────────────────
+  // saveAssessment() advances currentDay, so we trust it as the source of truth.
   useEffect(() => {
-    if (!user || !progress) return
-    // Find the current active day: lowest incomplete day
-    // Start from day 1, find first day where tasks aren't all done
-    let found = 1
-    const completions = progress.taskCompletions || {}
-    // We check sequentially — unlock logic: day N open if day N-1 has completions
-    for (let d = 1; d <= 21; d++) {
-      const dayCompletions = completions[d] || []
-      if (dayCompletions.length === 0) { found = d; break }
-      found = d + 1
-    }
-    setActiveDay(Math.min(found, 21))
-  }, [progress, user])
+    if (!progress) return
+    setActiveDay(Math.min(progress.currentDay || 1, 21))
+  }, [progress])
 
   // ── Load day data ─────────────────────────────────────────────────────────
   useEffect(() => {
@@ -120,13 +111,13 @@ export function AppProvider({ children }) {
       .finally(() => setDayLoading(false))
   }, [activeSkillId, activeDay])
 
-  // ── Load a specific day (for review) ─────────────────────────────────────
+  // ── Load a specific day for viewing (past review or future preview) ──────
+  // Does NOT touch activeDay — progress.currentDay remains the source of truth.
   const loadDay = async (day) => {
     setDayLoading(true)
     try {
       const data = await loadDayData(activeSkillId, day)
       setDayData(data)
-      setActiveDay(day)
     } finally {
       setDayLoading(false)
     }
@@ -182,10 +173,12 @@ export function AppProvider({ children }) {
 
   const getGroqKey = () => localStorage.getItem('sf_groq_key') || ''
 
-  // ── Tasks for sidebar (current day tasks with completion state) ───────────
+  // ── Tasks for sidebar (pending tasks from the active day) ────────────────
+  // Shows tasks from whichever day is currently loaded in dayData.
   const getPendingTasksForSidebar = () => {
     if (!dayData || !progress) return []
-    return (dayData.tasks || []).filter(t => !isTaskComplete(progress, dayData.day, t.id))
+    const day = dayData.day
+    return (dayData.tasks || []).filter(t => !isTaskComplete(progress, day, t.id))
   }
 
   return (

@@ -14,7 +14,12 @@ const firebaseConfig = {
 let auth = null
 let googleProvider = null
 
-const hasConfig = firebaseConfig.apiKey && firebaseConfig.apiKey !== 'undefined'
+const hasConfig = !!(
+  firebaseConfig.apiKey && firebaseConfig.apiKey !== 'undefined' &&
+  firebaseConfig.authDomain &&
+  firebaseConfig.projectId &&
+  firebaseConfig.appId
+)
 
 if (hasConfig) {
   const app = initializeApp(firebaseConfig)

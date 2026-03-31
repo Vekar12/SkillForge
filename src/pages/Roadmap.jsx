@@ -9,9 +9,10 @@ const LEVEL_STYLES = {
 
 function DayCard({ day, activeDay, progress, onLoadDay }) {
   const navigate = useNavigate()
-  const isPast = (progress?.taskCompletions?.[day.day]?.length || 0) > 0
-  const isCurrent = day.day === activeDay
-  const isFuture = !isPast && !isCurrent
+  const currentDay = progress?.currentDay || 1
+  const isPast = day.day < currentDay
+  const isCurrent = day.day === currentDay
+  const isFuture = day.day > currentDay
 
   let borderColor = 'rgba(255,255,255,0.04)'
   if (isCurrent) borderColor = 'rgba(10,132,255,0.4)'
