@@ -10,17 +10,5 @@
     "competencies": ["Strategic Thinking", "Voice of Customer", "Fluency with Data", "UX Design Sense"],
     "enrolled": true,
     "dataPath": "/data/skills/apm-foundations"
-  },
-  {
-    "id": "sql-for-pms",
-    "title": "SQL for PMs",
-    "subtitle": "Data Querying Essentials",
-    "icon": "🗄️",
-    "color": "#30D158",
-    "totalDays": 14,
-    "description": "Learn SQL from a product lens — write queries that answer real product questions.",
-    "competencies": ["Fluency with Data", "Analytical Thinking"],
-    "enrolled": true,
-    "dataPath": "/data/skills/sql-for-pms"
   }
 ]

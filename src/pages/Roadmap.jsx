@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 
@@ -9,14 +10,16 @@ const LEVEL_STYLES = {
 
 function DayCard({ day, activeDay, progress, onLoadDay }) {
   const navigate = useNavigate()
+  const [expanded, setExpanded] = useState(false)
   const currentDay = progress?.currentDay || 1
   const isPast = day.day < currentDay
   const isCurrent = day.day === currentDay
   const isFuture = day.day > currentDay
 
-  let borderColor = 'rgba(255,255,255,0.04)'
+  let borderColor = expanded ? 'rgba(255,255,255,0.12)' : 'rgba(255,255,255,0.04)'
   if (isCurrent) borderColor = 'rgba(10,132,255,0.4)'
-  if (isPast) borderColor = 'rgba(48,209,88,0.15)'
+  if (isPast && expanded) borderColor = 'rgba(48,209,88,0.25)'
+  else if (isPast) borderColor = 'rgba(48,209,88,0.15)'
 
   let bgColor = '#1C1C1E'
   if (isCurrent) bgColor = 'linear-gradient(135deg, rgba(10,132,255,0.08), rgba(191,90,242,0.05))'
@@ -24,94 +27,114 @@ function DayCard({ day, activeDay, progress, onLoadDay }) {
   const assessment = progress?.assessments?.[day.day]
   const level = assessment?.competencyLevel ? LEVEL_STYLES[assessment.competencyLevel] : null
 
-  const handleClick = () => {
-    if (isPast || isCurrent) {
-      onLoadDay(day.day)
-      navigate('/')
-    }
-  }
-
   return (
     <div
-      className="rounded-2xl p-4 transition-all"
-      style={{
-        background: bgColor,
-        border: `1px solid ${borderColor}`,
-        cursor: isPast || isCurrent ? 'pointer' : 'default',
-      }}
-      onClick={handleClick}
+      className="rounded-2xl transition-all"
+      style={{ background: bgColor, border: `1px solid ${borderColor}`, cursor: 'pointer' }}
+      onClick={() => setExpanded(e => !e)}
     >
-      <div className="flex items-start gap-4">
-        {/* Day number circle */}
-        <div
-          className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm"
-          style={{
-            background: isCurrent ? '#0A84FF' : isPast ? 'rgba(48,209,88,0.15)' : 'rgba(255,255,255,0.06)',
-            color: isCurrent ? '#fff' : isPast ? '#30D158' : 'rgba(255,255,255,0.25)',
-          }}
-        >
-          {isPast ? '✓' : day.day}
-        </div>
+      <div className="p-4">
+        <div className="flex items-start gap-4">
+          {/* Day number circle */}
+          <div
+            className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm"
+            style={{
+              background: isCurrent ? '#0A84FF' : isPast ? 'rgba(48,209,88,0.15)' : 'rgba(255,255,255,0.06)',
+              color: isCurrent ? '#fff' : isPast ? '#30D158' : 'rgba(255,255,255,0.25)',
+            }}
+          >
+            {isPast ? '✓' : day.day}
+          </div>
 
-        <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-2 mb-1.5">
-            <div>
-              <div className="flex items-center gap-2 mb-0.5">
-                <span
-                  className="text-xs font-bold"
-                  style={{ color: isCurrent ? '#0A84FF' : isPast ? '#30D158' : 'rgba(255,255,255,0.25)' }}
-                >
-                  Day {day.day}
-                </span>
-                {isCurrent && (
-                  <span
-                    className="text-xs font-bold px-2 py-0.5 rounded-full"
-                    style={{ background: 'rgba(10,132,255,0.15)', color: '#0A84FF' }}
-                  >
-                    Today
+          <div className="flex-1 min-w-0">
+            <div className="flex items-start justify-between gap-2 mb-1.5">
+              <div>
+                <div className="flex items-center gap-2 mb-0.5">
+                  <span className="text-xs font-bold" style={{ color: isCurrent ? '#0A84FF' : isPast ? '#30D158' : 'rgba(255,255,255,0.25)' }}>
+                    Day {day.day}
                   </span>
-                )}
+                  {isCurrent && (
+                    <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: 'rgba(10,132,255,0.15)', color: '#0A84FF' }}>
+                      Today
+                    </span>
+                  )}
+                  {isFuture && (
+                    <span className="text-xs" style={{ color: 'rgba(255,255,255,0.2)' }}>🔒</span>
+                  )}
+                </div>
+                <p className="text-sm font-medium leading-snug" style={{ color: isFuture ? 'rgba(255,255,255,0.3)' : '#fff' }}>
+                  {day.theme}
+                </p>
               </div>
-              <p
-                className="text-sm font-medium leading-snug"
-                style={{ color: isFuture ? 'rgba(255,255,255,0.3)' : '#fff' }}
-              >
-                {day.theme}
-              </p>
-            </div>
-            {isPast && assessment?.score && (
-              <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
-                <span className="text-base font-bold" style={{ color: '#30D158' }}>{assessment.score}/10</span>
-                {level && (
-                  <span
-                    className="text-xs font-bold px-2 py-0.5 rounded-full"
-                    style={{ background: level.bg, color: level.color, border: `1px solid ${level.border}` }}
-                  >
-                    {assessment.competencyLevel}
-                  </span>
+              <div className="flex items-center gap-2 flex-shrink-0">
+                {isPast && assessment?.score && (
+                  <span className="text-sm font-bold" style={{ color: '#30D158' }}>{assessment.score}/10</span>
                 )}
+                <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.25)', transition: 'transform 0.2s', display: 'inline-block', transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
+              </div>
+            </div>
+            {/* Competency pills — always visible */}
+            {day.competenciesCovered && (
+              <div className="flex flex-wrap gap-1.5 mt-2">
+                {day.competenciesCovered.map(c => (
+                  <span
+                    key={c}
+                    className="text-xs font-medium px-2 py-0.5 rounded-full"
+                    style={{
+                      background: isCurrent ? 'rgba(10,132,255,0.12)' : isPast ? 'rgba(48,209,88,0.1)' : 'rgba(255,255,255,0.04)',
+                      color: isCurrent ? '#0A84FF' : isPast ? '#30D158' : 'rgba(255,255,255,0.2)',
+                    }}
+                  >
+                    {c}
+                  </span>
+                ))}
               </div>
             )}
           </div>
-          {/* Competency pills */}
-          {day.competenciesCovered && (
-            <div className="flex flex-wrap gap-1.5 mt-2">
-              {day.competenciesCovered.map(c => (
-                <span
-                  key={c}
-                  className="text-xs font-medium px-2 py-0.5 rounded-full"
-                  style={{
-                    background: isCurrent ? 'rgba(10,132,255,0.12)' : isPast ? 'rgba(48,209,88,0.1)' : 'rgba(255,255,255,0.04)',
-                    color: isCurrent ? '#0A84FF' : isPast ? '#30D158' : 'rgba(255,255,255,0.2)',
-                  }}
-                >
-                  {c}
-                </span>
-              ))}
-            </div>
-          )}
         </div>
       </div>
+
+      {/* Expanded detail panel */}
+      {expanded && (
+        <div
+          style={{ borderTop: `1px solid ${isCurrent ? 'rgba(10,132,255,0.15)' : 'rgba(255,255,255,0.06)'}`, padding: '12px 16px 16px' }}
+          onClick={e => e.stopPropagation()}
+        >
+          {isPast && assessment && level && (
+            <div className="flex items-center gap-2 mb-3">
+              <span
+                className="text-xs font-bold px-2 py-0.5 rounded-full"
+                style={{ background: level.bg, color: level.color, border: `1px solid ${level.border}` }}
+              >
+                {assessment.competencyLevel}
+              </span>
+              {assessment.gotRight && (
+                <span className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>· {assessment.gotRight.slice(0, 80)}{assessment.gotRight.length > 80 ? '…' : ''}</span>
+              )}
+            </div>
+          )}
+
+          {isFuture && (
+            <p className="text-xs mb-3" style={{ color: 'rgba(255,255,255,0.3)', lineHeight: 1.5 }}>
+              Complete Day {currentDay} to unlock this day.
+            </p>
+          )}
+
+          {(isPast || isCurrent) && (
+            <button
+              onClick={() => { onLoadDay(day.day); navigate('/') }}
+              className="text-xs font-semibold px-3 py-1.5 rounded-lg transition-all hover:opacity-80"
+              style={{
+                background: isCurrent ? '#0A84FF' : 'rgba(48,209,88,0.12)',
+                color: isCurrent ? '#fff' : '#30D158',
+                border: 'none', cursor: 'pointer',
+              }}
+            >
+              {isCurrent ? 'Go to Today →' : 'Review Day →'}
+            </button>
+          )}
+        </div>
+      )}
     </div>
   )
 }

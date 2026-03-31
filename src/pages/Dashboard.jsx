@@ -12,7 +12,6 @@ function TaskRow({ task, isDone, isLocked, onToggle }) {
   const navigate = useNavigate()
   const cfg = TYPE[task.type] || TYPE.read
   const title = task.title || task.keyword || task.promptTitle || ''
-  // Non-interactive wrapper — keyboard access is provided by the two inner buttons.
   return (
     <div
       style={{
@@ -24,7 +23,6 @@ function TaskRow({ task, isDone, isLocked, onToggle }) {
         transition: 'opacity 0.15s',
       }}
     >
-      {/* Completion toggle — keyboard accessible, screen-reader labelled */}
       <button
         onClick={e => { e.stopPropagation(); if (!isLocked) onToggle(task.id) }}
         disabled={isLocked}
@@ -41,7 +39,6 @@ function TaskRow({ task, isDone, isLocked, onToggle }) {
       >
         {isDone && <svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 3.5L4 6.5L10 1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>}
       </button>
-      {/* Navigation — real button so Tab + Enter opens the task detail page */}
       <button
         onClick={() => !isLocked && navigate(`/task/${task.id}`)}
         disabled={isLocked}
@@ -61,15 +58,15 @@ function TaskRow({ task, isDone, isLocked, onToggle }) {
 }
 
 export default function Dashboard() {
-  const { dayData, dayLoading, toggleTask, isTaskDone, activeDay, loadDay, activeSkillId, skills } = useApp()
-  // Derive title and totalDays from the active skill so this page works for any
-  // enrolled track, not just the hardcoded APM 21-day course.
+  const { dayData, dayLoading, toggleTask, isTaskDone, activeDay, loadDay, skills, activeSkillId } = useApp()
+  const navigate = useNavigate()
+  const [showBonus, setShowBonus] = useState(false)
+
   const activeSkill = skills.find(s => s.id === activeSkillId)
   const totalDays   = activeSkill?.totalDays || 21
   const skillTitle  = activeSkill?.title     || 'APM Foundations'
-  const [showBonus, setShowBonus] = useState(false)
 
-  // Snap back to current active day whenever this page mounts
+  // Snap back to current active day on mount
   useEffect(() => {
     if (activeDay && dayData && dayData.day !== activeDay) loadDay(activeDay)
   }, [activeDay]) // eslint-disable-line react-hooks/exhaustive-deps
@@ -95,9 +92,8 @@ export default function Dashboard() {
   const bonusTasks = dayData.bonusTasks || []
   const today      = new Date().toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' })
 
-  const readsDone         = tasks.filter(t => t.type === 'read' && isTaskDone(t.id)).length
-  const allReadsDone      = readsDone === tasks.filter(t => t.type === 'read').length && tasks.filter(t => t.type === 'read').length > 0
-  const allReadSearchDone = tasks.filter(t => (t.type === 'read' || t.type === 'search') && !isTaskDone(t.id)).length === 0
+  const allReadsDone      = tasks.filter(t => t.type === 'read').every(t => isTaskDone(t.id)) && tasks.some(t => t.type === 'read')
+  const allReadSearchDone = tasks.filter(t => t.type === 'read' || t.type === 'search').every(t => isTaskDone(t.id))
 
   const isLocked = (task) => {
     if (task.type === 'read')     return false
@@ -111,8 +107,7 @@ export default function Dashboard() {
   const allBonusDone = bonusTasks.length > 0 && bonusTasks.every(t => isTaskDone(t.id))
   const overallPct   = Math.round(((activeDay - 1) / totalDays) * 100)
 
-  const s = { // shared inline style helpers
-    card: (extra) => ({ padding: '16px', borderRadius: 14, marginBottom: 24, ...extra }),
+  const s = {
     label: { fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 10, display: 'block' },
   }
 
@@ -129,7 +124,6 @@ export default function Dashboard() {
           </div>
           <Link to="/roadmap" style={{ fontSize: 13, color: '#3B82F6', textDecoration: 'none', fontWeight: 500 }}>Roadmap →</Link>
         </div>
-        {/* Progress bar */}
         <div style={{ marginTop: 18 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
             <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.25)' }}>{skillTitle}</span>
@@ -143,7 +137,7 @@ export default function Dashboard() {
 
       {/* Context anchor */}
       {dayData.realWorldAnchor && (
-        <div style={{ ...s.card({ background: 'rgba(59,130,246,0.06)', border: '1px solid rgba(59,130,246,0.12)' }) }}>
+        <div style={{ padding: '16px', borderRadius: 14, marginBottom: 24, background: 'rgba(59,130,246,0.06)', border: '1px solid rgba(59,130,246,0.12)' }}>
           <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#3B82F6' }}>Today's context</span>
           <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.55, marginTop: 6 }}>
             <strong style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 600 }}>{dayData.realWorldAnchor.company}</strong>
@@ -183,7 +177,7 @@ export default function Dashboard() {
         )}
       </div>
 
-      {/* Bonus — only visible once core tasks are done */}
+      {/* Bonus */}
       {allCoreDone && bonusTasks.length > 0 && (
         <div style={{ marginBottom: 24 }}>
           {!showBonus ? (

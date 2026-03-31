@@ -6,7 +6,6 @@ export default function RightSidebar() {
   const { getPendingTasksForSidebar, skills, activeDay, groqKeySet, activeSkillId, setActiveSkillId } = useApp()
 
   const pendingTasks = getPendingTasksForSidebar()
-  const completedCount = pendingTasks.length === 0 ? 0 : 0
   const TYPE_ICONS = { read: '📖', search: '🔍', activity: '⚡' }
 
   return (

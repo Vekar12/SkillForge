@@ -93,7 +93,8 @@ ${rawFeedback}` }],
 
 export default function Assessment() {
   const navigate = useNavigate()
-  const { groqKeySet, getGroqKey, submitAssessment, dayData } = useApp()
+  const { groqKeySet, submitAssessment, dayData, resetToActiveDay } = useApp()
+  const groqKey = groqKeySet
   const assessmentTask = dayData?.assessmentTask
   const [feedback, setFeedback] = useState('')
   const [submitted, setSubmitted] = useState(false)
@@ -197,7 +198,7 @@ export default function Assessment() {
         </div>
 
         <button
-          onClick={() => navigate('/')}
+          onClick={() => { resetToActiveDay(); navigate('/') }}
           className="w-full font-semibold transition-all active:scale-[0.98] hover:opacity-90"
           style={{ background: '#0A84FF', color: '#fff', height: '52px', borderRadius: '14px', fontSize: '17px', letterSpacing: '-0.2px', border: 'none', cursor: 'pointer' }}
         >

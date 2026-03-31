@@ -26,12 +26,18 @@ export function AppProvider({ children }) {
   const [groqKeySet, setGroqKeySet]       = useState(() => !!localStorage.getItem('sf_groq_key'))
   const [activeDay, setActiveDay]         = useState(1)
 
+  // ── Auth ──────────────────────────────────────────────────────────────────
   useEffect(() => {
     const token = localStorage.getItem('sf_token')
     if (token) {
       const payload = decodeJwtPayload(token)
       if (payload) {
-        setUser({ uid: payload.sub, name: payload.name, email: payload.email, photo: payload.picture || null, avatar: payload.name?.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() || 'U', token })
+        setUser({
+          uid: payload.sub, name: payload.name, email: payload.email,
+          photo: payload.picture || null,
+          avatar: payload.name?.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() || 'U',
+          token,
+        })
       } else {
         localStorage.removeItem('sf_token')
       }
@@ -46,7 +52,12 @@ export function AppProvider({ children }) {
     }
     const payload = decodeJwtPayload(credential)
     if (!payload) return
-    const u = { uid: payload.sub, name: payload.name, email: payload.email, photo: payload.picture || null, avatar: payload.name?.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() || 'U', token: credential }
+    const u = {
+      uid: payload.sub, name: payload.name, email: payload.email,
+      photo: payload.picture || null,
+      avatar: payload.name?.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() || 'U',
+      token: credential,
+    }
     localStorage.setItem('sf_token', credential)
     setUser(u)
   }, [])
@@ -56,10 +67,12 @@ export function AppProvider({ children }) {
     setUser(null); setProgress(null); setDayData(null)
   }, [])
 
+  // ── Skills catalog ────────────────────────────────────────────────────────
   useEffect(() => {
     loadSkillsCatalog().then(setSkills).catch(() => setSkills([]))
   }, [])
 
+  // ── Progress + roadmap ────────────────────────────────────────────────────
   useEffect(() => {
     if (!user || !activeSkillId) return
     const p = initProgress(user.uid, activeSkillId)
@@ -68,27 +81,39 @@ export function AppProvider({ children }) {
     loadRoadmap(activeSkillId).then(setRoadmap).catch(() => setRoadmap([]))
   }, [user, activeSkillId])
 
+  // ── Active day from progress.currentDay ───────────────────────────────────
   useEffect(() => {
     if (!progress) return
     setActiveDay(Math.min(progress.currentDay || 1, 21))
   }, [progress])
 
+  // ── Load day data when activeDay changes ──────────────────────────────────
   useEffect(() => {
     if (!activeSkillId || !activeDay) return
     setDayLoading(true)
-    loadDayData(activeSkillId, activeDay).then(setDayData).catch(() => setDayData(null)).finally(() => setDayLoading(false))
+    loadDayData(activeSkillId, activeDay)
+      .then(setDayData)
+      .catch(() => setDayData(null))
+      .finally(() => setDayLoading(false))
   }, [activeSkillId, activeDay])
 
+  // ── Load a specific day for viewing ──────────────────────────────────────
   const loadDay = useCallback(async (day) => {
     setDayLoading(true)
-    try { const d = await loadDayData(activeSkillId, day); setDayData(d) }
-    finally { setDayLoading(false) }
+    try {
+      const d = await loadDayData(activeSkillId, day)
+      setDayData(d)
+    } finally {
+      setDayLoading(false)
+    }
   }, [activeSkillId])
 
+  // ── Snap back to current active day ──────────────────────────────────────
   const resetToActiveDay = useCallback(() => {
-    if (!dayData || dayData.day !== activeDay) loadDay(activeDay)
-  }, [dayData, activeDay, loadDay])
+    loadDay(activeDay)
+  }, [activeDay, loadDay])
 
+  // ── Task toggle ───────────────────────────────────────────────────────────
   const toggleTask = useCallback((taskId) => {
     if (!user || !progress || !dayData) return
     const day = dayData.day
@@ -110,19 +135,26 @@ export function AppProvider({ children }) {
     return tasks.length > 0 && areDayTasksDone(progress, day, tasks)
   }, [progress, dayData])
 
+  // ── Assessment ────────────────────────────────────────────────────────────
   const submitAssessment = useCallback((result) => {
     if (!user || !dayData) return
     const newProgress = saveAssessment(user.uid, activeSkillId, dayData.day, result)
     setProgress({ ...newProgress })
   }, [user, dayData, activeSkillId])
 
+  // ── Groq key ──────────────────────────────────────────────────────────────
   const saveGroqKey = useCallback((key) => {
-    try { localStorage.setItem('sf_groq_key', key); setGroqKeySet(true) }
-    catch (err) { console.error('Failed to save Groq key', err) }
+    try {
+      localStorage.setItem('sf_groq_key', key)
+      setGroqKeySet(true)
+    } catch (err) {
+      console.error('Failed to save Groq key:', err)
+    }
   }, [])
 
   const getGroqKey = useCallback(() => localStorage.getItem('sf_groq_key') || '', [])
 
+  // ── Sidebar helpers ───────────────────────────────────────────────────────
   const getPendingTasksForSidebar = useCallback(() => {
     if (!dayData || !progress) return []
     return (dayData.tasks || []).filter(t => !isTaskComplete(progress, dayData.day, t.id))
